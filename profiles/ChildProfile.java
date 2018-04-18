@@ -2,6 +2,8 @@ package profiles;
 /**
  * 
  * @author Henrik Sigeman
+ * 
+ * Test 2.1 Testar ifall det nya projektet funkar!
  *
  */
 public class ChildProfile {
