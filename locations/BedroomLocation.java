@@ -2,6 +2,7 @@ package locations;
 /**
  * 
  * @author Henrik Sigeman
+ * yo mama 
  *
  */
 public class BedroomLocation extends Location{
