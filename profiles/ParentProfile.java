@@ -6,6 +6,8 @@ import tasks.Chore;
 import tasks.Task;
 /**
  * 
+ * A1: Testar ifall det funkar att jag pushar
+ * 
  * @author Henrik Sigeman
  *
  */
