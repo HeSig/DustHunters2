@@ -13,8 +13,11 @@ import profiles.Account;
 import server.ServerRequest;
 
 /**
+ * angel says hiii
  * 
  * @author Henrik Sigeman
+ * 
+ * helloooooo
  *
  */
 public class Client extends Thread {
