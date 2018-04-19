@@ -15,6 +15,8 @@ import server.ServerRequest;
 /**
  * 
  * @author Henrik Sigeman
+ * 
+ * helloooooo
  *
  */
 public class Client extends Thread {
