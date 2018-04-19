@@ -25,14 +25,18 @@ public class UserController {
 
 	/**
 	 * Returns the client
+	 * 
 	 * @return the client.
 	 */
 	public Client getClient() {
 		return client;
 	}
+
 	/**
 	 * Sets the controllers client
-	 * @param client the new client.
+	 * 
+	 * @param client
+	 *            the new client.
 	 */
 	public void setClient(Client client) {
 		this.client = client;
@@ -40,39 +44,50 @@ public class UserController {
 
 	/**
 	 * returns the ip-address of the server.
+	 * 
 	 * @return the ip-address as a String
 	 */
 	public String getHost() {
 		return host;
 	}
+
 	/**
 	 * Sets the controllers ip-address.
-	 * @param host the new ip-address.
+	 * 
+	 * @param host
+	 *            the new ip-address.
 	 */
 	public void setHost(String host) {
 		this.host = host;
 	}
-	
+
 	/**
 	 * returns the controllers port.
+	 * 
 	 * @return the port.
 	 */
 	public int getPort() {
 		return port;
 	}
+
 	/**
 	 * sets the controllers port.
-	 * @param port the new port.
+	 * 
+	 * @param port
+	 *            the new port.
 	 */
 
 	public void setPort(int port) {
 		this.port = port;
 	}
-	
+
 	/**
 	 * Regisers a new account through the client.
-	 * @param account The account to be registered
-	 * @return Returns a string that lets the user know if the account has been registered.
+	 * 
+	 * @param account
+	 *            The account to be registered
+	 * @return Returns a string that lets the user know if the account has been
+	 *         registered.
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
@@ -80,15 +95,20 @@ public class UserController {
 		String res = client.sendRegisterToServer(account);
 		return res;
 	}
+
 	/**
 	 * Attempts a "login" through the client.
-	 * @param account The account to be logged in to.
-	 * @return Returns true or false, depending on wether the server accepts the login.
+	 * 
+	 * @param account
+	 *            The account to be logged in to.
+	 * @return Returns true or false, depending on wether the server accepts the
+	 *         login.
 	 * @throws UnknownHostException
 	 * @throws IOException
+	 * @throws ClassNotFoundException
 	 */
-	public Boolean login(Account account) throws UnknownHostException, IOException {
-		Boolean res = client.sendLoginToServer(account);
+	public Account login(Account account) throws UnknownHostException, IOException, ClassNotFoundException {
+		Account res = client.sendLoginToServer(account);
 		return res;
 	}
 

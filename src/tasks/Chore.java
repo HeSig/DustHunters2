@@ -8,6 +8,10 @@ package tasks;
 public class Chore {
 	private String choreName;
 	
+	public Chore(String choreName) {
+		this.choreName = choreName;
+	}
+	
 	public void setChoreName(String choreName) {
 		this.choreName = choreName;
 	}

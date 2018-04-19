@@ -24,9 +24,17 @@ public class Client extends Thread {
 	private InputStream is;
 	private Socket socket;
 	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
 	private BufferedReader br;
 	private String serverRequest;
 
+	
+	/**
+	 * Creates a client 
+	 * @param user the usercontroller
+	 * @throws UnknownHostException 
+	 * @throws IOException 
+	 */
 	public Client(UserController user) throws UnknownHostException, IOException {
 		this.user = user;
 	}
@@ -36,6 +44,7 @@ public class Client extends Thread {
 	 * @throws IOException
 	 */
 	private void closeStreams() throws IOException {
+		
 		oos.close();
 		br.close();
 		os.close();
@@ -75,8 +84,9 @@ public class Client extends Thread {
 	 * @return
 	 * @throws UnknownHostException
 	 * @throws IOException
+	 * @throws ClassNotFoundException 
 	 */
-	public Boolean sendLoginToServer(Account account) throws UnknownHostException, IOException {
+	public Account sendLoginToServer(Account account) throws UnknownHostException, IOException, ClassNotFoundException {
 		Boolean ret = false;
 		serverRequest = "Login";
 		socket = new Socket(user.getHost(), user.getPort());
@@ -87,19 +97,27 @@ public class Client extends Thread {
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		os = socket.getOutputStream();
 		oos = new ObjectOutputStream(os);
+		ois = new ObjectInputStream(is);
 		oos.writeObject(new ServerRequest(account, serverRequest));
-		String res = null;
+		Account res = null;
 		while (res == null) {
-			res = br.readLine();
+			res = (Account) ois.readObject();
 		}
-		if(res.equals("OK")) {
-			ret = true;
-		}
-		if(res.equals("NO")) {
-			ret = false;
-		}
+		ois.close();
 		closeStreams();
-		return ret;
+		printAccount(res);
+		return res;
 	}
 
+	private void printAccount(Account account) {
+		System.out.println(account.getEmail());
+		System.out.println(account.getPassword());
+		for(int i = 0; i < account.getParentProfileList().size(); i++) {
+			System.out.println(account.getParentProfileList().get(i).getName());
+		}
+		for(int i = 0; i < account.getChildProfileList().size(); i++) {
+			System.out.println(account.getChildProfileList().get(i).getName());
+		}
+		
+	}
 }

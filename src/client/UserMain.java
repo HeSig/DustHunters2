@@ -22,7 +22,7 @@ import server.ServerWindow;
 public class UserMain {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		int port = 4040;
-		String host = "10.2.20.138";
+		String host = "10.2.5.9";
 		AccountManager accountManager1 = new AccountManager();
 		Server server = new Server(port, accountManager1);
 		ServerWindow window = new ServerWindow(server);

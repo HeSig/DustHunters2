@@ -15,7 +15,7 @@ import javax.swing.*;
 import profiles.Account;
 
 /**
- * sara hälsar mofoooo
+ * 
  * @author Henrik Sigeman
  *
  */
@@ -35,10 +35,10 @@ public class RegisterWindow extends JFrame implements ActionListener {
 	private JPanel registerPanel = new JPanel(gLayout);
 	private JPanel buttonPanel = new JPanel();
 
-	
 	/**
 	 * 
-	 * @param controller The local controller
+	 * @param controller
+	 *            The local controller
 	 */
 	public RegisterWindow(UserController controller) {
 		email.setText("Test@test.com");
@@ -76,7 +76,7 @@ public class RegisterWindow extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	private void login() throws UnknownHostException, IOException {
+	private void login() throws UnknownHostException, IOException, ClassNotFoundException {
 		email.setBackground(Color.WHITE);
 		password.setBackground(Color.WHITE);
 		String mailStr = email.getText();
@@ -112,12 +112,7 @@ public class RegisterWindow extends JFrame implements ActionListener {
 			if (passOK) {
 				Account account = new Account(email.getText(), password.getText());
 				System.out.println(account.getEmail());
-				if (controller.login(account)) {
-					System.out.println("Hello");
-				} else {
-
-				}
-
+				Account fetchedAccount = controller.login(account);
 			}
 		}
 		infoText.setText(infoTextStr);
@@ -181,6 +176,9 @@ public class RegisterWindow extends JFrame implements ActionListener {
 			try {
 				login();
 			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
