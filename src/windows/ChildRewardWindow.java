@@ -12,6 +12,7 @@ import profiles.ChildProfile;
  *  amount of points needed for a child to get the reward. 
  *  The rewards will be dimmed / disabled for pushing, until a child
  *  has acquired the stated amount of points. 
+ *  Updated 
  * 
  * @author dalvig
  *
@@ -25,6 +26,7 @@ public class ChildRewardWindow extends AbstractWindowUI {
 	private int rewardPoints;
 	private ImageIcon profilePicture;
 	private ImageIcon rewardActivity;
+	private ImageIcon boobs;
 	
 
 	public ChildRewardWindow(String title) {
