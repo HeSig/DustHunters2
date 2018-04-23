@@ -15,11 +15,11 @@ import javax.swing.border.Border;
 
 public abstract class AbstractWindowUI extends JPanel {
 
-	private JFrame frame = new JFrame();
-	private String title;
-	private JLabel lblTitle = new JLabel(title);
-	private JPanel topPanel;
-	private JPanel middlePanel;
+	protected JFrame frame = new JFrame();
+	protected String title;
+	protected JLabel lblTitle = new JLabel(title);
+	protected JPanel topPanel;
+	protected JPanel middlePanel;
 
 	public AbstractWindowUI(String title) {
 		this.title = title;
@@ -61,6 +61,7 @@ public abstract class AbstractWindowUI extends JPanel {
 		middlePanel.setBounds(12, 125, 368, 400);
 		middlePanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		
 
 		frame.add(middlePanel);
 

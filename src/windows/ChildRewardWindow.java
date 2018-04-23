@@ -1,6 +1,9 @@
 package windows;
 
+import java.awt.Color;
+
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import profiles.Account;
 import profiles.ChildProfile;
@@ -26,12 +29,28 @@ public class ChildRewardWindow extends AbstractWindowUI {
 	private int rewardPoints;
 	private ImageIcon profilePicture;
 	private ImageIcon rewardActivity;
-	private ImageIcon boobs;
+	private JLabel childName;
+	
 	
 
 	public ChildRewardWindow(String title) {
 		super(title);
+		
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void addButton() {
+		frame.add(childName);
+	}
+	
+	public void setBackgroundColor() {
+		frame.setBackground(Color.YELLOW);
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		new ChildRewardWindow("Belöningar");
 	}
 
 }
