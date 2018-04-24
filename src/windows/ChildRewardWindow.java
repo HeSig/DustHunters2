@@ -29,7 +29,7 @@ public class ChildRewardWindow extends AbstractWindowUI {
 	private int rewardPoints;
 	private ImageIcon profilePicture;
 	private ImageIcon rewardActivity;
-	private JLabel childNameTest;
+	private JLabel childName;
 	
 	
 
