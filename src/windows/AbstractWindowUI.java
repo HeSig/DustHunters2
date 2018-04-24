@@ -84,9 +84,10 @@ public abstract class AbstractWindowUI extends JPanel {
 		setWindowSize();
 		setupTopPanel();
 		setupMiddlePanel();
-	}
-}
 
-// public static void main(String[] args) {
-// AbstractWindowUI ui = new AbstractWindowUI("TaskWindow");
-//
+	}
+	
+//	public static void main(String[] args) {
+//		AbstractWindowUI ui = new AbstractWindowUI("TaskWindow");
+//	}
+}

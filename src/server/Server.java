@@ -21,6 +21,7 @@ public class Server extends Thread {
 	@SuppressWarnings("unused")
 	private InputStream is;
 	private String serverRequest;
+	private ObjectOutputStream oos;
 
 	public Server(int port, AccountManager accountManager) throws IOException {
 		this.accountManager = accountManager;
@@ -32,6 +33,7 @@ public class Server extends Thread {
 	 * @throws IOException
 	 */
 	public void close() throws IOException {
+		oos.close();
 		os.close();
 		ss.close();
 		s.close();
@@ -52,13 +54,16 @@ public class Server extends Thread {
 			// port = 53;
 			try {
 				ServerRequest request = null;
-				ss = new ServerSocket(port);
-				System.out.println("Waiting for client...");
+				
+					ss = new ServerSocket(port);
+				
+				//System.out.println("Waiting for client...");
 				s = ss.accept();
 				// System.out.println("Client connected to: " + s.toString());
 				os = s.getOutputStream();
 				pw = new PrintWriter(s.getOutputStream(), true);
 				ois = new ObjectInputStream(s.getInputStream());
+				oos = new ObjectOutputStream(s.getOutputStream());
 				while (request == null) {
 					request = (ServerRequest) ois.readObject();
 				}
@@ -71,15 +76,24 @@ public class Server extends Thread {
 				// Loginfunction.
 				if (request.getRequest().equals("Login")) {
 					Account account = request.getAccount();
-					String res = AccountManager.loginUser(account);
-					pw.println(res);
+					Account res;
+					res = AccountManager.loginUser(account);
+					oos.writeObject(res);
+					oos.flush();
+				}
+				// Add task
+				if(request.getRequest().equals("AddTask")) {
+					Account account = request.getAccount();
+					
 				}
 				// System.out.println("Mottaget och levererat");
 				close();
 				// System.out.println("Closed");
-			} catch (Exception e) {
-				System.out.println(e);
+			} catch (IOException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+
 		}
 	}
 	

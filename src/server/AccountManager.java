@@ -3,28 +3,123 @@ package server;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
+import locations.BedroomLocation;
+import locations.KitchenLocation;
+import locations.Location;
+import locations.ToiletLocation;
 import profiles.Account;
+import profiles.ChildProfile;
+import profiles.ParentProfile;
+import rewards.Reward;
+import tasks.Chore;
+import tasks.Task;
 
 /**
  * 
- * @author Henrik Sigeman
- * The AccountManager handles all interaction between the server and the database
- * which stores all of the accounts and their contents.
+ * @author Henrik Sigeman The AccountManager handles all interaction between the
+ *         server and the database which stores all of the accounts and their
+ *         contents.
  */
 public class AccountManager {
 
 	private static File filename = new File("files/accounts.txt");
 
-	public static String loginUser(Account account) throws IOException {
+	// Build account from server.
+	public static Account buildAccount(String email, String password) throws IOException {
+		System.out.println("New account started");
+		Account account = new Account(email, password);
+		FileReader fileReader;
+		try {
+			fileReader = new FileReader("Accounts/" + email + ".txt");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("Accountfile not found");
+			return null;
+		}
+		BufferedReader br = new BufferedReader(fileReader);
+		List<ParentProfile> parentProfileList;
+		List<ChildProfile> childProfileList;
+		List<Task> taskList;
+		List<Reward> rewardList;
+		ParentProfile parent;
+		String readLine = "";
+		System.out.println(br.readLine());
+		// Parent profiles
+		readLine = br.readLine();
+		if (readLine.equals("ParentProfiles:")) {
+			readLine = br.readLine();
+			while (!readLine.equals("$")) {
+				System.out.println(readLine);
+				parent = new ParentProfile(readLine);
+				account.addParentProfile(parent);
+				
+				readLine = br.readLine();
+			}
+		}else {
+			System.out.println("ParentProfile skipped");
+		}
+		// Child profiles
+		if (br.readLine().equals("ChildProfiles:")) {
+			readLine = br.readLine();
+			while (!readLine.equals("$")) {
+				account.addChildProfile(new ChildProfile(readLine));
+				readLine = br.readLine();
+			}
+		}
+
+		// Tasks
+		if (br.readLine().equals("Tasks")) {
+			readLine = br.readLine();
+			Location location = null;
+			while (!readLine.equals("$")) {
+				
+				if(readLine.equals("Kök")) {
+					location = new KitchenLocation();
+				}else if(readLine.equals("Toalett")) {
+					location = new ToiletLocation();
+				}else if(readLine.equals("Sovrum")) {
+					location = new BedroomLocation();
+				}
+				if (location != null) {
+					account.addTask(new Task(location, new Chore(br.readLine()), Integer.parseInt(br.readLine())));
+				}
+				br.readLine();
+			}
+		}
+
+		// Rewards
+		if (br.readLine().equals("Rewards")) {
+			readLine = br.readLine();
+			while (!readLine.equals("$")) {
+				account.addReward(new Reward(br.readLine(), Integer.parseInt(br.readLine())));
+				readLine = br.readLine();
+			}
+		}
+		// childProfileList.add(null);
+
+		return account;
+
+	}
+
+	/**
+	 * Login user to the account.
+	 * 
+	 * @param account
+	 *            the account.
+	 * @return
+	 * @throws IOException
+	 */
+	public static Account loginUser(Account account) throws IOException {
 		String email = account.getEmail();
 		String password = account.getPassword();
 		FileReader fileReader = new FileReader(filename);
-
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		String line;
 		while ((line = bufferedReader.readLine()) != null) {
@@ -32,17 +127,21 @@ public class AccountManager {
 				if (bufferedReader.readLine().equals(password)) {
 					bufferedReader.close();
 					fileReader.close();
-					return "OK";
+					Account newAccount = buildAccount(account.getEmail(), account.getPassword());
+					return newAccount;
 				}
 			}
 		}
 		bufferedReader.close();
 		fileReader.close();
-		return "NO";
+		return null;
 	}
+
 	/**
 	 * Register an account to the database.
-	 * @param account The account to be added.
+	 * 
+	 * @param account
+	 *            The account to be added.
 	 * @return a String message.
 	 * @throws IOException
 	 */
@@ -70,6 +169,26 @@ public class AccountManager {
 		pr.append(email);
 		pr.append("\n" + password);
 		pr.close();
+		// Create new account file
+		PrintWriter writer = new PrintWriter("accounts/" + account.getEmail() + ".txt");
+		// Write initial information.
+		writer.println("Account of " + account.getEmail());
+		writer.println("ParentProfiles:");
+		writer.println("Pappa");
+		writer.println("Mamma");
+		writer.println("$");
+		writer.println("ChildProfiles:");
+		writer.println("Pelle");
+		writer.println("Fia");
+		writer.println("Astrid");
+		writer.println("Tommy");
+		writer.println("$");
+		writer.println("Tasks");
+		writer.println("$");
+		writer.println("Rewards");
+		writer.println("$");
+
+		writer.close();
 		bufferedReader.close();
 		fileReader.close();
 		bufferedWriter.close();
