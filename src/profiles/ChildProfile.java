@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 /**
  * 
  * @author Henrik Sigeman
+ * 
+ * 25/4: Har ominstallerat och testar igen
  *
  */
 public class ChildProfile implements Serializable{
