@@ -73,14 +73,14 @@ public class HEY extends JPanel implements ActionListener {
 			pnlMain.setBorder(border0);
 			pnlMain.setBounds(6,6, 381, 500);
 			pnlMain.setLayout(null);
-			pnlMain.setBackground(Color.yellow);
+			pnlMain.setBackground(Color.YELLOW);
 			
 			JPanel pnlTop = new JPanel();
 			Border border1 = BorderFactory.createTitledBorder("TopPanel");
 			pnlTop.setBorder(border1);
-			pnlTop.setBounds(12, 12, 368, 100);
+			pnlTop.setBounds(12, 12, 358, 100);
 			pnlTop.setLayout(null);
-			pnlTop.setBackground(Color.white);
+			pnlTop.setBackground(Color.WHITE);
 
 			lblTask1 = new JLabel("Syssla 1 ");
 			lblTask1.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -91,8 +91,6 @@ public class HEY extends JPanel implements ActionListener {
 			btnBack.setFont(new Font("SansSerif", Font.PLAIN, 14));
 			btnBack.setBounds(10, 16, 90, 50);
 			pnlTop.add(btnBack);
-
-			pnlTop.setBackground(Color.YELLOW);
 
 			JPanel pnlInfo = new JPanel();
 			Border border2 = BorderFactory.createTitledBorder("SpecificationsPanel");
