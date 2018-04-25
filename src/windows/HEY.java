@@ -68,6 +68,7 @@ public class HEY extends JPanel implements ActionListener {
 		public void InitializeGUI() {
 			// TODO Auto-generated method stub
 			
+			//Main
 			JPanel pnlMain = new JPanel();
 			Border border0 = BorderFactory.createTitledBorder("MainPanel"); 
 			pnlMain.setBorder(border0);
@@ -75,6 +76,7 @@ public class HEY extends JPanel implements ActionListener {
 			pnlMain.setLayout(null);
 			pnlMain.setBackground(Color.YELLOW);
 			
+			//Top
 			JPanel pnlTop = new JPanel();
 			Border border1 = BorderFactory.createTitledBorder("TopPanel");
 			pnlTop.setBorder(border1);
@@ -92,8 +94,9 @@ public class HEY extends JPanel implements ActionListener {
 			btnBack.setBounds(10, 16, 90, 50);
 			pnlTop.add(btnBack);
 
+			//Middle
 			JPanel pnlInfo = new JPanel();
-			Border border2 = BorderFactory.createTitledBorder("SpecificationsPanel");
+			Border border2 = BorderFactory.createTitledBorder("MiddlePanel");
 			pnlInfo.setBorder(border2);
 			pnlInfo.setBounds(12, 130, 358, 140);
 			pnlInfo.setLayout(new GridBagLayout());
@@ -172,10 +175,20 @@ public class HEY extends JPanel implements ActionListener {
 
 			// frame.add(dustSymbol);
 
+			JPanel pnlBottom = new JPanel();
+			Border border4 = BorderFactory.createTitledBorder("BottomPanel"); 
+			pnlBottom.setBorder(border4);
+			pnlBottom.setBounds(12, 300, 358, 180);
+			pnlBottom.setLayout(null);
+			pnlInfo.setBackground(Color.WHITE);
+			
+			
+			
 			cbCheckUncheck.addActionListener(this);
 			
 			pnlMain.add(pnlTop);
 			pnlMain.add(pnlInfo);
+			pnlMain.add(pnlBottom);
 			frame.add(pnlMain);
 
 		}
