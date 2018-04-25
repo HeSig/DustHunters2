@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -36,11 +37,17 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 	private ImageIcon rewardActivity;
 	private JLabel childName = new JLabel("johnny");
 	private JButton btnBack;
+	private JFrame frame;
+	
+	
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+}
 	
 	
 	
