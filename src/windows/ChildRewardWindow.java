@@ -1,9 +1,14 @@
 package windows;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import profiles.Account;
 import profiles.ChildProfile;
@@ -22,35 +27,20 @@ import profiles.ChildProfile;
  */
 
 
-public class ChildRewardWindow extends AbstractWindowUI {
+public class ChildRewardWindow extends JPanel implements ActionListener {
 	
 	private Account account;
 	private ChildProfile childProfile;
 	private int rewardPoints;
 	private ImageIcon profilePicture;
 	private ImageIcon rewardActivity;
-	private JLabel childName;
-	
-	
-
-	public ChildRewardWindow(String title) {
-		super(title);
-		
-		// TODO Auto-generated constructor stub
-	}
-	
-	public void addButton() {
-		frame.add(childName);
-	}
-	
-	public void setBackgroundColor() {
-		frame.setBackground(Color.YELLOW);
-		
+	private JLabel childName = new JLabel("johnny");
+	private JButton btnBack;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	
-	public static void main(String[] args) {
-		new ChildRewardWindow("Belöningar");
-	}
-
-}
+	
+	
