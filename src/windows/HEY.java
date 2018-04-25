@@ -78,7 +78,7 @@ public class HEY extends JPanel implements ActionListener {
 			JPanel pnlTop = new JPanel();
 			Border border1 = BorderFactory.createTitledBorder("TopPanel");
 			pnlTop.setBorder(border1);
-			pnlTop.setBounds(12, 12, 358, 100);
+			pnlTop.setBounds(12, 17, 358, 80);
 			pnlTop.setLayout(null);
 			pnlTop.setBackground(Color.WHITE);
 
@@ -94,16 +94,13 @@ public class HEY extends JPanel implements ActionListener {
 
 			JPanel pnlInfo = new JPanel();
 			Border border2 = BorderFactory.createTitledBorder("SpecificationsPanel");
-			Border border3 = BorderFactory.createEtchedBorder();
 			pnlInfo.setBorder(border2);
-			pnlInfo.setBounds(12, 140, 368, 100);
+			pnlInfo.setBounds(12, 130, 358, 140);
 			pnlInfo.setLayout(new GridBagLayout());
 			pnlInfo.setBackground(Color.WHITE);
 			GridBagConstraints c = new GridBagConstraints();
-			
-			pnlMain.add(pnlTop, pnlInfo);
-			frame.add(pnlMain);
 
+			Border border3 = BorderFactory.createEtchedBorder();
 			lblAssigned = new JLabel("                 Tilldelning: ");
 			lblAssigned.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 			lblAssigned.setBorder(border3);
@@ -176,6 +173,10 @@ public class HEY extends JPanel implements ActionListener {
 			// frame.add(dustSymbol);
 
 			cbCheckUncheck.addActionListener(this);
+			
+			pnlMain.add(pnlTop);
+			pnlMain.add(pnlInfo);
+			frame.add(pnlMain);
 
 		}
 
