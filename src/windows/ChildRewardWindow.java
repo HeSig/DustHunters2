@@ -104,14 +104,16 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 	}
 	
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 	public static void main(String[] args) {
 		ChildRewardWindow cReward = new ChildRewardWindow();
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
