@@ -44,6 +44,7 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 	private JButton btnBack;
 	private JFrame frame;
 	private JLabel lblTitle;
+	private JLabel testingCommit;
 	
 	public ChildRewardWindow() {
 		start();
