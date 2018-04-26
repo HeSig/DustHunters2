@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -28,13 +29,13 @@ import tasks.Task;
 public class HEY extends JPanel implements ActionListener {
 
 		private JButton btnBack;
+		private JButton btnDustSymbol = new JButton(); 
 		private JFrame frame;
 		private JLabel lblTask1;
 		private JLabel lblAssigned;
 		private JLabel lblChildName;
 		private JLabel lblCheck;
 		private JLabel lblHours;
-		private JLabel dustSymbol;
 		private JTextField tfHours;
 		private JCheckBox cbCheckUncheck;
 
@@ -170,18 +171,15 @@ public class HEY extends JPanel implements ActionListener {
 			c.gridy = 2;
 			pnlInfo.add(tfHours, c);
 
-			dustSymbol = new JLabel(" * ");
-			dustSymbol.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 30));
-
-			// frame.add(dustSymbol);
-
 			JPanel pnlBottom = new JPanel();
 			Border border4 = BorderFactory.createTitledBorder("BottomPanel"); 
 			pnlBottom.setBorder(border4);
 			pnlBottom.setBounds(12, 300, 358, 180);
 			pnlBottom.setLayout(null);
-			pnlInfo.setBackground(Color.WHITE);
+			pnlBottom.setBackground(Color.WHITE);
 			
+			btnDustSymbol.setIcon(new ImageIcon("images/Ninja.png"));
+			pnlBottom.add(btnDustSymbol);
 			
 			
 			cbCheckUncheck.addActionListener(this);
