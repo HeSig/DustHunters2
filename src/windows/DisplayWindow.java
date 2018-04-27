@@ -25,6 +25,7 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	private ChildTaskWindow ctw;
 	
 	public DisplayWindow() {
+		
 		try {
 			ctw = new ChildTaskWindow();
 		} catch (IOException e) {
@@ -40,15 +41,18 @@ public class DisplayWindow extends JFrame implements ActionListener{
 		updatePanel.setLayout(new BorderLayout());
 		updatePanel.add(updateButton, BorderLayout.NORTH);
 		updatePanel.add(updateText, BorderLayout.SOUTH);
-		//add(panel, BorderLayout.CENTER);
-		add(updatePanel, BorderLayout.SOUTH);
+		panel = updatePanel;
+		add(panel, BorderLayout.CENTER);
 		pack();
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		
 	}
 	
 	private void setPanel(JPanel panel) {
+		this.remove(this.panel);
 		this.panel = panel;
+		add(this.panel, BorderLayout.CENTER);
+		this.revalidate();
 	}
 	
 	public void changePanel(JPanel panel) {
@@ -63,7 +67,6 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) throws IOException {
-		
 		DisplayWindow displayWindow = new DisplayWindow();
 	}
 
