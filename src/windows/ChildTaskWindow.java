@@ -50,6 +50,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private Task task;
 	private Chore chore;
 
+	//HEJEJEJEJEJEJEHEJ
 	// private ImageIcon dustIcon = new ImageIcon("images/"
 
 	// private JMenuBar menuBar = new JMenuBar();
