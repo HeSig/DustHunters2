@@ -90,8 +90,9 @@ public class UserController {
 	 *         registered.
 	 * @throws UnknownHostException
 	 * @throws IOException
+	 * @throws InterruptedException 
 	 */
-	public String registerUser(Account account) throws UnknownHostException, IOException {
+	public String registerUser(Account account) throws UnknownHostException, IOException, InterruptedException {
 		String res = client.sendRegisterToServer(account);
 		return res;
 	}

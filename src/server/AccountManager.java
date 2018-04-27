@@ -171,12 +171,17 @@ public class AccountManager {
 		pr.close();
 		// Create new account file
 		PrintWriter writer = new PrintWriter("accounts/" + account.getEmail() + ".txt");
+		// Write initial information.
 		writer.println("Account of " + account.getEmail());
 		writer.println("ParentProfiles:");
 		writer.println("Pappa");
 		writer.println("Mamma");
 		writer.println("$");
 		writer.println("ChildProfiles:");
+		writer.println("Pelle");
+		writer.println("Fia");
+		writer.println("Astrid");
+		writer.println("Tommy");
 		writer.println("$");
 		writer.println("Tasks");
 		writer.println("$");

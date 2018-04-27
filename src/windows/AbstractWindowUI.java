@@ -1,4 +1,3 @@
-
 package windows;
 
 import java.awt.Color;
@@ -62,7 +61,6 @@ public abstract class AbstractWindowUI extends JPanel {
 		middlePanel.setBounds(12, 125, 368, 400);
 		middlePanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-
 		frame.add(middlePanel);
 
 	}
@@ -84,9 +82,10 @@ public abstract class AbstractWindowUI extends JPanel {
 		setWindowSize();
 		setupTopPanel();
 		setupMiddlePanel();
-	}
-}
 
-// public static void main(String[] args) {
-// AbstractWindowUI ui = new AbstractWindowUI("TaskWindow");
-//
+	}
+	
+//	public static void main(String[] args) {
+//		AbstractWindowUI ui = new AbstractWindowUI("TaskWindow");
+//	}
+}

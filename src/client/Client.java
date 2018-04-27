@@ -13,11 +13,8 @@ import profiles.Account;
 import server.ServerRequest;
 
 /**
- * angel says hiii
  * 
  * @author Henrik Sigeman
- * 
- * helloooooo
  *
  */
 public class Client extends Thread {
@@ -61,20 +58,23 @@ public class Client extends Thread {
 	 * @return
 	 * @throws UnknownHostException
 	 * @throws IOException
+	 * @throws InterruptedException 
 	 */
-	public String sendRegisterToServer(Account account) throws UnknownHostException, IOException {
+	public String sendRegisterToServer(Account account) throws UnknownHostException, IOException, InterruptedException {
 		serverRequest = "Register";
 		socket = new Socket(user.getHost(), user.getPort());
 
-		// Do stuff;
-
+		// Get inputstream and outputstream from socket.
 		is = socket.getInputStream();
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		os = socket.getOutputStream();
 		oos = new ObjectOutputStream(os);
+		//Send register request to server.
 		oos.writeObject(new ServerRequest(account, serverRequest));
+		//Wait for response from server.
 		String res = null;
 		while (res == null) {
+			Thread.sleep(500);
 			res = br.readLine();
 		}
 		closeStreams();
@@ -94,19 +94,22 @@ public class Client extends Thread {
 		serverRequest = "Login";
 		socket = new Socket(user.getHost(), user.getPort());
 
-		// Do stuff;
-
+		// Get inputstream and outputstream from socket.
 		is = socket.getInputStream();
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		os = socket.getOutputStream();
 		oos = new ObjectOutputStream(os);
 		ois = new ObjectInputStream(is);
+		//Send login request to server.
 		oos.writeObject(new ServerRequest(account, serverRequest));
+		//Wait for response from server
 		Account res = null;
 		while (res == null) {
 			res = (Account) ois.readObject();
 		}
+		//Object input stream (ois) is specific to this method and thus won't be closed in the closeStreams method.
 		ois.close();
+		//Close streams.
 		closeStreams();
 		printAccount(res);
 		return res;

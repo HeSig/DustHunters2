@@ -118,7 +118,7 @@ public class RegisterWindow extends JFrame implements ActionListener {
 		infoText.setText(infoTextStr);
 	}
 
-	private void register() throws UnknownHostException, IOException {
+	private void register() throws UnknownHostException, IOException, InterruptedException {
 		email.setBackground(Color.WHITE);
 		password.setBackground(Color.WHITE);
 		String mailStr = email.getText();
@@ -169,6 +169,9 @@ public class RegisterWindow extends JFrame implements ActionListener {
 			} catch (UnknownHostException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
