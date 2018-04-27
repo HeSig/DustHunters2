@@ -191,20 +191,20 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	}
 		
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnHome) {
-			changePanel (phw); //ParentHomeWindow
-		}
-		if (e.getSource() == btnEditTask) {
-			changePanel ();
-		}
-		if (e.getSource() == btnAddTask) {
-			changePanel ();
-		}
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		if (e.getSource() == btnHome) {
+//			changePanel (phw); //ParentHomeWindow
+//		}
+//		if (e.getSource() == btnEditTask) {
+//			changePanel ();
+//		}
+//		if (e.getSource() == btnAddTask) {
+//			changePanel ();
+//		}
 
 		
-	}
+//	}
 	public static void main (String [] args) {
 		JFrame frame = new JFrame ();
 		ParentTaskWindow pt = new ParentTaskWindow ();
