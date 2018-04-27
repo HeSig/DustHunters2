@@ -37,7 +37,6 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
 	private JButton btnDustSymbol;
-//	private JFrame frame;
 	private JLabel lblTask1;
 	private JLabel lblAssigned;
 	private JLabel lblChildName;
@@ -46,15 +45,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private JTextField tfHours;
 	private JCheckBox cbCheckUncheck;
 	private ImageIcon dustBallImage;
+	private ImageIcon imageHome;
 
 	private Task task;
 	private Chore chore;
-
-	//HEJEJEJEJEJEJEHEJ
-	// private ImageIcon dustIcon = new ImageIcon("images/"
-
-	// private JMenuBar menuBar = new JMenuBar();
-	// private List<Task> taskList;
 
 	public ChildTaskWindow() throws IOException {
 		start();
@@ -83,7 +77,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		JPanel pnlTop = new JPanel();
 		Border border1 = BorderFactory.createTitledBorder("TopPanel");
 		pnlTop.setBorder(border1);
-		pnlTop.setBounds(12, 17, 358, 80);
+		pnlTop.setBounds(12, 17, 358, 90);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.WHITE);
 
@@ -92,9 +86,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		lblTask1.setBounds(140, 30, 285, 20);
 		pnlTop.add(lblTask1);
 
-		btnHome = new JButton(" Tilbaka ");
-		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		btnHome.setBounds(10, 16, 90, 50);
+		imageHome = new ImageIcon("images/House.jpg");
+		btnHome = new JButton();
+		btnHome.setBounds(10, 16, 75, 70);
+		btnHome.setIcon(imageHome);
 		pnlTop.add(btnHome);
 
 		// Middle
@@ -173,16 +168,16 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.gridy = 2;
 		pnlInfo.add(tfHours, c);
 
-		//Bottom
+		// Bottom
 		JPanel pnlBottom = new JPanel();
 		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
 		pnlBottom.setBorder(border4);
 		pnlBottom.setBounds(12, 300, 358, 180);
 		pnlBottom.setLayout(null);
-		pnlBottom.setBackground(Color.WHITE); 
-		
-		dustBallImage = new ImageIcon("images/NinjaReducedSize3.png"); 
-		
+		pnlBottom.setBackground(Color.WHITE);
+
+		dustBallImage = new ImageIcon("images/NinjaReducedSize3.png");
+
 		btnDustSymbol = new JButton();
 		btnDustSymbol.setBounds(85, 13, 200, 160);
 		btnDustSymbol.setIcon(dustBallImage);
@@ -190,12 +185,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 		cbCheckUncheck.addActionListener(this);
 		btnDustSymbol.addActionListener(this);
-		
+		btnHome.addActionListener(this);
 
 		this.add(pnlTop);
 		this.add(pnlInfo);
 		this.add(pnlBottom);
-		this.add(this);
 
 	}
 
@@ -209,13 +203,24 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		} else {
 			cbCheckUncheck.setBackground(null);
 		}
-		
-		if(e.getSource() == btnDustSymbol) {
-			//should open story page		
+
+		if (e.getSource() == btnDustSymbol) {
+			// should open story page
 		}
+		
+		if(e.getSource() == btnHome) {
+			// should return the user to the the home-panel
+		}
+		
 	}
 
 	public static void main(String[] args) throws IOException {
+		JFrame frame = new JFrame();
 		ChildTaskWindow taskwindow = new ChildTaskWindow();
+		frame.add(taskwindow);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setMinimumSize(new Dimension(400, 600));
 	}
 }
