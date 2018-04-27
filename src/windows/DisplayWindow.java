@@ -23,7 +23,7 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	
 	public DisplayWindow() {
 		updatePanel.setPreferredSize(new Dimension(128, 128));
-		this.setPreferredSize(new Dimension(1280, 640));
+		this.setPreferredSize(new Dimension(400, 600));
 		setLayout(new BorderLayout());
 		updateButton.addActionListener(this);
 		updateButton.setPreferredSize(boxDimension);
@@ -48,7 +48,9 @@ public class DisplayWindow extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() == updateButton) {
+			//Change panel
+		}
 	}
 	
 	public static void main(String[] args) {
