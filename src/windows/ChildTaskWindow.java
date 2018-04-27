@@ -9,9 +9,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -29,8 +34,8 @@ import tasks.Task;
 
 public class ChildTaskWindow extends JPanel implements ActionListener {
 
-	private JButton btnBack;
-	private JButton btnDustSymbol = new JButton();
+	private JButton btnHome;
+	private JButton btnDustSymbol;
 	private JFrame frame;
 	private JLabel lblTask1;
 	private JLabel lblAssigned;
@@ -48,11 +53,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	// private JMenuBar menuBar = new JMenuBar();
 	// private List<Task> taskList;
 
-	public ChildTaskWindow() {
+	public ChildTaskWindow() throws IOException {
 		start();
 	}
 
-	public void start() {
+	public void start() throws IOException {
 		// TODO Auto-generated method stub
 
 		frame = new JFrame();
@@ -61,13 +66,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		frame.setLayout(null);
 		frame.setTitle(" ChildTaskWindow ");
 		InitializeGUI();
-
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+
 	}
 
-	public void InitializeGUI() {
+	public void InitializeGUI() throws IOException {
 		// TODO Auto-generated method stub
 
 		// Main
@@ -91,10 +96,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		lblTask1.setBounds(140, 30, 285, 20);
 		pnlTop.add(lblTask1);
 
-		btnBack = new JButton(" Tilbaka ");
-		btnBack.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		btnBack.setBounds(10, 16, 90, 50);
-		pnlTop.add(btnBack);
+		btnHome = new JButton(" Tilbaka ");
+		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		btnHome.setBounds(10, 16, 90, 50);
+		pnlTop.add(btnHome);
 
 		// Middle
 		JPanel pnlInfo = new JPanel();
@@ -179,6 +184,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		pnlBottom.setLayout(null);
 		pnlBottom.setBackground(Color.WHITE);
 
+		btnDustSymbol = new JButton();
 		btnDustSymbol.setIcon(new ImageIcon("images/Ninja.png"));
 		pnlBottom.add(btnDustSymbol);
 
@@ -201,10 +207,9 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		} else {
 			cbCheckUncheck.setBackground(null);
 		}
-
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		ChildTaskWindow taskwindow = new ChildTaskWindow();
 	}
 }
