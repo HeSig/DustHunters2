@@ -1,9 +1,11 @@
 package windows;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
@@ -18,7 +20,6 @@ import javax.swing.border.Border;
 import profiles.Account;
 import profiles.ChildProfile;
 
-
 public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 	private JButton btnHome = new JButton();
@@ -26,49 +27,46 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	private JLabel lblTitle;
 	private JLabel lblPTitle;
 	private JLabel lblPoints;
+	private JButton btnProfile = new JButton();
 	private JButton btnBeach = new JButton();
 	private JButton btnCandy = new JButton();
 	private JButton btnCinema = new JButton();
 	private JProgressBar pbar = new JProgressBar();
 
-
 	private Account account;
 	private ChildProfile childProfile;
-	private int rewardPoints;
-	private JButton getSource;
-	
+	private int childPoints;
 
-
-	public ChildRewardWindow2() {
+	public ChildRewardWindow2() throws IOException {
 		start();
 	}
 
-	public void start() {
-		// TODO Auto-generated method stub
-
-		frame = new JFrame();
-		frame.setBounds(0, 0, 400, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(null);
-		frame.setTitle(" Reward Window ");
-		InitializeGUI();
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
+	public Account getAccount() {
+		return account;
 	}
 
-	public void InitializeGUI() {
-		// TODO Auto-generated method stub
+	public ChildProfile getChildProfile() {
+		return childProfile;
+	}
 
-		// Main
-		JPanel pnlMain = new JPanel();
+	public void start() throws IOException {
+
+		this.setBounds(0, 0, 400, 600);
+		this.setLayout(null);
+		InitializeGUI();
+		this.setVisible(true);
+	}
+
+	public void InitializeGUI() throws IOException {
+
+		// Main Panel
 		Border border0 = BorderFactory.createTitledBorder("MainPanel");
-		pnlMain.setBorder(border0);
-		pnlMain.setBounds(6, 6, 381, 500);
-		pnlMain.setLayout(null);
-		pnlMain.setBackground(Color.YELLOW);
+		this.setBorder(border0);
+		this.setBounds(6, 6, 381, 500);
+		this.setLayout(null);
+		this.setBackground(Color.YELLOW);
 
-		// Top
+		// Top Panel
 		JPanel pnlTop = new JPanel();
 		Border border1 = BorderFactory.createTitledBorder("");
 		pnlTop.setBorder(border1);
@@ -78,52 +76,54 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 		lblTitle = new JLabel("Skatter i sikt");
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblTitle.setBounds(140, 30, 285, 20);
-		pnlTop.add(lblTitle);
-
+		lblTitle.setBounds(120, 30, 285, 20);
 		btnHome.setIcon(new ImageIcon("images/home.png"));
 		btnHome.setBounds(5, 5, 80, 65);
-		pnlTop.add(btnHome);
+		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
+		btnProfile.setBounds(260, 16, 90, 50);
 
-		// Middle Panel 
+		pnlTop.add(btnHome);
+		pnlTop.add(lblTitle);
+		pnlTop.add(btnProfile);
+
+		// Middle Panel
 		JPanel pnlMiddle = new JPanel();
 		Border border2 = BorderFactory.createTitledBorder("");
 		pnlMiddle.setBorder(border2);
-		pnlMiddle.setBounds(12, 100, 358, 260);
+		pnlMiddle.setBounds(12, 100, 358, 280);
 		pnlMiddle.setLayout(new FlowLayout());
 		pnlMiddle.setBackground(Color.YELLOW);
-		
-
 		Border border3 = BorderFactory.createEtchedBorder();
 
-		
-		btnBeach.setIcon(new ImageIcon("images/beach.jpg"));
-		btnBeach.setBounds(10, 10, 10, 10);
-		pnlMiddle.add(btnBeach);
-		
 		btnCandy.setIcon(new ImageIcon("images/candy.jpg"));
 		btnCandy.setBounds(10, 10, 10, 10);
-		pnlMiddle.add(btnCandy);
-		
+		btnCandy.setEnabled(true);
+
+		btnBeach.setIcon(new ImageIcon("images/beach.jpg"));
+		btnBeach.setBounds(10, 10, 10, 10);
+		btnBeach.setEnabled(true);
+
 		btnCinema.setIcon(new ImageIcon("images/cinema.png"));
 		btnCinema.setBounds(10, 10, 10, 10);
+		btnCinema.setEnabled(false);
+
+		pnlMiddle.add(btnCandy);
+		pnlMiddle.add(btnBeach);
 		pnlMiddle.add(btnCinema);
 
-		//Bottom Panel
+		// Bottom Panel
 
 		JPanel pnlBottom = new JPanel();
-		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
+		Border border4 = BorderFactory.createTitledBorder("");
 		pnlBottom.setBorder(border4);
-		pnlBottom.setBounds(12, 360, 358, 120);
+		pnlBottom.setBounds(12, 400, 358, 120);
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
 
-
-		
 		lblPTitle = new JLabel(" Poäng: ");
 		lblPTitle.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblPTitle.setBorder(border3);
-		lblPoints = new JLabel("30");
+		lblPoints = new JLabel("55");
 		lblPoints.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblPoints.setForeground(Color.RED);
 		pbar = new JProgressBar();
@@ -131,30 +131,41 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		btnBeach.addActionListener(this);
 		btnCandy.addActionListener(this);
 		btnCinema.addActionListener(this);
-		
+
 		pnlBottom.add(lblPTitle);
 		pnlBottom.add(pbar);
 		pnlBottom.add(lblPoints);
-		
-		pnlMain.add(pnlTop);
-		pnlMain.add(pnlMiddle);
-		pnlMain.add(pnlBottom);
-		frame.add(pnlMain);
+
+		this.add(pnlTop);
+		this.add(pnlMiddle);
+		this.add(pnlBottom);
 
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-			if (this.getSource == btnHome) {
-				
-			} else if (this.getSource == btnBeach) {
-				
-			}
-			
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource() == btnHome) {
+
+		} else if (e.getSource() == btnProfile) {
+
+		} else if (e.getSource() == btnBeach) {
+
+		} else if (e.getSource() == btnCandy) {
+
+		} else if (e.getSource() == btnCinema) {
+
+		}
+
 	}
 
-	public static void main(String[] args) {
-		ChildRewardWindow2 childReward = new ChildRewardWindow2();
+	public static void main(String[] args) throws IOException {
+		JFrame frame = new JFrame();
+		ChildRewardWindow2 childRWindow = new ChildRewardWindow2();
+		frame.add(childRWindow);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setMinimumSize(new Dimension(400, 600));
 	}
 }

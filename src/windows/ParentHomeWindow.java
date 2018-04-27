@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.*;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -18,7 +19,9 @@ import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ParentProfile;
-
+/*
+ * Författare: Angelina Fransson
+ */
 public class ParentHomeWindow extends JPanel implements ActionListener {
 	private Account account; 
 	private ParentProfile parentProfile;
@@ -61,10 +64,8 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		pnlTop.setBackground(Color.YELLOW);
 
 		dustBallImage = new ImageIcon("images/NinjaReducedSize3.png");
+		pnlTop.add(dustBallImage); //fixa 
 
-		pnlTop.add(dustBallImage);
-
-		//Detta ska ligga i en if-sats. Om man gjort en syssla ska detta synas
 
 		JPanel pnlMiddle = new JPanel();
 		pnlMiddle.setBounds(12, 130, 358, 140);
@@ -143,9 +144,6 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setMinimumSize(new Dimension (400,600));
 	}
-	//	@Override
-	//	public void actionPerformed(ActionEvent arg0) {
-	// TODO Auto-generated method stub
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

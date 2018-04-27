@@ -215,7 +215,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		frame.setMinimumSize(new Dimension (400,600));
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
