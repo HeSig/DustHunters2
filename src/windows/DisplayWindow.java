@@ -44,9 +44,8 @@ public class DisplayWindow extends JFrame implements ActionListener{
 		panel = updatePanel;
 		add(panel, BorderLayout.CENTER);
 		pack();
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-		
-		
 	}
 	
 	private void setPanel(JPanel panel) {
@@ -68,7 +67,6 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) throws IOException {
-		
 		DisplayWindow displayWindow = new DisplayWindow();
 	}
 
