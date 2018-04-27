@@ -38,7 +38,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	private JLabel lblReward1;
 	private JLabel lblChildName;
 	private JLabel lblPoints;
-	private JButton btnBeach;
+	private JButton btnBeach = new JButton();
 
 
 
@@ -113,7 +113,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pnlInfo.add(lblReward1);
 		
 		btnBeach.setIcon(new ImageIcon("images/beach.jpg"));
-		btnBeach.setBounds(10, 10, 30, 30);
+		btnBeach.setBounds(10, 10, 10, 10);
 		pnlInfo.add(btnBeach);
 
 		//Bottom Panel
@@ -126,8 +126,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		
 		pnlBottom.setBackground(Color.WHITE);
 
-//		btnDustSymbol.setIcon(new ImageIcon("images/NinjaReducedSize3.png"));
-//		pnlBottom.add(btnDustSymbol);
+
 		
 		lblPoints = new JLabel(" Sara Poäng: ");
 		lblPoints.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
