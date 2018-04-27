@@ -73,12 +73,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 
 		// Main
-		JPanel pnlMain = new JPanel();
 		Border border0 = BorderFactory.createTitledBorder("MainPanel");
-		pnlMain.setBorder(border0);
-		pnlMain.setBounds(6, 6, 381, 500);
-		pnlMain.setLayout(null);
-		pnlMain.setBackground(Color.YELLOW);
+		this.setBorder(border0);
+		this.setBounds(6, 6, 381, 500);
+		this.setLayout(null);
+		this.setBackground(Color.YELLOW);
 
 		// Top
 		JPanel pnlTop = new JPanel();
@@ -193,10 +192,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnDustSymbol.addActionListener(this);
 		
 
-		pnlMain.add(pnlTop);
-		pnlMain.add(pnlInfo);
-		pnlMain.add(pnlBottom);
-		this.add(pnlMain);
+		this.add(pnlTop);
+		this.add(pnlInfo);
+		this.add(pnlBottom);
+		this.add(this);
 
 	}
 
