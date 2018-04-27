@@ -7,15 +7,14 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import profiles.Account;
@@ -29,7 +28,6 @@ import profiles.ParentProfile;
 public class ParentTaskWindow extends JPanel implements ActionListener {
 	private Account account; 
 	private ParentProfile parentProfile;
-	private JFrame frame;
 	private JLabel lblTask;
 	
 	private JLabel lblCheck;
@@ -76,33 +74,28 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	
 	}
 	public ParentTaskWindow () {
+		
 		start();
 	
 	}
 	
 	private void start() {
-		frame = new JFrame();
-		frame.setBounds(0, 0, 400, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(null);
-		frame.setTitle(" ParentTaskWindow ");
+		this.setBounds(0, 0, 400, 600);
+		this.setLayout(null);
 		InitializeGUI();
-		frame.setVisible(true);
-		frame.setResizable(false);
+		this.setVisible(true);
 		lblChildDoingTask.setOpaque(true); 
 		lblCheck.setOpaque(true);
 		lblNameTask.setOpaque(true);
-		frame.setLocationRelativeTo(null);
 		
 	}
 	private void InitializeGUI() {
-		//Main
-		JPanel pnlMain = new JPanel();
-		pnlMain.setBounds(6,6, 381, 500);
-		pnlMain.setLayout(null);
-		pnlMain.setBackground(Color.YELLOW);
 		
-		//Top
+		this.setBounds(6,6, 381, 500);
+		this.setLayout(null);
+		this.setBackground(Color.YELLOW);
+		
+		
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBounds(12, 17, 358, 80);
 		pnlTop.setLayout(null);
@@ -127,11 +120,11 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		pnlTop.add(btnProfileSymbol);
 
 		//Detta ska ligga i en if-sats. Om man gjort en syssla ska detta synas
-		//Middle
-		JPanel pnlInfo = new JPanel();
-		pnlInfo.setBounds(12, 130, 358, 140);
-		pnlInfo.setLayout(new GridBagLayout());
-		pnlInfo.setBackground(Color.YELLOW);
+	
+		JPanel pnlMiddle = new JPanel();
+		pnlMiddle.setBounds(12, 130, 358, 140);
+		pnlMiddle.setLayout(new GridBagLayout());
+		pnlMiddle.setBackground(Color.YELLOW);
 		GridBagConstraints c = new GridBagConstraints();
 
 		Border border3 = BorderFactory.createEtchedBorder();
@@ -152,14 +145,14 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
 		c.weighty = 1;
-		pnlInfo.add(lblChildDoingTask, c);
+		pnlMiddle.add(lblChildDoingTask, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
 		c.weightx = 1;
 		c.weighty = 1;
 		
-		pnlInfo.add(lblNameTask, c);
+		pnlMiddle.add(lblNameTask, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -167,7 +160,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		c.weighty = 1;
 		
 
-		pnlInfo.add(lblCheck, c);
+		pnlMiddle.add(lblCheck, c);
 
 
 		JPanel pnlBottom = new JPanel();
@@ -190,23 +183,35 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		btnEditTask.setForeground(Color.BLACK);
 		btnEditTask.setBounds(10, 100, 300, 50);
 		pnlBottom.add(btnEditTask);
+	
 		
-
-		
-		
-		pnlMain.add(pnlTop);
-		pnlMain.add(pnlInfo);
-		pnlMain.add(pnlBottom);
-		frame.add(pnlMain);
+		this.add(pnlTop);
+		this.add(pnlMiddle);
+		this.add(pnlBottom);
 	}
 		
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnHome) {
+			changePanel (phw); //ParentHomeWindow
+		}
+		if (e.getSource() == btnEditTask) {
+			changePanel ();
+		}
+		if (e.getSource() == btnAddTask) {
+			changePanel ();
+		}
+
 		
 	}
 	public static void main (String [] args) {
+		JFrame frame = new JFrame ();
 		ParentTaskWindow pt = new ParentTaskWindow ();
+		frame.add(pt);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setMinimumSize(new Dimension (400,600));
 	}
  }
