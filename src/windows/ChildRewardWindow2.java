@@ -1,55 +1,42 @@
 package windows;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
+import javax.swing.JProgressBar;
 import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ChildProfile;
-import tasks.Chore;
-import tasks.Task;
+
 
 public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
-	private JButton btnHome;
-	private JButton btnDustSymbol = new JButton();
+	private JButton btnHome = new JButton();
 	private JFrame frame;
-	private JLabel lblReward1;
-	private JLabel lblChildName;
+	private JLabel lblTitle;
+	private JLabel lblPTitle;
 	private JLabel lblPoints;
 	private JButton btnBeach = new JButton();
 	private JButton btnCandy = new JButton();
 	private JButton btnCinema = new JButton();
-
+	private JProgressBar pbar = new JProgressBar();
 
 
 	private Account account;
 	private ChildProfile childProfile;
 	private int rewardPoints;
-	private ImageIcon beach;
-	private ImageIcon rewardActivity;
-	private JLabel lblTitle;
+	private JButton getSource;
+	
 
 
 	public ChildRewardWindow2() {
@@ -87,25 +74,24 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pnlTop.setBorder(border1);
 		pnlTop.setBounds(12, 17, 358, 80);
 		pnlTop.setLayout(null);
-		pnlTop.setBackground(Color.WHITE);
+		pnlTop.setBackground(Color.YELLOW);
 
-		lblTitle = new JLabel("Möjliga Belöningar ");
+		lblTitle = new JLabel("Skatter i sikt");
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTitle.setBounds(140, 30, 285, 20);
 		pnlTop.add(lblTitle);
 
-		btnHome = new JButton(" Hem ");
-		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		btnHome.setBounds(10, 16, 90, 50);
+		btnHome.setIcon(new ImageIcon("images/home.png"));
+		btnHome.setBounds(5, 5, 80, 65);
 		pnlTop.add(btnHome);
 
 		// Middle Panel 
-		JPanel pnlInfo = new JPanel();
+		JPanel pnlMiddle = new JPanel();
 		Border border2 = BorderFactory.createTitledBorder("");
-		pnlInfo.setBorder(border2);
-		pnlInfo.setBounds(12, 100, 358, 260);
-		pnlInfo.setLayout(new FlowLayout());
-		pnlInfo.setBackground(Color.WHITE);
+		pnlMiddle.setBorder(border2);
+		pnlMiddle.setBounds(12, 100, 358, 260);
+		pnlMiddle.setLayout(new FlowLayout());
+		pnlMiddle.setBackground(Color.YELLOW);
 		
 
 		Border border3 = BorderFactory.createEtchedBorder();
@@ -113,15 +99,15 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		
 		btnBeach.setIcon(new ImageIcon("images/beach.jpg"));
 		btnBeach.setBounds(10, 10, 10, 10);
-		pnlInfo.add(btnBeach);
+		pnlMiddle.add(btnBeach);
 		
 		btnCandy.setIcon(new ImageIcon("images/candy.jpg"));
 		btnCandy.setBounds(10, 10, 10, 10);
-		pnlInfo.add(btnCandy);
+		pnlMiddle.add(btnCandy);
 		
-		btnCinema.setIcon(new ImageIcon("images/cinema.jpg"));
+		btnCinema.setIcon(new ImageIcon("images/cinema.png"));
 		btnCinema.setBounds(10, 10, 10, 10);
-		pnlInfo.add(btnCinema);
+		pnlMiddle.add(btnCinema);
 
 		//Bottom Panel
 
@@ -130,20 +116,28 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pnlBottom.setBorder(border4);
 		pnlBottom.setBounds(12, 360, 358, 120);
 		pnlBottom.setLayout(new FlowLayout());
-		
-		pnlBottom.setBackground(Color.WHITE);
+		pnlBottom.setBackground(Color.YELLOW);
 
 
 		
-		lblPoints = new JLabel(" Sara Poäng: ");
-		lblPoints.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
-		lblPoints.setBorder(border3);
+		lblPTitle = new JLabel(" Poäng: ");
+		lblPTitle.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
+		lblPTitle.setBorder(border3);
+		lblPoints = new JLabel("30");
+		lblPoints.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblPoints.setForeground(Color.RED);
+		pbar = new JProgressBar();
+		btnHome.addActionListener(this);
+		btnBeach.addActionListener(this);
+		btnCandy.addActionListener(this);
+		btnCinema.addActionListener(this);
+		
+		pnlBottom.add(lblPTitle);
+		pnlBottom.add(pbar);
 		pnlBottom.add(lblPoints);
 		
-		
-
 		pnlMain.add(pnlTop);
-		pnlMain.add(pnlInfo);
+		pnlMain.add(pnlMiddle);
 		pnlMain.add(pnlBottom);
 		frame.add(pnlMain);
 
@@ -151,9 +145,13 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
-
+		
+			if (this.getSource == btnHome) {
+				
+			} else if (this.getSource == btnBeach) {
+				
+			}
+			
 	}
 
 	public static void main(String[] args) {

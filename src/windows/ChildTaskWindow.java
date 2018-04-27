@@ -195,7 +195,6 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		this.add(pnlTop);
 		this.add(pnlInfo);
 		this.add(pnlBottom);
-		this.add(this);
 
 	}
 
