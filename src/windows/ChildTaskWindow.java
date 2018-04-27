@@ -106,7 +106,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		lblAssigned.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblAssigned.setBorder(border3);
 
-		lblChildName = new JLabel("                        MAIDA         ");
+		lblChildName = new JLabel("                        MAIDA         ");	// Must be connected to a 
 		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblChildName.setBorder(border3);
 
