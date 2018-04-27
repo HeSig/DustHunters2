@@ -61,8 +61,6 @@ public abstract class AbstractWindowUI extends JPanel {
 		middlePanel.setBounds(12, 125, 368, 400);
 		middlePanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		
-
 		frame.add(middlePanel);
 
 	}
