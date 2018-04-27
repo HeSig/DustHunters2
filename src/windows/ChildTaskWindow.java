@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,6 +45,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private JLabel lblHours;
 	private JTextField tfHours;
 	private JCheckBox cbCheckUncheck;
+	private ImageIcon dustBallImage;
 
 	private Task task;
 	private Chore chore;
@@ -177,15 +179,21 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.gridy = 2;
 		pnlInfo.add(tfHours, c);
 
+		//Bottom
 		JPanel pnlBottom = new JPanel();
 		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
 		pnlBottom.setBorder(border4);
 		pnlBottom.setBounds(12, 300, 358, 180);
 		pnlBottom.setLayout(null);
-		pnlBottom.setBackground(Color.WHITE);
-
+		pnlBottom.setBackground(Color.WHITE); 
+		
+		dustBallImage = new ImageIcon("images/NinjaReducedSize3.png"); 
+		
 		btnDustSymbol = new JButton();
-		btnDustSymbol.setIcon(new ImageIcon("images/Ninja.png"));
+		btnDustSymbol.setBounds(85, 13, 200, 160);
+		btnDustSymbol.setIcon(dustBallImage);
+		
+		
 		pnlBottom.add(btnDustSymbol);
 
 		cbCheckUncheck.addActionListener(this);
