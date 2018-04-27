@@ -37,7 +37,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
 	private JButton btnDustSymbol;
-	private JFrame frame;
+//	private JFrame frame;
 	private JLabel lblTask1;
 	private JLabel lblAssigned;
 	private JLabel lblChildName;
@@ -62,16 +62,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	public void start() throws IOException {
 		// TODO Auto-generated method stub
 
-		frame = new JFrame();
-		frame.setBounds(0, 0, 400, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(null);
-		frame.setTitle(" ChildTaskWindow ");
+		this.setBounds(0, 0, 400, 600);
+		this.setLayout(null);
 		InitializeGUI();
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-
+		this.setVisible(true);
 	}
 
 	public void InitializeGUI() throws IOException {
@@ -201,7 +195,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		pnlMain.add(pnlTop);
 		pnlMain.add(pnlInfo);
 		pnlMain.add(pnlBottom);
-		frame.add(pnlMain);
+		this.add(pnlMain);
 
 	}
 
