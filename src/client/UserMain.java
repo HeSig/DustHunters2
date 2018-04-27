@@ -28,6 +28,7 @@ import server.ServerWindow;
  * To only use the client side: comment out everything below the "Server"
  * comment within the main-method.
  */
+
 public class UserMain {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		int port = 4040;
