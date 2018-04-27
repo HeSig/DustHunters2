@@ -30,6 +30,7 @@ public class Server extends Thread {
 
 	/**
 	 * Close all things.
+	 * 
 	 * @throws IOException
 	 */
 	public void close() throws IOException {
@@ -54,12 +55,12 @@ public class Server extends Thread {
 			// port = 53;
 			try {
 				ServerRequest request = null;
-				
-					ss = new ServerSocket(port);
-				
-				//System.out.println("Waiting for client...");
+
+				ss = new ServerSocket(port);
+
+				System.out.println("Waiting for client...");
 				s = ss.accept();
-				// System.out.println("Client connected to: " + s.toString());
+				//System.out.println("Client connected to: " + s.toString());
 				os = s.getOutputStream();
 				pw = new PrintWriter(s.getOutputStream(), true);
 				ois = new ObjectInputStream(s.getInputStream());
@@ -82,9 +83,9 @@ public class Server extends Thread {
 					oos.flush();
 				}
 				// Add task
-				if(request.getRequest().equals("AddTask")) {
+				if (request.getRequest().equals("AddTask")) {
 					Account account = request.getAccount();
-					
+
 				}
 				// System.out.println("Mottaget och levererat");
 				close();
@@ -96,14 +97,18 @@ public class Server extends Thread {
 
 		}
 	}
-	
+
 	public static void main(String[] args) throws UnknownHostException, IOException {
-		int port = 4040;
-		String host = "10.2.20.138";
+		int port = 4041;
+		// Client
+		String host = "10.2.9.120";
 		AccountManager accountManager1 = new AccountManager();
+		UserController test1 = new UserController(host, port);
+		System.out.println("Client started");
+		// Server
 		Server server = new Server(port, accountManager1);
 		ServerWindow window = new ServerWindow(server);
 		server.start();
-		UserController test1 = new UserController(host, port);
+		System.out.println("Server started");
 	}
 }

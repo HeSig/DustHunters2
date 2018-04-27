@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import profiles.Account;
+
 /**
  * 
  * @author Henrik Sigeman
@@ -19,13 +21,14 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	@SuppressWarnings("unused")
 	private JPanel panel;
 	private JPanel updatePanel = new JPanel();
-	private JButton updateButton = new JButton("Update");
+	private JButton updateBtn = new JButton("Update");
 	private JTextField updateText = new JTextField();
 	private Dimension boxDimension = new Dimension(128, 64);
 	private ChildTaskWindow ctw;
+	private Account account;
 	
-	public DisplayWindow() {
-		
+	public DisplayWindow(Account account) {
+		this.account = account;
 		try {
 			ctw = new ChildTaskWindow();
 		} catch (IOException e) {
@@ -35,11 +38,11 @@ public class DisplayWindow extends JFrame implements ActionListener{
 		updatePanel.setPreferredSize(new Dimension(128, 128));
 		this.setPreferredSize(new Dimension(400, 600));
 		setLayout(new BorderLayout());
-		updateButton.addActionListener(this);
-		updateButton.setPreferredSize(boxDimension);
+		updateBtn.addActionListener(this);
+		updateBtn.setPreferredSize(boxDimension);
 		updateText.setPreferredSize(boxDimension);
 		updatePanel.setLayout(new BorderLayout());
-		updatePanel.add(updateButton, BorderLayout.NORTH);
+		updatePanel.add(updateBtn, BorderLayout.NORTH);
 		updatePanel.add(updateText, BorderLayout.SOUTH);
 		panel = updatePanel;
 		add(panel, BorderLayout.CENTER);
@@ -61,13 +64,13 @@ public class DisplayWindow extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == updateButton) {
+		if (e.getSource() == updateBtn) {
 			changePanel(ctw);
 		}
 	}
 	
 	public static void main(String[] args) throws IOException {
-		DisplayWindow displayWindow = new DisplayWindow();
+		//DisplayWindow displayWindow = new DisplayWindow();
 	}
 
 }

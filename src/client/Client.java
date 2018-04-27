@@ -11,6 +11,7 @@ import java.net.*;
 
 import profiles.Account;
 import server.ServerRequest;
+import windows.DisplayWindow;
 
 /**
  * 
@@ -44,7 +45,6 @@ public class Client extends Thread {
 	 * @throws IOException
 	 */
 	private void closeStreams() throws IOException {
-		
 		oos.close();
 		br.close();
 		os.close();
@@ -112,6 +112,7 @@ public class Client extends Thread {
 		//Close streams.
 		closeStreams();
 		printAccount(res);
+		DisplayWindow displayWindow = new DisplayWindow(res);
 		return res;
 	}
 

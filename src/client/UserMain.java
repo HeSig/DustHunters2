@@ -31,16 +31,16 @@ import server.ServerWindow;
 
 public class UserMain {
 	public static void main(String[] args) throws UnknownHostException, IOException {
-		int port = 4040;
+		int port = 4000;
 		// Client
-		String host = "10.2.9.147";
+		String host = "10.2.9.120";
 		AccountManager accountManager1 = new AccountManager();
 		UserController test1 = new UserController(host, port);
-		System.out.println("Client started");
+		//System.out.println("Client started");
 		// Server
 		Server server = new Server(port, accountManager1);
 		ServerWindow window = new ServerWindow(server);
 		server.start();
-		System.out.println("Server started");
+		//System.out.println("Server started");
 	}
 }
