@@ -1,0 +1,15 @@
+Account of Test22@test.com
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+Pelle
+Fia
+Astrid
+Tommy
+$
+Tasks
+$
+Rewards
+$

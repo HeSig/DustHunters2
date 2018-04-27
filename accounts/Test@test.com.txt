@@ -1,0 +1,13 @@
+Account of Test@test.com
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+Mia
+Pia
+$
+Tasks
+$
+Rewards
+$
