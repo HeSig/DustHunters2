@@ -39,6 +39,8 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	private JLabel lblChildName;
 	private JLabel lblPoints;
 	private JButton btnBeach = new JButton();
+	private JButton btnCandy = new JButton();
+	private JButton btnCinema = new JButton();
 
 
 
@@ -101,27 +103,32 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		JPanel pnlInfo = new JPanel();
 		Border border2 = BorderFactory.createTitledBorder("");
 		pnlInfo.setBorder(border2);
-		pnlInfo.setBounds(12, 130, 358, 140);
+		pnlInfo.setBounds(12, 100, 358, 260);
 		pnlInfo.setLayout(new FlowLayout());
 		pnlInfo.setBackground(Color.WHITE);
 		
 
 		Border border3 = BorderFactory.createEtchedBorder();
-		lblReward1 = new JLabel(" Val 1:  ");
-		lblReward1.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
-		lblReward1.setBorder(border3);
-		pnlInfo.add(lblReward1);
+
 		
 		btnBeach.setIcon(new ImageIcon("images/beach.jpg"));
 		btnBeach.setBounds(10, 10, 10, 10);
 		pnlInfo.add(btnBeach);
+		
+		btnCandy.setIcon(new ImageIcon("images/candy.jpg"));
+		btnCandy.setBounds(10, 10, 10, 10);
+		pnlInfo.add(btnCandy);
+		
+		btnCinema.setIcon(new ImageIcon("images/cinema.jpg"));
+		btnCinema.setBounds(10, 10, 10, 10);
+		pnlInfo.add(btnCinema);
 
 		//Bottom Panel
 
 		JPanel pnlBottom = new JPanel();
 		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
 		pnlBottom.setBorder(border4);
-		pnlBottom.setBounds(12, 300, 358, 180);
+		pnlBottom.setBounds(12, 360, 358, 120);
 		pnlBottom.setLayout(new FlowLayout());
 		
 		pnlBottom.setBackground(Color.WHITE);
