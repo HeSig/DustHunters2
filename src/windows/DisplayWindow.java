@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.*;
 
 /**
@@ -15,13 +17,20 @@ public class DisplayWindow extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
-	private Panel panel;
+	private JPanel panel;
 	private JPanel updatePanel = new JPanel();
 	private JButton updateButton = new JButton("Update");
 	private JTextField updateText = new JTextField();
 	private Dimension boxDimension = new Dimension(128, 64);
+	private ChildTaskWindow ctw;
 	
 	public DisplayWindow() {
+		try {
+			ctw = new ChildTaskWindow();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		updatePanel.setPreferredSize(new Dimension(128, 128));
 		this.setPreferredSize(new Dimension(400, 600));
 		setLayout(new BorderLayout());
@@ -38,22 +47,23 @@ public class DisplayWindow extends JFrame implements ActionListener{
 		
 	}
 	
-	private void setPanel(Panel panel) {
+	private void setPanel(JPanel panel) {
 		this.panel = panel;
 	}
 	
-	public void changePanel(Panel panel) {
+	public void changePanel(JPanel panel) {
 		setPanel(panel);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == updateButton) {
-			//Change panel
+			changePanel(ctw);
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		
 		DisplayWindow displayWindow = new DisplayWindow();
 	}
 
