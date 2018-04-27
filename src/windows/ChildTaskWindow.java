@@ -192,11 +192,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnDustSymbol = new JButton();
 		btnDustSymbol.setBounds(85, 13, 200, 160);
 		btnDustSymbol.setIcon(dustBallImage);
-		
-		
 		pnlBottom.add(btnDustSymbol);
 
 		cbCheckUncheck.addActionListener(this);
+		btnDustSymbol.addActionListener(this);
+		
 
 		pnlMain.add(pnlTop);
 		pnlMain.add(pnlInfo);
@@ -206,7 +206,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
 		Color color = null;
@@ -214,6 +214,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 			cbCheckUncheck.setBackground(Color.GREEN);
 		} else {
 			cbCheckUncheck.setBackground(null);
+		}
+		
+		if(e.getSource() == btnDustSymbol) {
+			//should open story page		
 		}
 	}
 
