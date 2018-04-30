@@ -37,7 +37,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private JButton btnEditTask;
 	private JLabel lblChildDoingTask; //Ifylld när ett barn har blivit assigned/valt en syssla. 
 	private JButton btnProfileSymbol;
-	private ImageIcon dammTussImage;
+	private ImageIcon dustBallImage;
 
 	//SwitchPanel (panel t.ex. RewardPanel) { this.panel = panel }
 	//Note to self: enable/disable JCheckBox beroende på om barnet gjort den eller inte
@@ -113,9 +113,9 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		pnlTop.add(btnHome);
 		
 		btnProfileSymbol = new JButton ();
-		dammTussImage = new ImageIcon ("images/20x20Dammtuss.jpg");
+		dustBallImage = new ImageIcon ("images/20x20Dammtuss.jpg");
 		btnProfileSymbol.setBounds(250, 16, 90, 50);
-		btnProfileSymbol.setIcon(dammTussImage);
+		btnProfileSymbol.setIcon(dustBallImage);
 		
 		pnlTop.add(btnProfileSymbol);
 
@@ -213,5 +213,11 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setMinimumSize(new Dimension (400,600));
+	}
+	@Override
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
  }
