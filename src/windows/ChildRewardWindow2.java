@@ -36,8 +36,10 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	private Account account;
 	private ChildProfile childProfile;
 	private int childPoints;
+	private DisplayWindow displayWindow;
 
-	public ChildRewardWindow2() throws IOException {
+	public ChildRewardWindow2(DisplayWindow displayWindow) throws IOException {
+		this.displayWindow = displayWindow;
 		start();
 	}
 
@@ -146,8 +148,10 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
+			displayWindow.setViewChildTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
+			displayWindow.setViewChildProfileWindow();
 
 		} else if (e.getSource() == btnBeach) {
 
@@ -161,7 +165,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
-		ChildRewardWindow2 childRWindow = new ChildRewardWindow2();
+		ChildRewardWindow2 childRWindow = new ChildRewardWindow2(null);
 		frame.add(childRWindow);
 		frame.pack();
 		frame.setVisible(true);

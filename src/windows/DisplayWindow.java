@@ -25,12 +25,16 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	private JTextField updateText = new JTextField();
 	private Dimension boxDimension = new Dimension(128, 64);
 	private ChildTaskWindow ctw;
+	private ChildRewardWindow2 crw;
+	private ChildProfileWindow cpw;
 	private Account account;
 	
 	public DisplayWindow(Account account) {
 		this.account = account;
 		try {
-			ctw = new ChildTaskWindow();
+			ctw = new ChildTaskWindow(this);
+			crw = new ChildRewardWindow2(this);
+			cpw = new ChildProfileWindow(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,14 +62,20 @@ public class DisplayWindow extends JFrame implements ActionListener{
 		this.revalidate();
 	}
 	
-	public void changePanel(JPanel panel) {
-		setPanel(panel);
+	public void setViewChildTaskWindow() {
+		setPanel(ctw);
+	}
+	public void setViewChildRewardWindow() {
+		setPanel(crw);
+	}
+	public void setViewChildProfileWindow() {
+		setPanel(cpw);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == updateBtn) {
-			changePanel(ctw);
+			setPanel(ctw);
 		}
 	}
 	

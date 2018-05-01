@@ -46,11 +46,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private JCheckBox cbCheckUncheck;
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
+	private DisplayWindow displayWindow;
 
 	private Task task;
 	private Chore chore;
 
-	public ChildTaskWindow() throws IOException {
+	public ChildTaskWindow(DisplayWindow displayWindow) throws IOException {
+		this.displayWindow = displayWindow;
 		start();
 	}
 
@@ -216,7 +218,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
-		ChildTaskWindow taskwindow = new ChildTaskWindow();
+		ChildTaskWindow taskwindow = new ChildTaskWindow(new DisplayWindow(null));
 		frame.add(taskwindow);
 		frame.pack();
 		frame.setVisible(true);

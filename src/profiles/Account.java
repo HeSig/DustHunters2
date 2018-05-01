@@ -17,6 +17,8 @@ public class Account implements java.io.Serializable {
 	private static final long serialVersionUID = -3465005032629663541L;
 
 	private String email, password;
+	
+	//Todo: But ArrayList till LinkedList?
 
 	private ArrayList<ChildProfile> childProfileList = new ArrayList<ChildProfile>();
 	private ArrayList<ParentProfile> parentProfileList = new ArrayList<ParentProfile>();
