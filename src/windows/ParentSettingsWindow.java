@@ -9,15 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ChildProfile;
@@ -27,8 +24,7 @@ import profiles.ChildProfile;
  * @author dalvig
  *
  */
-
-public class AddChildWindow extends JPanel implements ActionListener {
+public class ParentSettingsWindow extends JPanel implements ActionListener {
 	
 	private JButton btnHome = new JButton();
 	private JLabel lblTitle;
@@ -48,7 +44,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	private ChildProfile childProfile;
 	private DisplayWindow displayWindow;
 
-	public AddChildWindow(DisplayWindow displayWindow) throws IOException {
+	public ParentSettingsWindow(DisplayWindow displayWindow) throws IOException {
 		this.displayWindow = displayWindow;
 		start();
 	}
@@ -193,14 +189,16 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
-		AddChildWindow addChildWindow = new AddChildWindow(null);
-		frame.add(addChildWindow);
+		ParentSettingsWindow parentSettings = new ParentSettingsWindow(null);
+		frame.add(parentSettings);
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setMinimumSize(new Dimension(400, 600));
 	}
 }
+
+
 
 
 

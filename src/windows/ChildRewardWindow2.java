@@ -29,7 +29,6 @@ import profiles.ChildProfile;
 public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 	private JButton btnHome = new JButton();
-	private JFrame frame;
 	private JLabel lblTitle;
 	private JLabel lblPTitle;
 	private JLabel lblPoints;
@@ -41,7 +40,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 	private Account account;
 	private ChildProfile childProfile;
-	private int childPoints;
+	private int childPoints; // Amount of points a child has accumulated through completing chores. To be used in the progress bar to visualize how they are doing. 
 	private DisplayWindow displayWindow;
 
 	public ChildRewardWindow2(DisplayWindow displayWindow) throws IOException {
@@ -68,16 +67,13 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	public void InitializeGUI() throws IOException {
 
 		// Main Panel
-		Border border0 = BorderFactory.createTitledBorder("MainPanel");
-		this.setBorder(border0);
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
 
 		// Top Panel
 		JPanel pnlTop = new JPanel();
-		Border border1 = BorderFactory.createTitledBorder("");
-		pnlTop.setBorder(border1);
+
 		pnlTop.setBounds(12, 17, 358, 80);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
@@ -96,9 +92,8 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 		// Middle Panel
 		JPanel pnlMiddle = new JPanel();
-		Border border2 = BorderFactory.createTitledBorder("");
-		pnlMiddle.setBorder(border2);
-		pnlMiddle.setBounds(12, 100, 358, 280);
+
+		pnlMiddle.setBounds(12, 130, 358, 280);
 		pnlMiddle.setLayout(new FlowLayout());
 		pnlMiddle.setBackground(Color.YELLOW);
 		Border border3 = BorderFactory.createEtchedBorder();
@@ -120,11 +115,9 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pnlMiddle.add(btnCinema);
 
 		// Bottom Panel
-
 		JPanel pnlBottom = new JPanel();
-		Border border4 = BorderFactory.createTitledBorder("");
-		pnlBottom.setBorder(border4);
-		pnlBottom.setBounds(12, 400, 358, 120);
+
+		pnlBottom.setBounds(12, 430, 358, 120);
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
 
@@ -135,10 +128,8 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		lblPoints.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblPoints.setForeground(Color.RED);
 		pbar = new JProgressBar();
-		btnHome.addActionListener(this);
-		btnBeach.addActionListener(this);
-		btnCandy.addActionListener(this);
-		btnCinema.addActionListener(this);
+		
+	
 
 		pnlBottom.add(lblPTitle);
 		pnlBottom.add(pbar);
@@ -147,7 +138,12 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
-
+		
+		
+		btnHome.addActionListener(this);
+		btnBeach.addActionListener(this);
+		btnCandy.addActionListener(this);
+		btnCinema.addActionListener(this);
 	}
 
 	@Override
