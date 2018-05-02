@@ -37,11 +37,30 @@ public class ProfileStartWindow extends AbstractWindowUI {
 		initialize();
 		actionListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == prof1){
-					
+				if (e.getSource() == prof1) {
+					if (isParent(prof1.getText())) {
+						// Parent
+						displayWindow.setParentProfile(prof1.getText());
+						displayWindow
+					} else {
+						// Child
+						displayWindow.setChildProfile(prof1.getText());
+					}
+
 				}
 			}
 		};
+	}
+
+	private Boolean isParent(String string) {
+		Boolean res = false;
+		for (int i = 0; i < account.getParentProfileList().size(); i++) {
+			if (account.getParentProfileList().get(i).getName().equals(string)) {
+				res = true;
+			}
+		}
+
+		return res;
 	}
 
 	// Initialize the graphical user interface
@@ -77,7 +96,7 @@ public class ProfileStartWindow extends AbstractWindowUI {
 
 		for (int i = 0; i < parents.size(); i++) {
 			JButton button = inactiveButtons.get(0);
-			button.setPreferredSize(new Dimension (96,32));
+			button.setPreferredSize(new Dimension(96, 32));
 			button.addActionListener(actionListener);
 			inactiveButtons.remove(0);
 			button.setText(parents.get(i).getName());
@@ -85,7 +104,7 @@ public class ProfileStartWindow extends AbstractWindowUI {
 		}
 		for (int i = 0; i < children.size(); i++) {
 			JButton button = inactiveButtons.get(0);
-			button.setPreferredSize(new Dimension (96,32));
+			button.setPreferredSize(new Dimension(96, 32));
 			button.addActionListener(actionListener);
 			inactiveButtons.remove(0);
 			button.setText(children.get(i).getName());
@@ -94,7 +113,7 @@ public class ProfileStartWindow extends AbstractWindowUI {
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
-		for(int i = 0; i < activeButtons.size(); i++) {
+		for (int i = 0; i < activeButtons.size(); i++) {
 			if (c.gridx >= 2) {
 				c.gridx = 0;
 				c.gridy++;
@@ -102,8 +121,8 @@ public class ProfileStartWindow extends AbstractWindowUI {
 			profilePanel.add(activeButtons.get(i), c);
 			c.gridx++;
 		}
-		
-		add(profilePanel,BorderLayout.CENTER);
+
+		add(profilePanel, BorderLayout.CENTER);
 	}
 
 }
