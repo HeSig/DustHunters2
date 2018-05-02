@@ -21,6 +21,12 @@ import profiles.Account;
 import profiles.ChildProfile;
 
 /** 
+ * A panel that children users will see when they want to view their
+ * potential rewards. The rewards are shown as buttons displaying a 
+ * picture representing the reward and a large red number, which indicates the
+ * amount of points needed to choose the reward. The buttons will
+ * be disabled until the children have gathered the necessary amount
+ * of points. 
  * 
  * @author dalvig
  *
@@ -28,19 +34,20 @@ import profiles.ChildProfile;
 
 public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
-	private JButton btnHome = new JButton();
+	
 	private JLabel lblTitle;
 	private JLabel lblPTitle;
 	private JLabel lblPoints;
+	private JButton btnHome = new JButton();
 	private JButton btnProfile = new JButton();
 	private JButton btnBeach = new JButton();
 	private JButton btnCandy = new JButton();
 	private JButton btnCinema = new JButton();
 	private JProgressBar pbar = new JProgressBar();
-
+	private int childsPoints; // Amount of points a child has accumulated through completing chores. To be used in the progress bar to visualize how they are doing.
+	
 	private Account account;
 	private ChildProfile childProfile;
-	private int childPoints; // Amount of points a child has accumulated through completing chores. To be used in the progress bar to visualize how they are doing. 
 	private DisplayWindow displayWindow;
 
 	public ChildRewardWindow2(DisplayWindow displayWindow) throws IOException {
@@ -113,6 +120,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pnlMiddle.add(btnCandy);
 		pnlMiddle.add(btnBeach);
 		pnlMiddle.add(btnCinema);
+		
 
 		// Bottom Panel
 		JPanel pnlBottom = new JPanel();
@@ -130,16 +138,18 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pbar = new JProgressBar();
 		
 	
-
+		
 		pnlBottom.add(lblPTitle);
 		pnlBottom.add(pbar);
 		pnlBottom.add(lblPoints);
 
+		// Adds the three panels to the main panel
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
 		
 		
+		// Adds all action listeners
 		btnHome.addActionListener(this);
 		btnBeach.addActionListener(this);
 		btnCandy.addActionListener(this);

@@ -9,20 +9,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ChildProfile;
 
 /**
+ * A panel that parent users reach when they push the "Lägg till ett barn" button. 
+ * They enter the child's details: username and password. 
+ * Soon they will be able to choose a specific Dust Hunter (profile picture)
+ * for their child from a drop down menu. 
  * 
  * @author dalvig
  *
@@ -30,19 +32,20 @@ import profiles.ChildProfile;
 
 public class AddChildWindow extends JPanel implements ActionListener {
 	
-	private JButton btnHome = new JButton();
+
 	private JLabel lblTitle;
 	private JLabel lblChildName;
 	private JLabel lblChildPassword;
 	private JLabel lblChildPassRepeat;
 	private JTextField txtChildName;
 	private JTextField txtChildPassword;
-	private JTextField txtChildPassRepeat;
+	private JTextField txtChildPassRepeat;	
+	private JButton btnHome = new JButton();
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
 	private JButton btnProfilePic = new JButton();
-	
+
 
 	private Account account;
 	private ChildProfile childProfile;
@@ -60,6 +63,8 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	public ChildProfile getChildProfile() {
 		return childProfile;
 	}
+	
+	
 
 	public void start() throws IOException {
 
@@ -69,12 +74,14 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
+
 	public void InitializeGUI() throws IOException {
 
 		// Main Panel
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
+		
 
 		// Top Panel
 		JPanel pnlTop = new JPanel();
@@ -90,10 +97,11 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		btnHome.setBounds(5, 5, 80, 65);
 		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
 		btnProfile.setBounds(260, 16, 90, 50);
-
+		
 		pnlTop.add(btnHome);
 		pnlTop.add(lblTitle);
 		pnlTop.add(btnProfile);
+		
 
 		// Middle-Upper Panel
 		JPanel pnlMiddle1 = new JPanel();
@@ -108,6 +116,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		btnProfilePic.addActionListener(this);
 		
 		pnlMiddle1.add(btnProfilePic);
+	
 		
 		// Middle-Lower Panel
 		JPanel pnlMiddle2 = new JPanel();
@@ -118,12 +127,10 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 		
 		lblChildName = new JLabel("Namn: ");
-		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));
-		
+		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));	
 		
 		lblChildPassword = new JLabel("Lösenord: ");
 		lblChildPassword.setFont(new Font("SansSerif", Font.BOLD, 12));
-	
 		
 		lblChildPassRepeat = new JLabel("Upprepa lösenord: ");
 		lblChildPassRepeat.setFont(new Font("SansSerif", Font.BOLD, 12));
@@ -139,17 +146,14 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		pnlMiddle2.add(txtChildPassword);
 		pnlMiddle2.add(lblChildPassRepeat);
 		pnlMiddle2.add(txtChildPassRepeat);
-		
-	
+			
 
 		// Bottom Panel
-
 		JPanel pnlBottom = new JPanel();
 
 		pnlBottom.setBounds(12, 470, 358, 100);
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
-
 		
 		btnSave = new JButton("Spara");
 		btnSave.setBounds(10, 10, 10, 10);
@@ -164,16 +168,18 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		pnlBottom.add(btnSave);
 		pnlBottom.add(btnCancel);
 		
-
-		
-
+		// Adds the four panels to the main panel
 		this.add(pnlTop);
 		this.add(pnlMiddle1);
 		this.add(pnlMiddle2);
 		this.add(pnlBottom);
 		
-		// Add all action listeners
+		// Adds all action listeners
 		btnHome.addActionListener(this);
+		btnProfile.addActionListener(this);
+		btnProfilePic.addActionListener(this);
+		btnSave.addActionListener(this);
+		btnCancel.addActionListener(this);
 	}
 
 	@Override
@@ -187,7 +193,11 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 		} else if (e.getSource() == btnProfilePic) {
 
-		} 
+		} else if (e.getSource() == btnSave) {
+			
+		} else if (e.getSource() == btnCancel) {
+			
+		}
 
 	}
 
