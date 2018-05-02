@@ -46,9 +46,12 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	private String [] preSelectedTasks = {"Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden"};
 	private String [] preSelectedLocations = {"Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus"};
 	
+	private DisplayWindow displayWindow;
+	
 
 
-	public ParentEditTaskWindow () {
+	public ParentEditTaskWindow (DisplayWindow displayWindow) {
+		this.displayWindow = displayWindow;
 		try {
 			start();
 		} catch (IOException e) {
@@ -177,19 +180,27 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		
 		// Add all action listeners
 		btnHome.addActionListener(this);
+		btnCancel.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		
-
+		if(e.getSource() == btnHome) {
+			displayWindow.setViewParentHomeWindow();
+		}
+		if(e.getSource() == btnCancel) {
+			displayWindow.setViewParentTaskWindow();
+		}
+		if(e.getSource() == btnSave) {
+			//Server add new task to the account.
+		}
 	}
 
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
-		ParentEditTaskWindow petw = new ParentEditTaskWindow();
-		frame.add(petw);
+//		ParentEditTaskWindow petw = new ParentEditTaskWindow();
+//		frame.add(petw);
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

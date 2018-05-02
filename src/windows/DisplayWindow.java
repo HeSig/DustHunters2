@@ -31,6 +31,8 @@ public class DisplayWindow extends JFrame implements ActionListener {
 	private ChildProfileWindow cpw;
 	private ProfileStartWindow psw;
 	private ParentHomeWindow phw;
+	private ParentEditTaskWindow petw;
+	private ParentTaskWindow ptw;
 	private Account account;
 
 	private ChildProfile childProfile;
@@ -43,7 +45,9 @@ public class DisplayWindow extends JFrame implements ActionListener {
 			crw = new ChildRewardWindow2(this);
 			cpw = new ChildProfileWindow(this);
 			psw = new ProfileStartWindow("ProfileStartWindow", this);
-			phw = new ParentHomeWindow();
+			phw = new ParentHomeWindow(this);
+			petw = new ParentEditTaskWindow(this);
+			ptw = new ParentTaskWindow(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,6 +77,11 @@ public class DisplayWindow extends JFrame implements ActionListener {
 		this.panel = panel;
 		add(this.panel, BorderLayout.CENTER);
 		this.revalidate();
+		this.panel.updateUI();
+	}
+
+	public void setViewParentTaskWindow() {
+		setPanel(ptw);
 	}
 
 	public void setViewChildTaskWindow() {
@@ -90,21 +99,27 @@ public class DisplayWindow extends JFrame implements ActionListener {
 	public void setViewProfileStartWindow() {
 		setPanel(psw);
 	}
+
 	public void setViewParentHomeWindow() {
 		setPanel(phw);
 	}
-	
+
+	public void setViewParentEditTaskWindow() {
+		setPanel(petw);
+
+	}
+
 	public void setParentProfile(String name) {
-		for(int i = 0; i < account.getParentProfileList().size(); i++) {
+		for (int i = 0; i < account.getParentProfileList().size(); i++) {
 			if (account.getParentProfileList().get(i).getName().equals(name)) {
 				parentProfile = account.getParentProfileList().get(i);
 			}
 		}
 	}
-	
+
 	public void setChildProfile(String name) {
-		for(int i = 0; i < account.getChildProfileList().size(); i++) {
-			if(account.getChildProfileList().get(i).getName().equals(name)) {
+		for (int i = 0; i < account.getChildProfileList().size(); i++) {
+			if (account.getChildProfileList().get(i).getName().equals(name)) {
 				childProfile = account.getChildProfileList().get(i);
 			}
 		}

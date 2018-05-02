@@ -34,29 +34,35 @@ public class ProfileStartWindow extends AbstractWindowUI {
 	public ProfileStartWindow(String title, DisplayWindow displayWindow) {
 		super(title);
 		this.account = displayWindow.getAccount();
-		initialize();
-		actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == prof1) {
-					if (isParent(prof1.getText())) {
-						// Parent
-						displayWindow.setParentProfile(prof1.getText());
-						displayWindow
-					} else {
-						// Child
-						displayWindow.setChildProfile(prof1.getText());
-					}
 
+		actionListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < activeButtons.size(); i++) {
+					if (e.getSource() == activeButtons.get(i)) {
+						System.out.println("Hello");
+						if (isParent(activeButtons.get(i).getText())) {
+							displayWindow.setParentProfile(activeButtons.get(i).getText());
+							displayWindow.setViewParentHomeWindow();
+						} else {
+							System.out.println("Inte förälder?");
+						}
+						break;
+					}
 				}
 			}
+
 		};
+		initialize();
 	}
 
 	private Boolean isParent(String string) {
 		Boolean res = false;
 		for (int i = 0; i < account.getParentProfileList().size(); i++) {
 			if (account.getParentProfileList().get(i).getName().equals(string)) {
+
 				res = true;
+				break;
 			}
 		}
 
@@ -65,7 +71,6 @@ public class ProfileStartWindow extends AbstractWindowUI {
 
 	// Initialize the graphical user interface
 	private void initialize() {
-		System.out.println("Loaded");
 		this.setBounds(0, 0, 400, 600);
 		prof1 = new JButton();
 		prof2 = new JButton();
@@ -95,12 +100,12 @@ public class ProfileStartWindow extends AbstractWindowUI {
 		ArrayList<ChildProfile> children = account.getChildProfileList();
 
 		for (int i = 0; i < parents.size(); i++) {
-			JButton button = inactiveButtons.get(0);
-			button.setPreferredSize(new Dimension(96, 32));
-			button.addActionListener(actionListener);
+			activeButtons.add(inactiveButtons.get(0));
+			activeButtons.get(i).setPreferredSize(new Dimension(96, 32));
+			activeButtons.get(i).addActionListener(actionListener);
 			inactiveButtons.remove(0);
-			button.setText(parents.get(i).getName());
-			activeButtons.add(button);
+			activeButtons.get(i).setText(parents.get(i).getName());
+
 		}
 		for (int i = 0; i < children.size(); i++) {
 			JButton button = inactiveButtons.get(0);
@@ -124,5 +129,4 @@ public class ProfileStartWindow extends AbstractWindowUI {
 
 		add(profilePanel, BorderLayout.CENTER);
 	}
-
 }
