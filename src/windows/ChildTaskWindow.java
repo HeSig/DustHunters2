@@ -39,6 +39,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private JButton btnHome;
 	private JButton btnDustSymbol;
 	private JButton btnProfileSymbol;
+	private JButton btnSaveChanges;
 	private JLabel lblTask1;
 	private JLabel lblAssigned;
 	private JLabel lblChildName;
@@ -88,7 +89,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.WHITE);
 
-		lblTask1 = new JLabel("Syssla 1 ");
+		lblTask1 = new JLabel("Äventyr 1");
 		lblTask1.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTask1.setBounds(140, 30, 285, 20);
 		pnlTop.add(lblTask1);
@@ -136,7 +137,12 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 		tfHours = new JTextField();
 		tfHours.setBorder(border3);
-
+		
+		btnSaveChanges = new JButton("Spara");
+		btnSaveChanges.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnSaveChanges.setBorder(border3);
+		btnSaveChanges.setBackground(Color.YELLOW);
+		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
@@ -181,6 +187,16 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.gridy = 2;
 		pnlInfo.add(tfHours, c);
 
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTHEAST;
+		c.weightx = 400;
+		c.weighty = 400;
+		c.gridx = 1;
+		c.gridy = 3;
+		pnlInfo.add(btnSaveChanges, c);
+		
+		
+		
 		// Bottom
 		JPanel pnlBottom = new JPanel();
 		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
