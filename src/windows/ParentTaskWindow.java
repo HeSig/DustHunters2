@@ -28,10 +28,10 @@ import profiles.ParentProfile;
 public class ParentTaskWindow extends JPanel implements ActionListener {
 	private Account account; 
 	private ParentProfile parentProfile;
-	private JLabel lblTask;
+	private JLabel lblChildTask;
 	
 	private JLabel lblCheck;
-	private JLabel lblNameTask;
+	private JLabel lblTask;
 	private JButton btnHome;
 	private JButton btnAddTask;
 	private JButton btnEditTask;
@@ -49,8 +49,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	public ParentProfile getParentProfile () {
 		return parentProfile; 
 	}
-	public void setLblNameTask (JLabel lblNameTask) {
-		this.lblNameTask = lblNameTask;
+	public void setLblNameTask (JLabel lblTask) {
+		this.lblTask = lblTask;
 	}
 	public void setAccount (Account account) {
 		this.account = account;
@@ -86,7 +86,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.setVisible(true);
 		lblChildDoingTask.setOpaque(true); 
 		lblCheck.setOpaque(true);
-		lblNameTask.setOpaque(true);
+		lblTask.setOpaque(true);
 		
 	}
 	private void InitializeGUI() {
@@ -102,10 +102,10 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		pnlTop.setBackground(Color.YELLOW);
 
 
-		lblTask = new JLabel("Barnens sysslor");
-		lblTask.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblTask.setBounds(105, 30, 285, 20);
-		pnlTop.add(lblTask);
+		lblChildTask = new JLabel("Barnens sysslor");
+		lblChildTask.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblChildTask.setBounds(105, 30, 285, 20);
+		pnlTop.add(lblChildTask);
 
 		btnHome = new JButton(" Home ");
 		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -132,9 +132,9 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		lblChildDoingTask.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblChildDoingTask.setBorder(border3);
 
-		lblNameTask = new JLabel("Dammsuga Vardagsrummet");
-		lblNameTask.setFont(new Font("SansSerif", Font.BOLD, 12));
-		lblNameTask.setBorder(border3);
+		lblTask = new JLabel("Dammsuga Vardagsrummet");
+		lblTask.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblTask.setBorder(border3);
 		
 		lblCheck = new JLabel(" ");
 		lblCheck.setFont(new Font("SansSerif", Font.BOLD, 12));
@@ -152,7 +152,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		c.weightx = 1;
 		c.weighty = 1;
 		
-		pnlMiddle.add(lblNameTask, c);
+		pnlMiddle.add(lblTask, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
