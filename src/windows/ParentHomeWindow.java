@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import profiles.Account;
 import profiles.ParentProfile;
 /*
+ * KLAR! DET som ska göras är: Mellanrum mellan btn:s, och att fixa actionlisteners
  * Författare: Angelina Fransson
  */
 public class ParentHomeWindow extends JPanel implements ActionListener {
@@ -25,9 +26,9 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 	private JButton btnChores;
 	private JButton btnRewards;
 	private JButton btnHelpManual;
-	private JLabel lblPicture;
+	private JLabel lblHome; 
 	private JButton btnProfileSymbol;
-	private ImageIcon dustBallImage;
+	private ImageIcon imageProfile;
 
 	public ParentHomeWindow () {
 
@@ -56,31 +57,33 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 
 
 		JPanel pnlTop = new JPanel();
-		pnlTop.setBounds(12, 17, 358, 80);
+		pnlTop.setBounds(12, 17, 358, 90);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 		
-		btnProfileSymbol = new JButton ();
-		dustBallImage = new ImageIcon ("images/20x20Dammtuss.jpg");
-		btnProfileSymbol.setBounds(125, 16, 90, 90);
-		btnProfileSymbol.setIcon(dustBallImage);
+		lblHome = new JLabel("Hem");
+		lblHome.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblHome.setBounds(150, 30, 285, 20);
+		pnlTop.add(lblHome);
 		
+		
+		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
+		btnProfileSymbol = new JButton();
+		btnProfileSymbol.setBounds(275, 16, 75, 70);
+		btnProfileSymbol.setIcon(imageProfile);
 		pnlTop.add(btnProfileSymbol);
 		
-		lblPicture = new JLabel ("images/NinjaReducedSize3.png");
-		pnlTop.add(lblPicture); //fixa 
-
 
 		JPanel pnlMiddle = new JPanel();
-		pnlMiddle.setBounds(12, 130, 358, 140);
+		pnlMiddle.setBounds(12, 180, 358, 140);
 		pnlMiddle.setLayout(new GridBagLayout());
 		pnlMiddle.setBackground(Color.YELLOW);
 		GridBagConstraints c = new GridBagConstraints();
 
+
 		btnSettings = new JButton("Inställningar");
 		btnSettings.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnSettings.setBounds(1, 16, 90, 50);
-		pnlMiddle.add(btnSettings);
 
 		btnChores = new JButton ("Sysslor");
 		btnChores.setFont(new Font ("SansSerif", Font.PLAIN, 14));
@@ -97,17 +100,21 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		btnHelpManual.setBounds(120, 16, 90, 50);
 		pnlMiddle.add(btnHelpManual);
 
-		//Behövs göras om så alla är exakt lika långa
-//		c.fill = GridBagConstraints.HORIZONTAL;
+	
+		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
 		c.weightx = -4;
 		c.weighty = 1;
+		c.gridx = 20; 
+		c.gridy = 20; 
 		pnlMiddle.add(btnSettings, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
 		c.weightx = -4;
 		c.weighty = 1;
+		c.gridx = 20; 
+		c.gridy = 40; 
 
 		pnlMiddle.add(btnChores, c);
 
@@ -115,13 +122,16 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.CENTER;
 		c.weightx = -4;
 		c.weighty = 1;
-
-
+		c.gridx = 20; 
+		c.gridy = 60; 
 		pnlMiddle.add(btnRewards, c);
+		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
 		c.weightx = -4;
 		c.weighty = 1;
+		c.gridx = 20; 
+		c.gridy = 80; 
 		pnlMiddle.add(btnHelpManual, c);
 
 
@@ -151,7 +161,6 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
