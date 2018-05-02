@@ -27,6 +27,7 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	private ChildTaskWindow ctw;
 	private ChildRewardWindow2 crw;
 	private ChildProfileWindow cpw;
+	private ProfileStartWindow psw;
 	private Account account;
 	
 	public DisplayWindow(Account account) {
@@ -35,6 +36,7 @@ public class DisplayWindow extends JFrame implements ActionListener{
 			ctw = new ChildTaskWindow(this);
 			crw = new ChildRewardWindow2(this);
 			cpw = new ChildProfileWindow(this);
+			psw = new ProfileStartWindow("ProfileStartWindow", this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,6 +57,10 @@ public class DisplayWindow extends JFrame implements ActionListener{
 		setVisible(true);
 	}
 	
+	public Account getAccount() {
+		return account;
+	}
+	
 	private void setPanel(JPanel panel) {
 		this.remove(this.panel);
 		this.panel = panel;
@@ -71,11 +77,14 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	public void setViewChildProfileWindow() {
 		setPanel(cpw);
 	}
+	public void setViewProfileStartWindow() {
+		setPanel(psw);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == updateBtn) {
-			setPanel(ctw);
+			setPanel(psw);
 		}
 	}
 	
