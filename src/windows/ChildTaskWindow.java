@@ -37,6 +37,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
 	private JButton btnDustSymbol;
+	private JButton btnProfile;
 	private JLabel lblTask1;
 	private JLabel lblAssigned;
 	private JLabel lblChildName;
@@ -46,6 +47,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private JCheckBox cbCheckUncheck;
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
+	private ImageIcon imageProfile;
 	private DisplayWindow displayWindow;
 
 	private Task task;
@@ -93,6 +95,12 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnHome.setBounds(10, 16, 75, 70);
 		btnHome.setIcon(imageHome);
 		pnlTop.add(btnHome);
+		
+		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
+		btnProfile = new JButton();
+		btnProfile.setBounds(275, 16, 75, 70);
+		btnProfile.setIcon(imageProfile);
+		pnlTop.add(btnProfile);
 
 		// Middle
 		JPanel pnlInfo = new JPanel();
@@ -185,10 +193,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnDustSymbol.setIcon(dustBallImage);
 		pnlBottom.add(btnDustSymbol);
 
+		//ActionListeners
 		cbCheckUncheck.addActionListener(this);
 		btnDustSymbol.addActionListener(this);
 		btnHome.addActionListener(this);
-
+		btnProfile.addActionListener(this);
+		
+		
 		this.add(pnlTop);
 		this.add(pnlInfo);
 		this.add(pnlBottom);
