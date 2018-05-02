@@ -20,7 +20,12 @@ import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ChildProfile;
-
+/**
+ * KLAR! 
+ * En metod för att spara ner valen behövs så att valen föräldern gör kommer till ParentTaskWindow.
+ * @author Angelina Fransson
+ *
+ */
 @SuppressWarnings("serial")
 public class ParentEditTaskWindow extends JPanel implements ActionListener {
 
