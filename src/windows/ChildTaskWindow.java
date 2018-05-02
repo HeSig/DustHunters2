@@ -21,6 +21,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -37,6 +38,8 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
 	private JButton btnDustSymbol;
+	private JButton btnProfileSymbol;
+	private JButton btnSaveChanges;
 	private JLabel lblTask1;
 	private JLabel lblAssigned;
 	private JLabel lblChildName;
@@ -46,7 +49,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private JCheckBox cbCheckUncheck;
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
+	private ImageIcon imageProfile;
 	private DisplayWindow displayWindow;
+	private JComboBox comboChooseChild; //New design for the assigned-function.
+	private String[] childNames = {"MAIDA", "HENRIK", "ANGIE", "SARA", "KASPER"};
 
 	private Task task;
 	private Chore chore;
@@ -83,7 +89,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.WHITE);
 
-		lblTask1 = new JLabel("Syssla 1 ");
+		lblTask1 = new JLabel("Äventyr 1");
 		lblTask1.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTask1.setBounds(140, 30, 285, 20);
 		pnlTop.add(lblTask1);
@@ -93,6 +99,12 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnHome.setBounds(10, 16, 75, 70);
 		btnHome.setIcon(imageHome);
 		pnlTop.add(btnHome);
+		
+		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
+		btnProfileSymbol = new JButton();
+		btnProfileSymbol.setBounds(275, 16, 75, 70);
+		btnProfileSymbol.setIcon(imageProfile);
+		pnlTop.add(btnProfileSymbol);
 
 		// Middle
 		JPanel pnlInfo = new JPanel();
@@ -104,28 +116,33 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		GridBagConstraints c = new GridBagConstraints();
 
 		Border border3 = BorderFactory.createEtchedBorder();
-		lblAssigned = new JLabel("                 Tilldelning: ");
+		lblAssigned = new JLabel("               Äventyrsledare: ");
 		lblAssigned.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblAssigned.setBorder(border3);
 
-		lblChildName = new JLabel("                        MAIDA         ");	// Must be connected to a 
-		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));
-		lblChildName.setBorder(border3);
+		comboChooseChild = new JComboBox(childNames);
+		comboChooseChild.setSelectedIndex(1);
+		comboChooseChild.setBorder(border3);
 
-		lblCheck = new JLabel("              Syssla är gjort: ");
+		lblCheck = new JLabel("               Äventyr är gjort: ");
 		lblCheck.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblCheck.setBorder(border3);
 
 		cbCheckUncheck = new JCheckBox();
 		cbCheckUncheck.setBorder(border3);
 
-		lblHours = new JLabel("                   Timmar: ");
+		lblHours = new JLabel("                       Timmar: ");
 		lblHours.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblHours.setBorder(border3);
 
 		tfHours = new JTextField();
 		tfHours.setBorder(border3);
-
+		
+		btnSaveChanges = new JButton("Spara");
+		btnSaveChanges.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnSaveChanges.setBorder(border3);
+		btnSaveChanges.setBackground(Color.YELLOW);
+		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
@@ -136,7 +153,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.NORTHEAST;
 		c.weightx = 1;
 		c.weighty = 1;
-		pnlInfo.add(lblChildName, c);
+		pnlInfo.add(comboChooseChild, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -170,6 +187,16 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.gridy = 2;
 		pnlInfo.add(tfHours, c);
 
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTHEAST;
+		c.weightx = 400;
+		c.weighty = 400;
+		c.gridx = 1;
+		c.gridy = 3;
+		pnlInfo.add(btnSaveChanges, c);
+		
+		
+		
 		// Bottom
 		JPanel pnlBottom = new JPanel();
 		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
@@ -185,10 +212,15 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnDustSymbol.setIcon(dustBallImage);
 		pnlBottom.add(btnDustSymbol);
 
+		//ActionListeners
 		cbCheckUncheck.addActionListener(this);
 		btnDustSymbol.addActionListener(this);
 		btnHome.addActionListener(this);
-
+		btnProfileSymbol.addActionListener(this);
+		comboChooseChild.addActionListener(this);
+		
+		
+		
 		this.add(pnlTop);
 		this.add(pnlInfo);
 		this.add(pnlBottom);
@@ -212,6 +244,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		
 		if(e.getSource() == btnHome) {
 			// should return the user to the the home-panel
+		}
+		
+		if(e.getSource() == btnProfileSymbol) {
+			// should direct the user to the profile-panel.  
 		}
 		
 	}

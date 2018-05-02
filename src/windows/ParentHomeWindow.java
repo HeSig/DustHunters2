@@ -1,11 +1,6 @@
 package windows;
 
 import java.awt.*;
-
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,6 +25,8 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 	private JButton btnChores;
 	private JButton btnRewards;
 	private JButton btnHelpManual;
+	private JLabel lblPicture;
+	private JButton btnProfileSymbol;
 	private ImageIcon dustBallImage;
 
 	public ParentHomeWindow () {
@@ -62,9 +59,16 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		pnlTop.setBounds(12, 17, 358, 80);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
-
-		dustBallImage = new ImageIcon("images/NinjaReducedSize3.png");
-		pnlTop.add(dustBallImage); //fixa 
+		
+		btnProfileSymbol = new JButton ();
+		dustBallImage = new ImageIcon ("images/20x20Dammtuss.jpg");
+		btnProfileSymbol.setBounds(125, 16, 90, 90);
+		btnProfileSymbol.setIcon(dustBallImage);
+		
+		pnlTop.add(btnProfileSymbol);
+		
+		lblPicture = new JLabel ("images/NinjaReducedSize3.png");
+		pnlTop.add(lblPicture); //fixa 
 
 
 		JPanel pnlMiddle = new JPanel();
@@ -75,7 +79,7 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 
 		btnSettings = new JButton("Inställningar");
 		btnSettings.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		btnSettings.setBounds(10, 16, 90, 50);
+		btnSettings.setBounds(1, 16, 90, 50);
 		pnlMiddle.add(btnSettings);
 
 		btnChores = new JButton ("Sysslor");
@@ -94,29 +98,29 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		pnlMiddle.add(btnHelpManual);
 
 		//Behövs göras om så alla är exakt lika långa
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1;
+//		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = -4;
 		c.weighty = 1;
 		pnlMiddle.add(btnSettings, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1;
+		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = -4;
 		c.weighty = 1;
 
 		pnlMiddle.add(btnChores, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1;
+		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = -4;
 		c.weighty = 1;
 
 
 		pnlMiddle.add(btnRewards, c);
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1;
+		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = -4;
 		c.weighty = 1;
 		pnlMiddle.add(btnHelpManual, c);
 
