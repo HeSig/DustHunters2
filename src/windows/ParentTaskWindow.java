@@ -21,7 +21,7 @@ import profiles.Account;
 import profiles.ParentProfile;
 
 /**
- * 
+ * Klar! 
  * @author Angelina Fransson
  *
  */
