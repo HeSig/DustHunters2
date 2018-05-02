@@ -20,6 +20,12 @@ import javax.swing.border.Border;
 import profiles.Account;
 import profiles.ChildProfile;
 
+/** 
+ * 
+ * @author dalvig
+ *
+ */
+
 public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 	private JButton btnHome = new JButton();
@@ -79,7 +85,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		lblTitle = new JLabel("Skatter i sikt");
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTitle.setBounds(120, 30, 285, 20);
-		btnHome.setIcon(new ImageIcon("images/home.png"));
+		btnHome.setIcon(new ImageIcon("images/House.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
 		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
 		btnProfile.setBounds(260, 16, 90, 50);
