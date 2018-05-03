@@ -106,7 +106,7 @@ public class Server extends Thread {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		int port = 4041;
 		// Client
-		String host = "10.2.9.120";
+		String host = "10.2.10.34";
 		AccountManager accountManager1 = new AccountManager();
 		UserController test1 = new UserController(host, port);
 		System.out.println("Client started");
