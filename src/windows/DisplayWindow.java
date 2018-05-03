@@ -9,13 +9,15 @@ import java.io.IOException;
 import javax.swing.*;
 
 import profiles.Account;
+import profiles.ChildProfile;
+import profiles.ParentProfile;
 
 /**
  * 
  * @author Henrik Sigeman
  *
  */
-public class DisplayWindow extends JFrame implements ActionListener{
+public class DisplayWindow extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
@@ -27,14 +29,25 @@ public class DisplayWindow extends JFrame implements ActionListener{
 	private ChildTaskWindow ctw;
 	private ChildRewardWindow2 crw;
 	private ChildProfileWindow cpw;
+	private ProfileStartWindow psw;
+	private ParentHomeWindow phw;
+	private ParentEditTaskWindow petw;
+	private ParentTaskWindow ptw;
 	private Account account;
-	
+
+	private ChildProfile childProfile;
+	private ParentProfile parentProfile;
+
 	public DisplayWindow(Account account) {
 		this.account = account;
 		try {
 			ctw = new ChildTaskWindow(this);
 			crw = new ChildRewardWindow2(this);
 			cpw = new ChildProfileWindow(this);
+			psw = new ProfileStartWindow("ProfileStartWindow", this);
+			phw = new ParentHomeWindow(this);
+			petw = new ParentEditTaskWindow(this);
+			ptw = new ParentTaskWindow(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,33 +67,73 @@ public class DisplayWindow extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-	
+
+	public Account getAccount() {
+		return account;
+	}
+
 	private void setPanel(JPanel panel) {
 		this.remove(this.panel);
 		this.panel = panel;
 		add(this.panel, BorderLayout.CENTER);
 		this.revalidate();
+		this.panel.updateUI();
 	}
-	
+
+	public void setViewParentTaskWindow() {
+		setPanel(ptw);
+	}
+
 	public void setViewChildTaskWindow() {
 		setPanel(ctw);
 	}
+
 	public void setViewChildRewardWindow() {
 		setPanel(crw);
 	}
+
 	public void setViewChildProfileWindow() {
 		setPanel(cpw);
+	}
+
+	public void setViewProfileStartWindow() {
+		setPanel(psw);
+	}
+
+	public void setViewParentHomeWindow() {
+		setPanel(phw);
+	}
+
+	public void setViewParentEditTaskWindow() {
+		setPanel(petw);
+
+	}
+
+	public void setParentProfile(String name) {
+		for (int i = 0; i < account.getParentProfileList().size(); i++) {
+			if (account.getParentProfileList().get(i).getName().equals(name)) {
+				parentProfile = account.getParentProfileList().get(i);
+			}
+		}
+	}
+
+	public void setChildProfile(String name) {
+		for (int i = 0; i < account.getChildProfileList().size(); i++) {
+			if (account.getChildProfileList().get(i).getName().equals(name)) {
+				childProfile = account.getChildProfileList().get(i);
+			}
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == updateBtn) {
-			setPanel(ctw);
+			setPanel(psw);
 		}
 	}
-	
+
 	public static void main(String[] args) throws IOException {
-		//DisplayWindow displayWindow = new DisplayWindow();
+		// DisplayWindow displayWindow = new DisplayWindow();
 	}
 
 }

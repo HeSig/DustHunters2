@@ -29,6 +29,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private Account account; 
 	private ParentProfile parentProfile;
 	private JLabel lblChildTask;
+	private DisplayWindow displayWindow;
 	
 	private JLabel lblCheck;
 	private JLabel lblTask;
@@ -73,8 +74,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.lblChildDoingTask = lblChildDoingTask;
 	
 	}
-	public ParentTaskWindow () {
-		
+	public ParentTaskWindow (DisplayWindow displayWindow) {
+		this.displayWindow = displayWindow;
 		start();
 	
 	}
@@ -108,6 +109,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		pnlTop.add(lblChildTask);
 
 		btnHome = new JButton(" Home ");
+		btnHome.addActionListener(this);
 		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnHome.setBounds(10, 16, 90, 50);
 		pnlTop.add(btnHome);
@@ -170,6 +172,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		
 		
 		btnAddTask = new JButton(" Lägg till en syssla ");
+		btnAddTask.addActionListener(this);
 		btnAddTask.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnAddTask.setBackground(Color.GREEN);
 		btnAddTask.setForeground(Color.BLACK);
@@ -207,8 +210,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 //	}
 	public static void main (String [] args) {
 		JFrame frame = new JFrame ();
-		ParentTaskWindow pt = new ParentTaskWindow ();
-		frame.add(pt);
+		//ParentTaskWindow pt = new ParentTaskWindow ();
+		//frame.add(pt);
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -217,7 +220,12 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == btnHome) {
+			displayWindow.setViewParentHomeWindow();
+		}
+		if(e.getSource() == btnAddTask) {
+			displayWindow.setViewParentEditTaskWindow();
+		}
 		
 	}
  }

@@ -11,47 +11,42 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import profiles.Account;
-import profiles.ChildProfile;
+import profiles.ParentProfile;
 
 /**
- * A panel that parent users reach when they push the "Lägg till ett barn" button. 
- * They enter the child's details: username and password. 
- * Soon they will be able to choose a specific Dust Hunter (profile picture)
- * for their child from a drop down menu. 
+ * A panel that is reached when a user clicks the button "Inställningar" on
+ * ParentHomeWindow. Here the user (parent) can edit his/her details: username
+ * and password.
  * 
  * @author dalvig
  *
  */
-
-public class AddChildWindow extends JPanel implements ActionListener {
-	
+public class ParentSettingsWindow extends JPanel implements ActionListener {
 
 	private JLabel lblTitle;
-	private JLabel lblChildName;
-	private JLabel lblChildPassword;
-	private JLabel lblChildPassRepeat;
-	private JTextField txtChildName;
-	private JTextField txtChildPassword;
-	private JTextField txtChildPassRepeat;	
+	private JLabel lblParentName;
+	private JLabel lblParentPassword;
+	private JLabel lblParentPassRepeat;
+	private JTextField txtParentName;
+	private JTextField txtParentPassword;
+	private JTextField txtParentPassRepeat;
 	private JButton btnHome = new JButton();
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
 	private JButton btnProfilePic = new JButton();
 
-
 	private Account account;
-	private ChildProfile childProfile;
+	private ParentProfile parentProfile;
 	private DisplayWindow displayWindow;
 
-	public AddChildWindow(DisplayWindow displayWindow) throws IOException {
+	public ParentSettingsWindow(DisplayWindow displayWindow) throws IOException {
 		this.displayWindow = displayWindow;
 		start();
 	}
@@ -60,11 +55,9 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		return account;
 	}
 
-	public ChildProfile getChildProfile() {
-		return childProfile;
+	public ParentProfile getParentProfile() {
+		return parentProfile;
 	}
-	
-	
 
 	public void start() throws IOException {
 
@@ -74,34 +67,31 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
-
 	public void InitializeGUI() throws IOException {
 
 		// Main Panel
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
-		
 
 		// Top Panel
 		JPanel pnlTop = new JPanel();
-		
+
 		pnlTop.setBounds(12, 17, 358, 80);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 
-		lblTitle = new JLabel("Lägg till unge");
+		lblTitle = new JLabel("Ändra din info");
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblTitle.setBounds(120, 30, 285, 30);
+		lblTitle.setBounds(110, 30, 285, 30);
 		btnHome.setIcon(new ImageIcon("images/house.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
 		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
 		btnProfile.setBounds(260, 16, 90, 50);
-		
+
 		pnlTop.add(btnHome);
 		pnlTop.add(lblTitle);
 		pnlTop.add(btnProfile);
-		
 
 		// Middle-Upper Panel
 		JPanel pnlMiddle1 = new JPanel();
@@ -114,70 +104,65 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		btnProfilePic.setBounds(10, 10, 10, 10);
 		btnProfilePic.setEnabled(true);
 		btnProfilePic.addActionListener(this);
-		
+
 		pnlMiddle1.add(btnProfilePic);
-	
-		
+
 		// Middle-Lower Panel
 		JPanel pnlMiddle2 = new JPanel();
 
 		pnlMiddle2.setBounds(12, 240, 358, 180);
-		pnlMiddle2.setLayout(new GridLayout(3,2));
+		pnlMiddle2.setLayout(new GridLayout(3, 2));
 		pnlMiddle2.setBackground(Color.YELLOW);
 
-		
-		lblChildName = new JLabel("Namn: ");
-		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));	
-		
-		lblChildPassword = new JLabel("Lösenord: ");
-		lblChildPassword.setFont(new Font("SansSerif", Font.BOLD, 12));
-		
-		lblChildPassRepeat = new JLabel("Upprepa lösenord: ");
-		lblChildPassRepeat.setFont(new Font("SansSerif", Font.BOLD, 12));
-		
-		txtChildName = new JTextField();
-		txtChildPassword = new JTextField();
-		txtChildPassRepeat = new JTextField();
-		
-		
-		pnlMiddle2.add(lblChildName);
-		pnlMiddle2.add(txtChildName);
-		pnlMiddle2.add(lblChildPassword);
-		pnlMiddle2.add(txtChildPassword);
-		pnlMiddle2.add(lblChildPassRepeat);
-		pnlMiddle2.add(txtChildPassRepeat);
-			
+		lblParentName = new JLabel("Ditt namn: ");
+		lblParentName.setFont(new Font("SansSerif", Font.BOLD, 12));
 
+		lblParentPassword = new JLabel("Ditt lösenord: ");
+		lblParentPassword.setFont(new Font("SansSerif", Font.BOLD, 12));
+
+		lblParentPassRepeat = new JLabel("Upprepa ditt lösenord: ");
+		lblParentPassRepeat.setFont(new Font("SansSerif", Font.BOLD, 12));
+
+		txtParentName = new JTextField("Momma Bear");
+		txtParentPassword = new JTextField();
+		txtParentPassRepeat = new JTextField();
+
+		pnlMiddle2.add(lblParentName);
+		pnlMiddle2.add(txtParentName);
+		pnlMiddle2.add(lblParentPassword);
+		pnlMiddle2.add(txtParentPassword);
+		pnlMiddle2.add(lblParentPassRepeat);
+		pnlMiddle2.add(txtParentPassRepeat);
+
+		
 		// Bottom Panel
 		JPanel pnlBottom = new JPanel();
 
 		pnlBottom.setBounds(12, 470, 358, 100);
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
-		
+
 		btnSave = new JButton("Spara");
 		btnSave.setBounds(10, 10, 10, 10);
 		btnSave.setBackground(Color.GREEN);
 		btnSave.setForeground(Color.BLACK);
-		
+
 		btnCancel = new JButton("Avsluta");
 		btnCancel.setBounds(100, 200, 250, 200);
 		btnCancel.setBackground(Color.RED);
 		btnCancel.setForeground(Color.BLACK);
-		
+
 		pnlBottom.add(btnSave);
 		pnlBottom.add(btnCancel);
-		
-		// Adds the four panels to the main panel
+
 		this.add(pnlTop);
 		this.add(pnlMiddle1);
 		this.add(pnlMiddle2);
 		this.add(pnlBottom);
-		
-		// Adds all action listeners
+
+		// Add all action listeners
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
-		btnProfilePic.addActionListener(this);
 		btnSave.addActionListener(this);
 		btnCancel.addActionListener(this);
 	}
@@ -191,26 +176,21 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		} else if (e.getSource() == btnProfile) {
 			displayWindow.setViewChildProfileWindow();
 
-		} else if (e.getSource() == btnProfilePic) {
-
 		} else if (e.getSource() == btnSave) {
-			
+
 		} else if (e.getSource() == btnCancel) {
-			
+
 		}
 
 	}
 
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
-		AddChildWindow addChildWindow = new AddChildWindow(null);
-		frame.add(addChildWindow);
+		ParentSettingsWindow parentSettings = new ParentSettingsWindow(null);
+		frame.add(parentSettings);
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setMinimumSize(new Dimension(400, 600));
 	}
 }
-
-
-

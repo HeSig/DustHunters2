@@ -39,6 +39,8 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	private JButton btnChore; // When user clicks task, they will in fact click a button to take them to class
 								// ChildTaskWindow
 	private JLabel lblRewardPoints;
+	
+	private DisplayWindow displayWindow;
 
 	/*
 	 * Three setters and three getters for the components inside of a task (L + C +
@@ -61,13 +63,15 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		return account;
 	}
 	
-	public RewardWindow getProgress() {
-		return progress;
-	}
+//	public RewardWindow getProgress() {
+//		return progress;
+//	}
 
 	// Constructor
-	public ChildProfileWindow() {
+	public ChildProfileWindow(DisplayWindow displayWindow) {
 		// this.name = name;
+		this.displayWindow = displayWindow;
+		
 		start();
 
 	}
@@ -173,7 +177,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		ChildProfileWindow pnlChildProfile = new ChildProfileWindow();
+		ChildProfileWindow pnlChildProfile = new ChildProfileWindow(new DisplayWindow(new Account("Hej@hej.se", "Pej")));
 		JFrame frame = new JFrame();
 		frame.add(pnlChildProfile);
 		frame.pack();

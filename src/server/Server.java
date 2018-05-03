@@ -3,7 +3,9 @@ package server;
 import java.io.*;
 import java.net.*;
 import profiles.Account;
+import tasks.Task;
 import client.UserController;
+import locations.Location;
 
 /**
  * 
@@ -85,6 +87,9 @@ public class Server extends Thread {
 				// Add task
 				if (request.getRequest().equals("AddTask")) {
 					Account account = request.getAccount();
+					//make this runnable
+//					Task task = new Task(new Location(), new Chore(), value)
+					//accountManager.addTask(account, task);
 
 				}
 				// System.out.println("Mottaget och levererat");

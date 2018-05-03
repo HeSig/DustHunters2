@@ -117,13 +117,11 @@ public class Client extends Thread {
 	}
 
 	private void printAccount(Account account) {
-		System.out.println(account.getEmail());
-		System.out.println(account.getPassword());
 		for(int i = 0; i < account.getParentProfileList().size(); i++) {
-			System.out.println(account.getParentProfileList().get(i).getName());
+			//System.out.println(account.getParentProfileList().get(i).getName());
 		}
 		for(int i = 0; i < account.getChildProfileList().size(); i++) {
-			System.out.println(account.getChildProfileList().get(i).getName());
+			//System.out.println(account.getChildProfileList().get(i).getName());
 		}
 		
 	}

@@ -33,7 +33,6 @@ public class AccountManager {
 
 	// Build account from server.
 	public static Account buildAccount(String email, String password) throws IOException {
-		System.out.println("New account started");
 		Account account = new Account(email, password);
 		FileReader fileReader;
 		try {
@@ -56,13 +55,12 @@ public class AccountManager {
 		if (readLine.equals("ParentProfiles:")) {
 			readLine = br.readLine();
 			while (!readLine.equals("$")) {
-				System.out.println(readLine);
 				parent = new ParentProfile(readLine);
 				account.addParentProfile(parent);
-				
+
 				readLine = br.readLine();
 			}
-		}else {
+		} else {
 			System.out.println("ParentProfile skipped");
 		}
 		// Child profiles
@@ -79,12 +77,12 @@ public class AccountManager {
 			readLine = br.readLine();
 			Location location = null;
 			while (!readLine.equals("$")) {
-				
-				if(readLine.equals("Kök")) {
+
+				if (readLine.equals("Kök")) {
 					location = new KitchenLocation();
-				}else if(readLine.equals("Toalett")) {
+				} else if (readLine.equals("Toalett")) {
 					location = new ToiletLocation();
-				}else if(readLine.equals("Sovrum")) {
+				} else if (readLine.equals("Sovrum")) {
 					location = new BedroomLocation();
 				}
 				if (location != null) {
@@ -196,4 +194,19 @@ public class AccountManager {
 		return "New account registered";
 	}
 
+	public void addTask(Account account, Task task) throws IOException {
+		FileWriter fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
+		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		PrintWriter pr = new PrintWriter(bufferedWriter);
+		FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			if (line.equals("Task")) {
+				
+			}
+
+		}
+	}
 }
