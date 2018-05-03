@@ -87,8 +87,9 @@ public class Server extends Thread {
 				// Add task
 				if (request.getRequest().equals("AddTask")) {
 					Account account = request.getAccount();
-					Task task = new Task(new Location(), new Chore(), value)
-					accountManager.addTask(account);
+					//make this runnable
+//					Task task = new Task(new Location(), new Chore(), value)
+					//accountManager.addTask(account, task);
 
 				}
 				// System.out.println("Mottaget och levererat");
