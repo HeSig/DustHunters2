@@ -8,9 +8,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.*;
+import java.util.LinkedList;
 
 import profiles.Account;
 import server.ServerRequest;
+import tasks.Task;
 import windows.DisplayWindow;
 
 /**
@@ -80,7 +82,41 @@ public class Client extends Thread {
 		closeStreams();
 		return res;
 	}
+	
+	public LinkedList<Task> getTasksFromServer(Account account) throws UnknownHostException, IOException, ClassNotFoundException {
+		serverRequest = "GetTasks";
+		socket = new Socket(user.getHost(), user.getPort());
+		os = socket.getOutputStream();
+		oos = new ObjectOutputStream(os);
+		is = socket.getInputStream();
+		ois = new ObjectInputStream(is);
+		
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		LinkedList<Task> tasks = new LinkedList();
+		tasks = (LinkedList<Task>) ois.readObject();
+		
+		return tasks;
+	}
 
+	public void addRewardToServer(Account account) {
+		
+	}
+	
+	public void addTaskToServer(Account account, Task task) throws UnknownHostException, IOException {
+		serverRequest = "AddTask";
+		socket = new Socket(user.getHost(), user.getPort());
+		os = socket.getOutputStream();
+		oos = new ObjectOutputStream(os);
+		
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(task);
+		oos.flush();
+		oos.close();
+		os.close();
+		socket.close();
+	}
+	
+	
 	/**
 	 * 
 	 * @param account The account to be logged in to.
@@ -93,6 +129,7 @@ public class Client extends Thread {
 		Boolean ret = false;
 		serverRequest = "Login";
 		socket = new Socket(user.getHost(), user.getPort());
+		System.out.println("Socket created");
 
 		// Get inputstream and outputstream from socket.
 		is = socket.getInputStream();
@@ -111,8 +148,8 @@ public class Client extends Thread {
 		ois.close();
 		//Close streams.
 		closeStreams();
-		printAccount(res);
-		DisplayWindow displayWindow = new DisplayWindow(res);
+		//printAccount(res);
+		DisplayWindow displayWindow = new DisplayWindow(res, this);
 		return res;
 	}
 

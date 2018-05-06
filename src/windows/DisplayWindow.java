@@ -5,12 +5,15 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javax.swing.*;
 
+import client.Client;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
+import tasks.Task;
 
 /**
  * 
@@ -34,11 +37,13 @@ public class DisplayWindow extends JFrame implements ActionListener {
 	private ParentEditTaskWindow petw;
 	private ParentTaskWindow ptw;
 	private Account account;
+	private Client client;
 
 	private ChildProfile childProfile;
 	private ParentProfile parentProfile;
 
-	public DisplayWindow(Account account) {
+	public DisplayWindow(Account account, Client client) {
+		this.client = client;
 		this.account = account;
 		try {
 			ctw = new ChildTaskWindow(this);
@@ -129,6 +134,12 @@ public class DisplayWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == updateBtn) {
 			setPanel(psw);
+			try {
+				account.setTaskList(client.getTasksFromServer(account));
+			} catch (ClassNotFoundException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 

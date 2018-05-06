@@ -176,19 +176,22 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 
 	}
 
-	public static void main(String[] args) {
-		ChildProfileWindow pnlChildProfile = new ChildProfileWindow(new DisplayWindow(new Account("Hej@hej.se", "Pej")));
-		JFrame frame = new JFrame();
-		frame.add(pnlChildProfile);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
-	}
+//	public static void main(String[] args) {
+//		ChildProfileWindow pnlChildProfile = new ChildProfileWindow(new DisplayWindow(new Account("Hej@hej.se", "Pej")));
+//		JFrame frame = new JFrame();
+//		frame.add(pnlChildProfile);
+//		frame.pack();
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setMinimumSize(new Dimension(400, 600));
+//	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == btnChore) {
+			displayWindow.setViewChildTaskWindow();
+		}
 
 	}
 

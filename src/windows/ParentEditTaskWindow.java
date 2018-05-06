@@ -18,8 +18,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import locations.Location;
 import profiles.Account;
 import profiles.ChildProfile;
+import tasks.Chore;
+import tasks.Task;
 /**
  * KLAR! 
  * En metod för att spara ner valen behövs så att valen föräldern gör kommer till ParentTaskWindow.
@@ -198,6 +201,9 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 			displayWindow.setViewParentTaskWindow();
 		}
 		if(e.getSource() == btnSave) {
+			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
+			System.out.println(location.getLocationName());
+			Task task = new Task(location, new Chore(comboChooseTask.getSelectedItem().toString()), 10);
 			//Server add new task to the account.
 		}
 	}

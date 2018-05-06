@@ -109,6 +109,7 @@ public class UserController {
 	 * @throws ClassNotFoundException
 	 */
 	public Account login(Account account) throws UnknownHostException, IOException, ClassNotFoundException {
+		System.out.println("Controller is attempting the login");
 		Account res = client.sendLoginToServer(account);
 		return res;
 	}

@@ -111,7 +111,8 @@ public class RegisterWindow extends JFrame implements ActionListener {
 		if (mailOK) {
 			if (passOK) {
 				Account account = new Account(email.getText(), password.getText());
-				System.out.println(account.getEmail());
+				//System.out.println(account.getEmail());
+				System.out.println("Attempting to log in...");
 				Account fetchedAccount = controller.login(account);
 			}
 		}

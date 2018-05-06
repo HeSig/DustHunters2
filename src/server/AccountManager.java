@@ -4,10 +4,14 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.channels.FileChannel;
+import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
 
 import locations.BedroomLocation;
@@ -53,6 +57,7 @@ public class AccountManager {
 		// Parent profiles
 		readLine = br.readLine();
 		if (readLine.equals("ParentProfiles:")) {
+			System.out.println("Reading parent profiles");
 			readLine = br.readLine();
 			while (!readLine.equals("$")) {
 				parent = new ParentProfile(readLine);
@@ -65,6 +70,7 @@ public class AccountManager {
 		}
 		// Child profiles
 		if (br.readLine().equals("ChildProfiles:")) {
+			System.out.println("Reading child profiles");
 			readLine = br.readLine();
 			while (!readLine.equals("$")) {
 				account.addChildProfile(new ChildProfile(readLine));
@@ -72,25 +78,29 @@ public class AccountManager {
 			}
 		}
 
+		System.out.println("Reading tasks");
 		// Tasks
-		if (br.readLine().equals("Tasks")) {
-			readLine = br.readLine();
-			Location location = null;
-			while (!readLine.equals("$")) {
+		LinkedList<Task> list = (LinkedList<Task>) getTask(account);
+		account.setTaskList(list);
 
-				if (readLine.equals("Kök")) {
-					location = new KitchenLocation();
-				} else if (readLine.equals("Toalett")) {
-					location = new ToiletLocation();
-				} else if (readLine.equals("Sovrum")) {
-					location = new BedroomLocation();
-				}
-				if (location != null) {
-					account.addTask(new Task(location, new Chore(br.readLine()), Integer.parseInt(br.readLine())));
-				}
-				br.readLine();
-			}
-		}
+		// if (br.readLine().equals("Tasks")) {
+		// readLine = br.readLine();
+		// Location location = null;
+		// while (!readLine.equals("$")) {
+		// if (readLine.equals("Kök")) {
+		// location = new KitchenLocation();
+		// } else if (readLine.equals("Toalett")) {
+		// location = new ToiletLocation();
+		// } else if (readLine.equals("Sovrum")) {
+		// location = new BedroomLocation();
+		// }
+		// if (location != null) {
+		// account.addTask(new Task(location, new Chore(br.readLine()),
+		// Integer.parseInt(br.readLine())));
+		// }
+		// readLine = br.readLine();
+		// }
+		// }
 
 		// Rewards
 		if (br.readLine().equals("Rewards")) {
@@ -182,6 +192,7 @@ public class AccountManager {
 		writer.println("Tommy");
 		writer.println("$");
 		writer.println("Tasks");
+		writer.println("0");
 		writer.println("$");
 		writer.println("Rewards");
 		writer.println("$");
@@ -194,19 +205,86 @@ public class AccountManager {
 		return "New account registered";
 	}
 
+	public static List<Task> getTask(Account account) {
+		List<Task> list = new LinkedList();
+
+		FileWriter fileWriter;
+		try {
+			fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
+
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			PrintWriter pr = new PrintWriter(bufferedWriter);
+			FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String line = "";
+			while (line != null) {
+				line = bufferedReader.readLine();
+				if (line.equals("Tasks")) {
+					int taskCount = Integer.parseInt(bufferedReader.readLine());
+					for (int i = 0; i < taskCount; i++) {
+						Location location = new Location(bufferedReader.readLine());
+						Chore chore = new Chore(bufferedReader.readLine());
+						int value = Integer.parseInt(bufferedReader.readLine());
+						Task task = new Task(location, chore, value);
+						list.add(task);
+					}
+					break;
+				}
+				
+			}
+			bufferedReader.close();
+			fileReader.close();
+			pr.close();
+			bufferedWriter.close();
+			fileWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Something is wrong here too");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
 	public void addTask(Account account, Task task) throws IOException {
+		LinkedList<String> fileContent = new LinkedList();
 		FileWriter fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
 		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 		PrintWriter pr = new PrintWriter(bufferedWriter);
 		FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		
+
 		String line;
 		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
 			if (line.equals("Task")) {
-				
-			}
+				fileContent.add(line);
+				while ((line = bufferedReader.readLine()) != "$") {
 
+				}
+				fileContent.add("" + (account.getTaskList().size() + 1));
+				for(int i = 0; i < account.getTaskList().size(); i++) {
+					fileContent.add(account.getTaskFromList(i).getLocationName());
+					fileContent.add(account.getTaskFromList(i).getChoreName());
+					fileContent.add(""+account.getTaskFromList(i).getTaskValue());
+				}
+				fileContent.add(task.getLocationName());
+				fileContent.add(task.getChoreName());
+				fileContent.add(""+task.getTaskValue());
+				fileContent.add(line);
+			}
 		}
+		
+		//Print new document.
+		FileChannel.open(Paths.get("accounts/" + account.getEmail() + ".txt")).truncate(0).close();
+		for(int i = 0; i < fileContent.size(); i++) {
+			bufferedWriter.write(fileContent.get(i));
+		}
+		
+		bufferedReader.close();
+		fileReader.close();
+		pr.close();
+		bufferedWriter.close();
+		fileWriter.close();
 	}
 }

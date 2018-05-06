@@ -247,18 +247,19 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		}
 		
 		if(e.getSource() == btnProfileSymbol) {
+			displayWindow.setViewChildProfileWindow();
 			// should direct the user to the profile-panel.  
 		}
 		
 	}
 
-	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame();
-		ChildTaskWindow taskwindow = new ChildTaskWindow(new DisplayWindow(null));
-		frame.add(taskwindow);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
-	}
+//	public static void main(String[] args) throws IOException {
+//		JFrame frame = new JFrame();
+//		ChildTaskWindow taskwindow = new ChildTaskWindow(new DisplayWindow(null));
+//		frame.add(taskwindow);
+//		frame.pack();
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setMinimumSize(new Dimension(400, 600));
+//	}
 }
