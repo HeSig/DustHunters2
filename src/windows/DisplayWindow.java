@@ -40,6 +40,7 @@ public class DisplayWindow extends JFrame implements ActionListener, Observer {
 	private ParentHomeWindow phw;
 	private ParentEditTaskWindow petw;
 	private ParentTaskWindow ptw;
+	private ParentProfileWindow ppw;
 	private Account account;
 	private Client client;
 	private Boolean clientIsRunning = false;
@@ -59,6 +60,7 @@ public class DisplayWindow extends JFrame implements ActionListener, Observer {
 			phw = new ParentHomeWindow(this);
 			petw = new ParentEditTaskWindow(this);
 			ptw = new ParentTaskWindow(this);
+			ppw = new ParentProfileWindow(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,6 +118,10 @@ public class DisplayWindow extends JFrame implements ActionListener, Observer {
 		this.panel.updateUI();
 	}
 
+	public void setViewParentProfileWindow() {
+		setPanel(ppw);
+	}
+	
 	public void setViewParentTaskWindow() {
 		setPanel(ptw);
 	}

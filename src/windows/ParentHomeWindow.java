@@ -41,7 +41,10 @@ public class ParentHomeWindow extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == btnChores) {
 					displayWindow.setViewParentTaskWindow();
-				}	
+				}
+				if(e.getSource() == btnSettings) {
+					displayWindow.setViewParentProfileWindow();
+				}
 			}
 		};
 		
@@ -96,6 +99,7 @@ public class ParentHomeWindow extends JPanel{
 
 
 		btnSettings = new JButton("Inställningar");
+		btnSettings.addActionListener(listener);
 		btnSettings.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnSettings.setBounds(1, 16, 90, 50);
 

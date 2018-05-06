@@ -243,12 +243,10 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		c.gridy = 0;
 		
 		for(int i = 0; i < displayWindow.getAccount().getTaskList().size(); i++) {
-			System.out.println("Added panel");
 			Task task = displayWindow.getAccount().getTaskList().get(i);
 			pnlMiddle.add(new TaskPanel(task.getLocationName(),task.getChoreName(),task.getTaskValue()), c);
 			c.gridy++;
 		}
-		
 		pnlMiddle.revalidate();
 		pnlMiddle.repaint();
 	}
