@@ -57,7 +57,6 @@ public class AccountManager {
 		// Parent profiles
 		readLine = br.readLine();
 		if (readLine.equals("ParentProfiles:")) {
-			System.out.println("Reading parent profiles");
 			readLine = br.readLine();
 			while (!readLine.equals("$")) {
 				parent = new ParentProfile(readLine);
@@ -66,11 +65,11 @@ public class AccountManager {
 				readLine = br.readLine();
 			}
 		} else {
-			System.out.println("ParentProfile skipped");
+
 		}
 		// Child profiles
 		if (br.readLine().equals("ChildProfiles:")) {
-			System.out.println("Reading child profiles");
+
 			readLine = br.readLine();
 			while (!readLine.equals("$")) {
 				account.addChildProfile(new ChildProfile(readLine));
@@ -78,7 +77,6 @@ public class AccountManager {
 			}
 		}
 
-		System.out.println("Reading tasks");
 		// Tasks
 		LinkedList<Task> list = (LinkedList<Task>) getTask(account);
 		account.setTaskList(list);
@@ -247,21 +245,19 @@ public class AccountManager {
 	}
 
 	public void addTask(Account account, Task task) throws IOException {
+		File f = new File("accounts/" + account.getEmail() + ".txt");
 		LinkedList<String> fileContent = new LinkedList();
-		FileWriter fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
+		FileWriter fileWriter = new FileWriter(f, true);
 		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 		PrintWriter pr = new PrintWriter(bufferedWriter);
-		FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
+		FileReader fileReader = new FileReader(f);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 		String line;
 		while ((line = bufferedReader.readLine()) != null) {
 			fileContent.add(line);
-			if (line.equals("Task")) {
-				fileContent.add(line);
-				while ((line = bufferedReader.readLine()) != "$") {
-
-				}
+			if (line.equals("Tasks")) {
+				bufferedReader.readLine();
 				fileContent.add("" + (account.getTaskList().size() + 1));
 				for(int i = 0; i < account.getTaskList().size(); i++) {
 					fileContent.add(account.getTaskFromList(i).getLocationName());
@@ -271,14 +267,20 @@ public class AccountManager {
 				fileContent.add(task.getLocationName());
 				fileContent.add(task.getChoreName());
 				fileContent.add(""+task.getTaskValue());
-				fileContent.add(line);
+				break;
 			}
 		}
+		while(!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+		fileContent.add(line);
 		
-		//Print new document.
-		FileChannel.open(Paths.get("accounts/" + account.getEmail() + ".txt")).truncate(0).close();
-		for(int i = 0; i < fileContent.size(); i++) {
-			bufferedWriter.write(fileContent.get(i));
+		while(line != null) {
+			line = bufferedReader.readLine();
+			if(line == null) {
+				break;
+			}
+			fileContent.add(line);
 		}
 		
 		bufferedReader.close();
@@ -286,5 +288,16 @@ public class AccountManager {
 		pr.close();
 		bufferedWriter.close();
 		fileWriter.close();
+		
+		if(f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+		
+		//Print new document.
+		for(int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
 	}
 }

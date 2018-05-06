@@ -62,7 +62,7 @@ public class Server extends Thread {
 
 				System.out.println("Waiting for client...");
 				s = ss.accept();
-				System.out.println("Socket accepted");
+				System.out.println("Client connected");
 				//System.out.println("Client connected to: " + s.toString());
 				os = s.getOutputStream();
 				pw = new PrintWriter(s.getOutputStream(), true);
@@ -79,7 +79,6 @@ public class Server extends Thread {
 				}
 				// Loginfunction.
 				if (request.getRequest().equals("Login")) {
-					System.out.println("Logging in");
 					Account account = request.getAccount();
 					Account res;
 					res = AccountManager.loginUser(account);
@@ -117,19 +116,5 @@ public class Server extends Thread {
 			}
 
 		}
-	}
-
-	public static void main(String[] args) throws UnknownHostException, IOException {
-		int port = 4041;
-		// Client
-		String host = "10.2.10.34";
-		AccountManager accountManager1 = new AccountManager();
-		UserController test1 = new UserController(host, port);
-		System.out.println("Client started");
-		// Server
-		Server server = new Server(port, accountManager1);
-		ServerWindow window = new ServerWindow(server);
-		server.start();
-		System.out.println("Server started");
 	}
 }

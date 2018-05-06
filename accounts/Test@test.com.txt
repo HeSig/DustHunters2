@@ -7,15 +7,9 @@ ChildProfiles:
 Mia
 Pia
 Bettan
-Putte
-Jonte
-Filip
 $
 Tasks
-2
-Köket
-Skriv bok
-10
+1
 Köket
 Skriv bok
 10

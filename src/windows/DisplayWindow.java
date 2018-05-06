@@ -5,11 +5,15 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.LinkedList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.*;
 
 import client.Client;
+import client.UserController;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
@@ -20,7 +24,7 @@ import tasks.Task;
  * @author Henrik Sigeman
  *
  */
-public class DisplayWindow extends JFrame implements ActionListener {
+public class DisplayWindow extends JFrame implements ActionListener, Observer {
 
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
@@ -38,12 +42,14 @@ public class DisplayWindow extends JFrame implements ActionListener {
 	private ParentTaskWindow ptw;
 	private Account account;
 	private Client client;
+	private Boolean clientIsRunning = false;
 
 	private ChildProfile childProfile;
 	private ParentProfile parentProfile;
 
 	public DisplayWindow(Account account, Client client) {
 		this.client = client;
+		this.client.addObserver(this);
 		this.account = account;
 		try {
 			ctw = new ChildTaskWindow(this);
@@ -72,9 +78,34 @@ public class DisplayWindow extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
+	
+	public void addTaskToAccount(Task task) throws UnknownHostException, IOException {
+		client.addTaskToServer(account, task);
+	}
 
 	public Account getAccount() {
 		return account;
+	}
+	
+	public LinkedList<Task> getTasksFromAccount(){
+		while(clientIsRunning) {
+			try {
+				Thread.sleep(1000);
+				System.out.println(clientIsRunning);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		LinkedList<Task> list = new LinkedList<Task>();
+		try {
+			list = client.getTasksFromServer(account);
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	private void setPanel(JPanel panel) {
@@ -143,8 +174,15 @@ public class DisplayWindow extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
-		// DisplayWindow displayWindow = new DisplayWindow();
+	@Override
+	public void update(Observable o, Object arg) {
+		clientIsRunning = false;
 	}
+
+	public void updateTaskLists() {
+		ptw.updateTasks();
+	}
+
+
 
 }

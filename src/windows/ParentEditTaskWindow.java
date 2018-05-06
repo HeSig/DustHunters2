@@ -166,6 +166,7 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 
 		
 		btnSave = new JButton("Spara");
+		btnSave.addActionListener(this);
 		btnSave.setBounds(10, 10, 10, 10);
 		btnSave.setForeground(Color.BLACK);
 		btnSave.setBackground(Color.GREEN);
@@ -202,20 +203,27 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		}
 		if(e.getSource() == btnSave) {
 			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
-			System.out.println(location.getLocationName());
 			Task task = new Task(location, new Chore(comboChooseTask.getSelectedItem().toString()), 10);
 			//Server add new task to the account.
+			try {
+				
+				displayWindow.addTaskToAccount(task);
+				//Fullösning
+				Thread.sleep(500);
+				//Fullösning
+				displayWindow.getAccount().setTaskList(displayWindow.getTasksFromAccount());
+				Thread.sleep(500);
+				displayWindow.updateTaskLists();
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				System.out.println("Cannot add new task.");
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-	}
-
-	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame();
-//		ParentEditTaskWindow petw = new ParentEditTaskWindow();
-//		frame.add(petw);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
 	}
 }
 
