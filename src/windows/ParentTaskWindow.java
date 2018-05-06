@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -39,6 +40,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private JLabel lblChildDoingTask; //Ifylld när ett barn har blivit assigned/valt en syssla. 
 	private JButton btnProfileSymbol;
 	private ImageIcon dustBallImage;
+	private LinkedList<JPanel> taskPanelList = new LinkedList();
 
 	//SwitchPanel (panel t.ex. RewardPanel) { this.panel = panel }
 	//Note to self: enable/disable JCheckBox beroende på om barnet gjort den eller inte
