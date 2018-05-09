@@ -1,0 +1,17 @@
+Account of Test@test.com
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+Mia
+0
+$
+Tasks
+1
+Köket
+Skriv bok
+10
+$
+Rewards
+$
