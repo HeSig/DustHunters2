@@ -48,9 +48,9 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	
 	private Account account;
 	private ChildProfile childProfile;
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 
-	public ChildRewardWindow2(DisplayWindow displayWindow) throws IOException {
+	public ChildRewardWindow2(ClientController displayWindow) throws IOException {
 		this.displayWindow = displayWindow;
 		start();
 	}

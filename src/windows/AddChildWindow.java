@@ -49,9 +49,9 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 	private Account account;
 	private ChildProfile childProfile;
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 
-	public AddChildWindow(DisplayWindow displayWindow) throws IOException {
+	public AddChildWindow(ClientController displayWindow) throws IOException {
 		this.displayWindow = displayWindow;
 		start();
 	}

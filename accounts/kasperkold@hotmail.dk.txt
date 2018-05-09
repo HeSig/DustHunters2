@@ -1,0 +1,17 @@
+Account of kasperkold@hotmail.dk
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+barn1
+0
+$
+Tasks
+1
+utomhus
+Diska
+10
+$
+Rewards
+$

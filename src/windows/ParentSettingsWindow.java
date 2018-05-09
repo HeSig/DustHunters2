@@ -44,9 +44,9 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 
 	private Account account;
 	private ParentProfile parentProfile;
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 
-	public ParentSettingsWindow(DisplayWindow displayWindow) throws IOException {
+	public ParentSettingsWindow(ClientController displayWindow) throws IOException {
 		this.displayWindow = displayWindow;
 		start();
 	}
