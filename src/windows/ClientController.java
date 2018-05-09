@@ -81,6 +81,20 @@ public class ClientController implements ActionListener, Observer {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		setPanel(psw);
+		try {
+			this.account.setTaskList(this.client.getTasksFromServer(this.account));
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void addTaskToAccount(Task task) throws UnknownHostException, IOException {
