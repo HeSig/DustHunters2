@@ -10,5 +10,10 @@ Test123@test.com
 TestTestTest
 Test@test.com1
 TestTestTest
+<<<<<<< HEAD
 Test2@test.com
 TestTestTest
+=======
+kasperkold@hotmail.dk
+vitaminWell
+>>>>>>> branch 'master' of https://github.com/PaleHound/DustHunters2.git
