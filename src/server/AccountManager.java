@@ -188,7 +188,6 @@ public class AccountManager {
 		pr.close();
 		// Create new account file
 		PrintWriter writer = new PrintWriter("accounts/" + account.getEmail() + ".txt");
-		
 		// Write initial information.
 		writer.println("Account of " + account.getEmail());
 		writer.println("ParentProfiles:");
