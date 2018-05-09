@@ -7,11 +7,15 @@ ChildProfiles:
 Mia
 Pia
 Bettan
-Putte
-Jonte
-Filip
 $
 Tasks
+2
+Köket
+Skriv bok
+10
+Toaletten
+Gå ut med hunden
+10
 $
 Rewards
 $

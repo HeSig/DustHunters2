@@ -2,7 +2,10 @@ package client;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.LinkedList;
+
 import profiles.Account;
+import tasks.Task;
 
 /**
  * 
@@ -109,6 +112,7 @@ public class UserController {
 	 * @throws ClassNotFoundException
 	 */
 	public Account login(Account account) throws UnknownHostException, IOException, ClassNotFoundException {
+		System.out.println("Controller is attempting the login");
 		Account res = client.sendLoginToServer(account);
 		return res;
 	}

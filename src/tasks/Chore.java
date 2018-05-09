@@ -1,11 +1,13 @@
 package tasks;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Henrik Sigeman
  *
  */
-public class Chore {
+public class Chore implements Serializable{
 	private String choreName;
 	
 	public Chore(String choreName) {

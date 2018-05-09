@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -40,12 +41,12 @@ public class ProfileStartWindow extends AbstractWindowUI {
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < activeButtons.size(); i++) {
 					if (e.getSource() == activeButtons.get(i)) {
-						System.out.println("Hello");
 						if (isParent(activeButtons.get(i).getText())) {
 							displayWindow.setParentProfile(activeButtons.get(i).getText());
 							displayWindow.setViewParentHomeWindow();
 						} else {
-							System.out.println("Inte förälder?");
+							displayWindow.setChildProfile(activeButtons.get(i).getText());
+							displayWindow.setViewChildTaskWindow();
 						}
 						break;
 					}
@@ -60,7 +61,6 @@ public class ProfileStartWindow extends AbstractWindowUI {
 		Boolean res = false;
 		for (int i = 0; i < account.getParentProfileList().size(); i++) {
 			if (account.getParentProfileList().get(i).getName().equals(string)) {
-
 				res = true;
 				break;
 			}
@@ -96,8 +96,8 @@ public class ProfileStartWindow extends AbstractWindowUI {
 		inactiveButtons.add(prof10);
 		this.setBackground(Color.YELLOW);
 		profilePanel.setBackground(Color.YELLOW);
-		ArrayList<ParentProfile> parents = account.getParentProfileList();
-		ArrayList<ChildProfile> children = account.getChildProfileList();
+		LinkedList<ParentProfile> parents = account.getParentProfileList();
+		LinkedList<ChildProfile> children = account.getChildProfileList();
 
 		for (int i = 0; i < parents.size(); i++) {
 			activeButtons.add(inactiveButtons.get(0));

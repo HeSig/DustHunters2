@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -19,10 +20,11 @@ import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ParentProfile;
+import tasks.Task;
 
 /**
  * Klar! 
- * @author Angelina Fransson
+ * @author Angelina Fransson, Henrik Sigeman
  *
  */
 public class ParentTaskWindow extends JPanel implements ActionListener {
@@ -39,6 +41,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private JLabel lblChildDoingTask; //Ifylld när ett barn har blivit assigned/valt en syssla. 
 	private JButton btnProfileSymbol;
 	private ImageIcon dustBallImage;
+	private LinkedList<JPanel> taskPanelList = new LinkedList();
+	private JPanel pnlMiddle;
 
 	//SwitchPanel (panel t.ex. RewardPanel) { this.panel = panel }
 	//Note to self: enable/disable JCheckBox beroende på om barnet gjort den eller inte
@@ -123,10 +127,10 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 		//Detta ska ligga i en if-sats. Om man gjort en syssla ska detta synas
 	
-		JPanel pnlMiddle = new JPanel();
+		pnlMiddle = new JPanel();
 		pnlMiddle.setBounds(12, 130, 358, 140);
-		pnlMiddle.setLayout(new GridBagLayout());
-		pnlMiddle.setBackground(Color.YELLOW);
+		//pnlMiddle.setLayout(new GridBagLayout());
+		//pnlMiddle.setBackground(Color.YELLOW);
 		GridBagConstraints c = new GridBagConstraints();
 
 		Border border3 = BorderFactory.createEtchedBorder();
@@ -147,14 +151,14 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
 		c.weighty = 1;
-		pnlMiddle.add(lblChildDoingTask, c);
+		//pnlMiddle.add(lblChildDoingTask, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
 		c.weightx = 1;
 		c.weighty = 1;
 		
-		pnlMiddle.add(lblTask, c);
+		//pnlMiddle.add(lblTask, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -162,7 +166,10 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		c.weighty = 1;
 		
 
-		pnlMiddle.add(lblCheck, c);
+		//pnlMiddle.add(lblCheck, c);
+		c.gridx = 0;
+		
+		updateTasks();
 
 
 		JPanel pnlBottom = new JPanel();
@@ -208,15 +215,15 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 		
 //	}
-	public static void main (String [] args) {
-		JFrame frame = new JFrame ();
-		//ParentTaskWindow pt = new ParentTaskWindow ();
-		//frame.add(pt);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension (400,600));
-	}
+//	public static void main (String [] args) {
+//		JFrame frame = new JFrame ();
+//		//ParentTaskWindow pt = new ParentTaskWindow ();
+//		//frame.add(pt);
+//		frame.pack();
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setMinimumSize(new Dimension (400,600));
+//	}
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
@@ -226,6 +233,70 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		if(e.getSource() == btnAddTask) {
 			displayWindow.setViewParentEditTaskWindow();
 		}
+		
+	}
+	
+	public void updateTasks() {
+		pnlMiddle.removeAll();
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridy = 0;
+		
+		for(int i = 0; i < displayWindow.getAccount().getTaskList().size(); i++) {
+			Task task = displayWindow.getAccount().getTaskList().get(i);
+			pnlMiddle.add(new TaskPanel(task.getLocationName(),task.getChoreName(),task.getTaskValue()), c);
+			c.gridy++;
+		}
+		pnlMiddle.revalidate();
+		pnlMiddle.repaint();
+	}
+	
+	
+	
+	private class TaskPanel extends JPanel{
+		private String locationName = "";
+		private String choreName = "";
+		private int choreValue = 0;
+		private JLabel location;
+		private JLabel chore;
+		private JLabel value;
+		private JLabel done;
+		
+		public TaskPanel(String locationName, String choreName, int choreValue) {
+			this.locationName = locationName;
+			this.choreName = choreName;
+			this.choreValue = choreValue;
+			location = new JLabel(locationName);
+			chore = new JLabel(choreName);
+			value = new JLabel(""+choreValue);
+			done = new JLabel("Inte färdig");
+			
+			//setBounds(12, 130, 358, 140);
+			setLayout(new GridBagLayout());
+			setBackground(Color.YELLOW);
+			
+			GridBagConstraints c = new GridBagConstraints();
+			
+			Border border = BorderFactory.createEtchedBorder();
+			location.setFont(new Font("SansSerif", Font.BOLD, 12));
+			location.setBorder(border);
+			chore.setFont(new Font("SansSerif", Font.BOLD, 12));
+			chore.setBorder(border);
+			value.setFont(new Font("SansSerif", Font.BOLD, 12));
+			value.setBorder(border);
+			done.setFont(new Font("SansSerif", Font.BOLD, 12));
+			done.setBorder(border);
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.anchor = GridBagConstraints.NORTHWEST;
+			c.weightx = 1;
+			c.weighty = 1;
+			
+			add(location, c);
+			add(chore, c);
+			add(value, c);
+			add(done, c);
+		}
+		
 		
 	}
  }
