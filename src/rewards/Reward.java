@@ -8,7 +8,7 @@ import javax.swing.Icon;
  */
 public class Reward {
 	private String rewardName;
-	private int pointValue;
+	private int pointValue = 0;
 	private int rewardProgress = 0;
 	private Icon icon;
 	@SuppressWarnings("unused")

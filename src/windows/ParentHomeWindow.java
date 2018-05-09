@@ -14,11 +14,12 @@ import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ParentProfile;
+
 /*
  * KLAR! DET som ska göras är: Mellanrum mellan btn:s, och att fixa actionlisteners
  * Författare: Angelina Fransson
  */
-public class ParentHomeWindow extends JPanel implements ActionListener {
+public class ParentHomeWindow extends JPanel{
 	private Account account; 
 	private ParentProfile parentProfile;
 
@@ -29,8 +30,24 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 	private JLabel lblHome; 
 	private JButton btnProfileSymbol;
 	private ImageIcon imageProfile;
+	private DisplayWindow displayWindow;
+	private ActionListener listener;
 
-	public ParentHomeWindow () {
+	public ParentHomeWindow (DisplayWindow displayWindow) {
+		this.displayWindow = displayWindow;
+		listener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == btnChores) {
+					displayWindow.setViewParentTaskWindow();
+				}
+				if(e.getSource() == btnSettings) {
+					displayWindow.setViewParentProfileWindow();
+				}
+			}
+		};
+		
 
 		start();
 
@@ -82,10 +99,13 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 
 
 		btnSettings = new JButton("Inställningar");
+		btnSettings.addActionListener(listener);
 		btnSettings.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnSettings.setBounds(1, 16, 90, 50);
 
+		
 		btnChores = new JButton ("Sysslor");
+		btnChores.addActionListener(listener);
 		btnChores.setFont(new Font ("SansSerif", Font.PLAIN, 14));
 		btnChores.setBounds(40, 16, 90, 50);
 		pnlMiddle.add (btnChores);
@@ -151,19 +171,14 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 
 	public static void main (String [] args) {
 		JFrame frame = new JFrame ();
-		ParentHomeWindow phw = new ParentHomeWindow ();
-		frame.add(phw);
+//		ParentHomeWindow phw = new ParentHomeWindow ();
+//		frame.add(phw);
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setMinimumSize(new Dimension (400,600));
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-	}
+	
 
 }
-
-

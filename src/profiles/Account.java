@@ -3,6 +3,7 @@ package profiles;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import rewards.Reward;
@@ -20,10 +21,10 @@ public class Account implements java.io.Serializable {
 	
 	//Todo: But ArrayList till LinkedList?
 
-	private ArrayList<ChildProfile> childProfileList = new ArrayList<ChildProfile>();
-	private ArrayList<ParentProfile> parentProfileList = new ArrayList<ParentProfile>();
-	private ArrayList<Task> taskList = new ArrayList<Task>();
-	private ArrayList<Reward> rewardList = new ArrayList<Reward>();
+	private LinkedList<ChildProfile> childProfileList = new LinkedList<ChildProfile>();
+	private LinkedList<ParentProfile> parentProfileList = new LinkedList<ParentProfile>();
+	private LinkedList<Task> taskList = new LinkedList<Task>();
+	private LinkedList<Reward> rewardList = new LinkedList<Reward>();
 	
 	/**
 	 * Create a new Account (not automatically registered)
@@ -38,27 +39,27 @@ public class Account implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public ArrayList<ChildProfile> getChildProfileList() {
+	public LinkedList<ChildProfile> getChildProfileList() {
 		return childProfileList;
 	}
 
-	public void setChildProfileList(ArrayList<ChildProfile> childProfileList) {
+	public void setChildProfileList(LinkedList<ChildProfile> childProfileList) {
 		this.childProfileList = childProfileList;
 	}
 
-	public ArrayList<ParentProfile> getParentProfileList() {
+	public LinkedList<ParentProfile> getParentProfileList() {
 		return parentProfileList;
 	}
 
-	public void setParentProfileList(ArrayList<ParentProfile> parentProfileList) {
+	public void setParentProfileList(LinkedList<ParentProfile> parentProfileList) {
 		this.parentProfileList = parentProfileList;
 	}
 
-	public void setTaskList(ArrayList<Task> taskList) {
+	public void setTaskList(LinkedList<Task> taskList) {
 		this.taskList = taskList;
 	}
 
-	public void setRewardList(ArrayList<Reward> rewardList) {
+	public void setRewardList(LinkedList<Reward> rewardList) {
 		this.rewardList = rewardList;
 	}
 
@@ -148,7 +149,7 @@ public class Account implements java.io.Serializable {
 	 * 
 	 * @return the list of tasks.
 	 */
-	public ArrayList<Task> getTaskList() {
+	public LinkedList<Task> getTaskList() {
 		return taskList;
 	}
 
@@ -172,7 +173,7 @@ public class Account implements java.io.Serializable {
 	 * 
 	 * @return The list of rewards.
 	 */
-	public ArrayList<Reward> getRewardList() {
+	public LinkedList<Reward> getRewardList() {
 		return rewardList;
 	}
 

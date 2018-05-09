@@ -1,17 +1,14 @@
-Account of Test@test.com
+Account of Test@test.com1
 ParentProfiles:
 Pappa
 Mamma
 $
 ChildProfiles:
-Mia
+barn1
 0
 $
 Tasks
-1
-Köket
-Skriv bok
-10
+0
 $
 Rewards
 $

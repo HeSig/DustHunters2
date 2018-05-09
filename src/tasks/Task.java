@@ -1,5 +1,7 @@
 package tasks;
 
+import java.io.Serializable;
+
 import locations.Location;
 
 /**
@@ -7,7 +9,7 @@ import locations.Location;
  * @author Henrik Sigeman
  *
  */
-public class Task {
+public class Task implements Serializable{
 	private Location location;
 	private Chore chore;
 	private Boolean completed = false;
