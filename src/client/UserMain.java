@@ -33,7 +33,7 @@ public class UserMain {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		int port = 4000;
 		// Client
-		//String host = "192.168.0.100";
+			//String host = "192.168.0.100";
 		String host = "localhost";
 		AccountManager accountManager1 = new AccountManager();
 		UserController test1 = new UserController(host, port);
