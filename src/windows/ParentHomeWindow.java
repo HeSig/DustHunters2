@@ -30,10 +30,10 @@ public class ParentHomeWindow extends JPanel{
 	private JLabel lblHome; 
 	private JButton btnProfileSymbol;
 	private ImageIcon imageProfile;
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 	private ActionListener listener;
 
-	public ParentHomeWindow (DisplayWindow displayWindow) {
+	public ParentHomeWindow (ClientController displayWindow) {
 		this.displayWindow = displayWindow;
 		listener = new ActionListener() {
 

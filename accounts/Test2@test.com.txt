@@ -1,0 +1,14 @@
+Account of Test2@test.com
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+barn1
+0
+$
+Tasks
+0
+$
+Rewards
+$

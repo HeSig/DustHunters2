@@ -8,9 +8,12 @@ Mia
 0
 $
 Tasks
-1
+2
 Köket
 Skriv bok
+10
+Toaletten
+Damma
 10
 $
 Rewards

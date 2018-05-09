@@ -50,14 +50,14 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
 	private ImageIcon imageProfile;
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 	private JComboBox comboChooseChild; //New design for the assigned-function.
 	private String[] childNames = {"MAIDA", "HENRIK", "ANGIE", "SARA", "KASPER"};
 
 	private Task task;
 	private Chore chore;
 
-	public ChildTaskWindow(DisplayWindow displayWindow) throws IOException {
+	public ChildTaskWindow(ClientController displayWindow) throws IOException {
 		this.displayWindow = displayWindow;
 		start();
 	}

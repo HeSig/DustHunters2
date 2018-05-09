@@ -24,10 +24,11 @@ import tasks.Task;
  * @author Henrik Sigeman
  *
  */
-public class DisplayWindow extends JFrame implements ActionListener, Observer {
+public class ClientController implements ActionListener, Observer {
 
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
+	private JFrame frame;
 	private JPanel panel;
 	private JPanel updatePanel = new JPanel();
 	private JButton updateBtn = new JButton("Update");
@@ -48,10 +49,11 @@ public class DisplayWindow extends JFrame implements ActionListener, Observer {
 	private ChildProfile childProfile;
 	private ParentProfile parentProfile;
 
-	public DisplayWindow(Account account, Client client) {
+	public ClientController(Account account, Client client) {
 		this.client = client;
 		this.client.addObserver(this);
 		this.account = account;
+		frame = new JFrame();
 		try {
 			ctw = new ChildTaskWindow(this);
 			crw = new ChildRewardWindow2(this);
@@ -66,8 +68,8 @@ public class DisplayWindow extends JFrame implements ActionListener, Observer {
 			e.printStackTrace();
 		}
 		updatePanel.setPreferredSize(new Dimension(128, 128));
-		this.setPreferredSize(new Dimension(400, 600));
-		setLayout(new BorderLayout());
+		frame.setPreferredSize(new Dimension(400, 600));
+		frame.setLayout(new BorderLayout());
 		updateBtn.addActionListener(this);
 		updateBtn.setPreferredSize(boxDimension);
 		updateText.setPreferredSize(boxDimension);
@@ -75,10 +77,10 @@ public class DisplayWindow extends JFrame implements ActionListener, Observer {
 		updatePanel.add(updateBtn, BorderLayout.NORTH);
 		updatePanel.add(updateText, BorderLayout.SOUTH);
 		panel = updatePanel;
-		add(panel, BorderLayout.CENTER);
-		pack();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
+		frame.add(panel, BorderLayout.CENTER);
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 	
 	public void addTaskToAccount(Task task) throws UnknownHostException, IOException {
@@ -111,10 +113,10 @@ public class DisplayWindow extends JFrame implements ActionListener, Observer {
 	}
 
 	private void setPanel(JPanel panel) {
-		this.remove(this.panel);
+		frame.remove(this.panel);
 		this.panel = panel;
-		add(this.panel, BorderLayout.CENTER);
-		this.revalidate();
+		frame.add(this.panel, BorderLayout.CENTER);
+		frame.revalidate();
 		this.panel.updateUI();
 	}
 
