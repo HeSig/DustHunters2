@@ -30,12 +30,27 @@ public class Server extends Thread {
 		this.port = port;
 	}
 
+	
+	public void openStreams() throws IOException{
+		ss = new ServerSocket(port);
+
+		System.out.println("Waiting for client...");
+		s = ss.accept();
+		System.out.println("Client connected");
+		//System.out.println("Client connected to: " + s.toString());
+		os = s.getOutputStream();
+		oos = new ObjectOutputStream(s.getOutputStream());
+		pw = new PrintWriter(s.getOutputStream(), true);
+		ois = new ObjectInputStream(s.getInputStream());
+		
+	}
+	
 	/**
 	 * Close all things.
 	 * 
 	 * @throws IOException
 	 */
-	public void close() throws IOException {
+	public void closeStreams() throws IOException {
 		oos.close();
 		os.close();
 		ss.close();
@@ -52,22 +67,18 @@ public class Server extends Thread {
 		return port;
 	}
 
+	
+	/**
+	 * Serverns huvudmetod.
+	 * Öppnar strömmar och väntar på att en klient ska koppla upp sig.
+	 * Tar sedan emot ett serverRequest och följande data och dirigerar dem sedan till accountManager.
+	 */
 	public void run() {
 		while (!Thread.interrupted()) {
 			// port = 53;
 			try {
 				ServerRequest request = null;
-
-				ss = new ServerSocket(port);
-
-				System.out.println("Waiting for client...");
-				s = ss.accept();
-				System.out.println("Client connected");
-				//System.out.println("Client connected to: " + s.toString());
-				os = s.getOutputStream();
-				pw = new PrintWriter(s.getOutputStream(), true);
-				ois = new ObjectInputStream(s.getInputStream());
-				oos = new ObjectOutputStream(s.getOutputStream());
+				openStreams();
 				while (request == null) {
 					request = (ServerRequest) ois.readObject();
 				}
@@ -101,7 +112,7 @@ public class Server extends Thread {
 					oos.flush();
 				}
 				// System.out.println("Mottaget och levererat");
-				close();
+				closeStreams();
 				// System.out.println("Closed");
 			} catch (IOException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block

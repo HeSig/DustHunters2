@@ -5,8 +5,7 @@ Mamma
 $
 ChildProfiles:
 Mia
-Pia
-Bettan
+0
 $
 Tasks
 1
