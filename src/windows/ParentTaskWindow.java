@@ -31,7 +31,9 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private Account account; 
 	private ParentProfile parentProfile;
 	private JLabel lblChildTask;
-	private DisplayWindow displayWindow;
+
+	private ClientController displayWindow;
+	
 
 	private JLabel lblCheck;
 	private JLabel lblTask;
@@ -78,7 +80,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.lblChildDoingTask = lblChildDoingTask;
 
 	}
-	public ParentTaskWindow (DisplayWindow displayWindow) {
+	public ParentTaskWindow (ClientController displayWindow) {
 		this.displayWindow = displayWindow;
 		start();
 
