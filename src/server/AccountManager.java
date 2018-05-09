@@ -53,7 +53,7 @@ public class AccountManager {
 		List<Reward> rewardList;
 		ParentProfile parent;
 		String readLine = "";
-		System.out.println(br.readLine());
+		br.readLine();
 		// Parent profiles
 		readLine = br.readLine();
 		if (readLine.equals("ParentProfiles:")) {
@@ -69,10 +69,11 @@ public class AccountManager {
 		}
 		// Child profiles
 		if (br.readLine().equals("ChildProfiles:")) {
-
+			String points = "";
 			readLine = br.readLine();
-			while (!readLine.equals("$")) {
-				account.addChildProfile(new ChildProfile(readLine));
+			while (!readLine.equals("$") && !points.equals("$")) {
+				points = br.readLine();
+				account.addChildProfile(new ChildProfile(readLine, Integer.parseInt(points)));
 				readLine = br.readLine();
 			}
 		}
@@ -184,10 +185,8 @@ public class AccountManager {
 		writer.println("Mamma");
 		writer.println("$");
 		writer.println("ChildProfiles:");
-		writer.println("Pelle");
-		writer.println("Fia");
-		writer.println("Astrid");
-		writer.println("Tommy");
+		writer.println("barn1");
+		writer.println("0");
 		writer.println("$");
 		writer.println("Tasks");
 		writer.println("0");
