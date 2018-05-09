@@ -3,7 +3,9 @@ package server;
 import java.io.*;
 import java.net.*;
 import profiles.Account;
+import tasks.Task;
 import client.UserController;
+import locations.Location;
 
 /**
  * 
@@ -60,6 +62,7 @@ public class Server extends Thread {
 
 				System.out.println("Waiting for client...");
 				s = ss.accept();
+				System.out.println("Client connected");
 				//System.out.println("Client connected to: " + s.toString());
 				os = s.getOutputStream();
 				pw = new PrintWriter(s.getOutputStream(), true);
@@ -85,30 +88,33 @@ public class Server extends Thread {
 				// Add task
 				if (request.getRequest().equals("AddTask")) {
 					Account account = request.getAccount();
+					Task task = (Task) ois.readObject();
+					accountManager.addTask(account, task);
+					//make this runnable
+//					Task task = new Task(new Location(), new Chore(), value)
+					//accountManager.addTask(account, task);
 
+				}
+				if(request.getRequest().equals("GetTasks")) {
+					Account account = request.getAccount();
+					oos.writeObject(accountManager.getTask(account));
+					oos.flush();
 				}
 				// System.out.println("Mottaget och levererat");
 				close();
 				// System.out.println("Closed");
 			} catch (IOException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
+				System.out.println("Something is wrong");
+				try {
+					Thread.sleep(10000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				e.printStackTrace();
 			}
 
 		}
-	}
-
-	public static void main(String[] args) throws UnknownHostException, IOException {
-		int port = 4041;
-		// Client
-		String host = "10.2.9.120";
-		AccountManager accountManager1 = new AccountManager();
-		UserController test1 = new UserController(host, port);
-		System.out.println("Client started");
-		// Server
-		Server server = new Server(port, accountManager1);
-		ServerWindow window = new ServerWindow(server);
-		server.start();
-		System.out.println("Server started");
 	}
 }

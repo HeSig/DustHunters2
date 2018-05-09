@@ -6,8 +6,13 @@ $
 ChildProfiles:
 Mia
 Pia
+Bettan
 $
 Tasks
+1
+Köket
+Skriv bok
+10
 $
 Rewards
 $
