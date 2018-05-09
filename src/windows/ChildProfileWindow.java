@@ -40,7 +40,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 								// ChildTaskWindow
 	private JLabel lblRewardPoints;
 	
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 
 	/*
 	 * Three setters and three getters for the components inside of a task (L + C +
@@ -68,7 +68,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 //	}
 
 	// Constructor
-	public ChildProfileWindow(DisplayWindow displayWindow) {
+	public ChildProfileWindow(ClientController displayWindow) {
 		// this.name = name;
 		this.displayWindow = displayWindow;
 		

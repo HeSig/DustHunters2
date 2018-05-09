@@ -15,7 +15,7 @@ import java.util.Observer;
 import profiles.Account;
 import server.ServerRequest;
 import tasks.Task;
-import windows.DisplayWindow;
+import windows.ClientController;
 
 /**
  * 
@@ -72,11 +72,8 @@ public class Client extends Thread {
 		
 		is = socket.getInputStream();
 		os = socket.getOutputStream();
-		System.out.println("os OK");
 		ois = new ObjectInputStream(is);
-		System.out.println("ois OK");
 		oos = new ObjectOutputStream(socket.getOutputStream());
-		System.out.println("oos OK");
 		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		System.out.println("Streams open");
 		} catch (IOException e) {
@@ -196,7 +193,7 @@ public class Client extends Thread {
 		// Close streams.
 		closeStreams();
 		// printAccount(res);
-		DisplayWindow displayWindow = new DisplayWindow(res, this);
+		ClientController displayWindow = new ClientController(res, this);
 		setInactive("Logging in");
 		return res;
 	}

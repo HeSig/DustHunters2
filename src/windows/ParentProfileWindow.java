@@ -40,9 +40,9 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	private JButton btnParentProfile;
 	private ImageIcon dammtussParentProfile;
 	private ImageIcon dammtussMaja;
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 
-	public ParentProfileWindow(DisplayWindow displayWindow) {
+	public ParentProfileWindow(ClientController displayWindow) {
 		this.displayWindow = displayWindow;
 		start();
 	}
