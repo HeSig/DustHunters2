@@ -1,0 +1,20 @@
+Account of dalvig@gmail.com
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+barn1
+0
+$
+Tasks
+2
+Hallen
+Bädda
+10
+Hallen
+Bädda
+10
+$
+Rewards
+$

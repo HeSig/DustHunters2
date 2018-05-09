@@ -10,3 +10,7 @@ Test123@test.com
 TestTestTest
 Test@test.com1
 TestTestTest
+dalvig@gmail.com
+boobs
+Hej@gmail.com
+Svejs
