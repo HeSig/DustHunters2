@@ -65,6 +65,25 @@ public class Client extends Thread {
 	public void addObserver(Observer o) {
 		observable.addObserver(o);
 	}
+	
+	private void openStreams(){
+		try {
+			socket = new Socket(user.getHost(), user.getPort());
+		
+		is = socket.getInputStream();
+		os = socket.getOutputStream();
+		System.out.println("os OK");
+		ois = new ObjectInputStream(is);
+		System.out.println("ois OK");
+		oos = new ObjectOutputStream(socket.getOutputStream());
+		System.out.println("oos OK");
+		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		System.out.println("Streams open");
+		} catch (IOException e) {
+			System.out.println("Ojdå!");
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Closes all of the streams.
@@ -73,10 +92,23 @@ public class Client extends Thread {
 	 */
 	private void closeStreams() throws IOException {
 		oos.close();
+		ois.close();
 		br.close();
 		os.close();
 		is.close();
 		socket.close();
+		System.out.println("Streams closed");
+	}
+	
+	
+	public void addPointsToChildProfile(Account account, String childProfileName, int pointsToAdd) {
+		serverRequest = "addPoints";
+		try {
+			socket = new Socket(user.getHost(), user.getPort());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -90,13 +122,7 @@ public class Client extends Thread {
 	 */
 	public String sendRegisterToServer(Account account) throws UnknownHostException, IOException, InterruptedException {
 		serverRequest = "Register";
-		socket = new Socket(user.getHost(), user.getPort());
-
-		// Get inputstream and outputstream from socket.
-		is = socket.getInputStream();
-		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		os = socket.getOutputStream();
-		oos = new ObjectOutputStream(os);
+		openStreams();
 		// Send register request to server.
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		oos.flush();
@@ -115,21 +141,13 @@ public class Client extends Thread {
 		setActive("Getting tasks ");
 		serverRequest = "GetTasks";
 
-		socket = new Socket(user.getHost(), user.getPort());
-		os = socket.getOutputStream();
-		oos = new ObjectOutputStream(os);
-		is = socket.getInputStream();
-		ois = new ObjectInputStream(is);
+		openStreams();
 
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		oos.flush();
 		LinkedList<Task> tasks = new LinkedList();
 		tasks = (LinkedList<Task>) ois.readObject();
-		ois.close();
-		is.close();
-		oos.close();
-		os.close();
-		socket.close();
+		closeStreams();
 		setInactive("Getting tasks ");
 		return tasks;
 	}
@@ -142,21 +160,13 @@ public class Client extends Thread {
 		setActive("Add task ");
 		serverRequest = "AddTask";
 		
-		socket = new Socket(user.getHost(), user.getPort());
-		os = socket.getOutputStream();
-		oos = new ObjectOutputStream(os);
-		is = socket.getInputStream();
-		ois = new ObjectInputStream(is);
+		openStreams();
 
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		oos.writeObject(task);
 		oos.flush();
 
-		ois.close();
-		is.close();
-		oos.close();
-		os.close();
-		socket.close();
+		closeStreams();
 		
 		setInactive("Add task ");
 	}
@@ -174,15 +184,8 @@ public class Client extends Thread {
 		setActive("Logging in");
 		Boolean ret = false;
 		serverRequest = "Login";
-		socket = new Socket(user.getHost(), user.getPort());
-		System.out.println("Socket created");
-
-		// Get inputstream and outputstream from socket.
-		is = socket.getInputStream();
-		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		os = socket.getOutputStream();
-		oos = new ObjectOutputStream(os);
-		ois = new ObjectInputStream(is);
+		
+		openStreams();
 		// Send login request to server.
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		// Wait for response from server
@@ -190,9 +193,6 @@ public class Client extends Thread {
 		while (res == null) {
 			res = (Account) ois.readObject();
 		}
-		// Object input stream (ois) is specific to this method and thus won't be closed
-		// in the closeStreams method.
-		ois.close();
 		// Close streams.
 		closeStreams();
 		// printAccount(res);
