@@ -32,7 +32,7 @@ public class ProfileStartWindow extends AbstractWindowUI {
 	private JPanel profilePanel = new JPanel(layout);
 	private ActionListener actionListener;
 
-	public ProfileStartWindow(String title, DisplayWindow displayWindow) {
+	public ProfileStartWindow(String title, ClientController displayWindow) {
 		super(title);
 		this.account = displayWindow.getAccount();
 

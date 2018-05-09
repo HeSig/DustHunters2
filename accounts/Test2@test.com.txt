@@ -1,0 +1,31 @@
+<<<<<<< HEAD
+Account of Test2@test.com
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+barn1
+0
+$
+Tasks
+0
+$
+Rewards
+$
+=======
+Account of Test2@test.com
+ParentProfiles:
+Pappa
+Mamma
+$
+ChildProfiles:
+barn1
+0
+$
+Tasks
+0
+$
+Rewards
+$
+>>>>>>> cdd74849ac44846cf30a5bb1af69f4b419d60675

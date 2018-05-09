@@ -50,14 +50,14 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
 	private ImageIcon imageProfile;
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 	private JComboBox comboChooseChild; //New design for the assigned-function.
 	private String[] childNames = {"MAIDA", "HENRIK", "ANGIE", "SARA", "KASPER"};
 
 	private Task task;
 	private Chore chore;
 
-	public ChildTaskWindow(DisplayWindow displayWindow) throws IOException {
+	public ChildTaskWindow(ClientController displayWindow) throws IOException {
 		this.displayWindow = displayWindow;
 		start();
 	}
@@ -107,12 +107,12 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		pnlTop.add(btnProfileSymbol);
 
 		// Middle
-		JPanel pnlInfo = new JPanel();
+		JPanel pnlMiddle = new JPanel();
 		Border border2 = BorderFactory.createTitledBorder("MiddlePanel");
-		pnlInfo.setBorder(border2);
-		pnlInfo.setBounds(12, 130, 358, 140);
-		pnlInfo.setLayout(new GridBagLayout());
-		pnlInfo.setBackground(Color.WHITE);
+		pnlMiddle.setBorder(border2);
+		pnlMiddle.setBounds(12, 130, 358, 140);
+		pnlMiddle.setLayout(new GridBagLayout());
+		pnlMiddle.setBackground(Color.WHITE);
 		GridBagConstraints c = new GridBagConstraints();
 
 		Border border3 = BorderFactory.createEtchedBorder();
@@ -147,13 +147,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
 		c.weighty = 1;
-		pnlInfo.add(lblAssigned, c);
+		pnlMiddle.add(lblAssigned, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
 		c.weightx = 1;
 		c.weighty = 1;
-		pnlInfo.add(comboChooseChild, c);
+		pnlMiddle.add(comboChooseChild, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -161,7 +161,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.weighty = 7;
 		c.gridx = 0;
 		c.gridy = 1;
-		pnlInfo.add(lblCheck, c);
+		pnlMiddle.add(lblCheck, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
@@ -169,7 +169,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.weighty = 7;
 		c.gridx = 1;
 		c.gridy = 1;
-		pnlInfo.add(cbCheckUncheck, c);
+		pnlMiddle.add(cbCheckUncheck, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -177,7 +177,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.weighty = 400;
 		c.gridx = 0;
 		c.gridy = 2;
-		pnlInfo.add(lblHours, c);
+		pnlMiddle.add(lblHours, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
@@ -185,7 +185,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.weighty = 400;
 		c.gridx = 1;
 		c.gridy = 2;
-		pnlInfo.add(tfHours, c);
+		pnlMiddle.add(tfHours, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
@@ -193,7 +193,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.weighty = 400;
 		c.gridx = 1;
 		c.gridy = 3;
-		pnlInfo.add(btnSaveChanges, c);
+		pnlMiddle.add(btnSaveChanges, c);
 		
 		
 		
@@ -222,7 +222,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		
 		
 		this.add(pnlTop);
-		this.add(pnlInfo);
+		this.add(pnlMiddle);
 		this.add(pnlBottom);
 
 	}

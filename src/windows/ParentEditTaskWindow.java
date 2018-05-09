@@ -54,11 +54,11 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	private String [] preSelectedTasks = {"Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden"};
 	private String [] preSelectedLocations = {"Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus"};
 	
-	private DisplayWindow displayWindow;
+	private ClientController displayWindow;
 	
 
 
-	public ParentEditTaskWindow (DisplayWindow displayWindow) {
+	public ParentEditTaskWindow (ClientController displayWindow) {
 		this.displayWindow = displayWindow;
 		try {
 			start();

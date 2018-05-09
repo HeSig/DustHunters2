@@ -92,24 +92,6 @@ public class AccountManager {
 		LinkedList<Task> list = (LinkedList<Task>) getTask(account);
 		account.setTaskList(list);
 
-		// if (br.readLine().equals("Tasks")) {
-		// readLine = br.readLine();
-		// Location location = null;
-		// while (!readLine.equals("$")) {
-		// if (readLine.equals("Kök")) {
-		// location = new KitchenLocation();
-		// } else if (readLine.equals("Toalett")) {
-		// location = new ToiletLocation();
-		// } else if (readLine.equals("Sovrum")) {
-		// location = new BedroomLocation();
-		// }
-		// if (location != null) {
-		// account.addTask(new Task(location, new Chore(br.readLine()),
-		// Integer.parseInt(br.readLine())));
-		// }
-		// readLine = br.readLine();
-		// }
-		// }
 
 		// Rewards
 		if (br.readLine().equals("Rewards")) {
