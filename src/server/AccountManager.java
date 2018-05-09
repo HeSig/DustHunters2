@@ -35,7 +35,17 @@ public class AccountManager {
 
 	private static File filename = new File("files/accounts.txt");
 
-	// Build account from server.
+	/**
+	 * buildAccount Bygger en account i servern från filerna i databasen och skickar
+	 * den till klienten.
+	 * 
+	 * @param email
+	 *            kontots email
+	 * @param password
+	 *            Kontots lösenord
+	 * @return Det färdiga kontot.
+	 * @throws IOException
+	 */
 	public static Account buildAccount(String email, String password) throws IOException {
 		Account account = new Account(email, password);
 		FileReader fileReader;
@@ -202,6 +212,12 @@ public class AccountManager {
 		return "New account registered";
 	}
 
+	/**
+	 * getTask
+	 * returnerar hela listan på tasks från den uppdaterade listan.
+	 * @param account kontot som tasks ska hämtas ifrån.
+	 * @return listan på tasks.
+	 */
 	public static List<Task> getTask(Account account) {
 		List<Task> list = new LinkedList();
 
@@ -227,7 +243,7 @@ public class AccountManager {
 					}
 					break;
 				}
-				
+
 			}
 			bufferedReader.close();
 			fileReader.close();
@@ -242,6 +258,14 @@ public class AccountManager {
 
 		return list;
 	}
+	
+	/**
+	 * addTask
+	 * lägger till en task i kontots tasklista på servern.
+	 * @param account kontot som tasken ska läggas in i
+	 * @param task Tasken som ska läggas in.
+	 * @throws IOException
+	 */
 
 	public void addTask(Account account, Task task) throws IOException {
 		File f = new File("accounts/" + account.getEmail() + ".txt");
@@ -258,43 +282,43 @@ public class AccountManager {
 			if (line.equals("Tasks")) {
 				bufferedReader.readLine();
 				fileContent.add("" + (account.getTaskList().size() + 1));
-				for(int i = 0; i < account.getTaskList().size(); i++) {
+				for (int i = 0; i < account.getTaskList().size(); i++) {
 					fileContent.add(account.getTaskFromList(i).getLocationName());
 					fileContent.add(account.getTaskFromList(i).getChoreName());
-					fileContent.add(""+account.getTaskFromList(i).getTaskValue());
+					fileContent.add("" + account.getTaskFromList(i).getTaskValue());
 				}
 				fileContent.add(task.getLocationName());
 				fileContent.add(task.getChoreName());
-				fileContent.add(""+task.getTaskValue());
+				fileContent.add("" + task.getTaskValue());
 				break;
 			}
 		}
-		while(!line.equals("$")) {
+		while (!line.equals("$")) {
 			line = bufferedReader.readLine();
 		}
 		fileContent.add(line);
-		
-		while(line != null) {
+
+		while (line != null) {
 			line = bufferedReader.readLine();
-			if(line == null) {
+			if (line == null) {
 				break;
 			}
 			fileContent.add(line);
 		}
-		
+
 		bufferedReader.close();
 		fileReader.close();
 		pr.close();
 		bufferedWriter.close();
 		fileWriter.close();
-		
-		if(f.exists()) {
+
+		if (f.exists()) {
 			f.delete();
 		}
 		FileWriter out = new FileWriter(f);
-		
-		//Print new document.
-		for(int i = 0; i < fileContent.size(); i++) {
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
 			out.write(fileContent.get(i) + "\n");
 		}
 		out.close();
