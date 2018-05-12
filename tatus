@@ -1,0 +1,262 @@
+[33mcommit 7f7561453eaa4da336f5bd0a7cd82cd274415e06[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: a86b06b a4cf0a5
+Author: SandFlake <dalvigsara@gmail.com>
+Date:   Wed May 9 15:46:04 2018 +0200
+
+    har tagit bort strul från accounts text filer
+
+[33mcommit a86b06b166a24685ed491c6122c30568323c8c96[m
+Author: SandFlake <dalvigsara@gmail.com>
+Date:   Wed May 9 15:44:01 2018 +0200
+
+    kollar strul med files
+
+[33mcommit a4cf0a5395ac433205fc9f79fcf77b133586deb2[m
+Merge: 6f97994 cdd7484
+Author: Angelina Fransson <angelina.fransson@hotmail.com>
+Date:   Wed May 9 15:40:22 2018 +0200
+
+    Tog bort DisplayWindow som isntansvariable
+
+[33mcommit 6f97994b19866caf3e06d3ecf30ac1fc7f719c83[m
+Author: Angelina Fransson <angelina.fransson@hotmail.com>
+Date:   Wed May 9 15:35:04 2018 +0200
+
+    removing files that will be merged
+
+[33mcommit cdd74849ac44846cf30a5bb1af69f4b419d60675[m
+Author: Maida Sijaric <36196288+MlleFabulous@users.noreply.github.com>
+Date:   Wed May 9 15:31:58 2018 +0200
+
+    trying again
+
+[33mcommit 8e814234b0871d2cd9a17bbc284b79e2eb88d8b7[m
+Author: Angelina Fransson <angelina.fransson@hotmail.com>
+Date:   Wed May 9 15:31:21 2018 +0200
+
+    What is happening
+
+[33mcommit 5cfdf777218e24b153575550ba8d5d729b0c7fe3[m
+Merge: 06fa669 b28d18a
+Author: Maida Sijaric <36196288+MlleFabulous@users.noreply.github.com>
+Date:   Wed May 9 15:27:46 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2
+
+[33mcommit b28d18acde0c4c850571e4c783a9a3200f8c6b3b[m
+Merge: a9746a7 9afd37d
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 15:26:52 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+    
+    Conflicts:
+            accounts/Test@test.com.txt
+            files/accounts.txt
+
+[33mcommit 9afd37d0e9d5912410044bd4b3c33fb2e3ea93b1[m
+Author: Kasper Kold Pedersen <34651819+KasperKold@users.noreply.github.com>
+Date:   Wed May 9 15:25:49 2018 +0200
+
+    min mail er kommet i databasen tror jag! :O
+
+[33mcommit a9746a7ee54edbd815bc6ce125c36a8b99358bb2[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 15:25:33 2018 +0200
+
+    sd
+
+[33mcommit 81c8e9d66d5422a33e068d70553376905c157693[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 15:19:13 2018 +0200
+
+    DoYaThing
+
+[33mcommit 06fa669632409cf49fbdcda110d832e39915756e[m
+Merge: bf0cda8 840c9a5
+Author: Maida Sijaric <36196288+MlleFabulous@users.noreply.github.com>
+Date:   Wed May 9 15:16:19 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2
+
+[33mcommit bf0cda8ef2abfe42dc6e050ccea9555658693fae[m
+Merge: f438cf9 8ed7178
+Author: Maida Sijaric <36196288+MlleFabulous@users.noreply.github.com>
+Date:   Wed May 9 15:14:22 2018 +0200
+
+    Tar bort main-metoden
+
+[33mcommit da231cad4047e234a6c4526676ea593f94974e13[m
+Merge: 621cf0c 840c9a5
+Author: Kasper Kold Pedersen <34651819+KasperKold@users.noreply.github.com>
+Date:   Wed May 9 14:50:12 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit 840c9a5366b7dd42e0166af9b205086aa7c77561[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 14:49:52 2018 +0200
+
+    h
+
+[33mcommit e0dec7800dbe3c11c5fb9553650797b511de8f8f[m
+Merge: 3b0648e 8ed7178
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 14:49:38 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2
+
+[33mcommit f438cf9ce3a14f84259dffe6dfb63001d4d84c24[m
+Author: Maida Sijaric <36196288+MlleFabulous@users.noreply.github.com>
+Date:   Wed May 9 14:49:11 2018 +0200
+
+    Maida testar på
+
+[33mcommit 621cf0c563dc49089ae339ca59f16af04fd3a93e[m
+Merge: b602221 8ed7178
+Author: Kasper Kold Pedersen <34651819+KasperKold@users.noreply.github.com>
+Date:   Wed May 9 14:49:01 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit 3b0648ef08dd6dded9724fd991f4385c491dfec6[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 14:48:59 2018 +0200
+
+    oh
+    
+    hio
+
+[33mcommit 8ed71781773206640bc201dfa0a7b3f0ec7e9abd[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 14:48:35 2018 +0200
+
+    Senaste senaste versionen
+
+[33mcommit e4748ac3a31640a04df935967b4f80d790633c5a[m
+Merge: 7f14df2 de9713f
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 14:40:25 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit 7f14df263999b7c7fd10047926cc0d03210a7a1b[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 14:38:20 2018 +0200
+
+    outflow
+
+[33mcommit 167ce5da31a8a5c4ef82aa2ae1647aa713fbaa5e[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 14:38:12 2018 +0200
+
+    grejir
+
+[33mcommit b602221b2a8af4087735caac67b85cd48abe519e[m
+Merge: 24f1f02 de9713f
+Author: Kasper Kold Pedersen <34651819+KasperKold@users.noreply.github.com>
+Date:   Wed May 9 14:30:31 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit de9713f8b61a09b2bc74c226117e618783d2098d[m
+Merge: 2a85d06 4313def
+Author: Angelina Fransson <angelina.fransson@hotmail.com>
+Date:   Wed May 9 14:29:38 2018 +0200
+
+    for sara
+
+[33mcommit 2a85d06d47af73da9a4fc0d321b9c2d5a958ffc4[m
+Author: Angelina Fransson <angelina.fransson@hotmail.com>
+Date:   Wed May 9 14:26:35 2018 +0200
+
+    till Sara
+
+[33mcommit 4313defee502286f42783aa144c80bfb76a8713a[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 13:45:56 2018 +0200
+
+    rester
+
+[33mcommit 1a8baf8045b0ceeec7ece6c5539e017258f94e08[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 9 13:45:40 2018 +0200
+
+    Added points to childprofile
+
+[33mcommit 24f1f020257bd707e327b4efd7d90720aac858b0[m
+Merge: 3752a50 d87d8c3
+Author: Kasper Kold Pedersen <34651819+KasperKold@users.noreply.github.com>
+Date:   Wed May 9 11:31:09 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit d87d8c32d0bf7f6008b2535fb92ee177bbc224e9[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Mon May 7 00:20:25 2018 +0200
+
+    Fixade lite grejer
+
+[33mcommit ff5ffa952adebf210e872353103ad1d72e6f6a82[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Sun May 6 23:26:41 2018 +0200
+
+    Lade till funktionaliteter.
+
+[33mcommit 83f9d568fbb7f735eddc45957119404c958bd4e2[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Sun May 6 17:07:42 2018 +0200
+
+    dsf
+
+[33mcommit 6c4359ea6b302dc5aaef70fb46b1ddf39f1b365a[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Sun May 6 14:47:33 2018 +0200
+
+    Jobbat med grejer
+
+[33mcommit 3752a507f49087761a123f3cd2e5847954296195[m
+Merge: 3940dc0 706ed08
+Author: Kasper Kold Pedersen <34651819+KasperKold@users.noreply.github.com>
+Date:   Fri May 4 11:59:08 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit 706ed08889e198607c76435fb30ef3a3f34d95ce[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Thu May 3 13:56:02 2018 +0200
+
+    test2
+
+[33mcommit 3940dc084791580a326afd1dfbd024af82e577e4[m
+Merge: 1cb37b3 9761d14
+Author: Kasper Kold Pedersen <34651819+KasperKold@users.noreply.github.com>
+Date:   Thu May 3 13:53:06 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit 9761d141853c813bbdd354be1be090ca8c939221[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Thu May 3 13:24:42 2018 +0200
+
+    test
+
+[33mcommit fffe59f80879d6e7dad4001e10ea35c6ae8b71ce[m
+Merge: fd838f5 b2a3341
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 2 18:30:48 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound/DustHunters2.git
+
+[33mcommit fd838f5720920452c9a1984789ca1de847d1b557[m
+Author: PaleHound <henrik.sigeman@hotmail.se>
+Date:   Wed May 2 18:30:19 2018 +0200
+
+    Det funkar att röra sig mellan paneler nu!
+
+[33mcommit b2a3341ed7a41ef80ae1d69b7d66add2fd0b16f3[m
+Merge: 52dcfca 8640842
+Author: SandFlake <dalvigsara@gmail.com>
+Date:   Wed May 2 17:36:36 2018 +0200
+
+    Merge branch 'master' of https://github.com/PaleHound
