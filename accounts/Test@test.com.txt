@@ -5,13 +5,21 @@ Mamma
 $
 ChildProfiles:
 Mia
-Pia
-Bettan
+0
 $
 Tasks
+<<<<<<< HEAD
+2
+Köket
+Skriv bok
+10
+Toaletten
+Damma
+=======
 1
 Köket
 Skriv bok
+>>>>>>> branch 'master' of https://github.com/PaleHound/DustHunters2.git
 10
 $
 Rewards

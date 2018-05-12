@@ -24,7 +24,8 @@ import profiles.ChildProfile;
 import tasks.Chore;
 import tasks.Task;
 /**
- * This class is a GUI for the parent profile, when they press the button Edit/Delete Task in the ParentTaskWindow. 
+ * KLAR! 
+ * En metod för att spara ner valen behövs så att valen föräldern gör kommer till ParentTaskWindow.
  * @author Angelina Fransson
  *
  */
@@ -53,32 +54,22 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	private String [] preSelectedTasks = {"Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden"};
 	private String [] preSelectedLocations = {"Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus"};
 	
-	private ClientController clientController; //borde vi inte döpa om den överallt? 
+	private ClientController displayWindow;
 	
 
-/**
- * The constructor that starts the GUI. 
- * @param clientController
- */
-	public ParentEditTaskWindow (ClientController clientController) {
-		this.clientController = clientController;
+
+	public ParentEditTaskWindow (ClientController displayWindow) {
+		this.displayWindow = displayWindow;
 		try {
 			start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-/**
- * 
- * @return account.
- */
+
 	public Account getAccount() {
 		return account;
 	}
-	/**
-	 * 
-	 * @return childProfile
-	 */
 
 	public ChildProfile getChildProfile() {
 		return childProfile;
@@ -91,10 +82,6 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		InitializeGUI();
 		this.setVisible(true);
 	}
-	/**
-	 * This method initialize the GUI.
-	 * @throws IOException
-	 */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void InitializeGUI() throws IOException {
@@ -192,6 +179,9 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		pnlBottom.add(btnSave);
 		pnlBottom.add(btnCancel);
 		
+
+		
+
 		this.add(pnlTop);
 		this.add(pnlMiddle1);
 		this.add(pnlMiddle2);
@@ -201,18 +191,15 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		btnHome.addActionListener(this);
 		btnCancel.addActionListener(this);
 	}
-	/**
-	 * author: Henrik Sigeman
-	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == btnHome) {
-			clientController.setViewParentHomeWindow();
+			displayWindow.setViewParentHomeWindow();
 		}
 		if(e.getSource() == btnCancel) {
-			clientController.setViewParentTaskWindow();
+			displayWindow.setViewParentTaskWindow();
 		}
 		if(e.getSource() == btnSave) {
 			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
@@ -220,12 +207,13 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 			//Server add new task to the account.
 			try {
 				
-				clientController.addTaskToAccount(task);
-
+				displayWindow.addTaskToAccount(task);
+				//Fullösning
 				Thread.sleep(500);
-				clientController.getAccount().setTaskList(clientController.getTasksFromAccount());
+				//Fullösning
+				displayWindow.getAccount().setTaskList(displayWindow.getTasksFromAccount());
 				Thread.sleep(500);
-				clientController.updateTaskLists();
+				displayWindow.updateTaskLists();
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
