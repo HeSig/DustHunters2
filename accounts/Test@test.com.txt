@@ -7,8 +7,9 @@ ChildProfiles:
 Mia
 0
 $
+Angelina
 Tasks
-9
+13
 Köket
 Skriv bok
 10
@@ -32,6 +33,18 @@ Gå ut med hunden
 10
 Sovrummet
 Gå ut med hunden
+10
+Sovrummet
+Damma
+10
+Toaletten
+Gå ut med hunden
+10
+Toaletten
+Gå ut med hunden
+10
+Sovrummet
+Damma
 10
 Sovrummet
 Damma

@@ -189,6 +189,7 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		
 		// Add all action listeners
 		btnHome.addActionListener(this);
+		btnProfile.addActionListener(this);
 		btnCancel.addActionListener(this);
 	}
 
@@ -204,6 +205,7 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		if(e.getSource() == btnSave) {
 			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
 			Task task = new Task(location, new Chore(comboChooseTask.getSelectedItem().toString()), 10);
+			
 			//Server add new task to the account.
 			try {
 				
@@ -223,6 +225,10 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			displayWindow.setViewParentTaskWindow();
+		}
+		if (e.getSource() == btnProfile) {
+			displayWindow.setViewParentProfileWindow();
 		}
 	}
 }

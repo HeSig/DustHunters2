@@ -17,9 +17,9 @@ import profiles.ParentProfile;
 
 /*
  * KLAR! DET som ska göras är: Mellanrum mellan btn:s, och att fixa actionlisteners
- * Författare: Angelina Fransson
+ * author: Angelina Fransson
  */
-public class ParentHomeWindow extends JPanel{
+public class ParentHomeWindow extends JPanel implements ActionListener{
 	private Account account; 
 	private ParentProfile parentProfile;
 
@@ -30,25 +30,11 @@ public class ParentHomeWindow extends JPanel{
 	private JLabel lblHome; 
 	private JButton btnProfileSymbol;
 	private ImageIcon imageProfile;
-	private ClientController displayWindow;
+	private ClientController clientController;
 	private ActionListener listener;
 
-	public ParentHomeWindow (ClientController displayWindow) {
-		this.displayWindow = displayWindow;
-		listener = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource() == btnChores) {
-					displayWindow.setViewParentTaskWindow();
-				}
-				if(e.getSource() == btnSettings) {
-					displayWindow.setViewParentProfileWindow();
-				}
-			}
-		};
-		
-
+	public ParentHomeWindow (ClientController clientController) {
+		this.clientController = clientController;
 		start();
 
 	}
@@ -86,6 +72,7 @@ public class ParentHomeWindow extends JPanel{
 		
 		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
 		btnProfileSymbol = new JButton();
+		btnProfileSymbol.addActionListener(this);
 		btnProfileSymbol.setBounds(275, 16, 75, 70);
 		btnProfileSymbol.setIcon(imageProfile);
 		pnlTop.add(btnProfileSymbol);
@@ -99,23 +86,25 @@ public class ParentHomeWindow extends JPanel{
 
 
 		btnSettings = new JButton("Inställningar");
-		btnSettings.addActionListener(listener);
+		btnSettings.addActionListener(this);
 		btnSettings.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnSettings.setBounds(1, 16, 90, 50);
 
 		
 		btnChores = new JButton ("Sysslor");
-		btnChores.addActionListener(listener);
+		btnChores.addActionListener(this);
 		btnChores.setFont(new Font ("SansSerif", Font.PLAIN, 14));
 		btnChores.setBounds(40, 16, 90, 50);
 		pnlMiddle.add (btnChores);
 
 		btnRewards = new JButton ("Belöningar");
+		btnRewards.addActionListener(this);
 		btnRewards.setFont(new Font ("SansSerif", Font.PLAIN, 14));
 		btnRewards.setBounds(80, 16, 90, 50);
 		pnlMiddle.add (btnRewards);
 
-		btnHelpManual = new JButton ("Hjälp/Manual"); 
+		btnHelpManual = new JButton ("Hjälp/Manual");
+		btnHelpManual.addActionListener(this);
 		btnHelpManual.setFont(new Font ("SansSerif", Font.PLAIN, 14));
 		btnHelpManual.setBounds(120, 16, 90, 50);
 		pnlMiddle.add(btnHelpManual);
@@ -179,6 +168,20 @@ public class ParentHomeWindow extends JPanel{
 		frame.setMinimumSize(new Dimension (400,600));
 	}
 
-	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnChores) {
+			clientController.setViewParentTaskWindow();
+		}
+		if(e.getSource() == btnSettings) {
+			clientController.setViewParentSettingsWindow();
+		}
+		if(e.getSource() == btnProfileSymbol) {
+			clientController.setViewParentProfileWindow();
+		}
+		if(e.getSource() == btnRewards) {
+			clientController.setViewParentRewardWindow();
+		}
+	}	
 
 }

@@ -34,6 +34,7 @@ public class ClientController implements ActionListener, Observer {
 	private JButton updateBtn = new JButton("Update");
 	private JTextField updateText = new JTextField();
 	private Dimension boxDimension = new Dimension(128, 64);
+	private AddChildWindow acw;
 	private ChildTaskWindow ctw;
 	private ChildRewardWindow2 crw;
 	private ChildProfileWindow cpw;
@@ -42,6 +43,8 @@ public class ClientController implements ActionListener, Observer {
 	private ParentEditTaskWindow petw;
 	private ParentTaskWindow ptw;
 	private ParentProfileWindow ppw;
+	private ParentRewardWindow prw; 
+	private ParentSettingsWindow pSettingsw;
 	private Account account;
 	private Client client;
 	private Boolean clientIsRunning = false;
@@ -55,6 +58,7 @@ public class ClientController implements ActionListener, Observer {
 		this.account = account;
 		frame = new JFrame();
 		try {
+			acw = new AddChildWindow (this);
 			ctw = new ChildTaskWindow(this);
 			crw = new ChildRewardWindow2(this);
 			cpw = new ChildProfileWindow(this);
@@ -63,6 +67,8 @@ public class ClientController implements ActionListener, Observer {
 			petw = new ParentEditTaskWindow(this);
 			ptw = new ParentTaskWindow(this);
 			ppw = new ParentProfileWindow(this);
+			prw = new ParentRewardWindow (this);
+			pSettingsw = new ParentSettingsWindow (this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -166,6 +172,12 @@ public class ClientController implements ActionListener, Observer {
 		setPanel(petw);
 
 	}
+	public void setViewAddChildWindow () {
+		setPanel (acw);
+	}
+	public void setViewParentSettingsWindow() {
+		setPanel (pSettingsw);
+	}
 
 	public void setParentProfile(String name) {
 		for (int i = 0; i < account.getParentProfileList().size(); i++) {
@@ -205,6 +217,7 @@ public class ClientController implements ActionListener, Observer {
 		ptw.updateTasks();
 	}
 
-
-
+	public void setViewParentRewardWindow() {
+		setPanel (prw);
+	}
 }

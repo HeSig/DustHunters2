@@ -46,10 +46,6 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private LinkedList<JPanel> taskPanelList = new LinkedList();
 	private JPanel pnlMiddle;
 
-	//SwitchPanel (panel t.ex. RewardPanel) { this.panel = panel }
-	//Note to self: enable/disable JCheckBox beroende på om barnet gjort den eller inte
-	//lägg till setters och getters
-
 	public Account getAccount () {
 		return account;
 	}
@@ -121,6 +117,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		pnlTop.add(btnHome);
 
 		btnProfileSymbol = new JButton ();
+		btnProfileSymbol.addActionListener(this);
 		dustBallImage = new ImageIcon ("images/20x20Dammtuss.jpg");
 		btnProfileSymbol.setBounds(250, 16, 90, 50);
 		btnProfileSymbol.setIcon(dustBallImage);
@@ -234,6 +231,9 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		}
 		if(e.getSource() == btnAddTask) {
 			displayWindow.setViewParentEditTaskWindow();
+		}
+		if(e.getSource() == btnProfileSymbol) {
+			displayWindow.setViewParentProfileWindow();
 		}
 
 	}

@@ -44,7 +44,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
-	private JButton btnProfilePic = new JButton();
+	private JButton btnProfilePic = new JButton(); //otydligt namn
 
 
 	private Account account;
@@ -189,7 +189,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 			displayWindow.setViewChildTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			displayWindow.setViewChildProfileWindow();
+			displayWindow.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnProfilePic) {
 
@@ -201,15 +201,15 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 	}
 
-	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame();
-		AddChildWindow addChildWindow = new AddChildWindow(null);
-		frame.add(addChildWindow);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
-	}
+//	public static void main(String[] args) throws IOException {
+//		JFrame frame = new JFrame();
+//		AddChildWindow addChildWindow = new AddChildWindow(null);
+//		frame.add(addChildWindow);
+//		frame.pack();
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setMinimumSize(new Dimension(400, 600));
+//	}
 }
 
 

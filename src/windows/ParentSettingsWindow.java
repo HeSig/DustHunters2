@@ -171,10 +171,10 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			displayWindow.setViewChildTaskWindow();
+			displayWindow.setViewParentHomeWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			displayWindow.setViewChildProfileWindow();
+			displayWindow.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
 
@@ -184,13 +184,13 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 
 	}
 
-	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame();
-		ParentSettingsWindow parentSettings = new ParentSettingsWindow(null);
-		frame.add(parentSettings);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
-	}
+//	public static void main(String[] args) throws IOException {
+//		JFrame frame = new JFrame();
+//		ParentSettingsWindow parentSettings = new ParentSettingsWindow(null);
+//		frame.add(parentSettings);
+//		frame.pack();
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setMinimumSize(new Dimension(400, 600));
+//	}
 }

@@ -28,6 +28,7 @@ import profiles.ParentProfile;
  *
  */
 
+@SuppressWarnings("serial")
 public class ParentProfileWindow extends JPanel implements ActionListener {
 	private Account account;
 	private ParentProfile parentProfile;
@@ -35,15 +36,14 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
 	private JButton btnAddChild;
-	private JButton btnDeleteChild;
 	private JButton btnChildProfile;
 	private JButton btnParentProfile;
 	private ImageIcon dammtussParentProfile;
 	private ImageIcon dammtussMaja;
-	private ClientController displayWindow;
+	private ClientController clientController;
 
-	public ParentProfileWindow(ClientController displayWindow) {
-		this.displayWindow = displayWindow;
+	public ParentProfileWindow(ClientController clientController) {
+		this.clientController = clientController;
 		start();
 	}
 
@@ -62,13 +62,15 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	public void setParentProfile(ParentProfile parentProfile) {
 		this.parentProfile = parentProfile;
 	}
+	public void setBtnHome (JButton btnHome) {
+		this.btnHome = btnHome;
+	}
 
 	private void start() {
 		this.setBounds(0, 0, 400, 600);
 		this.setLayout(null);
 		InitializeGUI();
 		this.setVisible(true);
-
 	}
 
 	private void InitializeGUI() {
@@ -88,6 +90,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		pnlTop.add(lblProfile);
 
 		btnHome = new JButton(" Home ");
+		btnHome.addActionListener(this);
 		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnHome.setBounds(10, 16, 90, 50);
 		pnlTop.add(btnHome);
@@ -99,6 +102,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		GridBagConstraints c = new GridBagConstraints();
 
 		btnParentProfile = new JButton();
+		btnParentProfile.addActionListener(this);
 		dammtussParentProfile = new ImageIcon("images/dammtussParentProfile.png");
 		btnParentProfile.setBounds(10, 16, 90, 50);
 		btnParentProfile.setIcon(dammtussParentProfile);
@@ -106,6 +110,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		pnlMiddle.add(btnParentProfile);
 
 		btnChildProfile = new JButton();
+		btnChildProfile.addActionListener(this);
 		dammtussMaja = new ImageIcon("images/dammtussMaja.png");
 		btnChildProfile.setBounds(350, 100, 90, 100);
 		btnChildProfile.setIcon(dammtussMaja);
@@ -134,37 +139,42 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		pnlBottom.setBackground(Color.YELLOW);
 
 		btnAddChild = new JButton(" Lägg till ett barn ");
+		btnAddChild.addActionListener(this);
 		btnAddChild.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnAddChild.setBackground(Color.GREEN);
 		btnAddChild.setForeground(Color.BLACK);
 		btnAddChild.setBounds(10, 16, 300, 50);
 		pnlBottom.add(btnAddChild);
 
-		btnDeleteChild = new JButton(" Redigera/Ta bort ett barn ");
-		btnDeleteChild.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		btnDeleteChild.setBackground(Color.RED);
-		btnDeleteChild.setForeground(Color.BLACK);
-		btnDeleteChild.setBounds(10, 100, 300, 50);
-		pnlBottom.add(btnDeleteChild);
-
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
 	}
 
-	// public static void main (String [] args) {
-	// JFrame frame = new JFrame ();
-	// ParentProfileWindow ppw = new ParentProfileWindow ();
-	// frame.add(ppw);
-	// frame.pack();
-	// frame.setVisible(true);
-	// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	// frame.setMinimumSize(new Dimension (400,600));
-	// }
+//	 public static void main (String [] args) {
+//	 JFrame frame = new JFrame ();
+//	 ParentProfileWindow ppw = new ParentProfileWindow ();
+//	 frame.add(ppw);
+//	 frame.pack();
+//	 frame.setVisible(true);
+//	 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	 frame.setMinimumSize(new Dimension (400,600));
+//	 }
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		if(e.getSource() == btnHome) {
+			clientController.setViewParentHomeWindow();
+		}
+		if (e.getSource() == btnAddChild) {
+			clientController.setViewAddChildWindow();
+		}
+	
+		if (e.getSource() == btnChildProfile) {
+			//gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort JButton och ha det som en bild. Denna kan fungera som delete/edit profile
+		}
+		if (e.getSource() == btnParentProfile) {
+			//gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort JButton och ha det som en bild. Denna kan fungera som delete/edit profile
+		}
 	}
 }
