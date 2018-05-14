@@ -85,9 +85,9 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTitle.setBounds(110, 30, 285, 30);
 		btnHome.setIcon(new ImageIcon("images/house.jpg"));
-		btnHome.setBounds(5, 5, 80, 65);
+		btnHome.setBounds(5, 5, 75, 70);
 		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
-		btnProfile.setBounds(260, 16, 90, 50);
+		btnProfile.setBounds(275, 16, 75, 70);
 
 		pnlTop.add(btnHome);
 		pnlTop.add(lblTitle);

@@ -43,7 +43,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private JButton btnAddTask;
 	private JButton btnEditTask;
 	private JLabel lblChildDoingTask; //Ifylld när ett barn har blivit assigned/valt en syssla. 
-	private JButton btnProfileSymbol;
+	private JButton btnProfile;
 	private ImageIcon dustBallImage;
 	private LinkedList<JPanel> taskPanelList = new LinkedList();
 	private JPanel pnlMiddle;
@@ -114,19 +114,19 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		lblChildTask.setBounds(105, 30, 285, 20);
 		pnlTop.add(lblChildTask);
 
-		btnHome = new JButton(" Home ");
+		btnHome = new JButton();
+		btnHome.setIcon(new ImageIcon("images/House.jpg"));
+		btnHome.setBounds(5, 5, 75, 70);
 		btnHome.addActionListener(this);
-		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		btnHome.setBounds(10, 16, 90, 50);
 		pnlTop.add(btnHome);
 
-		btnProfileSymbol = new JButton ();
-		btnProfileSymbol.addActionListener(this);
+		btnProfile = new JButton ();
+		btnProfile.addActionListener(this);
 		dustBallImage = new ImageIcon ("images/20x20Dammtuss.jpg");
-		btnProfileSymbol.setBounds(250, 16, 90, 50);
-		btnProfileSymbol.setIcon(dustBallImage);
+		btnProfile.setBounds(275, 16, 75, 70);
+		btnProfile.setIcon(dustBallImage);
 
-		pnlTop.add(btnProfileSymbol);
+		pnlTop.add(btnProfile);
 
 		//Detta ska ligga i en if-sats. Om man gjort en syssla ska detta synas
 
@@ -240,7 +240,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		if(e.getSource() == btnAddTask) {
 			clientController.setViewParentEditTaskWindow();
 		}
-		if(e.getSource() == btnProfileSymbol) {
+		if(e.getSource() == btnProfile) {
 			clientController.setViewParentProfileWindow();
 		}
 
