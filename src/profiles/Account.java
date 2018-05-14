@@ -39,8 +39,8 @@ public class Account implements java.io.Serializable {
 		this.password = password;
 	}
 	public Account(Account account) {
-		this.email = account.getEmail();
-		this.password = account.getPassword();
+		email = account.getEmail();
+		password = account.getPassword();
 		setParentProfileList(account.getParentProfileList());
 		setChildProfileList(account.getChildProfileList());
 		setTaskList(account.getTaskList());
