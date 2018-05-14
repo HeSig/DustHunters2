@@ -193,7 +193,7 @@ public class Client extends Thread {
 		// Close streams.
 		closeStreams();
 		// printAccount(res);
-		ClientController displayWindow = new ClientController(res, this);
+		ClientController clientController = new ClientController(res, this);
 		setInactive("Logging in");
 		return res;
 	}

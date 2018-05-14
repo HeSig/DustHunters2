@@ -17,7 +17,11 @@ import javax.swing.JPanel;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
-
+/**
+ * 
+ * @author Angelina
+ *
+ */
 public class ChildHomeWindow extends JPanel implements ActionListener{
 	private Account account; 
 	private ChildProfile childProfile;
