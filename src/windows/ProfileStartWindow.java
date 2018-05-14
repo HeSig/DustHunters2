@@ -46,7 +46,7 @@ public class ProfileStartWindow extends AbstractWindowUI {
 							displayWindow.setViewParentHomeWindow();
 						} else {
 							displayWindow.setChildProfile(activeButtons.get(i).getText());
-							displayWindow.setViewChildTaskWindow();
+							displayWindow.setViewChildHomeWindow();
 						}
 						break;
 					}

@@ -48,10 +48,10 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	
 	private Account account;
 	private ChildProfile childProfile;
-	private ClientController displayWindow;
+	private ClientController clientController;
 
-	public ChildRewardWindow2(ClientController displayWindow) throws IOException {
-		this.displayWindow = displayWindow;
+	public ChildRewardWindow2(ClientController clientController) throws IOException {
+		this.clientController = clientController;
 		start();
 	}
 
@@ -160,10 +160,10 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			displayWindow.setViewChildTaskWindow();
+			clientController.setViewChildTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			displayWindow.setViewChildProfileWindow();
+			clientController.setViewChildProfileWindow();
 
 		} else if (e.getSource() == btnBeach) {
 

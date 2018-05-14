@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,12 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import profiles.Account;
-import src.windows.ClientController;
+
 
 /**
  * GUI for children's profile
  * 
- * @author Maida
+ * @author Maida & Angelina
  * 
  *         25/4: Reinstalled and retry. --- 27/4: Reinstalled, once again. Took
  *         >5h. --- 2/5: Reinstalled. AGAIN. -- 4/5: It seems like I don't have
@@ -31,17 +32,17 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	private String name;
 
 	private JLabel lblToDo;
-	private JLabel lblTitleHome; // Title, in middle of top panel
+	private JLabel lblTitleChores; // Title, in middle of top panel
 	private ImageIcon dustBallImage; // Profilepic, in the middle of middle panel
 	private JButton btnProfileSymbol; // Symbol, profilepic will be inside this button
-
+	private JButton btnHome;
 	private JLabel lblNumberOrder; // Number of tasks
 	private JLabel lblLocation;
 	private JButton btnChore; // When user clicks task, they will in fact click a button to take them to class
 								// ChildTaskWindow
 	private JLabel lblRewardPoints;
 	
-	private ClientController displayWindow;
+	private ClientController clientController;
 
 	/*
 	 * Three setters and three getters for the components inside of a task (L + C +
@@ -66,9 +67,9 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 
 
 	// Constructor
-	public ChildProfileWindow(ClientController displayWindow) {
+	public ChildProfileWindow(ClientController clientController) throws IOException {
 		// this.name = name;
-		this.displayWindow = displayWindow;
+		this.clientController = clientController;
 		
 		start();
 
@@ -103,11 +104,14 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		pnlTop.setBackground(Color.YELLOW);
 
 		// Home-label in middle of pnlTop
-		lblTitleHome = new JLabel("Hem");
-		lblTitleHome.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblTitleHome.setBounds(105, 30, 285, 20);
-		pnlTop.add(lblTitleHome);
-
+		lblTitleChores = new JLabel("Dina Sysslor");
+		lblTitleChores.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblTitleChores.setBounds(105, 30, 285, 20);
+		pnlTop.add(lblTitleChores);
+		btnHome = new JButton ();
+		btnHome.setIcon(new ImageIcon("images/House.jpg"));
+		btnHome.setBounds(5, 5, 80, 65);
+		pnlTop.add(btnHome);
 		// Middle panel
 		JPanel pnlMiddle = new JPanel();
 		pnlMiddle.setBounds(12, 130, 358, 140); // Original 12, 130, 358, 140
@@ -122,6 +126,8 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		btnProfileSymbol.setIcon(dustBallImage);
 		pnlMiddle.add(btnProfileSymbol);
 
+		btnHome = new JButton ();
+		
 		/*
 		 * Components added to the middle panel. Remember; a task A task consists of
 		 * location + chore + reward.
@@ -206,7 +212,10 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == btnChore) {
-			displayWindow.setViewChildTaskWindow();
+			clientController.setViewChildTaskWindow();
+		}
+		else if (e.getSource() == btnHome) {
+			clientController.setViewChildHomeWindow();
 		}
 
 	}
