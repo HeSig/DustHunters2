@@ -1,9 +1,11 @@
 Account of Test@test.com
 ParentProfiles:
+2
 Pappa
 Mamma
 $
 ChildProfiles:
+1
 Mia
 0
 $
