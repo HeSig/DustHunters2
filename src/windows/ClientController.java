@@ -38,6 +38,7 @@ public class ClientController implements ActionListener, Observer {
 	private ChildTaskWindow ctw;
 	private ChildRewardWindow2 crw;
 	private ChildProfileWindow cpw;
+	private ChildHomeWindow chw;
 	private ProfileStartWindow psw;
 	private ParentHomeWindow phw;
 	private ParentEditTaskWindow petw;
@@ -62,6 +63,7 @@ public class ClientController implements ActionListener, Observer {
 			ctw = new ChildTaskWindow(this);
 			crw = new ChildRewardWindow2(this);
 			cpw = new ChildProfileWindow(this);
+			chw = new ChildHomeWindow (this);
 			psw = new ProfileStartWindow("ProfileStartWindow", this);
 			phw = new ParentHomeWindow(this);
 			petw = new ParentEditTaskWindow(this);
@@ -151,8 +153,11 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewChildTaskWindow() {
 		setPanel(ctw);
 	}
+	public void setViewChildHomeWindow () {
+		setPanel (chw);
+	}
 
-	public void setViewChildRewardWindow() {
+	public void setViewChildRewardWindow2() {
 		setPanel(crw);
 	}
 

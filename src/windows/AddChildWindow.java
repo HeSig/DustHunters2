@@ -49,10 +49,10 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 	private Account account;
 	private ChildProfile childProfile;
-	private ClientController displayWindow;
+	private ClientController controller;
 
-	public AddChildWindow(ClientController displayWindow) throws IOException {
-		this.displayWindow = displayWindow;
+	public AddChildWindow(ClientController controller) throws IOException {
+		this.controller = controller;
 		start();
 	}
 
@@ -186,14 +186,17 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			displayWindow.setViewChildTaskWindow();
+			controller.setViewChildTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			displayWindow.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnProfilePic) {
 
 		} else if (e.getSource() == btnSave) {
+			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
+			controller.addChildProfile(childProfile);
+			controller.updateProfilesList();
 			
 		} else if (e.getSource() == btnCancel) {
 			

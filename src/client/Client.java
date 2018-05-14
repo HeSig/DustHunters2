@@ -13,6 +13,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import profiles.Account;
+import profiles.ChildProfile;
+import profiles.ParentProfile;
 import server.ServerRequest;
 import tasks.Task;
 import windows.ClientController;
@@ -152,6 +154,33 @@ public class Client extends Thread {
 	public void addRewardToServer(Account account) {
 
 	}
+	public void addChildProfileToServer(Account account, ChildProfile childProfile) throws IOException {
+		setActive("Add child Profile ");
+		serverRequest = "AddChildProfile";
+		
+		openStreams();
+		
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(childProfile);
+		oos.flush();
+		
+		closeStreams();
+		setInactive("Add child Profile ");
+	}
+	public void addParentProfileToServer(Account account, ParentProfile parentProfile) throws IOException {
+		setActive("Add parent Profile ");
+		serverRequest = "AddParentProfile";
+		
+		openStreams();
+		
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(parentProfile);
+		oos.flush();
+		
+		closeStreams();
+		setInactive("Add parent profile ");
+	}
+	
 
 	public void addTaskToServer(Account account, Task task) throws UnknownHostException, IOException {
 		setActive("Add task ");

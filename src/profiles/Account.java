@@ -62,6 +62,14 @@ public class Account implements java.io.Serializable {
 	public void setRewardList(LinkedList<Reward> rewardList) {
 		this.rewardList = rewardList;
 	}
+	
+	public ChildProfile getChildProfileFromList(int i) {
+		return childProfileList.get(i);
+	}
+	
+	public ParentProfile getParentProfileFromList(int i) {
+		return parentProfileList.get(i);
+	}
 
 	
 
