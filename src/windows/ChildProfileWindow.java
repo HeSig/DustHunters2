@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import profiles.Account;
-import src.windows.ClientController;
+import windows.ClientController;
 
 /**
  * GUI for children's profile
