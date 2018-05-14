@@ -85,7 +85,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 
-		lblTitle = new JLabel("Skatter i sikt");
+		lblTitle = new JLabel(" Dina skatter ");
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTitle.setBounds(120, 30, 285, 20);
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
