@@ -39,9 +39,9 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	private JLabel lblNumberOrder; // Number of tasks
 	private JLabel lblLocation;
 	private JButton btnChore; // When user clicks task, they will in fact click a button to take them to class
-								// ChildTaskWindow
+	// ChildTaskWindow
 	private JLabel lblRewardPoints;
-	
+
 	private ClientController clientController;
 
 	/*
@@ -70,7 +70,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	public ChildProfileWindow(ClientController clientController) throws IOException {
 		// this.name = name;
 		this.clientController = clientController;
-		
+
 		start();
 
 	}
@@ -108,7 +108,9 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		lblTitleChores.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTitleChores.setBounds(105, 30, 285, 20);
 		pnlTop.add(lblTitleChores);
+
 		btnHome = new JButton ();
+		btnHome.addActionListener(this);
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
 		pnlTop.add(btnHome);
@@ -126,8 +128,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		btnProfileSymbol.setIcon(dustBallImage);
 		pnlMiddle.add(btnProfileSymbol);
 
-		btnHome = new JButton ();
-		
+
 		/*
 		 * Components added to the middle panel. Remember; a task A task consists of
 		 * location + chore + reward.
@@ -143,6 +144,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		pnlMiddle.add(lblLocation);
 
 		btnChore = new JButton("Dammsuga Vardagsrummet");
+		btnChore.addActionListener(this);
 		btnChore.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnChore.setBounds(40, 16, 90, 50); // Original 40, 16, 90, 50
 		pnlMiddle.add(btnChore);
@@ -204,7 +206,6 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
-
 	}
 
 
