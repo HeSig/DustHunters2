@@ -1,7 +1,6 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -11,8 +10,6 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -33,6 +30,10 @@ import profiles.ChildProfile;
 public class AddChildWindow extends JPanel implements ActionListener {
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6190137821496434029L;
 	private JLabel lblTitle;
 	private JLabel lblChildName;
 	private JLabel lblChildPassword;
@@ -44,7 +45,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
-	private JButton btnProfilePic = new JButton(); //otydligt namn
+	private JButton btnProfilePic = new JButton();
 
 
 	private Account account;
