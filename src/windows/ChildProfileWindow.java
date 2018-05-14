@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 
 import profiles.Account;
 
+import windows.ClientController;
+
 
 /**
  * GUI for children's profile
@@ -29,7 +31,7 @@ import profiles.Account;
 
 public class ChildProfileWindow extends JPanel implements ActionListener {
 	private Account account;
-	private String name;
+	private String name; //Delete? - Angie
 
 	private JLabel lblToDo;
 	private JLabel lblTitleChores; // Title, in middle of top panel

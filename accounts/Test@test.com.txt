@@ -1,17 +1,15 @@
 Account of Test@test.com
 ParentProfiles:
-2
 Pappa
 Mamma
 $
 ChildProfiles:
-1
 Mia
 0
 $
 Angelina
 Tasks
-13
+16
 Köket
 Skriv bok
 10
@@ -44,6 +42,15 @@ Gå ut med hunden
 10
 Toaletten
 Gå ut med hunden
+10
+Sovrummet
+Damma
+10
+Sovrummet
+Damma
+10
+Sovrummet
+Damma
 10
 Sovrummet
 Damma
