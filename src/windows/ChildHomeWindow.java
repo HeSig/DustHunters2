@@ -29,10 +29,9 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 	private JButton btnMyChores;
 	private JButton btnMyRewards;
 	private JLabel lblHome; 
-	private JButton btnProfileSymbol;
+	private JButton btnProfile;
 	private ImageIcon imageProfile;
 	private ClientController clientController;
-	private ActionListener listener;
 
 	public ChildHomeWindow (ClientController clientController) {
 		this.clientController = clientController;
@@ -72,11 +71,11 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 		
 		
 		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
-		btnProfileSymbol = new JButton();
-		btnProfileSymbol.addActionListener(this);
-		btnProfileSymbol.setBounds(275, 16, 75, 70);
-		btnProfileSymbol.setIcon(imageProfile);
-		pnlTop.add(btnProfileSymbol);
+		btnProfile = new JButton();
+		btnProfile.addActionListener(this);
+		btnProfile.setBounds(275, 16, 75, 70);
+		btnProfile.setIcon(imageProfile);
+		pnlTop.add(btnProfile);
 		
 
 		JPanel pnlMiddle = new JPanel();
@@ -127,15 +126,6 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 		this.add(pnlBottom);
 	}
 
-	public static void main (String [] args) {
-		JFrame frame = new JFrame ();
-//		ParentHomeWindow phw = new ParentHomeWindow ();
-//		frame.add(phw);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension (400,600));
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -145,7 +135,7 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 		if(e.getSource() == btnMyChores) {
 			clientController.setViewChildProfileWindow();
 		}
-		if(e.getSource() == btnProfileSymbol) {
+		if(e.getSource() == btnProfile) {
 			clientController.setViewChildProfileWindow();
 		}
 	}	

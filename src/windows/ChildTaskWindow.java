@@ -42,14 +42,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
 	private JButton btnDustSymbol;
-	private JButton btnProfileSymbol;
-	private JButton btnSaveChanges;
+	private JButton btnProfile;
+	private JButton btnSave;
 	private JLabel lblTitle;
 	private JLabel lblTask;
-	private JLabel lblChildName;
+	private JLabel lblChildName; //delete? - Angie
 	private JLabel lblCheck;
-//	private JLabel lblLocation;
-//	private JTextField tfHours;
+
 	private JCheckBox cbCheckUncheck;
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
@@ -104,10 +103,10 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		pnlTop.add(btnHome);
 		
 		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
-		btnProfileSymbol = new JButton();
-		btnProfileSymbol.setBounds(275, 16, 75, 70);
-		btnProfileSymbol.setIcon(imageProfile);
-		pnlTop.add(btnProfileSymbol);
+		btnProfile = new JButton();
+		btnProfile.setBounds(275, 16, 75, 70);
+		btnProfile.setIcon(imageProfile);
+		pnlTop.add(btnProfile);
 
 		// Middle
 		JPanel pnlMiddle = new JPanel();
@@ -124,10 +123,6 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		comboChore = new JComboBox(choreList);
 		comboChore.setSelectedIndex(1);
 		comboChore.setBorder(border3);
-
-//		lblLocation = new JLabel("                       Plats: ");
-//		lblLocation.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
-//		lblLocation.setBorder(border3);
 		
 		lblCheck = new JLabel("               Äventyr är avklarat: ");
 		lblCheck.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
@@ -136,15 +131,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		cbCheckUncheck = new JCheckBox();
 		cbCheckUncheck.setBorder(border3);
 
-	
-
-//		tfHours = new JTextField();
-//		tfHours.setBorder(border3);
 		
-		btnSaveChanges = new JButton("Spara");
-		btnSaveChanges.setFont(new Font("SansSerif", Font.BOLD, 12));
-		btnSaveChanges.setBorder(border3);
-		btnSaveChanges.setBackground(Color.GREEN);
+		btnSave = new JButton("Spara");
+		btnSave.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnSave.setBorder(border3);
+		btnSave.setBackground(Color.GREEN);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -174,29 +165,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.gridy = 1;
 		pnlMiddle.add(cbCheckUncheck, c);
 
-//		c.fill = GridBagConstraints.HORIZONTAL;
-//		c.anchor = GridBagConstraints.NORTHWEST;
-//		c.weightx = 400;
-//		c.weighty = 400;
-//		c.gridx = 0;
-//		c.gridy = 2;
-//		pnlMiddle.add(lblLocation, c);
-
-//		c.fill = GridBagConstraints.HORIZONTAL;
-//		c.anchor = GridBagConstraints.NORTHEAST;
-//		c.weightx = 400;
-//		c.weighty = 400;
-//		c.gridx = 1;
-//		c.gridy = 2;
-//		pnlMiddle.add(tfHours, c);
-
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
 		c.weightx = 400;
 		c.weighty = 400;
 		c.gridx = 1;
 		c.gridy = 3;
-		pnlMiddle.add(btnSaveChanges, c);
+		pnlMiddle.add(btnSave, c);
 		
 		
 		
@@ -217,7 +192,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		cbCheckUncheck.addActionListener(this);
 		btnDustSymbol.addActionListener(this);
 		btnHome.addActionListener(this);
-		btnProfileSymbol.addActionListener(this);
+		btnProfile.addActionListener(this);
 		comboChore.addActionListener(this);
 		
 		
@@ -248,20 +223,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 			// should return the user to the the home-panel
 		}
 		
-		if(e.getSource() == btnProfileSymbol) {
+		if(e.getSource() == btnProfile) {
 			clientController.setViewChildProfileWindow();
 			// should direct the user to the profile-panel.  
 		}
 		
 	}
 
-//	public static void main(String[] args) throws IOException {
-//		JFrame frame = new JFrame();
-//		ChildTaskWindow taskwindow = new ChildTaskWindow(new DisplayWindow(null));
-//		frame.add(taskwindow);
-//		frame.pack();
-//		frame.setVisible(true);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setMinimumSize(new Dimension(400, 600));
-//	}
 }
