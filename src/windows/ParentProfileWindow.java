@@ -37,7 +37,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	private JButton btnHome;
 	private JButton btnAddChild;
 	private JButton btnChildProfile;
-	private JButton btnParentProfile;
+	private JButton btnProfile;
 	private ImageIcon dammtussParentProfile;
 	private ImageIcon dammtussMaja;
 	private ClientController clientController;
@@ -88,11 +88,11 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		lblProfile.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblProfile.setBounds(105, 30, 285, 20);
 		pnlTop.add(lblProfile);
-
-		btnHome = new JButton(" Home ");
+		
+		btnHome = new JButton();
+		btnHome.setIcon(new ImageIcon("images/House.jpg"));
+		btnHome.setBounds(5, 5, 80, 65);
 		btnHome.addActionListener(this);
-		btnHome.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		btnHome.setBounds(10, 16, 90, 50);
 		pnlTop.add(btnHome);
 
 		JPanel pnlMiddle = new JPanel();
@@ -101,13 +101,13 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		pnlMiddle.setBackground(Color.YELLOW);
 		GridBagConstraints c = new GridBagConstraints();
 
-		btnParentProfile = new JButton();
-		btnParentProfile.addActionListener(this);
+		btnProfile = new JButton();
+		btnProfile.addActionListener(this);
 		dammtussParentProfile = new ImageIcon("images/dammtussParentProfile.png");
-		btnParentProfile.setBounds(10, 16, 90, 50);
-		btnParentProfile.setIcon(dammtussParentProfile);
+		btnProfile.setBounds(10, 16, 90, 50);
+		btnProfile.setIcon(dammtussParentProfile);
 
-		pnlMiddle.add(btnParentProfile);
+		pnlMiddle.add(btnProfile);
 
 		btnChildProfile = new JButton();
 		btnChildProfile.addActionListener(this);
@@ -122,7 +122,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		c.weighty = 1;
 		c.gridx = 20;
 		c.gridy = 100;
-		pnlMiddle.add(btnParentProfile, c);
+		pnlMiddle.add(btnProfile, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
@@ -173,7 +173,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		if (e.getSource() == btnChildProfile) {
 			//gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort JButton och ha det som en bild. Denna kan fungera som delete/edit profile
 		}
-		if (e.getSource() == btnParentProfile) {
+		if (e.getSource() == btnProfile) {
 			//gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort JButton och ha det som en bild. Denna kan fungera som delete/edit profile
 		}
 	}

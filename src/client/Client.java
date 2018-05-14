@@ -15,6 +15,7 @@ import java.util.Observer;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
+import rewards.Reward;
 import server.ServerRequest;
 import tasks.Task;
 import windows.ClientController;
@@ -67,17 +68,16 @@ public class Client extends Thread {
 	public void addObserver(Observer o) {
 		observable.addObserver(o);
 	}
-	
-	private void openStreams(){
+
+	private void openStreams() {
 		try {
 			socket = new Socket(user.getHost(), user.getPort());
-		
-		is = socket.getInputStream();
-		os = socket.getOutputStream();
-		ois = new ObjectInputStream(is);
-		oos = new ObjectOutputStream(socket.getOutputStream());
-		br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		System.out.println("Streams open");
+			is = socket.getInputStream();
+			os = socket.getOutputStream();
+			ois = new ObjectInputStream(is);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			System.out.println("Streams open");
 		} catch (IOException e) {
 			System.out.println("Ojdå!");
 			e.printStackTrace();
@@ -98,8 +98,7 @@ public class Client extends Thread {
 		socket.close();
 		System.out.println("Streams closed");
 	}
-	
-	
+
 	public void addPointsToChildProfile(Account account, String childProfileName, int pointsToAdd) {
 		serverRequest = "addPoints";
 		try {
@@ -154,9 +153,37 @@ public class Client extends Thread {
 	public void addRewardToServer(Account account) {
 
 	}
+
 	public void addChildProfileToServer(Account account, ChildProfile childProfile) throws IOException {
 		setActive("Add child Profile ");
 		serverRequest = "AddChildProfile";
+
+		openStreams();
+
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(childProfile);
+		oos.flush();
+
+		closeStreams();
+		setInactive("Add child Profile ");
+	}
+	
+	public void removeParentProfileFromServer(Account account, ParentProfile parentProfile) throws IOException {
+		setActive("Remove parentprofile");
+		serverRequest = "RemoveParentProfile";
+		
+		openStreams();
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(parentProfile);
+		oos.flush();
+		
+		closeStreams();
+		setInactive("Remove parentprofile ");
+	}
+	
+	public void removeChildProfileFromServer(Account account, ChildProfile childProfile) throws IOException {
+		setActive("Remove childprofile ");
+		serverRequest = "RemoveChildProfile";
 		
 		openStreams();
 		
@@ -165,27 +192,69 @@ public class Client extends Thread {
 		oos.flush();
 		
 		closeStreams();
-		setInactive("Add child Profile ");
+		setInactive("Remove childprofile ");
 	}
+
 	public void addParentProfileToServer(Account account, ParentProfile parentProfile) throws IOException {
 		setActive("Add parent Profile ");
 		serverRequest = "AddParentProfile";
-		
+
 		openStreams();
-		
+
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		oos.writeObject(parentProfile);
 		oos.flush();
-		
+
 		closeStreams();
 		setInactive("Add parent profile ");
 	}
 	
+	public void removeRewardFromServer(Account account, Reward reward) throws IOException {
+		setActive("Remove reward ");
+		serverRequest = "RemoveReward";
+		
+		openStreams();
+		
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(reward);
+		oos.flush();
+		
+		closeStreams();
+		setInactive("Remove reward ");
+	}
+	
+	public void removeTaskFromServer(Account account, Task task) throws IOException {
+		setActive("Remove task ");
+		serverRequest = "RemoveTask";
+		
+		openStreams();
+		
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(task);
+		oos.flush();
+		
+		closeStreams();
+		setInactive("Remove task ");
+	}
+	
+	public void addRewardToServer(Account account, Reward reward) throws IOException {
+		setActive("Add reward ");
+		serverRequest = "AddReward";
+		
+		openStreams();
+		
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(reward);
+		oos.flush();
+		
+		closeStreams();
+		setInactive("Add reward ");
+	}
 
 	public void addTaskToServer(Account account, Task task) throws UnknownHostException, IOException {
 		setActive("Add task ");
 		serverRequest = "AddTask";
-		
+
 		openStreams();
 
 		oos.writeObject(new ServerRequest(account, serverRequest));
@@ -193,7 +262,7 @@ public class Client extends Thread {
 		oos.flush();
 
 		closeStreams();
-		
+
 		setInactive("Add task ");
 	}
 
@@ -210,7 +279,7 @@ public class Client extends Thread {
 		setActive("Logging in");
 		Boolean ret = false;
 		serverRequest = "Login";
-		
+
 		openStreams();
 		// Send login request to server.
 		oos.writeObject(new ServerRequest(account, serverRequest));
@@ -225,15 +294,5 @@ public class Client extends Thread {
 		ClientController clientController = new ClientController(res, this);
 		setInactive("Logging in");
 		return res;
-	}
-
-	private void printAccount(Account account) {
-		for (int i = 0; i < account.getParentProfileList().size(); i++) {
-			// System.out.println(account.getParentProfileList().get(i).getName());
-		}
-		for (int i = 0; i < account.getChildProfileList().size(); i++) {
-			// System.out.println(account.getChildProfileList().get(i).getName());
-		}
-
 	}
 }

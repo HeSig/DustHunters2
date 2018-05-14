@@ -30,10 +30,37 @@ import tasks.Task;
  * @author Henrik Sigeman The AccountManager handles all interaction between the
  *         server and the database which stores all of the accounts and their
  *         contents.
+ * 
+ *         Kommentar: Har gjort allting statiskt. Om det inte funkar som det
+ *         ska, ta bort all "static" och gör om.
  */
 public class AccountManager {
 
-	private static File filename = new File("files/accounts.txt");
+	private File filename = new File("files/accounts.txt");
+	private File f;
+	private LinkedList<String> fileContent;
+	private FileWriter fileWriter;
+	private BufferedWriter bufferedWriter;
+	private PrintWriter pr;
+	private FileReader fileReader;
+	private BufferedReader bufferedReader;
+
+	private void openStreams(Account account) throws IOException {
+		f = new File("accounts/" + account.getEmail() + ".txt");
+		fileWriter = new FileWriter(f, true);
+		bufferedWriter = new BufferedWriter(fileWriter);
+		pr = new PrintWriter(bufferedWriter);
+		fileReader = new FileReader(f);
+		bufferedReader = new BufferedReader(fileReader);
+	}
+
+	private void closeStreams() throws IOException {
+		bufferedReader.close();
+		fileReader.close();
+		pr.close();
+		bufferedWriter.close();
+		fileWriter.close();
+	}
 
 	/**
 	 * buildAccount Bygger en account i servern från filerna i databasen och skickar
@@ -46,7 +73,7 @@ public class AccountManager {
 	 * @return Det färdiga kontot.
 	 * @throws IOException
 	 */
-	public static Account buildAccount(String email, String password) throws IOException {
+	public Account buildAccount(String email, String password) throws IOException {
 		Account account = new Account(email, password);
 		FileReader fileReader;
 		try {
@@ -67,11 +94,11 @@ public class AccountManager {
 		// Parent profiles
 		readLine = br.readLine();
 		if (readLine.equals("ParentProfiles:")) {
+			br.readLine();
 			readLine = br.readLine();
 			while (!readLine.equals("$")) {
 				parent = new ParentProfile(readLine);
 				account.addParentProfile(parent);
-
 				readLine = br.readLine();
 			}
 		} else {
@@ -80,6 +107,7 @@ public class AccountManager {
 		// Child profiles
 		if (br.readLine().equals("ChildProfiles:")) {
 			String points = "";
+			br.readLine();
 			readLine = br.readLine();
 			while (!readLine.equals("$") && !points.equals("$")) {
 				points = br.readLine();
@@ -92,7 +120,6 @@ public class AccountManager {
 		LinkedList<Task> list = (LinkedList<Task>) getTask(account);
 		account.setTaskList(list);
 
-
 		// Rewards
 		if (br.readLine().equals("Rewards")) {
 			readLine = br.readLine();
@@ -102,7 +129,6 @@ public class AccountManager {
 			}
 		}
 		// childProfileList.add(null);
-
 		return account;
 
 	}
@@ -115,7 +141,7 @@ public class AccountManager {
 	 * @return
 	 * @throws IOException
 	 */
-	public static Account loginUser(Account account) throws IOException {
+	public Account loginUser(Account account) throws IOException {
 		String email = account.getEmail();
 		String password = account.getPassword();
 		FileReader fileReader = new FileReader(filename);
@@ -126,7 +152,9 @@ public class AccountManager {
 				if (bufferedReader.readLine().equals(password)) {
 					bufferedReader.close();
 					fileReader.close();
-					Account newAccount = buildAccount(account.getEmail(), account.getPassword());
+					Account newAccount = new Account(buildAccount(account.getEmail(), account.getPassword()));
+					bufferedReader.close();
+					fileReader.close();
 					return newAccount;
 				}
 			}
@@ -187,152 +215,100 @@ public class AccountManager {
 		writer.println("Rewards");
 		writer.println("$");
 
-		writer.close();
-		bufferedReader.close();
-		fileReader.close();
-		bufferedWriter.close();
-		fileWriter.close();
+		closeStreams();
 		return "New account registered";
 	}
 
 	/**
-	 * getTask
-	 * returnerar hela listan på tasks från den uppdaterade listan.
-	 * @param account kontot som tasks ska hämtas ifrån.
+	 * getTask returnerar hela listan på tasks från den uppdaterade listan.
+	 * 
+	 * @param account
+	 *            kontot som tasks ska hämtas ifrån.
 	 * @return listan på tasks.
 	 */
-	public static List<Task> getTask(Account account) {
+	public List<Task> getTask(Account account) throws IOException {
 		List<Task> list = new LinkedList();
 
-		FileWriter fileWriter;
-		try {
-			fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
-
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			PrintWriter pr = new PrintWriter(bufferedWriter);
-			FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			String line = "";
-			while (line != null) {
-				line = bufferedReader.readLine();
-				if (line.equals("Tasks")) {
-					int taskCount = Integer.parseInt(bufferedReader.readLine());
-					for (int i = 0; i < taskCount; i++) {
-						Location location = new Location(bufferedReader.readLine());
-						Chore chore = new Chore(bufferedReader.readLine());
-						int value = Integer.parseInt(bufferedReader.readLine());
-						Task task = new Task(location, chore, value);
-						list.add(task);
-					}
-					break;
+		openStreams(account);
+		String line = "";
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line.equals("Tasks")) {
+				int taskCount = Integer.parseInt(bufferedReader.readLine());
+				for (int i = 0; i < taskCount; i++) {
+					Location location = new Location(bufferedReader.readLine());
+					Chore chore = new Chore(bufferedReader.readLine());
+					int value = Integer.parseInt(bufferedReader.readLine());
+					Task task = new Task(location, chore, value);
+					list.add(task);
 				}
-
+				break;
 			}
-			bufferedReader.close();
-			fileReader.close();
-			pr.close();
-			bufferedWriter.close();
-			fileWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Something is wrong here too");
-			e.printStackTrace();
-		}
 
+		}
+		closeStreams();
 		return list;
+
 	}
-	
-	public List<ParentProfile> getParentProfiles(Account account){
+
+	public List<ParentProfile> getParentProfiles(Account account) throws IOException {
 		List<ParentProfile> list = new LinkedList<ParentProfile>();
-
-		FileWriter fileWriter;
-		try {
-			fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			PrintWriter pr = new PrintWriter(bufferedWriter);
-			FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			String line = "";
-			while (line != null) {
-				line = bufferedReader.readLine();
-				if (line.equals("ParentProfiles:")) {
-					int parentProfileCount = Integer.parseInt(bufferedReader.readLine());
-					for (int i = 0; i < parentProfileCount; i++) {
-						ParentProfile parentProfile = new ParentProfile(bufferedReader.readLine());
-						list.add(parentProfile);
-					}
-					break;
+		openStreams(account);
+		String line = "";
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line.equals("ParentProfiles:")) {
+				int parentProfileCount = Integer.parseInt(bufferedReader.readLine());
+				for (int i = 0; i < parentProfileCount; i++) {
+					ParentProfile parentProfile = new ParentProfile(bufferedReader.readLine());
+					list.add(parentProfile);
 				}
-
+				break;
 			}
-			bufferedReader.close();
-			fileReader.close();
-			pr.close();
-			bufferedWriter.close();
-			fileWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Something is wrong here too");
-			e.printStackTrace();
+
 		}
+		closeStreams();
 
 		return list;
 	}
-	public List<ChildProfile> getChildProfiles(Account account){
+
+	public List<ChildProfile> getChildProfiles(Account account) throws IOException {
 		List<ChildProfile> list = new LinkedList<ChildProfile>();
 
-		FileWriter fileWriter;
-		try {
-			fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			PrintWriter pr = new PrintWriter(bufferedWriter);
-			FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			String line = "";
-			while (line != null) {
-				line = bufferedReader.readLine();
-				if (line.equals("ChildProfiles:")) {
-					int childProfileCount = Integer.parseInt(bufferedReader.readLine());
-					for (int i = 0; i < childProfileCount; i++) {
-						String name = bufferedReader.readLine();
-						int points = Integer.parseInt(bufferedReader.readLine());
-						ChildProfile childProfile = new ChildProfile(name, points);
-						list.add(childProfile);
-					}
-					break;
+		openStreams(account);
+		String line = "";
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line.equals("ChildProfiles:")) {
+				int childProfileCount = Integer.parseInt(bufferedReader.readLine());
+				for (int i = 0; i < childProfileCount; i++) {
+					String name = bufferedReader.readLine();
+					int points = Integer.parseInt(bufferedReader.readLine());
+					ChildProfile childProfile = new ChildProfile(name, points);
+					list.add(childProfile);
 				}
-
+				break;
 			}
-			bufferedReader.close();
-			fileReader.close();
-			pr.close();
-			bufferedWriter.close();
-			fileWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Something is wrong here too");
-			e.printStackTrace();
+
 		}
+		closeStreams();
 
 		return list;
 	}
-	
+
 	/**
-	 * addTask
-	 * lägger till en task i kontots tasklista på servern.
-	 * @param account kontot som tasken ska läggas in i
-	 * @param task Tasken som ska läggas in.
+	 * addTask lägger till en task i kontots tasklista på servern.
+	 * 
+	 * @param account
+	 *            kontot som tasken ska läggas in i
+	 * @param task
+	 *            Tasken som ska läggas in.
 	 * @throws IOException
 	 */
 
 	public void addTask(Account account, Task task) throws IOException {
-		File f = new File("accounts/" + account.getEmail() + ".txt");
+		openStreams(account);
 		LinkedList<String> fileContent = new LinkedList();
-		FileWriter fileWriter = new FileWriter(f, true);
-		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		PrintWriter pr = new PrintWriter(bufferedWriter);
-		FileReader fileReader = new FileReader(f);
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 		String line;
 		while ((line = bufferedReader.readLine()) != null) {
@@ -364,11 +340,7 @@ public class AccountManager {
 			fileContent.add(line);
 		}
 
-		bufferedReader.close();
-		fileReader.close();
-		pr.close();
-		bufferedWriter.close();
-		fileWriter.close();
+		closeStreams();
 
 		if (f.exists()) {
 			f.delete();
@@ -381,14 +353,9 @@ public class AccountManager {
 		}
 		out.close();
 	}
+
 	public void addParentProfile(Account account, ParentProfile parentProfile) throws IOException {
-		File f = new File("accounts/" + account.getEmail() + ".txt");
-		LinkedList<String> fileContent = new LinkedList();
-		FileWriter fileWriter = new FileWriter(f, true);
-		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		PrintWriter pr = new PrintWriter(bufferedWriter);
-		FileReader fileReader = new FileReader(f);
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		openStreams(account);
 
 		String line;
 		while ((line = bufferedReader.readLine()) != null) {
@@ -416,11 +383,7 @@ public class AccountManager {
 			fileContent.add(line);
 		}
 
-		bufferedReader.close();
-		fileReader.close();
-		pr.close();
-		bufferedWriter.close();
-		fileWriter.close();
+		closeStreams();
 
 		if (f.exists()) {
 			f.delete();
@@ -433,16 +396,9 @@ public class AccountManager {
 		}
 		out.close();
 	}
-	
 
 	public void addChildProfile(Account account, ChildProfile childProfile) throws IOException {
-		File f = new File("accounts/" + account.getEmail() + ".txt");
-		LinkedList<String> fileContent = new LinkedList();
-		FileWriter fileWriter = new FileWriter(f, true);
-		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-		PrintWriter pr = new PrintWriter(bufferedWriter);
-		FileReader fileReader = new FileReader(f);
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		openStreams(account);
 
 		String line;
 		while ((line = bufferedReader.readLine()) != null) {
@@ -455,7 +411,7 @@ public class AccountManager {
 					fileContent.add("" + account.getChildProfileFromList(i).getPoints());
 				}
 				fileContent.add(childProfile.getName());
-				fileContent.add(""+childProfile.getPoints());
+				fileContent.add("" + childProfile.getPoints());
 				break;
 			}
 		}
@@ -472,11 +428,7 @@ public class AccountManager {
 			fileContent.add(line);
 		}
 
-		bufferedReader.close();
-		fileReader.close();
-		pr.close();
-		bufferedWriter.close();
-		fileWriter.close();
+		closeStreams();
 
 		if (f.exists()) {
 			f.delete();
@@ -488,6 +440,56 @@ public class AccountManager {
 			out.write(fileContent.get(i) + "\n");
 		}
 		out.close();
-		
+
+	}
+
+	public void removeTask(Account account, Task task) throws IOException {
+		openStreams(account);
+
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
+			if (line.equals("Tasks")) {
+				bufferedReader.readLine();
+				fileContent.add("" + (account.getTaskList().size() - 1));
+				for (int i = 0; i < account.getTaskList().size(); i++) {
+					if (!account.getTaskFromList(i).equals(task)) {
+						fileContent.add(account.getTaskFromList(i).getLocationName());
+						fileContent.add(account.getTaskFromList(i).getChoreName());
+						fileContent.add("" + account.getTaskFromList(i).getTaskValue());
+					}
+				}
+				fileContent.add(task.getLocationName());
+				fileContent.add(task.getChoreName());
+				fileContent.add("" + task.getTaskValue());
+				break;
+			}
+		}
+		while (!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+		fileContent.add(line);
+
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line == null) {
+				break;
+			}
+			fileContent.add(line);
+		}
+
+		closeStreams();
+
+		if (f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
+
 	}
 }
