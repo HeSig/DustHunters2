@@ -72,7 +72,7 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
 		btnProfile = new JButton();
 		btnProfile.addActionListener(this);
-		btnProfile.setBounds(275, 16, 80, 65);
+		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(imageProfile);
 		pnlTop.add(btnProfile);
 		

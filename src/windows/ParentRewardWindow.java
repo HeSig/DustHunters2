@@ -24,7 +24,7 @@ import javax.swing.border.Border;
 public class ParentRewardWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
-	private JButton btnProfileSymbol;
+	private JButton btnProfile;
 	private JButton btnNewReward;
 	private JLabel lblRewards;
 	private ImageIcon imageHome;
@@ -63,7 +63,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.WHITE);
 
-		lblRewards = new JLabel("Belöningar");
+		lblRewards = new JLabel("Poäng");
 		lblRewards.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblRewards.setBounds(125, 30, 285, 20);
 		pnlTop.add(lblRewards);
@@ -75,10 +75,10 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		pnlTop.add(btnHome);
 
 		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
-		btnProfileSymbol = new JButton();
-		btnProfileSymbol.setBounds(275, 16, 75, 70);
-		btnProfileSymbol.setIcon(imageProfile);
-		pnlTop.add(btnProfileSymbol);
+		btnProfile = new JButton();
+		btnProfile.setBounds(275, 16, 75, 70);
+		btnProfile.setIcon(imageProfile);
+		pnlTop.add(btnProfile);
 
 		// Middle
 		JPanel pnlInfo = new JPanel();
@@ -248,7 +248,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		
 //		// ActionListeners		
 		btnHome.addActionListener(this);
-		btnProfileSymbol.addActionListener(this);
+		btnProfile.addActionListener(this);
 		
 		
 		this.add(pnlTop);
@@ -262,7 +262,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		if (e.getSource () == btnHome) {
 			clientController.setViewParentHomeWindow();
 		}
-		if (e.getSource() == btnProfileSymbol) {
+		if (e.getSource() == btnProfile) {
 			clientController.setViewParentProfileWindow();
 		}
 

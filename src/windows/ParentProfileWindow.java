@@ -91,7 +91,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		
 		btnHome = new JButton();
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
-		btnHome.setBounds(5, 5, 80, 65);
+		btnHome.setBounds(5, 5, 75, 70);
 		btnHome.addActionListener(this);
 		pnlTop.add(btnHome);
 
@@ -104,7 +104,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		btnProfile = new JButton();
 		btnProfile.addActionListener(this);
 		dammtussParentProfile = new ImageIcon("images/dammtussParentProfile.png");
-		btnProfile.setBounds(10, 16, 90, 50);
+		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(dammtussParentProfile);
 
 		pnlMiddle.add(btnProfile);
