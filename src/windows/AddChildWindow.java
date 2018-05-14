@@ -186,33 +186,26 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			controller.setViewChildTaskWindow();
+			controller.setViewParentTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
 			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnProfilePic) {
+			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
 			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
-			controller.addChildProfile(childProfile);
-			controller.updateProfilesList();
-			
+			try {
+				controller.addChildProfile(childProfile);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		} else if (e.getSource() == btnCancel) {
 			
 		}
 
 	}
-
-//	public static void main(String[] args) throws IOException {
-//		JFrame frame = new JFrame();
-//		AddChildWindow addChildWindow = new AddChildWindow(null);
-//		frame.add(addChildWindow);
-//		frame.pack();
-//		frame.setVisible(true);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setMinimumSize(new Dimension(400, 600));
-//	}
 }
 
 

@@ -5,8 +5,10 @@ Pappa
 Mamma
 $
 ChildProfiles:
-1
+2
 Mia
+0
+Pelle
 0
 $
 Angelina

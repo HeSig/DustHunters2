@@ -46,6 +46,7 @@ public class AccountManager {
 	private BufferedReader bufferedReader;
 
 	private void openStreams(Account account) throws IOException {
+		fileContent = new LinkedList<String>();
 		f = new File("accounts/" + account.getEmail() + ".txt");
 		fileWriter = new FileWriter(f, true);
 		bufferedWriter = new BufferedWriter(fileWriter);
