@@ -21,8 +21,8 @@ import profiles.Account;
 import profiles.ChildProfile;
 
 /**
- * A panel that parent users reach when they push the "Lägg till ett barn" button. 
- * They enter the child's details: username and password. 
+ * A panel that parent users reach when they push the "Lägg till ett barn" (Add a child) button. 
+ * They enter the child's details: username. 
  * Soon they will be able to choose a specific Dust Hunter (profile picture)
  * for their child from a drop down menu. 
  * 
@@ -49,10 +49,10 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 	private Account account;
 	private ChildProfile childProfile;
-	private ClientController controller;
+	private ClientController clientController;
 
-	public AddChildWindow(ClientController controller) throws IOException {
-		this.controller = controller;
+	public AddChildWindow(ClientController clientController) throws IOException {
+		this.clientController = clientController;
 		start();
 	}
 
@@ -186,17 +186,17 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			controller.setViewChildTaskWindow();
+			clientController.setViewChildTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			controller.setViewParentProfileWindow();
+			clientController.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnProfilePic) {
 
 		} else if (e.getSource() == btnSave) {
 			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
-			controller.addChildProfile(childProfile);
-			controller.updateProfilesList();
+			clientController.addChildProfile(childProfile);
+			clientController.updateProfilesList();
 			
 		} else if (e.getSource() == btnCancel) {
 			

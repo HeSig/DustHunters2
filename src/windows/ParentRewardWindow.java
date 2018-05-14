@@ -63,7 +63,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.WHITE);
 
-		lblRewards = new JLabel("Belöningar");
+		lblRewards = new JLabel("Poäng");
 		lblRewards.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblRewards.setBounds(125, 30, 285, 20);
 		pnlTop.add(lblRewards);

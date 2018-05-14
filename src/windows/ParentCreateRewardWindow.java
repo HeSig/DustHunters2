@@ -12,13 +12,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ChildProfile;
 
 /**
+ * A panel that adult users will see when they click "Ny Belöning" (New Reward) in the point-viewing-window.
+ * The adult user will be able to choose to active rewards, which have been created by the 
+ * developers. The rewards are shown as pictures with a number on them, which represents the 
+ * amount of points needed for a child to claim the reward. When the parents choose to activate a reward,
+ * it will become visible on a child users reward window. 
  * 
  * @author dalvig
  *
@@ -30,6 +34,9 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 	
 	private JButton btnHome = new JButton();
 	private JButton btnProfile = new JButton();
+	private JButton btnCandy = new JButton();
+	private JButton btnBeach = new JButton();
+	private JButton btnCinema = new JButton();
 	
 	private Account account;
 	private ChildProfile childProfile;
@@ -89,9 +96,23 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 		pnlMiddle.setLayout(new FlowLayout());
 		pnlMiddle.setBackground(Color.YELLOW);
 		Border border3 = BorderFactory.createEtchedBorder();
-
+        
 	
+		btnCandy.setIcon(new ImageIcon("images/candy.jpg"));
+		btnCandy.setBounds(10, 10, 10, 10);
+		btnCandy.setEnabled(true);
 
+		btnBeach.setIcon(new ImageIcon("images/beach.jpg"));
+		btnBeach.setBounds(10, 10, 10, 10);
+		btnBeach.setEnabled(true);
+
+		btnCinema.setIcon(new ImageIcon("images/cinema.png"));
+		btnCinema.setBounds(10, 10, 10, 10);
+		btnCinema.setEnabled(false);
+
+		pnlMiddle.add(btnCandy);
+		pnlMiddle.add(btnBeach);
+		pnlMiddle.add(btnCinema);
 	
 		
 
@@ -114,6 +135,7 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 		
 		// Adds all action listeners
 		btnHome.addActionListener(this);
+		btnProfile.addActionListener(this);
 	
 	}
 

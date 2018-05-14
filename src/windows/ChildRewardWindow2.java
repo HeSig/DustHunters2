@@ -44,7 +44,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	private JButton btnCandy = new JButton();
 	private JButton btnCinema = new JButton();
 	private JProgressBar pbar = new JProgressBar();
-	private int childsPoints; // Amount of points a child has accumulated through completing chores. To be used in the progress bar to visualize how they are doing.
+	private int childPoints; // Amount of points a child has accumulated through completing chores. To be used in the progress bar to visualize how they are doing.
 	
 	private Account account;
 	private ChildProfile childProfile;
@@ -130,12 +130,14 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		pnlBottom.setBackground(Color.YELLOW);
 
 		lblPTitle = new JLabel(" Poäng: ");
-		lblPTitle.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
-		lblPTitle.setBorder(border3);
+		lblPTitle.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 22));
+	//	lblPTitle.setBorder(border3);
 		lblPoints = new JLabel("55");
-		lblPoints.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblPoints.setFont(new Font("SansSerif", Font.BOLD, 22));
 		lblPoints.setForeground(Color.RED);
 		pbar = new JProgressBar();
+		pbar.setValue(childPoints);
+		
 		
 	
 		
