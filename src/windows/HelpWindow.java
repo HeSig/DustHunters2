@@ -31,7 +31,7 @@ public class HelpWindow extends JPanel implements ActionListener {
 	
 
 	private JLabel lblTitle;
-	private String text = new String("1. Hus knappen \n Tryck på huset för att komma tillbaka till första sidan. \n");
+	private String text = new String("1. Första sidan \n Tryck på huset i vänstra topp hörnet för att komma \n till första sidan. \n 2. Din profil \n Tryck på Dammtussen i högra topp hörn för att \n komma till din profil \n 3. Sysslor \n Är nyttigt för barnen \n 4. Belöningar \n Är nytigt för själen ");
 	private JButton btnHome = new JButton();
 	private JButton btnProfile = new JButton();
 	
