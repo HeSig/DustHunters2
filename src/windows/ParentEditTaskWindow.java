@@ -54,12 +54,12 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	private String [] preSelectedTasks = {"Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden"};
 	private String [] preSelectedLocations = {"Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus"};
 	
-	private ClientController displayWindow;
+	private ClientController clientController;
 	
 
 
-	public ParentEditTaskWindow (ClientController displayWindow) {
-		this.displayWindow = displayWindow;
+	public ParentEditTaskWindow (ClientController clientController) {
+		this.clientController = clientController;
 		try {
 			start();
 		} catch (IOException e) {
@@ -197,10 +197,10 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == btnHome) {
-			displayWindow.setViewParentHomeWindow();
+			clientController.setViewParentHomeWindow();
 		}
 		if(e.getSource() == btnCancel) {
-			displayWindow.setViewParentTaskWindow();
+			clientController.setViewParentTaskWindow();
 		}
 		if(e.getSource() == btnSave) {
 			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
@@ -209,13 +209,13 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 			//Server add new task to the account.
 			try {
 				
-				displayWindow.addTaskToAccount(task);
+				clientController.addTaskToAccount(task);
 				//Fullösning
 				Thread.sleep(500);
 				//Fullösning
-				displayWindow.getAccount().setTaskList(displayWindow.getTasksFromAccount());
+				clientController.getAccount().setTaskList(clientController.getTasksFromAccount());
 				Thread.sleep(500);
-				displayWindow.updateTaskLists();
+				clientController.updateTaskLists();
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -225,10 +225,10 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			displayWindow.setViewParentTaskWindow();
+			clientController.setViewParentTaskWindow();
 		}
 		if (e.getSource() == btnProfile) {
-			displayWindow.setViewParentProfileWindow();
+			clientController.setViewParentProfileWindow();
 		}
 	}
 }

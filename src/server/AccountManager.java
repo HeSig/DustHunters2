@@ -173,10 +173,11 @@ public class AccountManager {
 		// Write initial information.
 		writer.println("Account of " + account.getEmail());
 		writer.println("ParentProfiles:");
-		writer.println("Pappa");
-		writer.println("Mamma");
+		writer.println("1");
+		writer.println("Förälder1");
 		writer.println("$");
 		writer.println("ChildProfiles:");
+		writer.println("1");
 		writer.println("barn1");
 		writer.println("0");
 		writer.println("$");
@@ -222,6 +223,81 @@ public class AccountManager {
 						int value = Integer.parseInt(bufferedReader.readLine());
 						Task task = new Task(location, chore, value);
 						list.add(task);
+					}
+					break;
+				}
+
+			}
+			bufferedReader.close();
+			fileReader.close();
+			pr.close();
+			bufferedWriter.close();
+			fileWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Something is wrong here too");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public List<ParentProfile> getParentProfiles(Account account){
+		List<ParentProfile> list = new LinkedList<ParentProfile>();
+
+		FileWriter fileWriter;
+		try {
+			fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			PrintWriter pr = new PrintWriter(bufferedWriter);
+			FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String line = "";
+			while (line != null) {
+				line = bufferedReader.readLine();
+				if (line.equals("ParentProfiles:")) {
+					int parentProfileCount = Integer.parseInt(bufferedReader.readLine());
+					for (int i = 0; i < parentProfileCount; i++) {
+						ParentProfile parentProfile = new ParentProfile(bufferedReader.readLine());
+						list.add(parentProfile);
+					}
+					break;
+				}
+
+			}
+			bufferedReader.close();
+			fileReader.close();
+			pr.close();
+			bufferedWriter.close();
+			fileWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Something is wrong here too");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	public List<ChildProfile> getChildProfiles(Account account){
+		List<ChildProfile> list = new LinkedList<ChildProfile>();
+
+		FileWriter fileWriter;
+		try {
+			fileWriter = new FileWriter("accounts/" + account.getEmail() + ".txt", true);
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			PrintWriter pr = new PrintWriter(bufferedWriter);
+			FileReader fileReader = new FileReader("accounts/" + account.getEmail() + ".txt");
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String line = "";
+			while (line != null) {
+				line = bufferedReader.readLine();
+				if (line.equals("ChildProfiles:")) {
+					int childProfileCount = Integer.parseInt(bufferedReader.readLine());
+					for (int i = 0; i < childProfileCount; i++) {
+						String name = bufferedReader.readLine();
+						int points = Integer.parseInt(bufferedReader.readLine());
+						ChildProfile childProfile = new ChildProfile(name, points);
+						list.add(childProfile);
 					}
 					break;
 				}
@@ -304,5 +380,114 @@ public class AccountManager {
 			out.write(fileContent.get(i) + "\n");
 		}
 		out.close();
+	}
+	public void addParentProfile(Account account, ParentProfile parentProfile) throws IOException {
+		File f = new File("accounts/" + account.getEmail() + ".txt");
+		LinkedList<String> fileContent = new LinkedList();
+		FileWriter fileWriter = new FileWriter(f, true);
+		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		PrintWriter pr = new PrintWriter(bufferedWriter);
+		FileReader fileReader = new FileReader(f);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
+			if (line.equals("ParentProfiles:")) {
+				bufferedReader.readLine();
+				fileContent.add("" + (account.getParentProfileList().size() + 1));
+				for (int i = 0; i < account.getParentProfileList().size(); i++) {
+					fileContent.add(account.getParentProfileFromList(i).getName());
+				}
+				fileContent.add(parentProfile.getName());
+				break;
+			}
+		}
+		while (!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+		fileContent.add(line);
+
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line == null) {
+				break;
+			}
+			fileContent.add(line);
+		}
+
+		bufferedReader.close();
+		fileReader.close();
+		pr.close();
+		bufferedWriter.close();
+		fileWriter.close();
+
+		if (f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
+	}
+	
+
+	public void addChildProfile(Account account, ChildProfile childProfile) throws IOException {
+		File f = new File("accounts/" + account.getEmail() + ".txt");
+		LinkedList<String> fileContent = new LinkedList();
+		FileWriter fileWriter = new FileWriter(f, true);
+		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		PrintWriter pr = new PrintWriter(bufferedWriter);
+		FileReader fileReader = new FileReader(f);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
+			if (line.equals("ChildProfiles:")) {
+				bufferedReader.readLine();
+				fileContent.add("" + (account.getChildProfileList().size() + 1));
+				for (int i = 0; i < account.getChildProfileList().size(); i++) {
+					fileContent.add(account.getChildProfileFromList(i).getName());
+					fileContent.add("" + account.getChildProfileFromList(i).getPoints());
+				}
+				fileContent.add(childProfile.getName());
+				fileContent.add(""+childProfile.getPoints());
+				break;
+			}
+		}
+		while (!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+		fileContent.add(line);
+
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line == null) {
+				break;
+			}
+			fileContent.add(line);
+		}
+
+		bufferedReader.close();
+		fileReader.close();
+		pr.close();
+		bufferedWriter.close();
+		fileWriter.close();
+
+		if (f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
+		
 	}
 }

@@ -3,6 +3,7 @@ package server;
 import java.io.*;
 import java.net.*;
 import profiles.Account;
+import profiles.ChildProfile;
 import tasks.Task;
 import client.UserController;
 import locations.Location;
@@ -106,12 +107,27 @@ public class Server extends Thread {
 					//accountManager.addTask(account, task);
 
 				}
+				// Get tasks
 				if(request.getRequest().equals("GetTasks")) {
 					Account account = request.getAccount();
 					oos.writeObject(accountManager.getTask(account));
 					oos.flush();
 				}
-				// System.out.println("Mottaget och levererat");
+				//Add child profile
+				if(request.getRequest().equals("AddChildProfile")) {
+					ChildProfile childProfile = (ChildProfile) ois.readObject();
+					Account account = request.getAccount();
+					accountManager.addChildProfile(account, childProfile);
+				}
+				//Get profiles
+				if(request.getRequest().equals("GetProfiles")) {
+					Account account = request.getAccount();
+					oos.writeObject(accountManager.getParentProfiles(account));
+					oos.flush();
+					oos.writeObject(accountManager.getChildProfiles(account));
+					oos.flush();
+				}
+				
 				closeStreams();
 				// System.out.println("Closed");
 			} catch (IOException | ClassNotFoundException e) {

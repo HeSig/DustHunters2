@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 
 import profiles.Account;
 
+import windows.ClientController;
+
 
 /**
  * GUI for children's profile

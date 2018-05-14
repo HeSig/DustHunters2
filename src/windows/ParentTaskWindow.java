@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -16,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
 import profiles.Account;
@@ -32,7 +34,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private ParentProfile parentProfile;
 	private JLabel lblChildTask;
 
-	private ClientController displayWindow;
+	private ClientController clientController;
 	
 
 	private JLabel lblCheck;
@@ -45,6 +47,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	private ImageIcon dustBallImage;
 	private LinkedList<JPanel> taskPanelList = new LinkedList();
 	private JPanel pnlMiddle;
+
+	
 
 	public Account getAccount () {
 		return account;
@@ -76,8 +80,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.lblChildDoingTask = lblChildDoingTask;
 
 	}
-	public ParentTaskWindow (ClientController displayWindow) {
-		this.displayWindow = displayWindow;
+	public ParentTaskWindow (ClientController clientController) {
+		this.clientController = clientController;
 		start();
 
 	}
@@ -193,13 +197,17 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		btnEditTask.setBounds(10, 100, 300, 50);
 		pnlBottom.add(btnEditTask);
 
-
+	
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
+		
+		
 	}
 
 
+
+	
 	//	@Override
 	//	public void actionPerformed(ActionEvent e) {
 	//		if (e.getSource() == btnHome) {
@@ -227,13 +235,13 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnHome) {
-			displayWindow.setViewParentHomeWindow();
+			clientController.setViewParentHomeWindow();
 		}
 		if(e.getSource() == btnAddTask) {
-			displayWindow.setViewParentEditTaskWindow();
+			clientController.setViewParentEditTaskWindow();
 		}
 		if(e.getSource() == btnProfileSymbol) {
-			displayWindow.setViewParentProfileWindow();
+			clientController.setViewParentProfileWindow();
 		}
 
 	}
@@ -244,8 +252,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 		c.gridy = 0;
 
-		for(int i = 0; i < displayWindow.getAccount().getTaskList().size(); i++) {
-			Task task = displayWindow.getAccount().getTaskList().get(i);
+		for(int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
+			Task task = clientController.getAccount().getTaskList().get(i);
 			pnlMiddle.add(new TaskPanel(task.getLocationName(),task.getChoreName(),task.getTaskValue()), c);
 			c.gridy++;
 		}
@@ -296,6 +304,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 			c.anchor = GridBagConstraints.NORTHWEST;
 			c.weightx = 1;
 			c.weighty = 1;
+			
 
 			add(location, c);
 			add(chore, c);
