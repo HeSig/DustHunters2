@@ -156,6 +156,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 		btnBeach.addActionListener(this);
 		btnCandy.addActionListener(this);
 		btnCinema.addActionListener(this);
+		btnProfile.addActionListener(this);
 	}
 
 	@Override

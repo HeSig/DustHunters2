@@ -64,7 +64,7 @@ public class ClientController implements ActionListener, Observer {
 			crw = new ChildRewardWindow2(this);
 			cpw = new ChildProfileWindow(this);
 			chw = new ChildHomeWindow (this);
-			psw = new ProfileStartWindow("ProfileStartWindow", this);
+			psw = new ProfileStartWindow(this);
 			phw = new ParentHomeWindow(this);
 			petw = new ParentEditTaskWindow(this);
 			ptw = new ParentTaskWindow(this);

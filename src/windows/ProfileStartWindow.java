@@ -22,7 +22,7 @@ import profiles.ParentProfile;
  * 
  * @author Henrik The initial profile window
  */
-public class ProfileStartWindow extends AbstractWindowUI {
+public class ProfileStartWindow extends JPanel {
 
 	private Account account;
 	private JButton prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8, prof9, prof10;
@@ -32,9 +32,8 @@ public class ProfileStartWindow extends AbstractWindowUI {
 	private JPanel profilePanel = new JPanel(layout);
 	private ActionListener actionListener;
 
-	public ProfileStartWindow(String title, ClientController displayWindow) {
-		super(title);
-		this.account = displayWindow.getAccount();
+	public ProfileStartWindow(ClientController clientController) {
+		this.account = clientController.getAccount();
 
 		actionListener = new ActionListener() {
 			@Override
@@ -42,11 +41,11 @@ public class ProfileStartWindow extends AbstractWindowUI {
 				for (int i = 0; i < activeButtons.size(); i++) {
 					if (e.getSource() == activeButtons.get(i)) {
 						if (isParent(activeButtons.get(i).getText())) {
-							displayWindow.setParentProfile(activeButtons.get(i).getText());
-							displayWindow.setViewParentHomeWindow();
+							clientController.setParentProfile(activeButtons.get(i).getText());
+							clientController.setViewParentHomeWindow();
 						} else {
-							displayWindow.setChildProfile(activeButtons.get(i).getText());
-							displayWindow.setViewChildHomeWindow();
+							clientController.setChildProfile(activeButtons.get(i).getText());
+							clientController.setViewChildHomeWindow();
 						}
 						break;
 					}

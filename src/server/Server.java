@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 import profiles.Account;
 import profiles.ChildProfile;
+import profiles.ParentProfile;
 import tasks.Task;
 import client.UserController;
 import locations.Location;
@@ -92,8 +93,7 @@ public class Server extends Thread {
 				// Loginfunction.
 				if (request.getRequest().equals("Login")) {
 					Account account = request.getAccount();
-					Account res;
-					res = AccountManager.loginUser(account);
+					Account res = new Account (accountManager.loginUser(account));
 					oos.writeObject(res);
 					oos.flush();
 				}
@@ -126,6 +126,12 @@ public class Server extends Thread {
 					oos.flush();
 					oos.writeObject(accountManager.getChildProfiles(account));
 					oos.flush();
+				}
+				//Remove task
+				if(request.getRequest().equals("RemoveTask")) {
+					Account account = request.getAccount();
+					Task task = (Task) ois.readObject();
+					accountManager.removeTask(account, task);
 				}
 				
 				closeStreams();

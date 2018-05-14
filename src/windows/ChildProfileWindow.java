@@ -31,7 +31,7 @@ import windows.ClientController;
 
 public class ChildProfileWindow extends JPanel implements ActionListener {
 	private Account account;
-	private String name;
+	private String name; //Delete? - Angie
 
 	private JLabel lblToDo;
 	private JLabel lblTitleChores; // Title, in middle of top panel

@@ -44,10 +44,10 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 
 	private Account account;
 	private ParentProfile parentProfile;
-	private ClientController displayWindow;
+	private ClientController clientController;
 
-	public ParentSettingsWindow(ClientController displayWindow) throws IOException {
-		this.displayWindow = displayWindow;
+	public ParentSettingsWindow(ClientController clientController) throws IOException {
+		this.clientController = clientController;
 		start();
 	}
 
@@ -171,10 +171,10 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			displayWindow.setViewParentHomeWindow();
+			clientController.setViewParentHomeWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			displayWindow.setViewParentProfileWindow();
+			clientController.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
 
