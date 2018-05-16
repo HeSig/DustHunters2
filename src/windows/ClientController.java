@@ -235,8 +235,7 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewParentRewardWindow() {
 		setPanel (prw);
 	}
-
-	
-
-	
+	public void completeTask(Task task, ChildProfile childProfile) throws IOException {
+		client.setTaskCompleted(account, task, childProfile);
+	}
 }

@@ -13,55 +13,12 @@ Pelle
 $
 Angelina
 Tasks
-16
+1
 Köket
 Skriv bok
 10
-Toaletten
-Damma
-1
-Hallen
-Dammsuga
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Damma
-10
-Toaletten
-Gå ut med hunden
-10
-Toaletten
-Gå ut med hunden
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
+true
+Pelle
 $
 Rewards
 $

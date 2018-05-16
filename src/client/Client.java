@@ -295,4 +295,24 @@ public class Client extends Thread {
 		setInactive("Logging in");
 		return res;
 	}
+
+	public void setTaskCompleted(Account account, Task task, ChildProfile childProfile) throws IOException {
+		setActive("Completing task");
+		serverRequest = "CompleteTask";
+		
+		openStreams();
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(task);
+		oos.writeObject(childProfile);
+		oos.flush();
+		
+		closeStreams();
+		for(ChildProfile c : account.getChildProfileList()) {
+			if(c == childProfile) {
+				c.addPoints(task.getTaskValue());
+			}
+		}
+		setInactive("Completing task");
+		
+	}
 }

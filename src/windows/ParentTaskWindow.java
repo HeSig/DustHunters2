@@ -254,7 +254,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 		for(int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
 			Task task = clientController.getAccount().getTaskList().get(i);
-			pnlMiddle.add(new TaskPanel(task.getLocationName(),task.getChoreName(),task.getTaskValue()), c);
+			pnlMiddle.add(new TaskPanel(task), c);
 			c.gridy++;
 		}
 		pnlMiddle.revalidate();
@@ -265,8 +265,6 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
  * @author Henrik Sigeman
  * 
  */
-
-
 	private class TaskPanel extends JPanel{
 		private String locationName = "";
 		private String choreName = "";
@@ -275,15 +273,39 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		private JLabel chore;
 		private JLabel value;
 		private JLabel done;
+		private JButton completedButton;
+		private ActionListener listener;
 
-		public TaskPanel(String locationName, String choreName, int choreValue) {
-			this.locationName = locationName;
-			this.choreName = choreName;
-			this.choreValue = choreValue;
+		public TaskPanel(Task task) {
+			this.locationName = task.getLocationName();
+			this.choreName = task.getChoreName();
+			this.choreValue = task.getTaskValue();
 			location = new JLabel(locationName);
 			chore = new JLabel(choreName);
 			value = new JLabel(""+choreValue);
-			done = new JLabel("Inte färdig");
+			completedButton = new JButton("Godkänn");
+			completedButton.setEnabled(task.getCompleted());
+			listener = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(e.getSource() == completedButton) {
+						try {
+							clientController.completeTask(task, task.getChildProfile());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			};
+			completedButton.addActionListener(listener);
+			
+			
+			String str = "Inte färdig";
+			if(task.getCompleted()) {
+				str = "Färdig";
+			}
+			done = new JLabel(str);
 
 			//setBounds(12, 130, 358, 140);
 			setLayout(new GridBagLayout());
@@ -310,6 +332,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 			add(chore, c);
 			add(value, c);
 			add(done, c);
+			add(completedButton, c);
 		}
 
 

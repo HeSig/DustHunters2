@@ -239,8 +239,23 @@ public class AccountManager {
 				for (int i = 0; i < taskCount; i++) {
 					Location location = new Location(bufferedReader.readLine());
 					Chore chore = new Chore(bufferedReader.readLine());
+					
 					int value = Integer.parseInt(bufferedReader.readLine());
-					Task task = new Task(location, chore, value);
+					String completed = bufferedReader.readLine();
+					String assignee = bufferedReader.readLine();
+					ChildProfile childProfile;
+					if(assignee.equals("null")) {
+						childProfile = null;
+					}else {
+						childProfile = account.getChildProfileFromList(assignee);
+					}
+					Boolean bool;
+					if(completed.equals("true")) {
+						bool = true;
+					}else {
+						bool = false;
+					}
+					Task task = new Task(location, chore, value, bool, childProfile);
 					list.add(task);
 				}
 				break;
@@ -321,10 +336,12 @@ public class AccountManager {
 					fileContent.add(account.getTaskFromList(i).getLocationName());
 					fileContent.add(account.getTaskFromList(i).getChoreName());
 					fileContent.add("" + account.getTaskFromList(i).getTaskValue());
+					fileContent.add("" + account.getTaskFromList(i).getCompleted());
 				}
 				fileContent.add(task.getLocationName());
 				fileContent.add(task.getChoreName());
 				fileContent.add("" + task.getTaskValue());
+				fileContent.add("" + task.getCompleted());
 				break;
 			}
 		}
@@ -453,16 +470,14 @@ public class AccountManager {
 			if (line.equals("Tasks")) {
 				bufferedReader.readLine();
 				fileContent.add("" + (account.getTaskList().size() - 1));
-				for (int i = 0; i < account.getTaskList().size(); i++) {
+				for (int i = 0; i < account.getTaskList().size()-1; i++) {
 					if (!account.getTaskFromList(i).equals(task)) {
 						fileContent.add(account.getTaskFromList(i).getLocationName());
 						fileContent.add(account.getTaskFromList(i).getChoreName());
 						fileContent.add("" + account.getTaskFromList(i).getTaskValue());
+						fileContent.add("" + account.getTaskFromList(i).getCompleted());
 					}
 				}
-				fileContent.add(task.getLocationName());
-				fileContent.add(task.getChoreName());
-				fileContent.add("" + task.getTaskValue());
 				break;
 			}
 		}
@@ -492,5 +507,60 @@ public class AccountManager {
 		}
 		out.close();
 
+	}
+
+	public void completeTask(Account account, Task task, ChildProfile childProfile) throws IOException {
+		removeTask(account, task);
+		openStreams(account);
+		
+		String line = "";
+		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
+			if (line.equals("ChildProfiles:")) {
+				fileContent.add(bufferedReader.readLine());
+				for (int i = 0; i < account.getChildProfileList().size(); i++) {
+					if (!account.getChildProfileFromList(i).getName().equals(childProfile.getName())) {
+						fileContent.add(account.getChildProfileFromList(i).getName());
+						fileContent.add(""+account.getChildProfileFromList(i).getPoints());
+					}else {
+						fileContent.add(childProfile.getName());
+						int points = childProfile.getPoints() + task.getTaskValue();
+						System.out.println(""+task.getTaskValue());
+						fileContent.add(""+points);
+					}
+				}
+				System.out.println("Ending loop");
+				break;
+			}
+		}
+		while(!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+		
+		fileContent.add(line);
+		
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line == null) {
+				break;
+			}
+			fileContent.add(line);
+		}
+
+		closeStreams();
+
+		if (f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
+		
+		closeStreams();
+		
 	}
 }
