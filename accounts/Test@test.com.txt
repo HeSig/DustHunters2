@@ -11,7 +11,7 @@ Mia
 $
 Angelina
 Tasks
-16
+23
 Köket
 Skriv bok
 10
@@ -59,6 +59,27 @@ Damma
 10
 Sovrummet
 Damma
+10
+Sovrummet
+Damma
+10
+Sovrummet
+Damma
+10
+Vardagsrummet
+Damma
+10
+Sovrummet
+Diska
+10
+Toaletten
+Diska
+10
+utomhus
+Dammsuga
+10
+Vardagsrummet
+Bädda
 10
 $
 Rewards
