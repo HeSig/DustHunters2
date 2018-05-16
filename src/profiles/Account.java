@@ -74,6 +74,16 @@ public class Account implements java.io.Serializable {
 	public ChildProfile getChildProfileFromList(int i) {
 		return childProfileList.get(i);
 	}
+	public ChildProfile getChildProfileFromList(String name) {
+		ChildProfile child = null;
+		for(ChildProfile c: childProfileList) {
+			if(c.getName().equals(name)) {
+				child = c;
+				
+			}
+		}
+		return child;
+	}
 	
 	public ParentProfile getParentProfileFromList(int i) {
 		return parentProfileList.get(i);

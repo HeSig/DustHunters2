@@ -3,6 +3,7 @@ package tasks;
 import java.io.Serializable;
 
 import locations.Location;
+import profiles.ChildProfile;
 
 /**
  * 
@@ -14,6 +15,7 @@ public class Task implements Serializable{
 	private Chore chore;
 	private Boolean completed = false;
 	private int value;
+	private ChildProfile child;
 
 	/**
 	 * Creates a new task
@@ -29,6 +31,15 @@ public class Task implements Serializable{
 		this.location = location;
 		this.chore = chore;
 		this.setTaskValue(value);
+		child = new ChildProfile("", 0);
+	}
+
+	public Task(Location location2, Chore chore2, int value2, Boolean bool, ChildProfile child) {
+		this.location = location2;
+		this.chore = chore2;
+		this.setTaskValue(value2);
+		this.setCompleted(bool);
+		this.child = child;
 	}
 
 	/**
@@ -48,6 +59,14 @@ public class Task implements Serializable{
 	public Chore getChore() {
 		return chore;
 	}
+	
+	public void setChildProfile(ChildProfile child) {
+		this.child = child;
+	}
+	
+	public ChildProfile getChildProfile() {
+		return child;
+	}
 
 	/**
 	 * returns wether the task is completed or not.
@@ -60,9 +79,10 @@ public class Task implements Serializable{
 
 	/**
 	 * Set the task as completed.
+	 * @param bool 
 	 */
-	public void setCompleted() {
-		completed = true;
+	public void setCompleted(Boolean bool) {
+		completed = bool;
 	}
 
 	/**

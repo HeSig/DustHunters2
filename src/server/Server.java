@@ -107,6 +107,13 @@ public class Server extends Thread {
 					//accountManager.addTask(account, task);
 
 				}
+				//Complete task
+				if(request.getRequest().equals("CompleteTask")) {
+					Account account = request.getAccount();
+					Task task = (Task)ois.readObject();
+					ChildProfile childProfile = (ChildProfile)ois.readObject();
+					accountManager.completeTask(account, task, childProfile);
+				}
 				// Get tasks
 				if(request.getRequest().equals("GetTasks")) {
 					Account account = request.getAccount();

@@ -1,7 +1,6 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -11,8 +10,6 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -21,8 +18,8 @@ import profiles.Account;
 import profiles.ChildProfile;
 
 /**
- * A panel that parent users reach when they push the "Lägg till ett barn" (Add a child) button. 
- * They enter the child's details: username. 
+ * A panel that parent users reach when they push the "Lägg till ett barn" button. 
+ * They enter the child's details: username and password. 
  * Soon they will be able to choose a specific Dust Hunter (profile picture)
  * for their child from a drop down menu. 
  * 
@@ -33,6 +30,10 @@ import profiles.ChildProfile;
 public class AddChildWindow extends JPanel implements ActionListener {
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6190137821496434029L;
 	private JLabel lblTitle;
 	private JLabel lblChildName;
 	private JLabel lblChildPassword;
@@ -44,15 +45,15 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
-	private JButton btnProfilePic = new JButton(); //otydligt namn
+	private JButton btnProfilePic = new JButton();
 
 
 	private Account account;
 	private ChildProfile childProfile;
-	private ClientController clientController;
+	private ClientController controller;
 
-	public AddChildWindow(ClientController clientController) throws IOException {
-		this.clientController = clientController;
+	public AddChildWindow(ClientController controller) throws IOException {
+		this.controller = controller;
 		start();
 	}
 
@@ -186,33 +187,26 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			clientController.setViewChildTaskWindow();
+			controller.setViewParentTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnProfilePic) {
+			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
 			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
-			clientController.addChildProfile(childProfile);
-			clientController.updateProfilesList();
-			
+			try {
+				controller.addChildProfile(childProfile);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		} else if (e.getSource() == btnCancel) {
 			
 		}
 
 	}
-
-//	public static void main(String[] args) throws IOException {
-//		JFrame frame = new JFrame();
-//		AddChildWindow addChildWindow = new AddChildWindow(null);
-//		frame.add(addChildWindow);
-//		frame.pack();
-//		frame.setVisible(true);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setMinimumSize(new Dimension(400, 600));
-//	}
 }
 
 

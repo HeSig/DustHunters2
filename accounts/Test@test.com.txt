@@ -5,12 +5,15 @@ Pappa
 Mamma
 $
 ChildProfiles:
-1
+2
 Mia
+0
+Pelle
 0
 $
 Angelina
 Tasks
+<<<<<<< HEAD
 23
 Köket
 Skriv bok
@@ -81,6 +84,13 @@ Dammsuga
 Vardagsrummet
 Bädda
 10
+=======
+1
+Köket
+Skriv bok
+10
+true
+Pelle
 $
 Rewards
 $
