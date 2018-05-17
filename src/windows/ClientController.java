@@ -17,6 +17,7 @@ import client.UserController;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
+import rewards.Reward;
 import tasks.Task;
 
 /**
@@ -44,7 +45,7 @@ public class ClientController implements ActionListener, Observer {
 	private ParentEditTaskWindow petw;
 	private ParentTaskWindow ptw;
 	private ParentProfileWindow ppw;
-	private ParentRewardWindow prw; 
+	private ParentRewardWindow prw;
 	private ParentSettingsWindow pSettingsw;
 	private Account account;
 	private Client client;
@@ -59,18 +60,18 @@ public class ClientController implements ActionListener, Observer {
 		this.account = account;
 		frame = new JFrame();
 		try {
-			acw = new AddChildWindow (this);
+			acw = new AddChildWindow(this);
 			ctw = new ChildTaskWindow(this);
 			crw = new ChildRewardWindow2(this);
 			cpw = new ChildProfileWindow(this);
-			chw = new ChildHomeWindow (this);
+			chw = new ChildHomeWindow(this);
 			psw = new ProfileStartWindow(this);
 			phw = new ParentHomeWindow(this);
 			petw = new ParentEditTaskWindow(this);
 			ptw = new ParentTaskWindow(this);
 			ppw = new ParentProfileWindow(this);
-			prw = new ParentRewardWindow (this);
-			pSettingsw = new ParentSettingsWindow (this);
+			prw = new ParentRewardWindow(this);
+			pSettingsw = new ParentSettingsWindow(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,29 +103,32 @@ public class ClientController implements ActionListener, Observer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
+
 	public void updateProfilesList() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public LinkedList<Task> addTaskToAccount(Task task) throws UnknownHostException, IOException {
 		return client.addTaskToServer(account, task);
 	}
-	public void addChildProfile(ChildProfile childProfile) throws IOException{
+
+	public void addChildProfile(ChildProfile childProfile) throws IOException {
 		client.addChildProfileToServer(account, childProfile);
 	}
-	public void addParentProfile(ParentProfile parentProfile) throws IOException{
+
+	public void addParentProfile(ParentProfile parentProfile) throws IOException {
 		client.addParentProfileToServer(account, parentProfile);
 	}
 
 	public Account getAccount() {
 		return account;
 	}
-	
-	public LinkedList<Task> getTasksFromAccount(){
-		while(clientIsRunning) {
+
+	public LinkedList<Task> getTasksFromAccount() {
+		while (clientIsRunning) {
 			try {
 				Thread.sleep(1000);
 				System.out.println(clientIsRunning);
@@ -133,7 +137,7 @@ public class ClientController implements ActionListener, Observer {
 				e.printStackTrace();
 			}
 		}
-		
+
 		LinkedList<Task> list = new LinkedList<Task>();
 		try {
 			list = client.getTasksFromServer(account);
@@ -155,7 +159,7 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewParentProfileWindow() {
 		setPanel(ppw);
 	}
-	
+
 	public void setViewParentTaskWindow() {
 		setPanel(ptw);
 	}
@@ -163,8 +167,9 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewChildTaskWindow() {
 		setPanel(ctw);
 	}
-	public void setViewChildHomeWindow () {
-		setPanel (chw);
+
+	public void setViewChildHomeWindow() {
+		setPanel(chw);
 	}
 
 	public void setViewChildRewardWindow2() {
@@ -187,11 +192,13 @@ public class ClientController implements ActionListener, Observer {
 		setPanel(petw);
 
 	}
-	public void setViewAddChildWindow () {
-		setPanel (acw);
+
+	public void setViewAddChildWindow() {
+		setPanel(acw);
 	}
+
 	public void setViewParentSettingsWindow() {
-		setPanel (pSettingsw);
+		setPanel(pSettingsw);
 	}
 
 	public void setParentProfile(String name) {
@@ -232,9 +239,29 @@ public class ClientController implements ActionListener, Observer {
 		ptw.updateTasks();
 	}
 
-	public void setViewParentRewardWindow() {
-		setPanel (prw);
+	public LinkedList<Reward> addReward(Reward reward) throws IOException {
+		LinkedList<Reward> rewardList;
+		rewardList = client.addRewardToServer(account, reward);
+		return rewardList;
 	}
+
+	public LinkedList<Reward> removeReward(Reward reward) throws ClassNotFoundException, IOException {
+		LinkedList<Reward> rewardList;
+		rewardList = client.removeRewardFromServer(account, reward);
+		return rewardList;
+	}
+
+	public LinkedList<Reward> addPointsToReward(Reward reward, int points, ChildProfile childProfile)
+			throws IOException {
+		LinkedList<Reward> rewardList;
+		rewardList = client.addPointsToReward(reward, points, childProfile, account);
+		return rewardList;
+	}
+
+	public void setViewParentRewardWindow() {
+		setPanel(prw);
+	}
+
 	public LinkedList<Task> completeTask(Task task, ChildProfile childProfile) throws IOException {
 		LinkedList<Task> taskList;
 		taskList = client.setTaskCompleted(account, task, childProfile);

@@ -361,4 +361,23 @@ public class Client extends Thread {
 		return taskList;
 		
 	}
+
+	public LinkedList<Reward> addPointsToReward(Reward reward, int points, ChildProfile childProfile, Account account) throws IOException {
+		setActive("Add points to reward ");
+		serverRequest = "AddRewardPoints";
+		LinkedList<Reward> rewardList = null;
+		
+		openStreams();
+		oos.writeObject(new ServerRequest(account, serverRequest));
+		oos.writeObject(reward);
+		oos.writeObject(childProfile);
+		oos.writeInt(points);
+		oos.flush();
+		try {
+			rewardList = (LinkedList<Reward>) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return rewardList;
+	}
 }
