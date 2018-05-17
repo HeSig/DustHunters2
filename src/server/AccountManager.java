@@ -122,10 +122,16 @@ public class AccountManager {
 		account.setTaskList(list);
 
 		// Rewards
-		if (br.readLine().equals("Rewards")) {
+		while (!readLine.equals("Rewards:")) {
 			readLine = br.readLine();
+		}
+		if (readLine.equals("Rewards:")) {
+			br.readLine();
 			while (!readLine.equals("$")) {
-				account.addReward(new Reward(br.readLine(), Integer.parseInt(br.readLine())));
+				String rewardName = br.readLine();
+				int rewardValue = Integer.parseInt(br.readLine());
+				int rewardProgress = Integer.parseInt(br.readLine());
+				account.addReward(new Reward(rewardName, rewardValue, rewardProgress));
 				readLine = br.readLine();
 			}
 		}
@@ -154,7 +160,6 @@ public class AccountManager {
 					bufferedReader.close();
 					fileReader.close();
 					Account newAccount = new Account(buildAccount(account.getEmail(), account.getPassword()));
-					bufferedReader.close();
 					fileReader.close();
 					return newAccount;
 				}
@@ -210,10 +215,11 @@ public class AccountManager {
 		writer.println("barn1");
 		writer.println("0");
 		writer.println("$");
-		writer.println("Tasks");
+		writer.println("Tasks:");
 		writer.println("0");
 		writer.println("$");
-		writer.println("Rewards");
+		writer.println("Rewards:");
+		writer.println("0");
 		writer.println("$");
 
 		closeStreams();
@@ -234,25 +240,25 @@ public class AccountManager {
 		String line = "";
 		while (line != null) {
 			line = bufferedReader.readLine();
-			if (line.equals("Tasks")) {
+			if (line.equals("Tasks:")) {
 				int taskCount = Integer.parseInt(bufferedReader.readLine());
 				for (int i = 0; i < taskCount; i++) {
 					Location location = new Location(bufferedReader.readLine());
 					Chore chore = new Chore(bufferedReader.readLine());
-					
+
 					int value = Integer.parseInt(bufferedReader.readLine());
 					String completed = bufferedReader.readLine();
 					String assignee = bufferedReader.readLine();
 					ChildProfile childProfile;
-					if(assignee.equals("null")) {
+					if (assignee.equals("null")) {
 						childProfile = null;
-					}else {
+					} else {
 						childProfile = account.getChildProfileFromList(assignee);
 					}
 					Boolean bool;
-					if(completed.equals("true")) {
+					if (completed.equals("true")) {
 						bool = true;
-					}else {
+					} else {
 						bool = false;
 					}
 					Task task = new Task(location, chore, value, bool, childProfile);
@@ -281,7 +287,6 @@ public class AccountManager {
 				}
 				break;
 			}
-
 		}
 		closeStreams();
 
@@ -305,7 +310,6 @@ public class AccountManager {
 				}
 				break;
 			}
-
 		}
 		closeStreams();
 
@@ -337,11 +341,17 @@ public class AccountManager {
 					fileContent.add(account.getTaskFromList(i).getChoreName());
 					fileContent.add("" + account.getTaskFromList(i).getTaskValue());
 					fileContent.add("" + account.getTaskFromList(i).getCompleted());
+					try {
+						fileContent.add("" + account.getTaskFromList(i).getChildProfile().getName());
+					} catch (NullPointerException e) {
+						fileContent.add("null");
+					}
 				}
 				fileContent.add(task.getLocationName());
 				fileContent.add(task.getChoreName());
 				fileContent.add("" + task.getTaskValue());
 				fileContent.add("" + task.getCompleted());
+				fileContent.add("null");
 				break;
 			}
 		}
@@ -467,15 +477,20 @@ public class AccountManager {
 		String line;
 		while ((line = bufferedReader.readLine()) != null) {
 			fileContent.add(line);
-			if (line.equals("Tasks")) {
+			if (line.equals("Tasks:")) {
 				bufferedReader.readLine();
 				fileContent.add("" + (account.getTaskList().size() - 1));
-				for (int i = 0; i < account.getTaskList().size()-1; i++) {
-					if (!account.getTaskFromList(i).equals(task)) {
+				for (int i = 0; i < account.getTaskList().size(); i++) {
+					if (!account.getTaskFromList(i).compareTask(task)) {
 						fileContent.add(account.getTaskFromList(i).getLocationName());
 						fileContent.add(account.getTaskFromList(i).getChoreName());
 						fileContent.add("" + account.getTaskFromList(i).getTaskValue());
 						fileContent.add("" + account.getTaskFromList(i).getCompleted());
+						try {
+							fileContent.add("" + account.getTaskFromList(i).getChildProfile().getName());
+						} catch (NullPointerException e) {
+							fileContent.add("null");
+						}
 					}
 				}
 				break;
@@ -512,7 +527,7 @@ public class AccountManager {
 	public void completeTask(Account account, Task task, ChildProfile childProfile) throws IOException {
 		removeTask(account, task);
 		openStreams(account);
-		
+
 		String line = "";
 		while ((line = bufferedReader.readLine()) != null) {
 			fileContent.add(line);
@@ -521,24 +536,23 @@ public class AccountManager {
 				for (int i = 0; i < account.getChildProfileList().size(); i++) {
 					if (!account.getChildProfileFromList(i).getName().equals(childProfile.getName())) {
 						fileContent.add(account.getChildProfileFromList(i).getName());
-						fileContent.add(""+account.getChildProfileFromList(i).getPoints());
-					}else {
+						fileContent.add("" + account.getChildProfileFromList(i).getPoints());
+					} else {
 						fileContent.add(childProfile.getName());
 						int points = childProfile.getPoints() + task.getTaskValue();
-						System.out.println(""+task.getTaskValue());
-						fileContent.add(""+points);
+						System.out.println("" + task.getTaskValue());
+						fileContent.add("" + points);
 					}
 				}
-				System.out.println("Ending loop");
 				break;
 			}
 		}
-		while(!line.equals("$")) {
+		while (!line.equals("$")) {
 			line = bufferedReader.readLine();
 		}
-		
+
 		fileContent.add(line);
-		
+
 		while (line != null) {
 			line = bufferedReader.readLine();
 			if (line == null) {
@@ -559,8 +573,196 @@ public class AccountManager {
 			out.write(fileContent.get(i) + "\n");
 		}
 		out.close();
-		
+
 		closeStreams();
-		
+
+	}
+
+	public void addReward(Account account, Reward reward) throws IOException {
+		openStreams(account);
+
+		String line = "";
+		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
+			if (line.equals("Rewards:")) {
+				bufferedReader.readLine();
+				fileContent.add("" + (account.getRewardList().size() + 1));
+				for (int i = 0; i < account.getRewardList().size(); i++) {
+					// Reward name
+					fileContent.add(bufferedReader.readLine());
+					// Reward value
+					fileContent.add(bufferedReader.readLine());
+					// Reward progress
+					fileContent.add(bufferedReader.readLine());
+					// Reward icon
+					// fileContent.add(bufferedReader.readLine());
+				}
+				break;
+			}
+		}
+		fileContent.add(reward.getRewardName());
+		fileContent.add("" + reward.getPointValue());
+		fileContent.add("" + reward.getProgress());
+		while (!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+
+		fileContent.add(line);
+
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line == null) {
+				break;
+			}
+			fileContent.add(line);
+		}
+
+		closeStreams();
+
+		if (f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
+
+		closeStreams();
+
+	}
+
+	public void removeReward(Account account, Reward reward) throws IOException {
+		openStreams(account);
+
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
+			if (line.equals("Tasks:")) {
+				bufferedReader.readLine();
+				fileContent.add("" + (account.getTaskList().size() - 1));
+				for (int i = 0; i < account.getTaskList().size(); i++) {
+					if (!account.getRewardFromList(i).compareRewards(reward)) {
+						fileContent.add(account.getRewardFromList(i).getRewardName());
+						fileContent.add("" + account.getRewardFromList(i).getPointValue());
+						fileContent.add("" + account.getRewardFromList(i).getProgress());
+					}
+				}
+				break;
+			}
+		}
+		while (!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+		fileContent.add(line);
+
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line == null) {
+				break;
+			}
+			fileContent.add(line);
+		}
+
+		closeStreams();
+
+		if (f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
+
+	}
+
+	public void addRewardPoints(Account account, Reward reward, ChildProfile childProfile, int i2) throws IOException {
+		openStreams(account);
+
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			fileContent.add(line);
+			if (line.equals("ChildProfiles:")) {
+				fileContent.add(bufferedReader.readLine());
+				for (ChildProfile p : account.getChildProfileList()) {
+					if (!p.getName().equals(childProfile.getName())) {
+						fileContent.add(bufferedReader.readLine());
+						fileContent.add(bufferedReader.readLine());
+					} else {
+						fileContent.add(childProfile.getName());
+						fileContent.add("" + (childProfile.getPoints() - i2));
+					}
+				}
+
+			}
+			if (line.equals("Tasks:")) {
+				fileContent.add(bufferedReader.readLine());
+				for (int i = 0; i < account.getTaskList().size(); i++) {
+					if (!account.getRewardFromList(i).compareRewards(reward)) {
+						fileContent.add(account.getRewardFromList(i).getRewardName());
+						fileContent.add("" + account.getRewardFromList(i).getPointValue());
+						fileContent.add("" + account.getRewardFromList(i).getProgress());
+					} else {
+						fileContent.add(account.getRewardFromList(i).getRewardName());
+						fileContent.add("" + (account.getRewardFromList(i).getPointValue()));
+						fileContent.add("" + account.getRewardFromList(i).getProgress() + i2);
+					}
+				}
+				break;
+			}
+		}
+		while (!line.equals("$")) {
+			line = bufferedReader.readLine();
+		}
+		fileContent.add(line);
+
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line == null) {
+				break;
+			}
+			fileContent.add(line);
+		}
+
+		closeStreams();
+
+		if (f.exists()) {
+			f.delete();
+		}
+		FileWriter out = new FileWriter(f);
+
+		// Print new document.
+		for (int i = 0; i < fileContent.size(); i++) {
+			out.write(fileContent.get(i) + "\n");
+		}
+		out.close();
+	}
+
+	public LinkedList<Reward> getRewards(Account account) throws IOException {
+		LinkedList<Reward> list = new LinkedList();
+
+		openStreams(account);
+		String line = "";
+		while (line != null) {
+			line = bufferedReader.readLine();
+			if (line.equals("Rewards:")) {
+				int rewardCount = Integer.parseInt(bufferedReader.readLine());
+				for (int i = 0; i < rewardCount; i++) {
+					String rewardName = bufferedReader.readLine();
+					int rewardValue = Integer.parseInt(bufferedReader.readLine());
+					int rewardProgress = Integer.parseInt(bufferedReader.readLine());
+					Reward reward = new Reward(rewardName, rewardValue, rewardProgress);
+					list.add(reward);
+				}
+				break;
+			}
+		}
+		closeStreams();
+		return list;
 	}
 }

@@ -59,19 +59,20 @@ Damma
 Sovrummet
 Damma
 10
+$
+Tasks:
+3
+Badrummet
+Mata katten
+10
+false
+null
 Sovrummet
 Damma
 10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
+false
+null
 Vardagsrummet
-Damma
-10
-Sovrummet
 Diska
 10
 Toaletten
@@ -83,12 +84,12 @@ Dammsuga
 Vardagsrummet
 Bädda
 10
-1
-Köket
-Skriv bok
-10
-true
-Pelle
+false
+null
 $
-Rewards
+Rewards:
+1
+Hejsan hoppsan!
+10
+5
 $

@@ -109,8 +109,8 @@ public class ClientController implements ActionListener, Observer {
 		
 	}
 	
-	public void addTaskToAccount(Task task) throws UnknownHostException, IOException {
-		client.addTaskToServer(account, task);
+	public LinkedList<Task> addTaskToAccount(Task task) throws UnknownHostException, IOException {
+		return client.addTaskToServer(account, task);
 	}
 	public void addChildProfile(ChildProfile childProfile) throws IOException{
 		client.addChildProfileToServer(account, childProfile);
@@ -235,7 +235,9 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewParentRewardWindow() {
 		setPanel (prw);
 	}
-	public void completeTask(Task task, ChildProfile childProfile) throws IOException {
-		client.setTaskCompleted(account, task, childProfile);
+	public LinkedList<Task> completeTask(Task task, ChildProfile childProfile) throws IOException {
+		LinkedList<Task> taskList;
+		taskList = client.setTaskCompleted(account, task, childProfile);
+		return taskList;
 	}
 }

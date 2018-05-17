@@ -63,6 +63,20 @@ public class Task implements Serializable{
 	public void setChildProfile(ChildProfile child) {
 		this.child = child;
 	}
+	public Boolean compareTask(Task task) {
+		Boolean bool = true;
+		if(!location.getLocationName().equals(task.getLocationName())) {
+			bool = false;
+		}
+		if(!chore.getChoreName().equals(task.getChoreName())) {
+			bool = false;
+		}
+		if(value != task.getTaskValue()) {
+			bool = false;
+		}
+		return bool;
+		
+	}
 	
 	public ChildProfile getChildProfile() {
 		return child;
