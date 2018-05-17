@@ -77,7 +77,7 @@ public class Client extends Thread {
 			ois = new ObjectInputStream(is);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			System.out.println("Streams open");
+			//System.out.println("Streams open");
 		} catch (IOException e) {
 			System.out.println("Ojdå!");
 			e.printStackTrace();
@@ -96,7 +96,7 @@ public class Client extends Thread {
 		os.close();
 		is.close();
 		socket.close();
-		System.out.println("Streams closed");
+		//System.out.println("Streams closed");
 	}
 
 	public void addPointsToChildProfile(Account account, String childProfileName, int pointsToAdd) {
@@ -147,6 +147,12 @@ public class Client extends Thread {
 		tasks = (LinkedList<Task>) ois.readObject();
 		closeStreams();
 		setInactive("Getting tasks ");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return tasks;
 	}
 
@@ -209,21 +215,24 @@ public class Client extends Thread {
 		setInactive("Add parent profile ");
 	}
 	
-	public void removeRewardFromServer(Account account, Reward reward) throws IOException {
+	public LinkedList<Reward> removeRewardFromServer(Account account, Reward reward) throws IOException, ClassNotFoundException {
 		setActive("Remove reward ");
 		serverRequest = "RemoveReward";
+		LinkedList<Reward> rewardList = null;
 		
 		openStreams();
 		
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		oos.writeObject(reward);
 		oos.flush();
+		rewardList = (LinkedList<Reward>) ois.readObject();
 		
 		closeStreams();
 		setInactive("Remove reward ");
+		return rewardList;
 	}
 	
-	public void removeTaskFromServer(Account account, Task task) throws IOException {
+	public LinkedList<Reward> removeTaskFromServer(Account account, Task task) throws IOException {
 		setActive("Remove task ");
 		serverRequest = "RemoveTask";
 		
@@ -233,11 +242,22 @@ public class Client extends Thread {
 		oos.writeObject(task);
 		oos.flush();
 		
+		
+		
+		LinkedList<Reward> rewardList = null;
+		try {
+			rewardList = (LinkedList<Reward>) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		closeStreams();
 		setInactive("Remove task ");
+		
+		return rewardList;
 	}
-	
-	public void addRewardToServer(Account account, Reward reward) throws IOException {
+
+	public LinkedList<Reward> addRewardToServer(Account account, Reward reward) throws IOException{
 		setActive("Add reward ");
 		serverRequest = "AddReward";
 		
@@ -246,12 +266,21 @@ public class Client extends Thread {
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		oos.writeObject(reward);
 		oos.flush();
+		LinkedList<Reward> rewardList = null;
 		
+		try {
+			rewardList = (LinkedList<Reward>) ois.readObject();
+		}catch(ClassNotFoundException e) {
+			
+		}
 		closeStreams();
-		setInactive("Add reward ");
+		setInactive("Add Reward ");
+		return rewardList;
+		
 	}
+	
 
-	public void addTaskToServer(Account account, Task task) throws UnknownHostException, IOException {
+	public LinkedList<Task> addTaskToServer(Account account, Task task) throws UnknownHostException, IOException {
 		setActive("Add task ");
 		serverRequest = "AddTask";
 
@@ -260,10 +289,19 @@ public class Client extends Thread {
 		oos.writeObject(new ServerRequest(account, serverRequest));
 		oos.writeObject(task);
 		oos.flush();
+		
+		LinkedList<Task> taskList = null;
+		try {
+			taskList = (LinkedList<Task>) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		closeStreams();
 
 		setInactive("Add task ");
+		return taskList;
 	}
 
 	/**
@@ -296,7 +334,7 @@ public class Client extends Thread {
 		return res;
 	}
 
-	public void setTaskCompleted(Account account, Task task, ChildProfile childProfile) throws IOException {
+	public LinkedList<Task> setTaskCompleted(Account account, Task task, ChildProfile childProfile) throws IOException {
 		setActive("Completing task");
 		serverRequest = "CompleteTask";
 		
@@ -305,6 +343,13 @@ public class Client extends Thread {
 		oos.writeObject(task);
 		oos.writeObject(childProfile);
 		oos.flush();
+		LinkedList<Task> taskList = null;
+		try {
+			 taskList = (LinkedList<Task>) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		closeStreams();
 		for(ChildProfile c : account.getChildProfileList()) {
@@ -313,6 +358,7 @@ public class Client extends Thread {
 			}
 		}
 		setInactive("Completing task");
+		return taskList;
 		
 	}
 }

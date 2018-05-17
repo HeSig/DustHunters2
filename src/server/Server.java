@@ -5,6 +5,7 @@ import java.net.*;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
+import rewards.Reward;
 import tasks.Task;
 import client.UserController;
 import locations.Location;
@@ -36,9 +37,9 @@ public class Server extends Thread {
 	public void openStreams() throws IOException{
 		ss = new ServerSocket(port);
 
-		System.out.println("Waiting for client...");
+		System.out.println("Server waiting for client...");
 		s = ss.accept();
-		System.out.println("Client connected");
+		System.out.println("Client connected to server");
 		//System.out.println("Client connected to: " + s.toString());
 		os = s.getOutputStream();
 		oos = new ObjectOutputStream(s.getOutputStream());
@@ -102,6 +103,8 @@ public class Server extends Thread {
 					Account account = request.getAccount();
 					Task task = (Task) ois.readObject();
 					accountManager.addTask(account, task);
+					oos.writeObject(accountManager.getTask(account));
+					oos.flush();
 					//make this runnable
 //					Task task = new Task(new Location(), new Chore(), value)
 					//accountManager.addTask(account, task);
@@ -113,6 +116,8 @@ public class Server extends Thread {
 					Task task = (Task)ois.readObject();
 					ChildProfile childProfile = (ChildProfile)ois.readObject();
 					accountManager.completeTask(account, task, childProfile);
+					oos.writeObject(accountManager.getTask(account));
+					oos.flush();
 				}
 				// Get tasks
 				if(request.getRequest().equals("GetTasks")) {
@@ -140,7 +145,32 @@ public class Server extends Thread {
 					Task task = (Task) ois.readObject();
 					accountManager.removeTask(account, task);
 				}
-				
+				//Add reward
+				if(request.getRequest().equals("AddReward")) {
+					Account account = request.getAccount();
+					Reward reward = (Reward) ois.readObject();
+					accountManager.addReward(account, reward);
+					oos.writeObject(accountManager.getRewards(account));
+					oos.flush();
+				}
+				//Remove reward
+				if(request.getRequest().equals("RemoveReward")) {
+					Account account = request.getAccount();
+					Reward reward = (Reward) ois.readObject();
+					accountManager.removeReward(account, reward);
+					oos.writeObject(accountManager.getRewards(account));
+					oos.flush();
+				}
+				//Add points to reward
+				if(request.getRequest().equals("AddRewardPoints")) {
+					Account account = request.getAccount();
+					Reward reward = (Reward) ois.readObject();
+					ChildProfile childProfile = (ChildProfile) ois.readObject();
+					int i = ois.readInt();
+					accountManager.addRewardPoints(account, reward, childProfile, i);
+					oos.writeObject(accountManager.getRewards(account));
+					oos.flush();
+				}
 				closeStreams();
 				// System.out.println("Closed");
 			} catch (IOException | ClassNotFoundException e) {

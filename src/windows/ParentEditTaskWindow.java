@@ -23,9 +23,11 @@ import profiles.Account;
 import profiles.ChildProfile;
 import tasks.Chore;
 import tasks.Task;
+
 /**
- * KLAR! 
- * En metod för att spara ner valen behövs så att valen föräldern gör kommer till ParentTaskWindow.
+ * KLAR! En metod för att spara ner valen behövs så att valen föräldern gör
+ * kommer till ParentTaskWindow.
+ * 
  * @author Angelina Fransson
  *
  */
@@ -36,29 +38,27 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	private JLabel lblTitle;
 	private JLabel lblChildName;
 	private JLabel lblTask;
-	private JLabel lblLocation; 
-	
+	private JLabel lblLocation;
+
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboChooseChild;
 	@SuppressWarnings("rawtypes")
-	private JComboBox comboChooseTask; 
+	private JComboBox comboChooseTask;
 	private JComboBox comboChooseLocation;
-	
+
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
 
 	private Account account;
 	private ChildProfile childProfile;
-	private String[] childNames = {"MAIDA", "HENRIK", "ANGIE", "SARA", "KASPER", "ALLA"};
-	private String [] preSelectedTasks = {"Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden"};
-	private String [] preSelectedLocations = {"Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus"};
-	
+	private String[] childNames = { "MAIDA", "HENRIK", "ANGIE", "SARA", "KASPER", "ALLA" };
+	private String[] preSelectedTasks = { "Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden" };
+	private String[] preSelectedLocations = { "Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus" };
+
 	private ClientController clientController;
-	
 
-
-	public ParentEditTaskWindow (ClientController clientController) {
+	public ParentEditTaskWindow(ClientController clientController) {
 		this.clientController = clientController;
 		try {
 			start();
@@ -117,45 +117,39 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		pnlMiddle1.setBackground(Color.YELLOW);
 		Border border3 = BorderFactory.createEtchedBorder();
 
-	
-		
 		// Middle-Bottom Panel
 		JPanel pnlMiddle2 = new JPanel();
 		pnlMiddle2.setBounds(12, 240, 358, 180);
-		pnlMiddle2.setLayout(new GridLayout(3,2));
+		pnlMiddle2.setLayout(new GridLayout(3, 2));
 		pnlMiddle2.setBackground(Color.YELLOW);
 
-		
 		lblChildName = new JLabel("Namn: ");
 		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));
-		
-		
+
 		lblTask = new JLabel("Välj syssla: ");
 		lblTask.setFont(new Font("SansSerif", Font.BOLD, 12));
-		
-		lblLocation = new JLabel ("Välj plats: "); 
-		lblLocation.setFont(new Font ("SansSerif", Font.BOLD, 12));
-	
-		
+
+		lblLocation = new JLabel("Välj plats: ");
+		lblLocation.setFont(new Font("SansSerif", Font.BOLD, 12));
+
 		comboChooseChild = new JComboBox(childNames);
 		comboChooseChild.setSelectedIndex(1);
 		comboChooseChild.setBorder(border3);
-		
-		comboChooseTask = new JComboBox (preSelectedTasks);
+
+		comboChooseTask = new JComboBox(preSelectedTasks);
 		comboChooseTask.setSelectedIndex(1);
 		comboChooseTask.setSelectedItem(border3);
-		
-		comboChooseLocation = new JComboBox (preSelectedLocations); 
+
+		comboChooseLocation = new JComboBox(preSelectedLocations);
 		comboChooseLocation.setSelectedIndex(1);
 		comboChooseLocation.setSelectedItem(border3);
-		
+
 		pnlMiddle2.add(lblChildName);
 		pnlMiddle2.add(comboChooseChild);
 		pnlMiddle2.add(lblTask);
 		pnlMiddle2.add(comboChooseTask);
 		pnlMiddle2.add(lblLocation);
 		pnlMiddle2.add(comboChooseLocation);
-	
 
 		// Bottom Panel
 
@@ -164,29 +158,25 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
 
-		
 		btnSave = new JButton("Spara");
 		btnSave.addActionListener(this);
 		btnSave.setBounds(10, 10, 10, 10);
 		btnSave.setForeground(Color.BLACK);
 		btnSave.setBackground(Color.GREEN);
-		
+
 		btnCancel = new JButton("Avsluta");
 		btnCancel.setBounds(100, 200, 250, 200);
 		btnCancel.setForeground(Color.BLACK);
 		btnCancel.setBackground(Color.RED);
-		
+
 		pnlBottom.add(btnSave);
 		pnlBottom.add(btnCancel);
-		
-
-		
 
 		this.add(pnlTop);
 		this.add(pnlMiddle1);
 		this.add(pnlMiddle2);
 		this.add(pnlBottom);
-		
+
 		// Add all action listeners
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
@@ -195,42 +185,50 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource() == btnHome) {
+
+		if (e.getSource() == btnHome) {
 			clientController.setViewParentHomeWindow();
 		}
-		if(e.getSource() == btnCancel) {
+		if (e.getSource() == btnCancel) {
 			clientController.setViewParentTaskWindow();
 		}
-		if(e.getSource() == btnSave) {
+		if (e.getSource() == btnSave) {
 			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
 			Task task = new Task(location, new Chore(comboChooseTask.getSelectedItem().toString()), 10);
-			
-			//Server add new task to the account.
-			try {
-				
-				clientController.addTaskToAccount(task);
-				//Fullösning
-				Thread.sleep(500);
-				//Fullösning
-				clientController.getAccount().setTaskList(clientController.getTasksFromAccount());
-				Thread.sleep(500);
-				clientController.updateTaskLists();
-				
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				System.out.println("Cannot add new task.");
-				e1.printStackTrace();
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			Boolean taskOK = true;
+
+			for (Task t : clientController.getAccount().getTaskList()) {
+				if (t.compareTask(task)) {
+					taskOK = false;
+				}
 			}
-			clientController.setViewParentTaskWindow();
+			if (taskOK) {
+				// Server add new task to the account.
+				try {
+
+					clientController.addTaskToAccount(task);
+					// Fullösning
+					Thread.sleep(500);
+					// Fullösning
+					clientController.getAccount().setTaskList(clientController.getTasksFromAccount());
+					Thread.sleep(500);
+					clientController.updateTaskLists();
+
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					System.out.println("Cannot add new task.");
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				clientController.setViewParentTaskWindow();
+			}else {
+				System.out.println("Identisk syssla redan funnen");
+			}
 		}
 		if (e.getSource() == btnProfile) {
 			clientController.setViewParentProfileWindow();
 		}
 	}
 }
-
-

@@ -251,7 +251,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.gridy = 0;
-
+		
 		for(int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
 			Task task = clientController.getAccount().getTaskList().get(i);
 			pnlMiddle.add(new TaskPanel(task), c);
@@ -290,7 +290,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					if(e.getSource() == completedButton) {
 						try {
-							clientController.completeTask(task, task.getChildProfile());
+							clientController.getAccount().setTaskList(clientController.completeTask(task, task.getChildProfile()));
+							updateTasks();
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

@@ -9,88 +9,29 @@ ChildProfiles:
 Mia
 0
 Pelle
-0
+10
 $
-Angelina
-Tasks
-<<<<<<< HEAD
-23
-Köket
-Skriv bok
+Tasks:
+3
+Badrummet
+Mata katten
 10
-Toaletten
-Damma
-1
-Hallen
-Dammsuga
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
+false
+null
 Sovrummet
 Damma
 10
-Toaletten
-Gå ut med hunden
-10
-Toaletten
-Gå ut med hunden
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
+false
+null
 Vardagsrummet
-Damma
-10
-Sovrummet
 Diska
 10
-Toaletten
-Diska
-10
-utomhus
-Dammsuga
-10
-Vardagsrummet
-Bädda
-10
-=======
-1
-Köket
-Skriv bok
-10
-true
-Pelle
+false
+null
 $
-Rewards
+Rewards:
+1
+Hejsan hoppsan!
+10
+5
 $
