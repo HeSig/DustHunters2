@@ -22,12 +22,16 @@ import javax.swing.border.Border;
  * A window that adult users will see if they click "Hjälp" (Help) in the ParentHomeWindow
  * It will give a brief description of how to navigate through the application
  * as well as a short explanation of the idea behind the product. 
- * @author dalvig 
+ * @author dalvig, Maida 
  *
  */
 
-public class HelpWindow extends JPanel implements ActionListener {
+/*
+ * A way to import a bigger textfile to give more detailed explation and recommendations? 
+ * Scroll-function because of too much text to fit the screen? -M
+ */
 	
+public class HelpWindow extends JPanel implements ActionListener {
 	
 
 	private JLabel lblTitle;
@@ -111,6 +115,7 @@ public class HelpWindow extends JPanel implements ActionListener {
 		
 	}
 	
+	//Main should be removed? -M
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
 		HelpWindow helpWindow = new HelpWindow(null);

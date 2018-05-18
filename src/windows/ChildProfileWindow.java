@@ -22,7 +22,7 @@ import windows.ClientController;
 /**
  * GUI for children's profile
  * 
- * @author Maida & Angelina
+ * @author Maida, Angelina
  * 
  *         25/4: Reinstalled and retry. --- 27/4: Reinstalled, once again. Took
  *         >5h. --- 2/5: Reinstalled. AGAIN. -- 4/5: It seems like I don't have
@@ -163,24 +163,24 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		// I didn't have btnProfileSymbol in gridbagcontraints before
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1; // 1
-		c.weighty = 1; // 1
+		c.weightx = 1; 
+		c.weighty = 1; 
 		c.gridx = 1;
 		c.gridy = 0;
 		pnlMiddle.add(btnProfileSymbol, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1; // 1
-		c.weighty = 1; // 1
+		c.weightx = 1; 
+		c.weighty = 1; 
 		c.gridx = 1;
 		c.gridy = 1;
 		pnlMiddle.add(lblToDo, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1; // 1
-		c.weighty = 1; // 1
+		c.weightx = 1; 
+		c.weighty = 1; 
 		c.gridx = 0;
 		c.gridy = 2;
 		pnlMiddle.add(lblLocation, c);

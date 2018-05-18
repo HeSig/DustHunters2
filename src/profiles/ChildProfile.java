@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 /**
  * 
- * @author Henrik Sigeman
+ * @author Henrik Sigeman, Maida Sijaric
  * 
  * 25/4: Har ominstallerat och testar igen
  *
