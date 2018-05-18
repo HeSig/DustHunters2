@@ -17,7 +17,6 @@ import profiles.Account;
 
 import windows.ClientController;
 
-
 /**
  * GUI for children's profile
  * 
@@ -31,14 +30,14 @@ import windows.ClientController;
 
 public class ChildProfileWindow extends JPanel implements ActionListener {
 	private Account account;
-	private String name; //Delete? - Angie
+	private String name; // Delete? - Angie
 
 	private JLabel lblToDo;
 	private JLabel lblTitleChores; // Title, in middle of top panel
 	private ImageIcon dustBallImage; // Profilepic, in the middle of middle panel
 	private JButton btnProfileSymbol; // Symbol, profilepic will be inside this button
 	private JButton btnHome;
-	private JLabel lblNumberOrder; // Number of tasks
+	private JLabel lblNumberOrder; // Number of tasks. Delete?
 	private JLabel lblLocation;
 	private JButton btnChore; // When user clicks task, they will in fact click a button to take them to class
 	// ChildTaskWindow
@@ -46,10 +45,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 
 	private ClientController clientController;
 
-	/*
-	 * Three setters and three getters for the components inside of a task (L + C +
-	 * R) ADD GETTERS!!!! From what class?????
-	 */
+	//Setters
 	public void setLblLocation(JLabel lblLocation) {
 		this.lblLocation = lblLocation;
 	}
@@ -62,15 +58,18 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		this.lblRewardPoints = lblRewardPoints;
 	}
 
-	// Getters for other objects
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	//Getters
 	public Account getAccount() {
 		return account;
 	}
 
-
 	// Constructor
 	public ChildProfileWindow(ClientController clientController) throws IOException {
-		// this.name = name;
+		// this.name = name; Delete?
 		this.clientController = clientController;
 
 		start();
@@ -111,12 +110,12 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		lblTitleChores.setBounds(105, 30, 285, 20);
 		pnlTop.add(lblTitleChores);
 
-		btnHome = new JButton ();
+		btnHome = new JButton();
 		btnHome.addActionListener(this);
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
 		pnlTop.add(btnHome);
-	
+
 		// Middle panel
 		JPanel pnlMiddle = new JPanel();
 		pnlMiddle.setBounds(12, 130, 358, 140); // Original 12, 130, 358, 140
@@ -130,7 +129,6 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		btnProfileSymbol.setBounds(250, 16, 90, 50); // Original 250, 16, 90, 50
 		btnProfileSymbol.setIcon(dustBallImage);
 		pnlMiddle.add(btnProfileSymbol);
-
 
 		/*
 		 * Components added to the middle panel. Remember; a task A task consists of
@@ -211,14 +209,12 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		this.add(pnlBottom);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == btnChore) {
+		if (e.getSource() == btnChore) {
 			clientController.setViewChildTaskWindow();
-		}
-		else if (e.getSource() == btnHome) {
+		} else if (e.getSource() == btnHome) {
 			clientController.setViewChildHomeWindow();
 		}
 
