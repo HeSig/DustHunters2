@@ -30,7 +30,7 @@ import tasks.Task;
 
 /**
  * Klar! 
- * @author Angelina Fransson, Henrik Sigeman
+ * @author Angelina Fransson, Henrik Sigeman, Maida Sijaric
  *
  */
 public class ParentTaskWindow2 extends JPanel implements ActionListener {
@@ -46,7 +46,7 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 	private JButton btnHome;
 	private JButton btnAddTask;
 	private JButton btnEditTask;
-	private JLabel lblChildDoingTask; //Ifylld när ett barn har blivit assigned/valt en syssla. 
+	private JLabel lblChildDoingTask; //Filled in when a child has been assigned with a chore
 	private JButton btnProfile;
 	private ImageIcon dustBallImage;
 	private LinkedList<JPanel> taskPanelList = new LinkedList();
@@ -103,19 +103,24 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 		lblTask.setOpaque(true);
 
 	}
+	
+	/*
+	 * Set sizes and add components
+	 */
 	private void InitializeGUI() {
 
+		//PnlMain
 		this.setBounds(6,6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
 
-
+		// Top panel
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBounds(12, 17, 358, 80);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 
-
+		//Label in the middle of pnlTop
 		lblChildTask = new JLabel("Barnens sysslor");
 		lblChildTask.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblChildTask.setBounds(105, 30, 285, 20);
@@ -135,8 +140,8 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 
 		pnlTop.add(btnProfile);
 
-		//Detta ska ligga i en if-sats. Om man gjort en syssla ska detta synas
-
+		//This should be in an if-statement. If a chore has been done, then this should be visible
+		
 		taskList.setCellRenderer(new TaskRenderer());
 		JScrollPane taskScroll = new JScrollPane(taskList);
 		taskScroll.setBounds(12, 130, 358, 140);
@@ -159,7 +164,7 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 		lblCheck.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblCheck.setBorder(border3);
 
-		//Behövs göras om så alla är exakt lika långa
+		//Needs to be redone so that they're all the same length 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
@@ -185,6 +190,7 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 		updateTasks();
 
 
+		//Bottom panel
 		JPanel pnlBottom = new JPanel();
 		pnlBottom.setBounds(12, 300, 358, 180);
 		pnlBottom.setLayout(null);

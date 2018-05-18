@@ -116,6 +116,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
 		pnlTop.add(btnHome);
+	
 		// Middle panel
 		JPanel pnlMiddle = new JPanel();
 		pnlMiddle.setBounds(12, 130, 358, 140); // Original 12, 130, 358, 140
