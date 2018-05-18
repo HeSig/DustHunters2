@@ -8,13 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 import profiles.Account;
-
+import tasks.Task;
 import windows.ClientController;
 
 /**
@@ -44,8 +46,10 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	private JLabel lblRewardPoints;
 
 	private ClientController clientController;
+	private DefaultListModel model = new DefaultListModel(); //Testing to see if works
+	private JList taskList = new JList(model); //Testing
 
-	//Setters
+	// Setters
 	public void setLblLocation(JLabel lblLocation) {
 		this.lblLocation = lblLocation;
 	}
@@ -62,7 +66,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		this.account = account;
 	}
 
-	//Getters
+	// Getters
 	public Account getAccount() {
 		return account;
 	}
@@ -216,6 +220,18 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 			clientController.setViewChildTaskWindow();
 		} else if (e.getSource() == btnHome) {
 			clientController.setViewChildHomeWindow();
+		}
+
+	}
+
+	// Just playing around to see if it works
+	public void updateSomething() {
+		model.clear();
+
+		for (int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
+			Task task = clientController.getAccount().getTaskList().get(i);
+			model.addElement(task);
+
 		}
 
 	}
