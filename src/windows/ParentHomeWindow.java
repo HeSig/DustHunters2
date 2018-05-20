@@ -3,42 +3,45 @@ package windows;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ParentProfile;
 
 /*
- * KLAR! DET som ska göras är: Mellanrum mellan btn:s, och att fixa actionlisteners
+ * A GUI class that shows the home panel for the Parent Profile.
+ * From this class you can reach parent profile, settings, task, rewards and manual/help GUI through actionListeners. 
  * author: Angelina Fransson
  */
+@SuppressWarnings("serial")
 public class ParentHomeWindow extends JPanel implements ActionListener{
 	private Account account; 
 	private ParentProfile parentProfile;
 
 	private JButton btnSettings;
-	private JButton btnChores;
+	private JButton btnTasks;
 	private JButton btnRewards;
 	private JButton btnHelpManual;
 	private JLabel lblHome; 
 	private JButton btnProfile;
 	private ImageIcon imageProfile;
 	private ClientController clientController;
-	private ActionListener listener;
-
+/**
+ * Constructor where the GUI is constructed. 
+ * 
+ * @param clientController
+ */
 	public ParentHomeWindow (ClientController clientController) {
 		this.clientController = clientController;
 		start();
 
 	}
-
+	/**
+	 * Makes the GUI visible and sets bounds for the main panel. 
+	 */
 	private void start() {
 		this.setBounds(0, 0, 400, 600);
 		this.setLayout(null);
@@ -52,6 +55,16 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 	public ParentProfile getParentProfile () {
 		return parentProfile; 
 	}
+	public void setAccount (Account account) {
+		this.account = account;
+	}
+	public void setParentProfile (ParentProfile parentProfile) {
+		this.parentProfile = parentProfile;
+
+	}
+	/**
+	 * The GUI.
+	 */
 	private void InitializeGUI() {
 
 		this.setBounds(6,6, 381, 500);
@@ -90,11 +103,11 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 		btnSettings.setBounds(1, 16, 90, 50);
 
 		
-		btnChores = new JButton ("Sysslor");
-		btnChores.addActionListener(this);
-		btnChores.setFont(new Font ("SansSerif", Font.PLAIN, 14));
-		btnChores.setBounds(40, 16, 90, 50);
-		pnlMiddle.add (btnChores);
+		btnTasks = new JButton ("Sysslor");
+		btnTasks.addActionListener(this);
+		btnTasks.setFont(new Font ("SansSerif", Font.PLAIN, 14));
+		btnTasks.setBounds(40, 16, 90, 50);
+		pnlMiddle.add (btnTasks);
 
 		btnRewards = new JButton ("Belöningar");
 		btnRewards.addActionListener(this);
@@ -124,7 +137,7 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 		c.gridx = 20; 
 		c.gridy = 40; 
 
-		pnlMiddle.add(btnChores, c);
+		pnlMiddle.add(btnTasks, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.CENTER;
@@ -148,17 +161,17 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 		pnlBottom.setLayout(null);
 		pnlBottom.setBackground(Color.YELLOW);
 
-
-
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
 	}
 
-
+/**
+ * Actions performed when clicking on task, settings, profile and rewards button.
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == btnChores) {
+		if(e.getSource() == btnTasks) {
 			clientController.setViewParentTaskWindow();
 		}
 		if(e.getSource() == btnSettings) {

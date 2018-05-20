@@ -1,7 +1,6 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,11 +12,9 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
 import locations.Location;
 import profiles.Account;
 import profiles.ChildProfile;
@@ -25,39 +22,44 @@ import tasks.Chore;
 import tasks.Task;
 
 /**
- * KLAR! En metod för att spara ner valen behövs så att valen föräldern gör
- * kommer till ParentTaskWindow.
- * 
+ * A GUI class that shows the edit task panel for the Parent Profile.
+ * In this class you can choose child/children + chore + location and save, which creates a task that will be shown in ParentTaskWindow, and childTaskWindow.
+ * From this class you can reach parent profile and home GUI through actionListeners. 
+ *
  * @author Angelina Fransson
  *
  */
 @SuppressWarnings("serial")
 public class ParentEditTaskWindow extends JPanel implements ActionListener {
 
+	private Account account; 
 	private JButton btnHome = new JButton();
 	private JLabel lblTitle;
 	private JLabel lblChildName;
-	private JLabel lblTask;
+	private JLabel lblChore;
 	private JLabel lblLocation;
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboChooseChild;
 	@SuppressWarnings("rawtypes")
-	private JComboBox comboChooseTask;
+	private JComboBox comboChooseChore;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboChooseLocation;
 
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
 
-	private Account account;
 	private ChildProfile childProfile;
 	private String[] childNames = { "MAIDA", "HENRIK", "ANGIE", "SARA", "KASPER", "ALLA" };
-	private String[] preSelectedTasks = { "Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden" };
+	private String[] preSelectedChores = { "Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden" };
 	private String[] preSelectedLocations = { "Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus" };
 
 	private ClientController clientController;
-
+/**
+ * Constuctor. Constructs the GUI.
+ * @param clientController
+ */
 	public ParentEditTaskWindow(ClientController clientController) {
 		this.clientController = clientController;
 		try {
@@ -74,7 +76,13 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	public ChildProfile getChildProfile() {
 		return childProfile;
 	}
-
+	public void setAccount (Account account) {
+		this.account = account;
+	}
+/**
+ * Makes the GUI visible and sets bounds for the main panel.  
+ * @throws IOException
+ */
 	public void start() throws IOException {
 
 		this.setBounds(0, 0, 400, 600);
@@ -84,6 +92,10 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
+/**
+ * The GUI.
+ * @throws IOException
+ */
 	public void InitializeGUI() throws IOException {
 
 		// Main Panel
@@ -126,8 +138,8 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		lblChildName = new JLabel("Namn: ");
 		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));
 
-		lblTask = new JLabel("Välj syssla: ");
-		lblTask.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblChore = new JLabel("Välj syssla: ");
+		lblChore.setFont(new Font("SansSerif", Font.BOLD, 12));
 
 		lblLocation = new JLabel("Välj plats: ");
 		lblLocation.setFont(new Font("SansSerif", Font.BOLD, 12));
@@ -136,9 +148,9 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		comboChooseChild.setSelectedIndex(1);
 		comboChooseChild.setBorder(border3);
 
-		comboChooseTask = new JComboBox(preSelectedTasks);
-		comboChooseTask.setSelectedIndex(1);
-		comboChooseTask.setSelectedItem(border3);
+		comboChooseChore = new JComboBox(preSelectedChores);
+		comboChooseChore.setSelectedIndex(1);
+		comboChooseChore.setSelectedItem(border3);
 
 		comboChooseLocation = new JComboBox(preSelectedLocations);
 		comboChooseLocation.setSelectedIndex(1);
@@ -146,8 +158,8 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 
 		pnlMiddle2.add(lblChildName);
 		pnlMiddle2.add(comboChooseChild);
-		pnlMiddle2.add(lblTask);
-		pnlMiddle2.add(comboChooseTask);
+		pnlMiddle2.add(lblChore);
+		pnlMiddle2.add(comboChooseChore);
 		pnlMiddle2.add(lblLocation);
 		pnlMiddle2.add(comboChooseLocation);
 
@@ -177,12 +189,13 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		this.add(pnlMiddle2);
 		this.add(pnlBottom);
 
-		// Add all action listeners
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
 		btnCancel.addActionListener(this);
 	}
-
+/**
+ * Actions performed when clicking on home, profile, cancel and save button.
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -194,7 +207,7 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		}
 		if (e.getSource() == btnSave) {
 			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
-			Task task = new Task(location, new Chore(comboChooseTask.getSelectedItem().toString()), 10);
+			Task task = new Task(location, new Chore(comboChooseChore.getSelectedItem().toString()), 10);
 			Boolean taskOK = true;
 
 			for (Task t : clientController.getAccount().getTaskList()) {
@@ -215,11 +228,9 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 					clientController.updateTaskLists();
 
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					System.out.println("Cannot add new task.");
 					e1.printStackTrace();
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				clientController.setViewParentTaskWindow();

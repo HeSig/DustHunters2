@@ -1,7 +1,6 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,18 +9,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import profiles.Account;
 import profiles.ChildProfile;
-import profiles.ParentProfile;
 /**
- * 
+ * A GUI class that shows the panel where the Child Profile can see a meny.
+ * From this class you can reach chores, profile and rewards GUI through actionListeners.
  * @author Angelina
  *
  */
+@SuppressWarnings("serial")
 public class ChildHomeWindow extends JPanel implements ActionListener{
 	private Account account; 
 	private ChildProfile childProfile;
@@ -32,13 +31,18 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 	private JButton btnProfile;
 	private ImageIcon imageProfile;
 	private ClientController clientController;
-
+/**
+ * Constructor. Constructs the GUI.
+ * @param clientController
+ */
 	public ChildHomeWindow (ClientController clientController) {
 		this.clientController = clientController;
 		start();
 
 	}
-
+/**
+ * Makes the GUI visible and sets bounds.
+ */
 	private void start() {
 		this.setBounds(0, 0, 400, 600);
 		this.setLayout(null);
@@ -46,12 +50,18 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 		this.setVisible(true);
 
 	}
+	/**
+	 * Getters for account and ChildProfile
+	 */
 	public Account getAccount () {
 		return account;
 	}
 	public ChildProfile getChildProfile () {
 		return childProfile; 
 	}
+	/**
+	 * The GUI.
+	 */
 	private void InitializeGUI() {
 
 		this.setBounds(6,6, 381, 500);
@@ -128,6 +138,9 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 
 
 	@Override
+	/**
+	 * Actions performed when clicking on the rewards, chores and profile button.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnMyRewards) {
 			clientController.setViewChildRewardWindow2();

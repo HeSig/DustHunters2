@@ -1,28 +1,23 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ParentProfile;
 
 /**
- * KLAR FÖR HENRIK ATT PILLA I! Hit kommer man om man trycker på profilknappen.
- * 
- * Trycker man på de olika dammtussarna ska man komma till deras inställningar.
+ * A GUI class that shows the panel where the Parent Profile can see the their children's profiles.
+ * From this class you can reach parent home, AddChild, and ChildProfile GUI through actionListeners.
  * 
  * @author Angelina Fransson
  *
@@ -41,12 +36,17 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	private ImageIcon dammtussParentProfile;
 	private ImageIcon dammtussMaja;
 	private ClientController clientController;
-
+/**
+ * Constructor. Constructs the GUI. 
+ * @param clientController
+ */
 	public ParentProfileWindow(ClientController clientController) {
 		this.clientController = clientController;
 		start();
 	}
-
+/**
+ * setters and getters for Account and ParentProfile
+ */
 	public Account getAccount() {
 		return account;
 	}
@@ -62,16 +62,19 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	public void setParentProfile(ParentProfile parentProfile) {
 		this.parentProfile = parentProfile;
 	}
-	public void setBtnHome (JButton btnHome) {
-		this.btnHome = btnHome;
-	}
-
+	
+/**
+ * Makes the GUI visible and sets bounds for the main panel. 
+ */
 	private void start() {
 		this.setBounds(0, 0, 400, 600);
 		this.setLayout(null);
 		InitializeGUI();
 		this.setVisible(true);
 	}
+	/**
+	 * The GUI.
+	 */
 
 	private void InitializeGUI() {
 
@@ -151,16 +154,11 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		this.add(pnlBottom);
 	}
 
-//	 public static void main (String [] args) {
-//	 JFrame frame = new JFrame ();
-//	 ParentProfileWindow ppw = new ParentProfileWindow ();
-//	 frame.add(ppw);
-//	 frame.pack();
-//	 frame.setVisible(true);
-//	 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	 frame.setMinimumSize(new Dimension (400,600));
-//	 }
+
 	@Override
+	/**
+	 * Actions performed when clicking on home, addChild, ChildProfile and Profile button. 
+	 */
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnHome) {
