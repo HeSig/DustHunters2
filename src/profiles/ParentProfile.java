@@ -25,7 +25,7 @@ public class ParentProfile implements Serializable{
 	}
 	
 	public void setImage(String str) {
-		imageStr = str;
+		this.imageStr = str;
 	}
 	
 	public String getImageString() {
