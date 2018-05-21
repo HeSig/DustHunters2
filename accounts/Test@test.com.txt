@@ -5,10 +5,61 @@ Pappa
 Mamma
 $
 ChildProfiles:
-2
+3
 Mia
 0
 Pelle
+0
+Hej
+0
+$
+Angelina
+TasksS
+23
+Köket
+Skriv bok
+10
+Toaletten
+Damma
+1
+Hallen
+Dammsuga
+10
+Sovrummet
+Gå ut med hunden
+10
+Sovrummet
+Gå ut med hunden
+10
+Sovrummet
+Gå ut med hunden
+10
+Sovrummet
+Gå ut med hunden
+10
+Sovrummet
+Gå ut med hunden
+10
+Sovrummet
+Damma
+10
+Toaletten
+Gå ut med hunden
+10
+Toaletten
+Gå ut med hunden
+10
+Sovrummet
+Damma
+10
+Sovrummet
+Damma
+10
+Sovrummet
+Damma
+10
+Sovrummet
+Damma
 10
 $
 Tasks:
@@ -25,6 +76,15 @@ false
 null
 Vardagsrummet
 Diska
+10
+Toaletten
+Diska
+10
+utomhus
+Dammsuga
+10
+Vardagsrummet
+Bädda
 10
 false
 null
