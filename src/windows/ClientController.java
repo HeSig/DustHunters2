@@ -128,6 +128,9 @@ public class ClientController implements ActionListener, Observer {
 	public LinkedList<Task> addTaskToAccount(Task task) throws UnknownHostException, IOException {
 		return client.addTaskToServer(account, task);
 	}
+	public LinkedList<Task> setTaskAsCompleted(Task task){
+		return client.setTaskAsCompleted(account, task, childProfile);
+	}
 
 	public void addChildProfile(ChildProfile childProfile) throws IOException {
 		client.addChildProfileToServer(account, childProfile);

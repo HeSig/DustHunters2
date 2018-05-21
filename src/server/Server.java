@@ -171,6 +171,16 @@ public class Server extends Thread {
 					oos.writeObject(accountManager.getRewards(account));
 					oos.flush();
 				}
+				//Set task as complete
+				if(request.getRequest().equals("SetTaskComplete")) {
+					Account account = request.getAccount();
+					Task task = (Task) ois.readObject();
+					ChildProfile childProfile = (ChildProfile) ois.readObject();
+					
+					accountManager.setTaskAsComplete(account, task, childProfile);
+					oos.writeObject(accountManager.getTask(account));
+					oos.flush();
+				}
 				closeStreams();
 				// System.out.println("Closed");
 			} catch (IOException | ClassNotFoundException e) {

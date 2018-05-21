@@ -33,6 +33,7 @@ import javax.swing.border.Border;
 
 import tasks.Chore;
 import tasks.Task;
+
 /**
  * 
  * @author Angelina &........
@@ -46,22 +47,22 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private JButton btnSave;
 	private JLabel lblTitle;
 	private JLabel lblTask;
-	private JLabel lblChildName; //delete? - Angie
+	private JLabel lblChildName; // delete? - Angie
 	private JLabel lblCheck;
 
 	private JCheckBox cbCheckUncheck;
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
 	private ImageIcon imageProfile;
-	private ClientController clientController;
-	private JComboBox comboChore; //New design for the assigned-function.
-	private String[] choreList = {"Dammsuga i hallen", "Damma i vardagsrummet", "Gå ut med hunden", "Moppa golvet", "Laga middag"};
-
+	private ClientController controller;
+	private JComboBox comboChore; // New design for the assigned-function.
+	private String[] choreList = { "Dammsuga i hallen", "Damma i vardagsrummet", "Gå ut med hunden", "Moppa golvet",
+			"Laga middag" };
 	private Task task;
 	private Chore chore;
 
 	public ChildTaskWindow(ClientController clientController) throws IOException {
-		this.clientController = clientController;
+		this.controller = clientController;
 		start();
 	}
 
@@ -69,7 +70,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 
 		this.setBounds(0, 0, 400, 600);
 		this.setLayout(null);
-		
+
 		InitializeGUI();
 		this.setVisible(true);
 		lblTask.setOpaque(true);
@@ -101,7 +102,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnHome.setBounds(10, 16, 75, 70);
 		btnHome.setIcon(imageHome);
 		pnlTop.add(btnHome);
-		
+
 		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
 		btnProfile = new JButton();
 		btnProfile.setBounds(275, 16, 75, 70);
@@ -123,7 +124,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		comboChore = new JComboBox(choreList);
 		comboChore.setSelectedIndex(1);
 		comboChore.setBorder(border3);
-		
+
 		lblCheck = new JLabel("               Äventyr är avklarat: ");
 		lblCheck.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblCheck.setBorder(border3);
@@ -131,12 +132,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		cbCheckUncheck = new JCheckBox();
 		cbCheckUncheck.setBorder(border3);
 
-		
 		btnSave = new JButton("Spara");
 		btnSave.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnSave.setBorder(border3);
 		btnSave.setBackground(Color.GREEN);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
@@ -172,9 +172,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		c.gridx = 1;
 		c.gridy = 3;
 		pnlMiddle.add(btnSave, c);
-		
-		
-		
+
 		// Bottom
 		JPanel pnlBottom = new JPanel();
 		pnlBottom.setBounds(12, 300, 358, 180);
@@ -188,15 +186,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnDustSymbol.setIcon(dustBallImage);
 		pnlBottom.add(btnDustSymbol);
 
-		//ActionListeners
+		// ActionListeners
 		cbCheckUncheck.addActionListener(this);
 		btnDustSymbol.addActionListener(this);
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
 		comboChore.addActionListener(this);
-		
-		
-		
+
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
@@ -210,6 +206,13 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		Color color = null;
 		if (cbCheckUncheck.isSelected()) {
 			cbCheckUncheck.setBackground(Color.GREEN);
+			// När barnet trycker på isChecked så ska klienten skicka den aktuella tasken
+			// till klienten för att sedan registrera den som "färdig".
+			
+			//HÄR <----------------------------------------------------------------------------> HÄR
+			
+			//controller.setTaskAsCompleted(task);
+			
 		} else {
 			cbCheckUncheck.setBackground(null);
 		}
@@ -217,17 +220,17 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		if (e.getSource() == btnDustSymbol) {
 			// should open story page
 		}
-		
-		if(e.getSource() == btnHome) {
-			clientController.setViewChildHomeWindow();
+
+		if (e.getSource() == btnHome) {
+			controller.setViewChildHomeWindow();
 			// should return the user to the the home-panel
 		}
-		
-		if(e.getSource() == btnProfile) {
-			clientController.setViewChildProfileWindow();
-			// should direct the user to the profile-panel.  
+
+		if (e.getSource() == btnProfile) {
+			controller.setViewChildProfileWindow();
+			// should direct the user to the profile-panel.
 		}
-		
+
 	}
 
 }
