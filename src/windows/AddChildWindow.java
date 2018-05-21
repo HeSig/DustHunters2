@@ -8,8 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -46,6 +48,11 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
 	private JButton btnProfilePic = new JButton();
+	private ImageIcon profilePic;
+	@SuppressWarnings("rawtypes")
+	private JComboBox comboChooseChildPicture;
+	
+	private String[] profilePictures = {"Dammtuss", "Pirat", "Häxa", "Astronaut", "Ninja"};
 
 
 	private Account account;
@@ -114,7 +121,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		btnProfilePic.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
 		btnProfilePic.setBounds(10, 10, 10, 10);
 		btnProfilePic.setEnabled(true);
-		btnProfilePic.addActionListener(this);
+		//btnProfilePic.addActionListener(this);
 		
 		pnlMiddle1.add(btnProfilePic);
 	
@@ -123,7 +130,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		JPanel pnlMiddle2 = new JPanel();
 
 		pnlMiddle2.setBounds(12, 240, 358, 180);
-		pnlMiddle2.setLayout(new GridLayout(3,2));
+		pnlMiddle2.setLayout(new GridLayout(4,2));
 		pnlMiddle2.setBackground(Color.YELLOW);
 
 		
@@ -132,6 +139,9 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		
 		lblChildPassword = new JLabel("Lösenord: ");
 		lblChildPassword.setFont(new Font("SansSerif", Font.BOLD, 12));
+		
+		JLabel lblChildPicture = new JLabel("Profilbild");
+		comboChooseChildPicture = new JComboBox(profilePictures);
 		
 		lblChildPassRepeat = new JLabel("Upprepa lösenord: ");
 		lblChildPassRepeat.setFont(new Font("SansSerif", Font.BOLD, 12));
@@ -143,6 +153,8 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		
 		pnlMiddle2.add(lblChildName);
 		pnlMiddle2.add(txtChildName);
+		pnlMiddle2.add(lblChildPicture);
+		pnlMiddle2.add(comboChooseChildPicture);
 		pnlMiddle2.add(lblChildPassword);
 		pnlMiddle2.add(txtChildPassword);
 		pnlMiddle2.add(lblChildPassRepeat);
@@ -179,6 +191,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
 		btnProfilePic.addActionListener(this);
+		comboChooseChildPicture.addActionListener(this);
 		btnSave.addActionListener(this);
 		btnCancel.addActionListener(this);
 	}
@@ -197,6 +210,17 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 		} else if (e.getSource() == btnSave) {
 			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
+			if(comboChooseChildPicture.getSelectedItem().equals("Dammtuss")) {
+				childProfile.setImage("dammtuss");
+			}else if(comboChooseChildPicture.getSelectedItem().equals("Pirat")){
+				childProfile.setImage("pirat");
+			}else if(comboChooseChildPicture.getSelectedItem().equals("Häxa")) {
+				childProfile.setImage("witch");
+			}else if(comboChooseChildPicture.getSelectedItem().equals("Astronaut")) {
+				childProfile.setImage("astronaut");
+			}else if(comboChooseChildPicture.getSelectedItem().equals("Ninja")) {
+				childProfile.setImage("ninja");
+			}
 			try {
 				controller.addChildProfile(childProfile);
 			} catch (IOException e1) {
@@ -204,6 +228,22 @@ public class AddChildWindow extends JPanel implements ActionListener {
 			}
 		} else if (e.getSource() == btnCancel) {
 			
+		}else if(e.getSource() == comboChooseChildPicture) {
+			if (comboChooseChildPicture.getSelectedItem().equals("Dammtuss")) {
+				btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage("dammtuss")));
+			}
+			if (comboChooseChildPicture.getSelectedItem().equals("Pirat")) {
+				btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage("pirat")));
+			}
+			if (comboChooseChildPicture.getSelectedItem().equals("Häxa")) {
+				btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage("witch")));
+			}
+			if (comboChooseChildPicture.getSelectedItem().equals("Astronaut")) {
+				btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage("astronaut")));
+			}
+			if (comboChooseChildPicture.getSelectedItem().equals("Ninja")) {
+				btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage("ninja")));
+			}
 		}
 
 	}

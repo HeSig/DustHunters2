@@ -2,88 +2,33 @@ Account of Test@test.com
 ParentProfiles:
 2
 Pappa
+dammtuss
 Mamma
+dammtuss
 $
 ChildProfiles:
-3
+4
 Mia
+dammtuss
 0
 Pelle
+ninja
 0
 Hej
+dammtuss
+0
+Hejhej2
+witch
 0
 $
-Angelina
-TasksS
-23
-Köket
-Skriv bok
-10
-Toaletten
-Damma
-1
-Hallen
-Dammsuga
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Gå ut med hunden
-10
-Sovrummet
-Damma
-10
-Toaletten
-Gå ut med hunden
-10
-Toaletten
-Gå ut med hunden
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-Sovrummet
-Damma
-10
-$
 Tasks:
-3
-Badrummet
-Mata katten
-10
-false
-null
+2
 Sovrummet
 Damma
 10
 false
 null
-Vardagsrummet
-Diska
-10
-Toaletten
-Diska
-10
-utomhus
-Dammsuga
-10
-Vardagsrummet
+Sovrummet
 Bädda
 10
 false

@@ -99,6 +99,7 @@ public class AccountManager {
 			readLine = br.readLine();
 			while (!readLine.equals("$")) {
 				parent = new ParentProfile(readLine);
+				parent.setImage(br.readLine());
 				account.addParentProfile(parent);
 				readLine = br.readLine();
 			}
@@ -111,8 +112,11 @@ public class AccountManager {
 			br.readLine();
 			readLine = br.readLine();
 			while (!readLine.equals("$") && !points.equals("$")) {
+				String image = br.readLine();
 				points = br.readLine();
-				account.addChildProfile(new ChildProfile(readLine, Integer.parseInt(points)));
+				ChildProfile profile = new ChildProfile(readLine, Integer.parseInt(points));
+				profile.setImage(image);
+				account.addChildProfile(profile);
 				readLine = br.readLine();
 			}
 		}
@@ -209,6 +213,7 @@ public class AccountManager {
 		writer.println("ParentProfiles:");
 		writer.println("1");
 		writer.println("Förälder1");
+		writer.println("dammtuss");
 		writer.println("$");
 		writer.println("ChildProfiles:");
 		writer.println("1");
@@ -330,10 +335,10 @@ public class AccountManager {
 		openStreams(account);
 		LinkedList<String> fileContent = new LinkedList();
 
-		String line;
+		String line = "";
 		while ((line = bufferedReader.readLine()) != null) {
 			fileContent.add(line);
-			if (line.equals("Tasks")) {
+			if (line.equals("Tasks:")) {
 				bufferedReader.readLine();
 				fileContent.add("" + (account.getTaskList().size() + 1));
 				for (int i = 0; i < account.getTaskList().size(); i++) {
@@ -356,6 +361,7 @@ public class AccountManager {
 			}
 		}
 		while (!line.equals("$")) {
+			System.out.println(line);
 			line = bufferedReader.readLine();
 		}
 		fileContent.add(line);
@@ -393,8 +399,10 @@ public class AccountManager {
 				fileContent.add("" + (account.getParentProfileList().size() + 1));
 				for (int i = 0; i < account.getParentProfileList().size(); i++) {
 					fileContent.add(account.getParentProfileFromList(i).getName());
+					fileContent.add(account.getParentProfileFromList(i).getImageString());
 				}
 				fileContent.add(parentProfile.getName());
+				fileContent.add(parentProfile.getImageString());
 				break;
 			}
 		}
@@ -436,9 +444,11 @@ public class AccountManager {
 				fileContent.add("" + (account.getChildProfileList().size() + 1));
 				for (int i = 0; i < account.getChildProfileList().size(); i++) {
 					fileContent.add(account.getChildProfileFromList(i).getName());
+					fileContent.add(account.getChildProfileFromList(i).getImageString());
 					fileContent.add("" + account.getChildProfileFromList(i).getPoints());
 				}
 				fileContent.add(childProfile.getName());
+				fileContent.add(childProfile.getImageString());
 				fileContent.add("" + childProfile.getPoints());
 				break;
 			}

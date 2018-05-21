@@ -17,6 +17,7 @@ import client.UserController;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
+import profiles.ProfilePicture;
 import rewards.Reward;
 import tasks.Task;
 
@@ -43,13 +44,14 @@ public class ClientController implements ActionListener, Observer {
 	private ProfileStartWindow psw;
 	private ParentHomeWindow phw;
 	private ParentEditTaskWindow petw;
-	private ParentTaskWindow ptw;
+	private ParentTaskWindow2 ptw;
 	private ParentProfileWindow ppw;
 	private ParentRewardWindow prw;
 	private ParentSettingsWindow pSettingsw;
 	private Account account;
 	private Client client;
 	private Boolean clientIsRunning = false;
+	private ProfilePicture profilePictures;
 
 	private ChildProfile childProfile;
 	private ParentProfile parentProfile;
@@ -59,6 +61,7 @@ public class ClientController implements ActionListener, Observer {
 		this.client.addObserver(this);
 		this.account = account;
 		frame = new JFrame();
+		profilePictures = new ProfilePicture();
 		try {
 			acw = new AddChildWindow(this);
 			ctw = new ChildTaskWindow(this);
@@ -68,7 +71,7 @@ public class ClientController implements ActionListener, Observer {
 			psw = new ProfileStartWindow(this);
 			phw = new ParentHomeWindow(this);
 			petw = new ParentEditTaskWindow(this);
-			ptw = new ParentTaskWindow(this);
+			ptw = new ParentTaskWindow2(this);
 			ppw = new ParentProfileWindow(this);
 			prw = new ParentRewardWindow(this);
 			pSettingsw = new ParentSettingsWindow(this);
@@ -104,6 +107,10 @@ public class ClientController implements ActionListener, Observer {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public ProfilePicture getPictures() {
+		return profilePictures;
 	}
 
 	public void updateProfilesList() {
