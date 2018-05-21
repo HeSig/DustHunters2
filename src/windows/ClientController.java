@@ -62,23 +62,7 @@ public class ClientController implements ActionListener, Observer {
 		this.account = account;
 		frame = new JFrame();
 		profilePictures = new ProfilePicture();
-		try {
-			acw = new AddChildWindow(this);
-			ctw = new ChildTaskWindow(this);
-			crw = new ChildRewardWindow2(this);
-			cpw = new ChildProfileWindow(this);
-			chw = new ChildHomeWindow(this);
-			psw = new ProfileStartWindow(this);
-			phw = new ParentHomeWindow(this);
-			petw = new ParentEditTaskWindow(this);
-			ptw = new ParentTaskWindow2(this);
-			ppw = new ParentProfileWindow(this);
-			prw = new ParentRewardWindow(this);
-			pSettingsw = new ParentSettingsWindow(this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		psw = new ProfileStartWindow(this);
 		updatePanel.setPreferredSize(new Dimension(128, 128));
 		frame.setPreferredSize(new Dimension(400, 600));
 		frame.setLayout(new BorderLayout());
@@ -106,9 +90,32 @@ public class ClientController implements ActionListener, Observer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
+	private void initChild() throws IOException {
+		ctw = new ChildTaskWindow(this);
+		crw = new ChildRewardWindow2(this);
+		cpw = new ChildProfileWindow(this);
+		chw = new ChildHomeWindow(this);
 	}
 	
+	public ParentProfile getParentProfile() {
+		return parentProfile;
+	}
+	public ChildProfile getChildProfile() {
+		return childProfile;
+	}
+
+	private void initParent() throws IOException {
+		acw = new AddChildWindow(this);
+		phw = new ParentHomeWindow(this);
+		petw = new ParentEditTaskWindow(this);
+		ptw = new ParentTaskWindow2(this);
+		ppw = new ParentProfileWindow(this);
+		prw = new ParentRewardWindow(this);
+		pSettingsw = new ParentSettingsWindow(this);
+	}
+
 	public ProfilePicture getPictures() {
 		return profilePictures;
 	}
@@ -214,6 +221,12 @@ public class ClientController implements ActionListener, Observer {
 				parentProfile = account.getParentProfileList().get(i);
 			}
 		}
+		try {
+			initParent();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void setChildProfile(String name) {
@@ -221,6 +234,12 @@ public class ClientController implements ActionListener, Observer {
 			if (account.getChildProfileList().get(i).getName().equals(name)) {
 				childProfile = account.getChildProfileList().get(i);
 			}
+		}
+		try {
+			initChild();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

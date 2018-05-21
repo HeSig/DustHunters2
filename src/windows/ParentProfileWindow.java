@@ -35,13 +35,13 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	private JButton btnProfile;
 	private ImageIcon dammtussParentProfile;
 	private ImageIcon dammtussMaja;
-	private ClientController clientController;
+	private ClientController controller;
 /**
  * Constructor. Constructs the GUI. 
  * @param clientController
  */
 	public ParentProfileWindow(ClientController clientController) {
-		this.clientController = clientController;
+		this.controller = clientController;
 		start();
 	}
 /**
@@ -106,7 +106,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 
 		btnProfile = new JButton();
 		btnProfile.addActionListener(this);
-		dammtussParentProfile = new ImageIcon("images/dammtussParentProfile.png");
+		dammtussParentProfile = (new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(dammtussParentProfile);
 
@@ -162,10 +162,10 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnHome) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewParentHomeWindow();
 		}
 		if (e.getSource() == btnAddChild) {
-			clientController.setViewAddChildWindow();
+			controller.setViewAddChildWindow();
 		}
 	
 		if (e.getSource() == btnChildProfile) {

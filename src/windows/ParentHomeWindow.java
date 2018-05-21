@@ -28,14 +28,14 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 	private JLabel lblHome; 
 	private JButton btnProfile;
 	private ImageIcon imageProfile;
-	private ClientController clientController;
+	private ClientController controller;
 /**
  * Constructor where the GUI is constructed. 
  * 
  * @param clientController
  */
 	public ParentHomeWindow (ClientController clientController) {
-		this.clientController = clientController;
+		this.controller = clientController;
 		start();
 
 	}
@@ -82,7 +82,7 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 		lblHome.setBounds(150, 30, 285, 20);
 		pnlTop.add(lblHome);
 		
-		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
+		imageProfile = (new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile = new JButton();
 		btnProfile.addActionListener(this);
 		btnProfile.setBounds(275, 16, 75, 70);
@@ -172,16 +172,16 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnTasks) {
-			clientController.setViewParentTaskWindow();
+			controller.setViewParentTaskWindow();
 		}
 		if(e.getSource() == btnSettings) {
-			clientController.setViewParentSettingsWindow();
+			controller.setViewParentSettingsWindow();
 		}
 		if(e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 		}
 		if(e.getSource() == btnRewards) {
-			clientController.setViewParentRewardWindow();
+			controller.setViewParentRewardWindow();
 		}
 	}	
 

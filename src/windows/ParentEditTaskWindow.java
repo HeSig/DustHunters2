@@ -55,13 +55,13 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	private String[] preSelectedChores = { "Dammsuga", "Damma", "Diska", "Bädda", "Gå ut med hunden" };
 	private String[] preSelectedLocations = { "Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus" };
 
-	private ClientController clientController;
+	private ClientController controller;
 /**
  * Constuctor. Constructs the GUI.
  * @param clientController
  */
 	public ParentEditTaskWindow(ClientController clientController) {
-		this.clientController = clientController;
+		this.controller = clientController;
 		try {
 			start();
 		} catch (IOException e) {
@@ -115,7 +115,7 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		lblTitle.setBounds(100, 30, 285, 20);
 		btnHome.setIcon(new ImageIcon("images/house.jpg"));
 		btnHome.setBounds(5, 5, 85, 70);
-		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
+		btnProfile.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 
 		pnlTop.add(btnHome);
@@ -200,17 +200,17 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewParentHomeWindow();
 		}
 		if (e.getSource() == btnCancel) {
-			clientController.setViewParentTaskWindow();
+			controller.setViewParentTaskWindow();
 		}
 		if (e.getSource() == btnSave) {
 			Location location = new Location(comboChooseLocation.getSelectedItem().toString());
 			Task task = new Task(location, new Chore(comboChooseChore.getSelectedItem().toString()), 10);
 			Boolean taskOK = true;
 
-			for (Task t : clientController.getAccount().getTaskList()) {
+			for (Task t : controller.getAccount().getTaskList()) {
 				if (t.compareTask(task)) {
 					taskOK = false;
 				}
@@ -219,13 +219,13 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 				// Server add new task to the account.
 				try {
 
-					clientController.addTaskToAccount(task);
+					controller.addTaskToAccount(task);
 					// Fullösning
 					Thread.sleep(500);
 					// Fullösning
-					clientController.getAccount().setTaskList(clientController.getTasksFromAccount());
+					controller.getAccount().setTaskList(controller.getTasksFromAccount());
 					Thread.sleep(500);
-					clientController.updateTaskLists();
+					controller.updateTaskLists();
 
 				} catch (IOException e1) {
 					System.out.println("Cannot add new task.");
@@ -233,13 +233,13 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
-				clientController.setViewParentTaskWindow();
+				controller.setViewParentTaskWindow();
 			}else {
 				System.out.println("Identisk syssla redan funnen");
 			}
 		}
 		if (e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 		}
 	}
 }

@@ -108,7 +108,8 @@ public class ProfileStartWindow extends JPanel {
 			activeButtons.get(i).setPreferredSize(new Dimension(130, 130));
 			activeButtons.get(i).addActionListener(actionListener);
 			inactiveButtons.remove(0);
-			activeButtons.get(i).setIcon(new ImageIcon(clientController.getPictures().getImage(parents.get(i).getImageString())));
+			activeButtons.get(i)
+					.setIcon(new ImageIcon(clientController.getPictures().getImage(parents.get(i).getImageString())));
 			activeButtons.get(i).setText(parents.get(i).getName());
 			activeButtons.get(i).setVerticalTextPosition(SwingConstants.BOTTOM);
 			activeButtons.get(i).setHorizontalTextPosition(SwingConstants.CENTER);
@@ -119,7 +120,7 @@ public class ProfileStartWindow extends JPanel {
 			button.setPreferredSize(new Dimension(130, 130));
 			button.addActionListener(actionListener);
 			inactiveButtons.remove(0);
-			
+
 			button.setIcon(new ImageIcon(clientController.getPictures().getImage(children.get(i).getImageString())));
 			button.setText(children.get(i).getName());
 			button.setVerticalTextPosition(SwingConstants.BOTTOM);

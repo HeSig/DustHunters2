@@ -38,7 +38,7 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 	private ParentProfile parentProfile;
 	private JLabel lblChildTask;
 
-	private ClientController clientController;
+	private ClientController controller;
 	
 
 	private JLabel lblCheck;
@@ -88,7 +88,7 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 
 	}
 	public ParentTaskWindow2 (ClientController clientController) {
-		this.clientController = clientController;
+		this.controller = clientController;
 		start();
 
 	}
@@ -134,7 +134,7 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 
 		btnProfile = new JButton ();
 		btnProfile.addActionListener(this);
-		dustBallImage = new ImageIcon ("images/20x20Dammtuss.jpg");
+		dustBallImage = (new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(dustBallImage);
 
@@ -252,13 +252,13 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnHome) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewParentHomeWindow();
 		}
 		if(e.getSource() == btnAddTask) {
-			clientController.setViewParentEditTaskWindow();
+			controller.setViewParentEditTaskWindow();
 		}
 		if(e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 		}
 
 	}
@@ -270,8 +270,8 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 
 //		c.gridy = 0;
 
-		for(int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
-			Task task = clientController.getAccount().getTaskList().get(i);
+		for(int i = 0; i < controller.getAccount().getTaskList().size(); i++) {
+			Task task = controller.getAccount().getTaskList().get(i);
 			model.addElement(task);
 //			pnlMiddle.add(new TaskPanel(task.getLocationName(),task.getChoreName(),task.getTaskValue()), c);
 //			c.gridy++;

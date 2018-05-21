@@ -103,7 +103,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		lblTitle.setBounds(120, 30, 285, 30);
 		btnHome.setIcon(new ImageIcon("images/house.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
-		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
+		btnProfile.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(260, 16, 90, 50);
 		
 		pnlTop.add(btnHome);

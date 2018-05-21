@@ -29,7 +29,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 	private JLabel lblRewards;
 	private ImageIcon imageHome;
 	private ImageIcon imageProfile;
-	private ClientController clientController;
+	private ClientController controller;
 
 	public ParentRewardWindow(ClientController clientController) throws IOException {
 		this.setClientController(clientController);
@@ -74,7 +74,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		btnHome.setIcon(imageHome);
 		pnlTop.add(btnHome);
 
-		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
+		imageProfile = (new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile = new JButton();
 		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(imageProfile);
@@ -260,20 +260,20 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource () == btnHome) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewParentHomeWindow();
 		}
 		if (e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 		}
 
 	}
 
 	public ClientController getClientController() {
-		return clientController;
+		return controller;
 	}
 
 	public void setClientController(ClientController clientController) {
-		this.clientController = clientController;
+		this.controller = clientController;
 	}
 
 //	public static void main(String[] args) throws IOException {
