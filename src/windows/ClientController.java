@@ -36,7 +36,7 @@ public class ClientController implements ActionListener, Observer {
 	private Dimension boxDimension = new Dimension(128, 64);
 	private AddChildWindow acw;
 	private ChildTaskWindow ctw;
-	private ChildRewardWindow2 crw;
+	private ChildRewardWindow crw;
 	private ChildProfileWindow cpw;
 	private ChildHomeWindow chw;
 	private ProfileStartWindow psw;
@@ -61,7 +61,7 @@ public class ClientController implements ActionListener, Observer {
 		try {
 			acw = new AddChildWindow (this);
 			ctw = new ChildTaskWindow(this);
-			crw = new ChildRewardWindow2(this);
+			crw = new ChildRewardWindow(this);
 			cpw = new ChildProfileWindow(this);
 			chw = new ChildHomeWindow (this);
 			psw = new ProfileStartWindow(this);

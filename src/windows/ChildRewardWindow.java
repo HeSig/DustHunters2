@@ -32,7 +32,7 @@ import profiles.ChildProfile;
  *
  */
 
-public class ChildRewardWindow2 extends JPanel implements ActionListener {
+public class ChildRewardWindow extends JPanel implements ActionListener {
 
 	
 	private JLabel lblTitle;
@@ -50,7 +50,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 	private ChildProfile childProfile;
 	private ClientController clientController;
 
-	public ChildRewardWindow2(ClientController clientController) throws IOException {
+	public ChildRewardWindow(ClientController clientController) throws IOException {
 		this.clientController = clientController;
 		start();
 	}
@@ -180,7 +180,7 @@ public class ChildRewardWindow2 extends JPanel implements ActionListener {
 
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame();
-		ChildRewardWindow2 childRWindow = new ChildRewardWindow2(null);
+		ChildRewardWindow childRWindow = new ChildRewardWindow(null);
 		frame.add(childRWindow);
 		frame.pack();
 		frame.setVisible(true);
