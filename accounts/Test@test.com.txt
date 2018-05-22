@@ -22,7 +22,7 @@ witch
 0
 $
 Tasks:
-3
+4
 Sovrummet
 Damma
 10
@@ -35,6 +35,11 @@ false
 null
 Sovrummet
 Diska
+10
+false
+null
+Sovrummet
+Dammsuga
 10
 false
 null

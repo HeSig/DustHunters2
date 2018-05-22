@@ -87,7 +87,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 
-		lblProfile = new JLabel("Mitt Crew");
+		lblProfile = new JLabel("Mitt Gäng");
 		lblProfile.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblProfile.setBounds(105, 30, 285, 20);
 		pnlTop.add(lblProfile);
