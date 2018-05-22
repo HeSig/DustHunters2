@@ -22,7 +22,7 @@ witch
 0
 $
 Tasks:
-2
+3
 Sovrummet
 Damma
 10
@@ -30,6 +30,11 @@ false
 null
 Sovrummet
 Bädda
+10
+false
+null
+Sovrummet
+Diska
 10
 false
 null

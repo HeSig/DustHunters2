@@ -49,19 +49,19 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 
 		// Main
-		Border border0 = BorderFactory.createTitledBorder("MainPanel");
-		this.setBorder(border0);
+//		Border border0 = BorderFactory.createTitledBorder("MainPanel");
+//		this.setBorder(border0);
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
 
 		// Top
 		JPanel pnlTop = new JPanel();
-		Border border1 = BorderFactory.createTitledBorder("TopPanel");
-		pnlTop.setBorder(border1);
+//		Border border1 = BorderFactory.createTitledBorder("TopPanel");
+//		pnlTop.setBorder(border1);
 		pnlTop.setBounds(12, 17, 358, 90);
 		pnlTop.setLayout(null);
-		pnlTop.setBackground(Color.WHITE);
+		pnlTop.setBackground(Color.YELLOW);
 
 		lblRewards = new JLabel("Poäng");
 		lblRewards.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -82,11 +82,11 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 
 		// Middle
 		JPanel pnlInfo = new JPanel();
-		Border border2 = BorderFactory.createTitledBorder("MiddlePanel");
-		pnlInfo.setBorder(border2);
+//		Border border2 = BorderFactory.createTitledBorder("MiddlePanel");
+//		pnlInfo.setBorder(border2);
 		pnlInfo.setBounds(12, 130, 358, 300);
 		pnlInfo.setLayout(new GridBagLayout());
-		pnlInfo.setBackground(Color.WHITE);
+		pnlInfo.setBackground(Color.YELLOW);
 		GridBagConstraints c = new GridBagConstraints();
 		
 		JLabel lblChild1 = new JLabel("HENRIK");
@@ -203,11 +203,11 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		
 		// Bottom
 		JPanel pnlBottom = new JPanel();
-		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
-		pnlBottom.setBorder(border4);
+//		Border border4 = BorderFactory.createTitledBorder("BottomPanel");
+//		pnlBottom.setBorder(border4);
 		pnlBottom.setBounds(12, 450, 358, 65);
 		pnlBottom.setLayout(new GridBagLayout());
-		pnlBottom.setBackground(Color.WHITE);
+		pnlBottom.setBackground(Color.YELLOW);
 		GridBagConstraints c2 = new GridBagConstraints();
 		
 		JLabel lblTeam = new JLabel("FAMILJEN");

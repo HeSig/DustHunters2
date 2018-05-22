@@ -41,6 +41,7 @@ public class ClientController implements ActionListener, Observer {
 	private ChildRewardWindow2 crw;
 	private ChildProfileWindow cpw;
 	private ChildHomeWindow chw;
+	private HelpWindow hw;
 	private ProfileStartWindow psw;
 	private ParentHomeWindow phw;
 	private ParentEditTaskWindow petw;
@@ -114,6 +115,7 @@ public class ClientController implements ActionListener, Observer {
 		ppw = new ParentProfileWindow(this);
 		prw = new ParentRewardWindow(this);
 		pSettingsw = new ParentSettingsWindow(this);
+		hw = new HelpWindow (this);
 	}
 
 	public ProfilePicture getPictures() {
@@ -216,6 +218,9 @@ public class ClientController implements ActionListener, Observer {
 
 	public void setViewParentSettingsWindow() {
 		setPanel(pSettingsw);
+	}
+	public void setViewHelpWindow () {
+		setPanel (hw);
 	}
 
 	public void setParentProfile(String name) {

@@ -227,6 +227,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 				e1.printStackTrace();
 			}
 		} else if (e.getSource() == btnCancel) {
+			controller.setViewParentProfileWindow();
 			
 		}else if(e.getSource() == comboChooseChildPicture) {
 			if (comboChooseChildPicture.getSelectedItem().equals("Dammtuss")) {

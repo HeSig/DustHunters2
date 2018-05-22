@@ -183,6 +183,9 @@ public class ParentHomeWindow extends JPanel implements ActionListener{
 		if(e.getSource() == btnRewards) {
 			controller.setViewParentRewardWindow();
 		}
+		if(e.getSource()== btnHelpManual) {
+			controller.setViewHelpWindow();
+		}
 	}	
 
 }

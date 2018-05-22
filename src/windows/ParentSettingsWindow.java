@@ -177,8 +177,10 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
+			controller.setViewParentHomeWindow();
 
 		} else if (e.getSource() == btnCancel) {
+			controller.setViewParentHomeWindow();
 
 		}
 
