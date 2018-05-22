@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class ChildProfile implements Serializable{
 	private String name;
 	private Account account;
-	private ImageIcon icon;
+	private String imageStr;
 	private int points = 0;
 	
 	public ChildProfile(String name, int points) {
@@ -38,6 +38,13 @@ public class ChildProfile implements Serializable{
 	}
 	public void removePoints(int points) {
 		this.points -= points;
+	}
+	public void setImage(String str) {
+		imageStr = str;
+	}
+	
+	public String getImageString() {
+		return imageStr;
 	}
 	
 

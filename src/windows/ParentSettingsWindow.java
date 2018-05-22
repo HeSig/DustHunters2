@@ -44,10 +44,10 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 
 	private Account account;
 	private ParentProfile parentProfile;
-	private ClientController clientController;
+	private ClientController controller;
 
 	public ParentSettingsWindow(ClientController clientController) throws IOException {
-		this.clientController = clientController;
+		this.controller = clientController;
 		start();
 	}
 
@@ -86,7 +86,7 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 		lblTitle.setBounds(110, 30, 285, 30);
 		btnHome.setIcon(new ImageIcon("images/house.jpg"));
 		btnHome.setBounds(5, 5, 75, 70);
-		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
+		btnProfile.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 
 		pnlTop.add(btnHome);
@@ -100,7 +100,7 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 		pnlMiddle1.setLayout(new FlowLayout());
 		pnlMiddle1.setBackground(Color.YELLOW);
 
-		btnProfilePic.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
+		btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfilePic.setBounds(10, 10, 10, 10);
 		btnProfilePic.setEnabled(true);
 		btnProfilePic.addActionListener(this);
@@ -171,14 +171,16 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewParentHomeWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
+			controller.setViewParentHomeWindow();
 
 		} else if (e.getSource() == btnCancel) {
+			controller.setViewParentHomeWindow();
 
 		}
 

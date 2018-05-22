@@ -5,13 +5,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import javafx.scene.Parent;
 import profiles.Account;
@@ -31,9 +34,11 @@ public class ProfileStartWindow extends JPanel {
 	private GridBagLayout layout = new GridBagLayout();
 	private JPanel profilePanel = new JPanel(layout);
 	private ActionListener actionListener;
+	private ClientController clientController;
 
 	public ProfileStartWindow(ClientController clientController) {
 		this.account = clientController.getAccount();
+		this.clientController = clientController;
 
 		actionListener = new ActionListener() {
 			@Override
@@ -100,18 +105,26 @@ public class ProfileStartWindow extends JPanel {
 
 		for (int i = 0; i < parents.size(); i++) {
 			activeButtons.add(inactiveButtons.get(0));
-			activeButtons.get(i).setPreferredSize(new Dimension(96, 32));
+			activeButtons.get(i).setPreferredSize(new Dimension(130, 130));
 			activeButtons.get(i).addActionListener(actionListener);
 			inactiveButtons.remove(0);
+			activeButtons.get(i)
+					.setIcon(new ImageIcon(clientController.getPictures().getImage(parents.get(i).getImageString())));
 			activeButtons.get(i).setText(parents.get(i).getName());
+			activeButtons.get(i).setVerticalTextPosition(SwingConstants.BOTTOM);
+			activeButtons.get(i).setHorizontalTextPosition(SwingConstants.CENTER);
 
 		}
 		for (int i = 0; i < children.size(); i++) {
 			JButton button = inactiveButtons.get(0);
-			button.setPreferredSize(new Dimension(96, 32));
+			button.setPreferredSize(new Dimension(130, 130));
 			button.addActionListener(actionListener);
 			inactiveButtons.remove(0);
+
+			button.setIcon(new ImageIcon(clientController.getPictures().getImage(children.get(i).getImageString())));
 			button.setText(children.get(i).getName());
+			button.setVerticalTextPosition(SwingConstants.BOTTOM);
+			button.setHorizontalTextPosition(SwingConstants.CENTER);
 			activeButtons.add(button);
 		}
 		GridBagConstraints c = new GridBagConstraints();

@@ -14,6 +14,7 @@ import tasks.Task;
 public class ParentProfile implements Serializable{
 	private String name;
 	private Account account;
+	private String imageStr;
 
 	public ParentProfile(String name) {
 		this.name = name;
@@ -21,6 +22,14 @@ public class ParentProfile implements Serializable{
 	
 	public String getName() {
 		return name;
+	}
+	
+	public void setImage(String str) {
+		this.imageStr = str;
+	}
+	
+	public String getImageString() {
+		return imageStr;
 	}
 
 	/*

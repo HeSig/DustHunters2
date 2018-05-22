@@ -1,4 +1,3 @@
-
 package windows;
 
 import java.awt.Color;
@@ -34,12 +33,12 @@ import tasks.Task;
  * @author Angelina Fransson, Henrik Sigeman, Maida Sijaric
  *
  */
-public class ParentTaskWindow extends JPanel implements ActionListener {
+public class ParentTaskWindow2 extends JPanel implements ActionListener {
 	private Account account; 
 	private ParentProfile parentProfile;
 	private JLabel lblChildTask;
 
-	private ClientController clientController;
+	private ClientController controller;
 	
 
 	private JLabel lblCheck;
@@ -88,8 +87,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.lblChildDoingTask = lblChildDoingTask;
 
 	}
-	public ParentTaskWindow (ClientController clientController) {
-		this.clientController = clientController;
+	public ParentTaskWindow2 (ClientController clientController) {
+		this.controller = clientController;
 		start();
 
 	}
@@ -135,7 +134,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 		btnProfile = new JButton ();
 		btnProfile.addActionListener(this);
-		dustBallImage = new ImageIcon ("images/20x20Dammtuss.jpg");
+		dustBallImage = (new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(dustBallImage);
 
@@ -253,13 +252,13 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnHome) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewParentHomeWindow();
 		}
 		if(e.getSource() == btnAddTask) {
-			clientController.setViewParentEditTaskWindow();
+			controller.setViewParentEditTaskWindow();
 		}
 		if(e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewParentProfileWindow();
 		}
 
 	}
@@ -271,8 +270,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 //		c.gridy = 0;
 
-		for(int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
-			Task task = clientController.getAccount().getTaskList().get(i);
+		for(int i = 0; i < controller.getAccount().getTaskList().size(); i++) {
+			Task task = controller.getAccount().getTaskList().get(i);
 			model.addElement(task);
 //			pnlMiddle.add(new TaskPanel(task.getLocationName(),task.getChoreName(),task.getTaskValue()), c);
 //			c.gridy++;
@@ -282,17 +281,35 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 	}
 	
 	private class TaskRenderer implements ListCellRenderer {
-
+		private ActionListener listener;
+		private JButton completedButton;
 		@Override
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 				boolean cellHasFocus) {
+			listener = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			};
 			// TODO Auto-generated method stub
-			JPanel panel = new JPanel(new GridLayout(1,4));
+			completedButton = new JButton("Godkänn");
+			completedButton.addActionListener(listener);
+			JPanel panel = new JPanel(new GridLayout(2,4));
 			Task task = (Task)value;
 			panel.add(new JLabel(task.getLocationName()));
 			panel.add(new JLabel(task.getChoreName()));
 			panel.add(new JLabel(""+task.getTaskValue()));
-			panel.add(new JLabel("Ej färdig"));
+			
+			if(task.getCompleted()) {
+				panel.add(new JLabel("Färdig"));
+				completedButton.setEnabled(true);
+			}else {
+				panel.add(new JLabel("Ej färdig"));
+				completedButton.setEnabled(false);
+			}
+			panel.add(completedButton);
+			
 			return panel;
 		}
 		
@@ -353,4 +370,3 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 	}
 }
-

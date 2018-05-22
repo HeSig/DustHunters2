@@ -35,7 +35,7 @@ public class HelpWindow extends JPanel implements ActionListener {
 	
 
 	private JLabel lblTitle;
-	private String text = new String("1. Första sidan \n Tryck på huset i vänstra topp hörnet för att komma \n till första sidan. \n 2. Din profil \n Tryck på Dammtussen i högra topp hörn för att \n komma till din profil \n 3. Sysslor \n Är nyttigt för barnen \n 4. Belöningar \n Är nytigt för själen ");
+	private String text = new String("1. Första sidan \n Tryck på huset i vänstra hörnet för att komma \n till första sidan. \n 2. Din profil \n Tryck på Dammtussen i högra hörnet för att \n komma till din profil. \n 3. Sysslor \n Är nyttigt för barnen. \n 4. Belöningar \n Är nyttigt för själen. ");
 	private JButton btnHome = new JButton();
 	private JButton btnProfile = new JButton();
 	
@@ -76,6 +76,9 @@ public class HelpWindow extends JPanel implements ActionListener {
 		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
 		btnProfile.setBounds(260, 16, 90, 50);
 
+		btnHome.addActionListener(this);
+		btnProfile.addActionListener(this);
+		
 		pnlTop.add(btnHome);
 		pnlTop.add(lblTitle);
 		pnlTop.add(btnProfile);
@@ -116,14 +119,14 @@ public class HelpWindow extends JPanel implements ActionListener {
 	}
 	
 	//Main should be removed? -M
-	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame();
-		HelpWindow helpWindow = new HelpWindow(null);
-		frame.add(helpWindow);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
-	}
+//	public static void main(String[] args) throws IOException {
+//		JFrame frame = new JFrame();
+//		HelpWindow helpWindow = new HelpWindow(null);
+//		frame.add(helpWindow);
+//		frame.pack();
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setMinimumSize(new Dimension(400, 600));
+//	}
 
 }
