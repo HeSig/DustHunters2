@@ -213,8 +213,6 @@ public class AccountManager {
 		writer.println("dammtuss");
 		writer.println("$");
 		writer.println("ChildProfiles:");
-		writer.println("1");
-		writer.println("barn1");
 		writer.println("0");
 		writer.println("$");
 		writer.println("Tasks:");

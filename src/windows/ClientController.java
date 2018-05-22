@@ -62,23 +62,6 @@ public class ClientController implements ActionListener, Observer {
 		this.client.addObserver(this);
 		this.account = account;
 		frame = new JFrame();
-		try {
-			acw = new AddChildWindow (this);
-			ctw = new ChildTaskWindow(this);
-			crw = new ChildRewardWindow(this);
-			cpw = new ChildProfileWindow(this);
-			chw = new ChildHomeWindow (this);
-			psw = new ProfileStartWindow(this);
-			phw = new ParentHomeWindow(this);
-			petw = new ParentEditTaskWindow(this);
-			ptw = new ParentTaskWindow(this);
-			ppw = new ParentProfileWindow(this);
-			prw = new ParentRewardWindow (this);
-			pSettingsw = new ParentSettingsWindow (this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		profilePictures = new ProfilePicture();
 		psw = new ProfileStartWindow(this);
 		updatePanel.setPreferredSize(new Dimension(128, 128));
