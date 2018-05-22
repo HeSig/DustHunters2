@@ -146,7 +146,7 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 			clientController.setViewChildRewardWindow();
 		}
 		if(e.getSource() == btnMyChores) {
-			clientController.setViewChildProfileWindow();
+			clientController.setViewChildTaskWindow();
 		}
 		if(e.getSource() == btnProfile) {
 			clientController.setViewChildProfileWindow();

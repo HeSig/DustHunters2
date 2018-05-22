@@ -87,7 +87,9 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.lblChildDoingTask = lblChildDoingTask;
 
 	}
-	public ParentTaskWindow(ClientController clientController) {
+
+	public ParentTaskWindow (ClientController clientController) {
+
 		this.controller = clientController;
 		start();
 
