@@ -33,7 +33,7 @@ import tasks.Task;
  * @author Angelina Fransson, Henrik Sigeman, Maida Sijaric
  *
  */
-public class ParentTaskWindow2 extends JPanel implements ActionListener {
+public class ParentTaskWindow extends JPanel implements ActionListener {
 	private Account account; 
 	private ParentProfile parentProfile;
 	private JLabel lblChildTask;
@@ -87,7 +87,7 @@ public class ParentTaskWindow2 extends JPanel implements ActionListener {
 		this.lblChildDoingTask = lblChildDoingTask;
 
 	}
-	public ParentTaskWindow2 (ClientController clientController) {
+	public ParentTaskWindow (ClientController clientController) {
 		this.controller = clientController;
 		start();
 
