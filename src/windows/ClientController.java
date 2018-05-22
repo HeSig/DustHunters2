@@ -112,7 +112,7 @@ public class ClientController implements ActionListener, Observer {
 
 	private void initChild() throws IOException {
 		ctw = new ChildTaskWindow(this);
-		crw = new ChildRewardWindow2(this);
+		crw = new ChildRewardWindow(this);
 		cpw = new ChildProfileWindow(this);
 		chw = new ChildHomeWindow(this);
 	}
@@ -128,7 +128,7 @@ public class ClientController implements ActionListener, Observer {
 		acw = new AddChildWindow(this);
 		phw = new ParentHomeWindow(this);
 		petw = new ParentEditTaskWindow(this);
-		ptw = new ParentTaskWindow2(this);
+		ptw = new ParentTaskWindow(this);
 		ppw = new ParentProfileWindow(this);
 		prw = new ParentRewardWindow(this);
 		pSettingsw = new ParentSettingsWindow(this);
