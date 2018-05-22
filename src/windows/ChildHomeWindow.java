@@ -143,7 +143,7 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnMyRewards) {
-			clientController.setViewChildRewardWindow2();
+			clientController.setViewChildRewardWindow();
 		}
 		if(e.getSource() == btnMyChores) {
 			clientController.setViewChildProfileWindow();

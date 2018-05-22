@@ -47,6 +47,7 @@ public class ClientController implements ActionListener, Observer {
 	private ParentEditTaskWindow petw;
 	private ParentTaskWindow ptw;
 	private ParentProfileWindow ppw;
+	private ParentCreateRewardWindow pcrw;
 	private ParentRewardWindow prw;
 	private ParentSettingsWindow pSettingsw;
 	private Account account;
@@ -191,7 +192,7 @@ public class ClientController implements ActionListener, Observer {
 		setPanel(chw);
 	}
 
-	public void setViewChildRewardWindow2() {
+	public void setViewChildRewardWindow() {
 		setPanel(crw);
 	}
 
@@ -221,6 +222,10 @@ public class ClientController implements ActionListener, Observer {
 	}
 	public void setViewHelpWindow () {
 		setPanel (hw);
+	}
+	// om det blir något fel så har jag precis lagt in denna
+	public void setViewParentCreateRewardWindow() {
+		setPanel(pcrw);
 	}
 
 	public void setParentProfile(String name) {
