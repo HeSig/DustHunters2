@@ -14,10 +14,7 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
-import locations.BedroomLocation;
-import locations.KitchenLocation;
 import locations.Location;
-import locations.ToiletLocation;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
