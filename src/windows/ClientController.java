@@ -13,7 +13,6 @@ import java.util.Observer;
 import javax.swing.*;
 
 import client.Client;
-import client.UserController;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
