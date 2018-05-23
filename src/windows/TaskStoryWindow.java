@@ -14,25 +14,28 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * This GUI-class presents the "story" of a specific chore to the child. The
+ * intention has been to make the completion of the chore more playful and
+ * inspiring to the child.
+ * 
+ * @author Kasper
+ *
+ */
+
 public class TaskStoryWindow extends JPanel implements ActionListener {
 
 	private JLabel lblTitle;
-	private String text = new String("Schh!" + 
-			"\nHör du mig, Dammjägare? Vi behöver din hjälp,"
-			+ "\nDammjägar-ninjan."
+	private String text = new String("Schh!" + "\nHör du mig, Dammjägare? Vi behöver din hjälp," + "\nDammjägar-ninjan."
 			+ "\nDen onda Smutselina har varit i farten igen, "
-			+ "\noch vi måste snabbt få bort hennes spår i vardagsrummet   "
-			+ "\ninnan hon märker något. "
-			+ "\nSmutselina hör lika bra som en fladdermus, "
-			+ "\nså du måste vara tyst och försiktig. "
+			+ "\noch vi måste snabbt få bort hennes spår i vardagsrummet   " + "\ninnan hon märker något. "
+			+ "\nSmutselina hör lika bra som en fladdermus, " + "\nså du måste vara tyst och försiktig. "
 			+ "\nPå med masken, nu kör vi!");
 	private JButton btnHome = new JButton();
 	private JButton btnProfile = new JButton();
 	private ImageIcon dustBallImage;
 	private JLabel lblDustSymbol;
-	
 	private ClientController controller;
-	
 
 	public TaskStoryWindow(ClientController clientController) throws IOException {
 		this.setClientController(clientController);
@@ -46,6 +49,13 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 		InitializeGUI();
 		this.setVisible(true);
 	}
+
+	/**
+	 * Method that sets up the various graphical components of the window. Panels:
+	 * Main, Top and Middle.
+	 * 
+	 * @throws IOException
+	 */
 
 	public void InitializeGUI() throws IOException {
 
@@ -75,7 +85,7 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
-		
+
 		// Middle Panel
 		JPanel pnlMiddle = new JPanel();
 
@@ -88,18 +98,22 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 		textArea.setEditable(false);
 
 		pnlMiddle.add(scrollPane);
-		
+
 		dustBallImage = new ImageIcon("images/NinjaReducedSize3.png");
 
 		lblDustSymbol = new JLabel();
 		lblDustSymbol.setBounds(85, 13, 200, 160);
 		lblDustSymbol.setIcon(dustBallImage);
 		pnlMiddle.add(lblDustSymbol);
-		
+
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 	}
 
+	/**
+	 * Handles the interaction the user does with the buttons, and redirects to
+	 * either ChildHomeWindow or ChildProfileWindow.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -109,7 +123,7 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 			controller.setViewChildProfileWindow();
 		}
 	}
-	
+
 	public ClientController getClientController() {
 		return controller;
 	}
@@ -117,7 +131,4 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 	public void setClientController(ClientController clientController) {
 		this.controller = clientController;
 	}
-
-	
-
 }
