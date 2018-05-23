@@ -25,7 +25,7 @@ astronaut
 0
 $
 Tasks:
-6
+7
 Sovrummet
 Damma
 10
@@ -53,6 +53,11 @@ false
 null
 utomhus
 Diska
+10
+false
+null
+Hallen
+Bädda
 10
 false
 null

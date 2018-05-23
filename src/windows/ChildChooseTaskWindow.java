@@ -1,9 +1,11 @@
 package windows;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,10 +16,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
 
 import profiles.Account;
+import profiles.ParentProfile;
 import tasks.Task;
 import windows.ClientController;
+
 
 /**
  * GUI for children's profile
@@ -137,15 +143,22 @@ public class ChildChooseTaskWindow extends JPanel implements ActionListener {
 
 		// Profile picture in the middle of middle panel
 		lblProfileSymbol = new JLabel();
-		dustBallImage = new ImageIcon("images/20x20Dammtuss.jpg");
-		lblProfileSymbol.setBounds(250, 16, 90, 50); // Original 250, 16, 90, 50
-		lblProfileSymbol.setIcon(dustBallImage);
+	//	dustBallImage = new ImageIcon("images/20x20Dammtuss.jpg");
+		lblProfileSymbol.setBounds(300, 16, 90, 50); // Original 250, 16, 90, 50
+		lblProfileSymbol.setIcon(new ImageIcon(clientController.getPictures().getImage(clientController.getChildProfile().getImageString())));
 		pnlMiddle.add(lblProfileSymbol);
 
 		/*
 		 * Components added to the middle panel. Remember; a task A task consists of
 		 * location + chore + reward.
 		 */
+		
+		taskList.setCellRenderer(new TaskRenderer());
+		JScrollPane taskScroll = new JScrollPane(taskList);
+		taskScroll.setBounds(12, 130, 358, 140);
+		
+		updateTasks();
+		
 		lblToDo = new JLabel("Sysslor att göra");
 		lblToDo.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblToDo.setBounds(1, 10, 90, 50);
@@ -174,7 +187,7 @@ public class ChildChooseTaskWindow extends JPanel implements ActionListener {
 		c.weightx = 1;
 		c.weighty = 1;
 		c.gridx = 1;
-		c.gridy = 0;
+		c.gridy = 1;
 		pnlMiddle.add(lblProfileSymbol, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -217,7 +230,8 @@ public class ChildChooseTaskWindow extends JPanel implements ActionListener {
 
 		// Add panels
 		this.add(pnlTop);
-		this.add(pnlMiddle);
+		//this.add(pnlMiddle);
+		this.add(taskScroll);
 		this.add(pnlBottom);
 	}
 
@@ -234,17 +248,62 @@ public class ChildChooseTaskWindow extends JPanel implements ActionListener {
 		}
 
 	}
-
-	// Just playing around to see if it works
-	public void updateSomething() {
+	
+	public void updateTasks() {
 		model.clear();
 
 		for (int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
 			Task task = clientController.getAccount().getTaskList().get(i);
 			model.addElement(task);
+		}
+	}
 
+	private class TaskRenderer implements ListCellRenderer {
+		private ActionListener listener;
+		private JButton completedButton;
+
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+				boolean cellHasFocus) {
+			listener = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+				}
+			};
+			// TODO Auto-generated method stub
+			completedButton = new JButton("Godkänn");
+			completedButton.addActionListener(listener);
+			JPanel panel = new JPanel(new GridLayout(2, 4));
+			Task task = (Task) value;
+			panel.add(new JLabel(task.getLocationName()));
+			panel.add(new JLabel(task.getChoreName()));
+			panel.add(new JLabel("" + task.getTaskValue()));
+
+			if (task.getCompleted()) {
+				panel.add(new JLabel("Färdig"));
+				completedButton.setEnabled(true);
+			} else {
+				panel.add(new JLabel("Ej färdig"));
+				completedButton.setEnabled(false);
+			}
+			panel.add(completedButton);
+
+			return panel;
 		}
 
 	}
 
-}
+	// Just playing around to see if it works
+//	public void updateSomething() {
+//		model.clear();
+//
+//		for (int i = 0; i < clientController.getAccount().getTaskList().size(); i++) {
+//			Task task = clientController.getAccount().getTaskList().get(i);
+//			model.addElement(task);
+//
+//		}
+
+	}
+
+
