@@ -108,9 +108,9 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.setLayout(null);
 		InitializeGUI();
 		this.setVisible(true);
-		lblChildDoingTask.setOpaque(true);
-		lblCheck.setOpaque(true);
-		lblTask.setOpaque(true);
+//		lblChildDoingTask.setOpaque(true);
+//		lblCheck.setOpaque(true);
+//		lblTask.setOpaque(true);
 
 	}
 
@@ -159,18 +159,18 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		taskScroll.setBounds(12, 130, 358, 140);
 		GridBagConstraints c = new GridBagConstraints();
 
-		Border border3 = BorderFactory.createEtchedBorder();
-		lblChildDoingTask = new JLabel("Angie");
-		lblChildDoingTask.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
-		lblChildDoingTask.setBorder(border3);
-
-		lblTask = new JLabel("Dammsuga Vardagsrummet");
-		lblTask.setFont(new Font("SansSerif", Font.BOLD, 12));
-		lblTask.setBorder(border3);
-
-		lblCheck = new JLabel(" ");
-		lblCheck.setFont(new Font("SansSerif", Font.BOLD, 12));
-		lblCheck.setBorder(border3);
+//		Border border3 = BorderFactory.createEtchedBorder();
+//		lblChildDoingTask = new JLabel("Angie");
+//		lblChildDoingTask.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
+//		lblChildDoingTask.setBorder(border3);
+//
+//		lblTask = new JLabel("Dammsuga Vardagsrummet");
+//		lblTask.setFont(new Font("SansSerif", Font.BOLD, 12));
+//		lblTask.setBorder(border3);
+//
+//		lblCheck = new JLabel(" ");
+//		lblCheck.setFont(new Font("SansSerif", Font.BOLD, 12));
+//		lblCheck.setBorder(border3);
 
 		// Needs to be redone so that they're all the same length
 		c.fill = GridBagConstraints.HORIZONTAL;

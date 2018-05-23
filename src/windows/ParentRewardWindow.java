@@ -21,6 +21,15 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+/**
+ * This GUI-class is intended to show the current point score of the individual
+ * family members, as well as the family as a 'team'. Points are used to gain
+ * rewards.
+ * 
+ * @author Kasper
+ *
+ */
+
 public class ParentRewardWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
@@ -37,7 +46,6 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 	}
 
 	public void start() throws IOException {
-		// TODO Auto-generated method stub
 
 		this.setBounds(0, 0, 400, 600);
 		this.setLayout(null);
@@ -45,8 +53,14 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
+	/**
+	 * This method sets up the main, top, middle and bottom panels of the window,
+	 * including all the graphical elements.
+	 * 
+	 * @throws IOException
+	 */
+
 	public void InitializeGUI() throws IOException {
-		// TODO Auto-generated method stub
 
 		// Main
 		this.setBounds(6, 6, 381, 500);
@@ -59,7 +73,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 
-		lblRewards = new JLabel("Poäng");
+		lblRewards = new JLabel("   Poäng");
 		lblRewards.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblRewards.setBounds(125, 30, 285, 20);
 		pnlTop.add(lblRewards);
@@ -212,7 +226,6 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 
 		btnNewReward = new JButton("Ny Belöning");
 		btnNewReward.setBounds(12, 30, 50, 30);
-		
 
 		c2.fill = GridBagConstraints.HORIZONTAL;
 		c2.anchor = GridBagConstraints.NORTHEAST;
@@ -248,8 +261,14 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * Handles the interaction the user does with the buttons, and redirects to
+	 * either ParentHomeWindow, ParentProfileWindow, or ParentCreateRewardWindow.
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		if (e.getSource() == btnHome) {
 			controller.setViewParentHomeWindow();
 		}

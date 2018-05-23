@@ -13,7 +13,6 @@ import java.util.Observer;
 import javax.swing.*;
 
 import client.Client;
-import client.UserController;
 import profiles.Account;
 import profiles.ChildProfile;
 import profiles.ParentProfile;
@@ -52,21 +51,25 @@ public class ClientController implements ActionListener, Observer {
 	private ParentRewardWindow prw;
 	private ParentSettingsWindow pSettingsw;
 	private TaskStoryWindow tsw;
+	private RegisterLoginWindow rlw;
 	private Account account;
 	private Client client;
 	private Boolean clientIsRunning = false;
 	private ProfilePicture profilePictures;
+	private int port;
+	private String host;
 
 	private ChildProfile childProfile;
 	private ParentProfile parentProfile;
 
-	public ClientController(Account account, Client client) {
+	public ClientController(Client client) {
 		this.client = client;
 		this.client.addObserver(this);
-		this.account = account;
+		//this.account = account;
 		frame = new JFrame();
 		profilePictures = new ProfilePicture();
-		psw = new ProfileStartWindow(this);
+		rlw = new RegisterLoginWindow(this);
+		
 		updatePanel.setPreferredSize(new Dimension(128, 128));
 		frame.setPreferredSize(new Dimension(400, 600));
 		frame.setLayout(new BorderLayout());
@@ -81,19 +84,8 @@ public class ClientController implements ActionListener, Observer {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		setPanel(psw);
-		try {
-			this.account.setTaskList(this.client.getTasksFromServer(this.account));
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		setViewRegisterLoginWindow();
+		
 	}
 
 	private void initChild() throws IOException {
@@ -187,6 +179,10 @@ public class ClientController implements ActionListener, Observer {
 		setPanel(ppw);
 	}
 
+	public void setViewRegisterLoginWindow() {
+		setPanel(rlw);
+	}
+	
 	public void setViewParentTaskWindow() {
 		setPanel(ptw);
 	}
@@ -315,6 +311,88 @@ public class ClientController implements ActionListener, Observer {
 		LinkedList<Reward> rewardList;
 		rewardList = client.addPointsToReward(reward, points, childProfile, account);
 		return rewardList;
+	}
+	/**
+	 * Returns the client
+	 * 
+	 * @return the client.
+	 */
+	public Client getClient() {
+		return client;
+	}
+
+	/**
+	 * Sets the controllers client
+	 * 
+	 * @param client
+	 *            the new client.
+	 */
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	/**
+	 * returns the ip-address of the server.
+	 * 
+	 * @return the ip-address as a String
+	 */
+	public String getHost() {
+		return host;
+	}
+
+	/**
+	 * Sets the controllers ip-address.
+	 * 
+	 * @param host
+	 *            the new ip-address.
+	 */
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	/**
+	 * returns the controllers port.
+	 * 
+	 * @return the port.
+	 */
+	public int getPort() {
+		return port;
+	}
+
+	/**
+	 * sets the controllers port.
+	 * 
+	 * @param port
+	 *            the new port.
+	 */
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+	/**
+	 * Regisers a new account through the client.
+	 * 
+	 * @param account
+	 *            The account to be registered
+	 * @return Returns a string that lets the user know if the account has been
+	 *         registered.
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 * @throws InterruptedException 
+	 */
+	public String registerUser(Account account) throws UnknownHostException, IOException, InterruptedException {
+		String res = client.sendRegisterToServer(account);
+		return res;
+	}
+	
+	public Account login(Account account) throws UnknownHostException, IOException, ClassNotFoundException {
+		System.out.println("Controller is attempting the login");
+		Account res = client.sendLoginToServer(account);
+		this.account = res;
+		psw = new ProfileStartWindow(this);
+		setViewProfileStartWindow();
+		return res;
 	}
 
 	public LinkedList<Task> completeTask(Task task, ChildProfile childProfile) throws IOException {

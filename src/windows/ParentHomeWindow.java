@@ -20,6 +20,8 @@ import profiles.ParentProfile;
 public class ParentHomeWindow extends JPanel implements ActionListener {
 	private Account account;
 	private ParentProfile parentProfile;
+	
+	private JButton btnLogout;
 
 	private JButton btnSettings;
 	private JButton btnTasks;
@@ -82,6 +84,12 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		pnlTop.setBounds(12, 17, 358, 90);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
+		
+		btnLogout = new JButton();
+		btnLogout.setText("Logout");
+		btnLogout.setBounds(20, 30, 100, 20);
+		btnLogout.addActionListener(this);
+		pnlTop.add(btnLogout);
 
 		lblHome = new JLabel("Hem");
 		lblHome.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -188,6 +196,10 @@ public class ParentHomeWindow extends JPanel implements ActionListener {
 		}
 		if (e.getSource() == btnHelpManual) {
 			controller.setViewHelpWindow();
+		}
+		
+		if (e.getSource() == btnLogout) {
+			controller.setViewProfileStartWindow();
 		}
 	}
 
