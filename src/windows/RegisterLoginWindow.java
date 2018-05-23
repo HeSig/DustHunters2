@@ -12,8 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -35,6 +38,9 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 	private BorderLayout bLayout = new BorderLayout();
 	private JPanel registerPanel = new JPanel(gLayout);
 	private JPanel buttonPanel = new JPanel();
+	
+	private JLabel title = new JLabel();
+	private JPanel titlePanel = new JPanel();
 
 	public RegisterLoginWindow(ClientController controller) {
 		this.controller = controller;
@@ -50,6 +56,14 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		registerPanel.setBackground(Color.YELLOW);
+		
+		title.setIcon(new ImageIcon("images/titel2.png"));
+		title.setVerticalAlignment(JLabel.CENTER);
+		title.setHorizontalAlignment(JLabel.CENTER);
+		
+		titlePanel.setBackground(Color.yellow);
+		
+		titlePanel.add(title, BorderLayout.CENTER);
 
 		email.setText("Test@test.com");
 		password.setText("TestTestTest");
@@ -76,8 +90,10 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 		buttonPanel.add(registerButton, c);
 		c.gridy = 2;
 		buttonPanel.add(loginButton, c);
+		
+		titlePanel.add(registerPanel, BorderLayout.SOUTH);
 		add(infoText, BorderLayout.NORTH);
-		add(registerPanel, BorderLayout.CENTER);
+		add(titlePanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 

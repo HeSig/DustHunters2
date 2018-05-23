@@ -37,14 +37,16 @@ public class UserMain {
 			//String host = "192.168.0.100";
 		String host = "localhost";
 		AccountManager accountManager1 = new AccountManager();
+		Server server = new Server(port, accountManager1);
+		//ServerWindow window = new ServerWindow(server);
+		server.start();
+		
 		//UserController test1 = new UserController(host, port);
 		Client client = new Client(port, host);
 		ClientController clientController = new ClientController(client);
 		//System.out.println("Client started");
 		// Server
-		Server server = new Server(port, accountManager1);
-		ServerWindow window = new ServerWindow(server);
-		server.start();
+		
 		//System.out.println("Server started");
 	}
 }
