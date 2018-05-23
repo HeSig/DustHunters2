@@ -90,6 +90,13 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
+	
+	/**
+	 * Logs in the user
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	private void login() throws UnknownHostException, IOException, ClassNotFoundException {
 		email.setBackground(Color.WHITE);
 		password.setBackground(Color.WHITE);
@@ -132,6 +139,12 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 		}
 		infoText.setText(infoTextStr);
 	}
+	/**
+	 * Registers the user
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 
 	private void register() throws UnknownHostException, IOException, InterruptedException {
 		email.setBackground(Color.WHITE);
