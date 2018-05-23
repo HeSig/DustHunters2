@@ -20,6 +20,7 @@ import profiles.ChildProfile;
  * 
  * @author Maida
  *
+ * 23/5: Git strulat hela dan. Ominstallerat flera gånger. Git ballade ur. Check-check
  */
 
 public class ChildProfileWindow extends JPanel implements ActionListener {
