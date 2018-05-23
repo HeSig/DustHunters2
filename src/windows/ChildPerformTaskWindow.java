@@ -41,7 +41,7 @@ import tasks.Task;
  * Drop-down ska raderas, barnen ska inte kunna ändra val av sysslor i detta fönster -M
  *
  */
-public class ChildTaskWindow extends JPanel implements ActionListener {
+public class ChildPerformTaskWindow extends JPanel implements ActionListener {
 
 	private JButton btnHome;
 	private JButton btnDustSymbol;
@@ -63,7 +63,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 	private Task task;
 	private Chore chore;
 
-	public ChildTaskWindow(ClientController clientController) throws IOException {
+	public ChildPerformTaskWindow(ClientController clientController) throws IOException {
 		this.controller = clientController;
 		start();
 	}
@@ -105,10 +105,11 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		btnHome.setIcon(imageHome);
 		pnlTop.add(btnHome);
 
-		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
+		 // imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
 		btnProfile = new JButton();
 		btnProfile.setBounds(275, 16, 75, 70);
-		btnProfile.setIcon(imageProfile);
+		// btnProfile.setIcon(imageProfile);
+		btnProfile.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getChildProfile().getImageString())));
 		pnlTop.add(btnProfile);
 
 		// Middle
@@ -220,7 +221,7 @@ public class ChildTaskWindow extends JPanel implements ActionListener {
 		}
 
 		if (e.getSource() == btnDustSymbol) {
-			// should open story page
+			controller.setTaskStoryWindow();
 		}
 
 		if (e.getSource() == btnHome) {

@@ -80,11 +80,12 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 		pnlTop.add(lblHome);
 		
 		
-		imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
+		// imageProfile = new ImageIcon("images/20x20Dammtuss.jpg");
 		btnProfile = new JButton();
 		btnProfile.addActionListener(this);
 		btnProfile.setBounds(275, 16, 75, 70);
-		btnProfile.setIcon(imageProfile);
+	//	btnProfile.setIcon(imageProfile);
+		btnProfile.setIcon(new ImageIcon(clientController.getPictures().getImage(clientController.getChildProfile().getImageString())));
 		pnlTop.add(btnProfile);
 		
 
@@ -146,7 +147,7 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 			clientController.setViewChildRewardWindow();
 		}
 		if(e.getSource() == btnMyChores) {
-			clientController.setViewChildTaskWindow();
+			clientController.setViewChildChooseTaskWindow();
 		}
 		if(e.getSource() == btnProfile) {
 			clientController.setViewChildProfileWindow();

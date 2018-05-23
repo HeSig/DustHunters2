@@ -90,7 +90,8 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 		lblTitle.setBounds(120, 30, 285, 20);
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
-		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
+	
+		btnProfile.setIcon(new ImageIcon(clientController.getPictures().getImage(clientController.getChildProfile().getImageString())));
 		btnProfile.setBounds(260, 16, 90, 50);
 
 		pnlTop.add(btnHome);
@@ -163,10 +164,10 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btnHome) {
-			clientController.setViewChildTaskWindow();
+			clientController.setViewChildHomeWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			clientController.setViewChildHomeWindow();
+			clientController.setViewChildProfileWindow();
 
 		} else if (e.getSource() == btnBeach) {
 

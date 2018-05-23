@@ -37,9 +37,10 @@ public class ClientController implements ActionListener, Observer {
 	private JTextField updateText = new JTextField();
 	private Dimension boxDimension = new Dimension(128, 64);
 	private AddChildWindow acw;
-	private ChildTaskWindow ctw;
-	private ChildRewardWindow crw;
+	private ChildPerformTaskWindow cptw;
 	private ChildProfileWindow cpw;
+	private ChildRewardWindow crw;
+	private ChildChooseTaskWindow cctw;
 	private ChildHomeWindow chw;
 	private HelpWindow hw;
 	private ProfileStartWindow psw;
@@ -50,6 +51,7 @@ public class ClientController implements ActionListener, Observer {
 	private ParentCreateRewardWindow pcrw;
 	private ParentRewardWindow prw;
 	private ParentSettingsWindow pSettingsw;
+	private TaskStoryWindow tsw;
 	private Account account;
 	private Client client;
 	private Boolean clientIsRunning = false;
@@ -95,15 +97,18 @@ public class ClientController implements ActionListener, Observer {
 	}
 
 	private void initChild() throws IOException {
-		ctw = new ChildTaskWindow(this);
+		cptw = new ChildPerformTaskWindow(this);
 		crw = new ChildRewardWindow(this);
 		cpw = new ChildProfileWindow(this);
+		cctw = new ChildChooseTaskWindow(this);
 		chw = new ChildHomeWindow(this);
+		tsw = new TaskStoryWindow(this);
 	}
-	
+
 	public ParentProfile getParentProfile() {
 		return parentProfile;
 	}
+
 	public ChildProfile getChildProfile() {
 		return childProfile;
 	}
@@ -117,7 +122,7 @@ public class ClientController implements ActionListener, Observer {
 		prw = new ParentRewardWindow(this);
 		pcrw = new ParentCreateRewardWindow(this);
 		pSettingsw = new ParentSettingsWindow(this);
-		hw = new HelpWindow (this);
+		hw = new HelpWindow(this);
 	}
 
 	public ProfilePicture getPictures() {
@@ -132,7 +137,8 @@ public class ClientController implements ActionListener, Observer {
 	public LinkedList<Task> addTaskToAccount(Task task) throws UnknownHostException, IOException {
 		return client.addTaskToServer(account, task);
 	}
-	public LinkedList<Task> setTaskAsCompleted(Task task){
+
+	public LinkedList<Task> setTaskAsCompleted(Task task) {
 		return client.setTaskAsCompleted(account, task, childProfile);
 	}
 
@@ -185,20 +191,24 @@ public class ClientController implements ActionListener, Observer {
 		setPanel(ptw);
 	}
 
-	public void setViewChildTaskWindow() {
-		setPanel(ctw);
+	public void setViewChildPerformTaskWindow() {
+		setPanel(cptw);
 	}
 
 	public void setViewChildHomeWindow() {
 		setPanel(chw);
+	}
+	
+	public void setViewChildProfileWindow() {
+		setPanel(cpw);
 	}
 
 	public void setViewChildRewardWindow() {
 		setPanel(crw);
 	}
 
-	public void setViewChildProfileWindow() {
-		setPanel(cpw);
+	public void setViewChildChooseTaskWindow() {
+		setPanel(cctw);
 	}
 
 	public void setViewProfileStartWindow() {
@@ -221,10 +231,22 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewParentSettingsWindow() {
 		setPanel(pSettingsw);
 	}
-	public void setViewHelpWindow () {
-		setPanel (hw);
+
+	public void setViewHelpWindow() {
+		setPanel(hw);
 	}
-	
+
+	public void setTaskStoryWindow() {
+		setPanel(tsw);
+	}
+
+	public void setViewParentRewardWindow() {
+		setPanel(prw);
+	}
+
+	public void setViewParentCreateRewardWindow() {
+		setPanel(pcrw);
+	}
 
 	public void setParentProfile(String name) {
 		for (int i = 0; i < account.getParentProfileList().size(); i++) {
@@ -294,15 +316,6 @@ public class ClientController implements ActionListener, Observer {
 		rewardList = client.addPointsToReward(reward, points, childProfile, account);
 		return rewardList;
 	}
-
-	public void setViewParentRewardWindow() {
-		setPanel(prw);
-	}
-	
-	// om det blir något fel så har jag precis lagt in denna
-		public void setViewParentCreateRewardWindow() {
-			setPanel(pcrw);
-		}
 
 	public LinkedList<Task> completeTask(Task task, ChildProfile childProfile) throws IOException {
 		LinkedList<Task> taskList;

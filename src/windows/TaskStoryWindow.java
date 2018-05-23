@@ -1,22 +1,18 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.border.Border;
 
 public class TaskStoryWindow extends JPanel implements ActionListener {
 
@@ -35,11 +31,11 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 	private ImageIcon dustBallImage;
 	private JLabel lblDustSymbol;
 	
-	private ClientController clientController;
+	private ClientController controller;
 	
 
 	public TaskStoryWindow(ClientController clientController) throws IOException {
-		this.clientController = clientController;
+		this.setClientController(clientController);
 		start();
 	}
 
@@ -86,7 +82,6 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 		pnlMiddle.setBounds(12, 150, 358, 360);
 		pnlMiddle.setLayout(new FlowLayout());
 		pnlMiddle.setBackground(Color.YELLOW);
-		Border border3 = BorderFactory.createEtchedBorder();
 
 		JTextArea textArea = new JTextArea(text);
 		JScrollPane scrollPane = new JScrollPane(textArea);
@@ -109,20 +104,20 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == btnHome) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewChildHomeWindow();
 		} else if (e.getSource() == btnProfile) {
-			clientController.setViewParentProfileWindow();
+			controller.setViewChildProfileWindow();
 		}
 	}
-
-	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame();
-		TaskStoryWindow tsw = new TaskStoryWindow(null);
-		frame.add(tsw);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
+	
+	public ClientController getClientController() {
+		return controller;
 	}
+
+	public void setClientController(ClientController clientController) {
+		this.controller = clientController;
+	}
+
+	
 
 }

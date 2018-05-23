@@ -31,7 +31,7 @@ import windows.ClientController;
  *
  */
 
-public class ChildProfileWindow extends JPanel implements ActionListener {
+public class ChildChooseTaskWindow extends JPanel implements ActionListener {
 	private Account account;
 	private String name; // Delete? - Angie
 
@@ -40,6 +40,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	private ImageIcon dustBallImage; // Profilepic, in the middle of middle panel
 	private JLabel lblProfileSymbol; // Symbol, profilepic will be inside this label
 	private JButton btnHome;
+	private JButton btnProfile;
 	private JLabel lblNumberOrder; // Number of tasks. Delete?
 	private JLabel lblLocation;
 	private JButton btnChore; // When user clicks task, they will in fact click a button to take them to class
@@ -73,7 +74,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	}
 
 	// Constructor
-	public ChildProfileWindow(ClientController clientController) throws IOException {
+	public ChildChooseTaskWindow(ClientController clientController) throws IOException {
 		// this.name = name; Delete?
 		this.clientController = clientController;
 
@@ -119,7 +120,13 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		btnHome.addActionListener(this);
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
 		btnHome.setBounds(5, 5, 80, 65);
+		
+		btnProfile = new JButton();
+		btnProfile.addActionListener(this);
+		btnProfile.setIcon(new ImageIcon(clientController.getPictures().getImage(clientController.getChildProfile().getImageString())));
+		btnProfile.setBounds(275, 16, 75, 70);
 		pnlTop.add(btnHome);
+		pnlTop.add(btnProfile);
 
 		// Middle panel
 		JPanel pnlMiddle = new JPanel();
@@ -218,9 +225,12 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == btnChore) {
-			clientController.setViewChildTaskWindow();
+			clientController.setViewChildPerformTaskWindow();
 		} else if (e.getSource() == btnHome) {
 			clientController.setViewChildHomeWindow();
+		}
+		else if (e.getSource() == btnProfile) {
+			clientController.setViewChildProfileWindow();
 		}
 
 	}
