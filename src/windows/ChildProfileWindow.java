@@ -104,12 +104,16 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
 		
+		/*
+		 * I can reach the childs username both through getClientController().getChildProfile().getName()); 
+		 *  but also controller.getChildProfile().getName()); 
+		 */
 		lblUserName = new JLabel("Användarnamn: " + getClientController().getChildProfile().getName()); 
 		lblUserName.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblUserName.setBounds(1, 10, 90, 50); //1, 10, 90, 50
 		pnlBottom.add(lblUserName);
 		
-		lblPassword = new JLabel("Lösenord: " + getClientController().getChildProfile().get; 
+		lblPassword = new JLabel("Lösenord: -"); 
 		lblPassword.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
 		lblUserName.setBounds(31, 16, 90, 50); //1, 16, 90, 50
 		pnlBottom.add(lblPassword);
