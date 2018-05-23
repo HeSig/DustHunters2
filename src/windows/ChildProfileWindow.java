@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.Color;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,11 +16,23 @@ import javax.swing.JPanel;
 import profiles.Account;
 import profiles.ChildProfile;
 
+/**
+ * 
+ * @author Maida
+ *
+ * 23/5: Git strulat hela dan. Ominstallerat flera gånger. Git ballade ur. Check-check
+ */
+
 public class ChildProfileWindow extends JPanel implements ActionListener {
 
 	private JLabel lblTitle;
 	private JButton btnHome = new JButton();
 	private JLabel lblProfilePic;
+	private JLabel lblUserName;
+	private JLabel lblPassword;
+	
+	private String childUserName;
+	private String childPassword;
 
 	private Account account;
 	private ChildProfile childProfile;
@@ -60,7 +73,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 
-		lblTitle = new JLabel(" Din DammProfil ");
+		lblTitle = new JLabel(" Din Damm-Profil ");
 		lblTitle.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTitle.setBounds(120, 30, 285, 20);
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
@@ -79,14 +92,31 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		lblProfilePic = new JLabel();
 		lblProfilePic.setBounds(300, 16, 90, 15);
 		lblProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getChildProfile().getImageString())));
-
 		pnlMiddle.add(lblProfilePic);
+		
+		
 		// Bottom Panel
 		JPanel pnlBottom = new JPanel();
 
+//clientcontroller.getChildProfile().getName
+		
 		pnlBottom.setBounds(12, 430, 358, 120);
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
+		
+		/*
+		 * I can reach the childs username both through getClientController().getChildProfile().getName()); 
+		 *  but also controller.getChildProfile().getName()); 
+		 */
+		lblUserName = new JLabel("Användarnamn: " + getClientController().getChildProfile().getName()); 
+		lblUserName.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
+		lblUserName.setBounds(1, 10, 90, 50); //1, 10, 90, 50
+		pnlBottom.add(lblUserName);
+		
+		lblPassword = new JLabel("Lösenord: -"); 
+		lblPassword.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
+		lblUserName.setBounds(31, 16, 90, 50); //1, 16, 90, 50
+		pnlBottom.add(lblPassword);
 
 		// Adds the three panels to the main panel
 		this.add(pnlTop);

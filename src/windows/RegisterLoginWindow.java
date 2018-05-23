@@ -1,6 +1,9 @@
 package windows;
 
+
 import java.awt.BorderLayout;
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -9,16 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import profiles.Account;
 
 public class RegisterLoginWindow extends JPanel implements ActionListener {
 
@@ -34,9 +32,7 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 	private GridBagLayout gLayout = new GridBagLayout();
 	private BorderLayout bLayout = new BorderLayout();
 	private JPanel registerPanel = new JPanel(gLayout);
-	private JPanel centerPanel = new JPanel(new BorderLayout());
 	private JPanel buttonPanel = new JPanel();
-	private JLabel titel = new JLabel();
 
 	public RegisterLoginWindow(ClientController controller) {
 		this.controller = controller;
@@ -47,13 +43,7 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 	 * Set sizes and add components
 	 */
 	private void InitializeGUI() {
-		centerPanel.setBackground(Color.YELLOW);
-		//New line
-		ImageIcon icon = new ImageIcon("images/Titel2.png");
-		
-		titel.setIcon(icon);
-		titel.setHorizontalAlignment(JLabel.CENTER);
-		titel.setVerticalAlignment(JLabel.CENTER);
+
 		// PnlMain
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
@@ -61,7 +51,7 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 
 		email.setText("Test@test.com");
 		password.setText("TestTestTest");
-		centerPanel.add(titel, BorderLayout.CENTER);
+
 		this.controller = controller;
 		Dimension panelSize = new Dimension(200, 32);
 		GridBagConstraints c = new GridBagConstraints();
@@ -84,19 +74,11 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 		buttonPanel.add(registerButton, c);
 		c.gridy = 2;
 		buttonPanel.add(loginButton, c);
-		centerPanel.add(registerPanel, BorderLayout.SOUTH);
 		add(infoText, BorderLayout.NORTH);
-		add(centerPanel, BorderLayout.CENTER);
+		add(registerPanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
-	
-	/**
-	 * Logs in the user
-	 * @throws UnknownHostException
-	 * @throws IOException
-	 * @throws ClassNotFoundException
-	 */
 	private void login() throws UnknownHostException, IOException, ClassNotFoundException {
 		email.setBackground(Color.WHITE);
 		password.setBackground(Color.WHITE);
@@ -214,4 +196,5 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 			}
 		}
 	}
+
 }

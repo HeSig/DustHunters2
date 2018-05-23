@@ -31,10 +31,6 @@ import profiles.ChildProfile;
 
 public class AddChildWindow extends JPanel implements ActionListener {
 	
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6190137821496434029L;
 	private JLabel lblTitle;
 	private JLabel lblChildName;
@@ -199,6 +195,8 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		
+		 //Depending on what button the user presses on, it will do certain things
 		if (e.getSource() == btnHome) {
 			controller.setViewParentTaskWindow();
 
@@ -210,6 +208,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 		} else if (e.getSource() == btnSave) {
 			
+			//Themes that can be chosen
 			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
 			if(comboChooseChildPicture.getSelectedItem().equals("Dammtuss")) {
 				childProfile.setImage("dammtuss");
