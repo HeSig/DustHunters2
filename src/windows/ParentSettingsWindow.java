@@ -31,6 +31,7 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 	private JLabel lblParentName;
 	private JLabel lblParentPassword;
 	private JLabel lblParentPassRepeat;
+	private JLabel lblProfilePic = new JLabel();
 	private JTextField txtParentName;
 	private JTextField txtParentPassword;
 	private JTextField txtParentPassRepeat;
@@ -38,7 +39,6 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 	private JButton btnSave = new JButton();
 	private JButton btnCancel = new JButton();
 	private JButton btnProfile = new JButton();
-	private JButton btnProfilePic = new JButton();
 
 	private Account account;
 	private ParentProfile parentProfile;
@@ -99,13 +99,12 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 		pnlMiddle1.setLayout(new FlowLayout());
 		pnlMiddle1.setBackground(Color.YELLOW);
 
-		btnProfilePic.setIcon(
+		lblProfilePic.setIcon(
 				new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
-		btnProfilePic.setBounds(10, 10, 10, 10);
-		btnProfilePic.setEnabled(true);
-		btnProfilePic.addActionListener(this);
+		lblProfilePic.setBounds(10, 10, 10, 10);
+		lblProfilePic.setEnabled(true);
 
-		pnlMiddle1.add(btnProfilePic);
+		pnlMiddle1.add(lblProfilePic);
 
 		// Middle-Lower Panel
 		JPanel pnlMiddle2 = new JPanel();
