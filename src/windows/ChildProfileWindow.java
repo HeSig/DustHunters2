@@ -24,6 +24,7 @@ import windows.ClientController;
  * 
  * @author Maida, Angelina
  * 
+ * 
  *         25/4: Reinstalled and retry. --- 27/4: Reinstalled, once again. Took
  *         >5h. --- 2/5: Reinstalled. AGAIN. -- 4/5: It seems like I don't have
  *         all classes like the others. Maybe my Git is bad again?
@@ -37,7 +38,7 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	private JLabel lblToDo;
 	private JLabel lblTitleChores; // Title, in middle of top panel
 	private ImageIcon dustBallImage; // Profilepic, in the middle of middle panel
-	private JButton btnProfileSymbol; // Symbol, profilepic will be inside this button
+	private JLabel lblProfileSymbol; // Symbol, profilepic will be inside this label
 	private JButton btnHome;
 	private JLabel lblNumberOrder; // Number of tasks. Delete?
 	private JLabel lblLocation;
@@ -46,8 +47,8 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 	private JLabel lblRewardPoints;
 
 	private ClientController clientController;
-	private DefaultListModel model = new DefaultListModel(); //Testing to see if works
-	private JList taskList = new JList(model); //Testing
+	private DefaultListModel model = new DefaultListModel(); // Testing to see if works
+	private JList taskList = new JList(model); // Testing
 
 	// Setters
 	public void setLblLocation(JLabel lblLocation) {
@@ -128,11 +129,11 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		GridBagConstraints c = new GridBagConstraints();
 
 		// Profile picture in the middle of middle panel
-		btnProfileSymbol = new JButton();
+		lblProfileSymbol = new JLabel();
 		dustBallImage = new ImageIcon("images/20x20Dammtuss.jpg");
-		btnProfileSymbol.setBounds(250, 16, 90, 50); // Original 250, 16, 90, 50
-		btnProfileSymbol.setIcon(dustBallImage);
-		pnlMiddle.add(btnProfileSymbol);
+		lblProfileSymbol.setBounds(250, 16, 90, 50); // Original 250, 16, 90, 50
+		lblProfileSymbol.setIcon(dustBallImage);
+		pnlMiddle.add(lblProfileSymbol);
 
 		/*
 		 * Components added to the middle panel. Remember; a task A task consists of
@@ -163,24 +164,24 @@ public class ChildProfileWindow extends JPanel implements ActionListener {
 		// I didn't have btnProfileSymbol in gridbagcontraints before
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1; 
-		c.weighty = 1; 
+		c.weightx = 1;
+		c.weighty = 1;
 		c.gridx = 1;
 		c.gridy = 0;
-		pnlMiddle.add(btnProfileSymbol, c);
+		pnlMiddle.add(lblProfileSymbol, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1; 
-		c.weighty = 1; 
+		c.weightx = 1;
+		c.weighty = 1;
 		c.gridx = 1;
 		c.gridy = 1;
 		pnlMiddle.add(lblToDo, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
-		c.weightx = 1; 
-		c.weighty = 1; 
+		c.weightx = 1;
+		c.weighty = 1;
 		c.gridx = 0;
 		c.gridy = 2;
 		pnlMiddle.add(lblLocation, c);

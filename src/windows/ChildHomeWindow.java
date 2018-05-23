@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import profiles.Account;
 import profiles.ChildProfile;
 /**
- * A GUI class that shows the panel where the Child Profile can see a meny.
+ * A GUI class that shows the panel where the Child Profile can see a menu.
  * From this class you can reach chores, profile and rewards GUI through actionListeners.
  * @author Angelina
  *
