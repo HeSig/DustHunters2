@@ -179,13 +179,13 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 
 	}
 
-	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame();
-		ChildRewardWindow childRWindow = new ChildRewardWindow(null);
-		frame.add(childRWindow);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(400, 600));
-	}
+//	public static void main(String[] args) throws IOException {
+//		JFrame frame = new JFrame();
+//		ChildRewardWindow childRWindow = new ChildRewardWindow(null);
+//		frame.add(childRWindow);
+//		frame.pack();
+//		frame.setVisible(true);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setMinimumSize(new Dimension(400, 600));
+//	}
 }
