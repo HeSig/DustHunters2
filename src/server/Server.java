@@ -7,7 +7,6 @@ import profiles.ChildProfile;
 import profiles.ParentProfile;
 import rewards.Reward;
 import tasks.Task;
-import client.UserController;
 import locations.Location;
 
 /**

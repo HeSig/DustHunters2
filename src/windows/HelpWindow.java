@@ -29,12 +29,20 @@ import javax.swing.border.Border;
  * A way to import a bigger textfile to give more detailed explation and recommendations? 
  * Scroll-function because of too much text to fit the screen? -M
  */
+
+/**
+ * 
+ * @author dalvig, Maida
+ *
+ */
 	
 public class HelpWindow extends JPanel implements ActionListener {
 	
 
 	private JLabel lblTitle;
-	private String text = new String("1. Första sidan \n Tryck på huset i vänstra hörnet för att komma \n till första sidan. \n 2. Din profil \n Tryck på Dammtussen i högra hörnet för att \n komma till din profil. \n 3. Sysslor \n Är nyttigt för barnen. \n 4. Belöningar \n Är nyttigt för själen. ");
+	private JLabel lblPutInText;
+	//private String text = new String("1. Första sidan \n Tryck på huset i vänstra hörnet för att komma \n till första sidan. \n 2. Din profil \n Tryck på Dammtussen i högra hörnet för att \n komma till din profil. \n 3. Sysslor \n Är nyttigt för barnen. \n 4. Belöningar \n Är nyttigt för själen. ");
+	private String text2 = new String();
 	private JButton btnHome = new JButton();
 	private JButton btnProfile = new JButton();
 	
@@ -43,6 +51,7 @@ public class HelpWindow extends JPanel implements ActionListener {
 	public HelpWindow(ClientController clientController) throws IOException {
 		this.clientController = clientController;
 		start();
+		helpText(); //Start method that returns the String
 	}
 	
 	public void start() throws IOException {
@@ -90,18 +99,17 @@ public class HelpWindow extends JPanel implements ActionListener {
 		pnlMiddle.setBackground(Color.YELLOW);
 		Border border3 = BorderFactory.createEtchedBorder();
 		
-		JTextArea textArea = new JTextArea(text);
+		//Scroll-function
+		JTextArea textArea = new JTextArea(text2);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		textArea.setEditable(false);
-		
+
 		pnlMiddle.add(scrollPane);
         
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 	
 	}
-	
-		
 	
 
 	@Override
@@ -117,15 +125,12 @@ public class HelpWindow extends JPanel implements ActionListener {
 		
 	}
 	
-	//Main should be removed? -M
-//	public static void main(String[] args) throws IOException {
-//		JFrame frame = new JFrame();
-//		HelpWindow helpWindow = new HelpWindow(null);
-//		frame.add(helpWindow);
-//		frame.pack();
-//		frame.setVisible(true);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setMinimumSize(new Dimension(400, 600));
-//	}
+	//Method for the text. 
+	public String helpText() {
+		text2 = "bajsa på dig";
+		return text2;
+	}
+	
+
 
 }
