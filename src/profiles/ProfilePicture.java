@@ -14,7 +14,7 @@ public class ProfilePicture {
 	
 	private void initialize(){
 		profilePictureMap.put("dammtuss", new ImageIcon("images/20x20Dammtuss.jpg"));
-		profilePictureMap.put("ninja", new ImageIcon("images/NinjaReducedSize.png"));
+		profilePictureMap.put("ninja", new ImageIcon("images/NinjaReducedSize3.png"));
 		profilePictureMap.put("cowboy", new ImageIcon("images/cowboy.png"));
 		profilePictureMap.put("pirat", new ImageIcon("images/Pirat.png"));
 		profilePictureMap.put("witch", new ImageIcon("images/witch.png"));
