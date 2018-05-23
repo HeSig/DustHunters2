@@ -7,6 +7,7 @@ import java.net.UnknownHostException;
 import server.AccountManager;
 import server.Server;
 import server.ServerWindow;
+import windows.ClientController;
 
 /**
  * 
@@ -36,7 +37,9 @@ public class UserMain {
 			//String host = "192.168.0.100";
 		String host = "localhost";
 		AccountManager accountManager1 = new AccountManager();
-		UserController test1 = new UserController(host, port);
+		//UserController test1 = new UserController(host, port);
+		Client client = new Client(port, host);
+		ClientController clientController = new ClientController(client);
 		//System.out.println("Client started");
 		// Server
 		Server server = new Server(port, accountManager1);

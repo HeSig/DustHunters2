@@ -27,7 +27,6 @@ import windows.ClientController;
  */
 public class Client extends Thread {
 	@SuppressWarnings("unused")
-	private UserController user;
 	private OutputStream os;
 	private InputStream is;
 	private Socket socket;
@@ -37,6 +36,8 @@ public class Client extends Thread {
 	private String serverRequest;
 	private Boolean isActive = false;
 	private Observable observable = new Observable();
+	private int port;
+	private String host;
 
 	/**
 	 * Creates a client
@@ -46,8 +47,9 @@ public class Client extends Thread {
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
-	public Client(UserController user) throws UnknownHostException, IOException {
-		this.user = user;
+	public Client(int port, String host) throws UnknownHostException, IOException {
+		this.port = port;
+		this.host = host;
 	}
 
 	public Boolean isActive() {
@@ -71,7 +73,7 @@ public class Client extends Thread {
 
 	private void openStreams() {
 		try {
-			socket = new Socket(user.getHost(), user.getPort());
+			socket = new Socket(host, port);
 			is = socket.getInputStream();
 			os = socket.getOutputStream();
 			ois = new ObjectInputStream(is);
@@ -102,7 +104,7 @@ public class Client extends Thread {
 	public void addPointsToChildProfile(Account account, String childProfileName, int pointsToAdd) {
 		serverRequest = "addPoints";
 		try {
-			socket = new Socket(user.getHost(), user.getPort());
+			socket = new Socket(host, port);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -327,7 +329,7 @@ public class Client extends Thread {
 		// Close streams.
 		closeStreams();
 		// printAccount(res);
-		ClientController clientController = new ClientController(res, this);
+		//ClientController clientController = new ClientController(res, this);
 		setInactive("Logging in");
 		return res;
 	}
