@@ -25,6 +25,7 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 	private Account account; 
 	private ChildProfile childProfile;
 
+	private JButton btnLogout;
 	private JButton btnMyChores;
 	private JButton btnMyRewards;
 	private JLabel lblHome; 
@@ -73,6 +74,12 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 		pnlTop.setBounds(12, 17, 358, 90);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
+		
+		btnLogout = new JButton();
+		btnLogout.setText("Logga ut");
+		btnLogout.setBounds(20, 30, 100, 20);
+		btnLogout.addActionListener(this);
+		pnlTop.add(btnLogout);
 		
 		lblHome = new JLabel("Hem");
 		lblHome.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -151,6 +158,9 @@ public class ChildHomeWindow extends JPanel implements ActionListener{
 		}
 		if(e.getSource() == btnProfile) {
 			clientController.setViewChildProfileWindow();
+		}
+		if (e.getSource() == btnLogout) {
+			clientController.setViewProfileStartWindow();
 		}
 	}	
 

@@ -1,34 +1,20 @@
 package windows;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
 import tasks.Chore;
@@ -38,7 +24,6 @@ import tasks.Task;
  * 
  * @author Angelina &........
  * 
- * Drop-down ska raderas, barnen ska inte kunna ändra val av sysslor i detta fönster -M
  *
  */
 public class ChildPerformTaskWindow extends JPanel implements ActionListener {
@@ -49,13 +34,11 @@ public class ChildPerformTaskWindow extends JPanel implements ActionListener {
 	private JButton btnSave;
 	private JLabel lblTitle;
 	private JLabel lblTask;
-	private JLabel lblChildName; // delete? - Angie
 	private JLabel lblCheck;
 
 	private JCheckBox cbCheckUncheck;
 	private ImageIcon dustBallImage;
 	private ImageIcon imageHome;
-	private ImageIcon imageProfile;
 	private ClientController controller;
 	private JComboBox comboChore; // New design for the assigned-function.
 	private String[] choreList = { "Dammsuga i hallen", "Damma i vardagsrummet", "Gå ut med hunden", "Moppa golvet",
