@@ -9,12 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import client.UserController;
 import profiles.Account;
 
 public class RegisterLoginWindow extends JPanel implements ActionListener {
@@ -31,7 +34,9 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 	private GridBagLayout gLayout = new GridBagLayout();
 	private BorderLayout bLayout = new BorderLayout();
 	private JPanel registerPanel = new JPanel(gLayout);
+	private JPanel centerPanel = new JPanel(new BorderLayout());
 	private JPanel buttonPanel = new JPanel();
+	private JLabel titel = new JLabel();
 
 	public RegisterLoginWindow(ClientController controller) {
 		this.controller = controller;
@@ -42,7 +47,12 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 	 * Set sizes and add components
 	 */
 	private void InitializeGUI() {
-
+		centerPanel.setBackground(Color.YELLOW);
+		ImageIcon icon = new ImageIcon("images/Titel2.png");
+		
+		titel.setIcon(icon);
+		titel.setHorizontalAlignment(JLabel.CENTER);
+		titel.setVerticalAlignment(JLabel.CENTER);
 		// PnlMain
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
@@ -50,7 +60,7 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 
 		email.setText("Test@test.com");
 		password.setText("TestTestTest");
-
+		centerPanel.add(titel, BorderLayout.CENTER);
 		this.controller = controller;
 		Dimension panelSize = new Dimension(200, 32);
 		GridBagConstraints c = new GridBagConstraints();
@@ -73,8 +83,9 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 		buttonPanel.add(registerButton, c);
 		c.gridy = 2;
 		buttonPanel.add(loginButton, c);
+		centerPanel.add(registerPanel, BorderLayout.SOUTH);
 		add(infoText, BorderLayout.NORTH);
-		add(registerPanel, BorderLayout.CENTER);
+		add(centerPanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
@@ -189,5 +200,4 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 			}
 		}
 	}
-
 }
