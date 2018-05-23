@@ -29,66 +29,70 @@ import profiles.ParentProfile;
 import tasks.Task;
 
 /**
- * Klar! 
+ * Klar!
+ * 
  * @author Angelina Fransson, Henrik Sigeman, Maida Sijaric
  *
  */
 public class ParentTaskWindow extends JPanel implements ActionListener {
-	private Account account; 
+	private Account account;
 	private ParentProfile parentProfile;
 	private JLabel lblChildTask;
 
 	private ClientController controller;
-	
 
 	private JLabel lblCheck;
 	private JLabel lblTask;
 	private JButton btnHome;
 	private JButton btnAddTask;
 	private JButton btnEditTask;
-	private JLabel lblChildDoingTask; //Filled in when a child has been assigned with a chore
+	private JLabel lblChildDoingTask; // Filled in when a child has been assigned with a chore
 	private JButton btnProfile;
 	private ImageIcon dustBallImage;
 	private LinkedList<JPanel> taskPanelList = new LinkedList();
-	
+
 	private DefaultListModel model = new DefaultListModel();
 	private JList taskList = new JList(model);
 	private JPanel pnlMiddle;
 
-	
-
-	public Account getAccount () {
+	public Account getAccount() {
 		return account;
 	}
-	public ParentProfile getParentProfile () {
-		return parentProfile; 
+
+	public ParentProfile getParentProfile() {
+		return parentProfile;
 	}
-	public void setLblNameTask (JLabel lblTask) {
+
+	public void setLblNameTask(JLabel lblTask) {
 		this.lblTask = lblTask;
 	}
-	public void setAccount (Account account) {
+
+	public void setAccount(Account account) {
 		this.account = account;
 	}
-	public void setParentProfile (ParentProfile parentProfile) {
+
+	public void setParentProfile(ParentProfile parentProfile) {
 		this.parentProfile = parentProfile;
 	}
-	public void setBtnHome (JButton btnHome) {
+
+	public void setBtnHome(JButton btnHome) {
 		this.btnHome = btnHome;
 	}
 
-	public void setBtnAddTask (JButton btnAddTask) {
+	public void setBtnAddTask(JButton btnAddTask) {
 		this.btnAddTask = btnAddTask;
-	} 
-	public void setBtnEditTask (JButton btnEditTask) {
+	}
+
+	public void setBtnEditTask(JButton btnEditTask) {
 		this.btnEditTask = btnEditTask;
 	}
 
-	public void setChildDoingTask (JLabel lblChildDoingTask) {
+	public void setChildDoingTask(JLabel lblChildDoingTask) {
 		this.lblChildDoingTask = lblChildDoingTask;
 
 	}
 
-	public ParentTaskWindow (ClientController clientController) {
+	public ParentTaskWindow(ClientController clientController) {
 
 		this.controller = clientController;
 		start();
@@ -100,19 +104,19 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.setLayout(null);
 		InitializeGUI();
 		this.setVisible(true);
-		lblChildDoingTask.setOpaque(true); 
+		lblChildDoingTask.setOpaque(true);
 		lblCheck.setOpaque(true);
 		lblTask.setOpaque(true);
 
 	}
-	
+
 	/*
 	 * Set sizes and add components
 	 */
 	private void InitializeGUI() {
 
-		//PnlMain
-		this.setBounds(6,6, 381, 500);
+		// PnlMain
+		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
 
@@ -122,7 +126,7 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
 
-		//Label in the middle of pnlTop
+		// Label in the middle of pnlTop
 		lblChildTask = new JLabel("Barnens sysslor");
 		lblChildTask.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblChildTask.setBounds(105, 30, 285, 20);
@@ -134,23 +138,21 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		btnHome.addActionListener(this);
 		pnlTop.add(btnHome);
 
-		btnProfile = new JButton ();
+		btnProfile = new JButton();
 		btnProfile.addActionListener(this);
-		dustBallImage = (new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
+		dustBallImage = (new ImageIcon(
+				controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(dustBallImage);
 
 		pnlTop.add(btnProfile);
 
-		//This should be in an if-statement. If a chore has been done, then this should be visible
-		
+		// This should be in an if-statement. If a chore has been done, then this should
+		// be visible
+
 		taskList.setCellRenderer(new TaskRenderer());
 		JScrollPane taskScroll = new JScrollPane(taskList);
 		taskScroll.setBounds(12, 130, 358, 140);
-//		pnlMiddle = new JPanel();
-//		pnlMiddle.setBounds(12, 130, 358, 140);
-		//pnlMiddle.setLayout(new GridBagLayout());
-		//pnlMiddle.setBackground(Color.YELLOW);
 		GridBagConstraints c = new GridBagConstraints();
 
 		Border border3 = BorderFactory.createEtchedBorder();
@@ -166,38 +168,30 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		lblCheck.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblCheck.setBorder(border3);
 
-		//Needs to be redone so that they're all the same length 
+		// Needs to be redone so that they're all the same length
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
 		c.weighty = 1;
-		//pnlMiddle.add(lblChildDoingTask, c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHEAST;
 		c.weightx = 1;
 		c.weighty = 1;
 
-		//pnlMiddle.add(lblTask, c);
-
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
 		c.weighty = 1;
-
-
-		//pnlMiddle.add(lblCheck, c);
 		c.gridx = 0;
 
 		updateTasks();
 
-
-		//Bottom panel
+		// Bottom panel
 		JPanel pnlBottom = new JPanel();
 		pnlBottom.setBounds(12, 300, 358, 180);
 		pnlBottom.setLayout(null);
 		pnlBottom.setBackground(Color.YELLOW);
-
 
 		btnAddTask = new JButton(" Lägg till en syssla ");
 		btnAddTask.addActionListener(this);
@@ -207,7 +201,6 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		btnAddTask.setBounds(10, 16, 300, 50);
 		pnlBottom.add(btnAddTask);
 
-
 		btnEditTask = new JButton(" Redigera/Ta bort syssla ");
 		btnEditTask.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		btnEditTask.setBackground(Color.RED);
@@ -215,116 +208,80 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		btnEditTask.setBounds(10, 100, 300, 50);
 		pnlBottom.add(btnEditTask);
 
-	
 		this.add(pnlTop);
 		this.add(taskScroll);
-//		this.add(pnlMiddle);
+		// this.add(pnlMiddle);
 		this.add(pnlBottom);
-		
-		
+
 	}
 
-
-
-	
-	//	@Override
-	//	public void actionPerformed(ActionEvent e) {
-	//		if (e.getSource() == btnHome) {
-	//			changePanel (phw); //ParentHomeWindow
-	//		}
-	//		if (e.getSource() == btnEditTask) {
-	//			changePanel ();
-	//		}
-	//		if (e.getSource() == btnAddTask) {
-	//			changePanel ();
-	//		}
-
-
-	//	}
-	//	public static void main (String [] args) {
-	//		JFrame frame = new JFrame ();
-	//		//ParentTaskWindow pt = new ParentTaskWindow ();
-	//		//frame.add(pt);
-	//		frame.pack();
-	//		frame.setVisible(true);
-	//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	//		frame.setMinimumSize(new Dimension (400,600));
-	//	}
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == btnHome) {
+		if (e.getSource() == btnHome) {
 			controller.setViewParentHomeWindow();
 		}
-		if(e.getSource() == btnAddTask) {
+		if (e.getSource() == btnAddTask) {
 			controller.setViewParentEditTaskWindow();
 		}
-		if(e.getSource() == btnProfile) {
+		if (e.getSource() == btnProfile) {
 			controller.setViewParentProfileWindow();
 		}
 
 	}
 
 	public void updateTasks() {
-//		pnlMiddle.removeAll();
 		model.clear();
-//		GridBagConstraints c = new GridBagConstraints();
 
-//		c.gridy = 0;
-
-		for(int i = 0; i < controller.getAccount().getTaskList().size(); i++) {
+		for (int i = 0; i < controller.getAccount().getTaskList().size(); i++) {
 			Task task = controller.getAccount().getTaskList().get(i);
 			model.addElement(task);
-//			pnlMiddle.add(new TaskPanel(task.getLocationName(),task.getChoreName(),task.getTaskValue()), c);
-//			c.gridy++;
 		}
-//		pnlMiddle.revalidate();
-//		pnlMiddle.repaint();
 	}
-	
+
 	private class TaskRenderer implements ListCellRenderer {
 		private ActionListener listener;
 		private JButton completedButton;
+
 		@Override
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 				boolean cellHasFocus) {
 			listener = new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
+
 				}
 			};
 			// TODO Auto-generated method stub
 			completedButton = new JButton("Godkänn");
 			completedButton.addActionListener(listener);
-			JPanel panel = new JPanel(new GridLayout(2,4));
-			Task task = (Task)value;
+			JPanel panel = new JPanel(new GridLayout(2, 4));
+			Task task = (Task) value;
 			panel.add(new JLabel(task.getLocationName()));
 			panel.add(new JLabel(task.getChoreName()));
-			panel.add(new JLabel(""+task.getTaskValue()));
-			
-			if(task.getCompleted()) {
+			panel.add(new JLabel("" + task.getTaskValue()));
+
+			if (task.getCompleted()) {
 				panel.add(new JLabel("Färdig"));
 				completedButton.setEnabled(true);
-			}else {
+			} else {
 				panel.add(new JLabel("Ej färdig"));
 				completedButton.setEnabled(false);
 			}
 			panel.add(completedButton);
-			
+
 			return panel;
 		}
-		
+
 	}
-	
-/** 
- * 
- * @author Henrik Sigeman
- * 
- */
 
+	/**
+	 * 
+	 * @author Henrik Sigeman
+	 * 
+	 */
 
-	private class TaskPanel extends JPanel{
+	private class TaskPanel extends JPanel {
 		private String locationName = "";
 		private String choreName = "";
 		private int choreValue = 0;
@@ -339,10 +296,8 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 			this.choreValue = choreValue;
 			location = new JLabel(locationName);
 			chore = new JLabel(choreName);
-			value = new JLabel(""+choreValue);
+			value = new JLabel("" + choreValue);
 			done = new JLabel("Inte färdig");
-
-			//setBounds(12, 130, 358, 140);
 			setLayout(new GridBagLayout());
 			setBackground(Color.YELLOW);
 
@@ -361,14 +316,12 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 			c.anchor = GridBagConstraints.NORTHWEST;
 			c.weightx = 1;
 			c.weighty = 1;
-			
 
 			add(location, c);
 			add(chore, c);
 			add(value, c);
 			add(done, c);
 		}
-
 
 	}
 }

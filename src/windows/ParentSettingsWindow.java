@@ -1,7 +1,6 @@
 package windows;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -11,7 +10,6 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -86,7 +84,8 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 		lblTitle.setBounds(110, 30, 285, 30);
 		btnHome.setIcon(new ImageIcon("images/house.jpg"));
 		btnHome.setBounds(5, 5, 75, 70);
-		btnProfile.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
+		btnProfile.setIcon(
+				new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 
 		pnlTop.add(btnHome);
@@ -100,7 +99,8 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 		pnlMiddle1.setLayout(new FlowLayout());
 		pnlMiddle1.setBackground(Color.YELLOW);
 
-		btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
+		btnProfilePic.setIcon(
+				new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfilePic.setBounds(10, 10, 10, 10);
 		btnProfilePic.setEnabled(true);
 		btnProfilePic.addActionListener(this);
@@ -134,7 +134,6 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 		pnlMiddle2.add(lblParentPassRepeat);
 		pnlMiddle2.add(txtParentPassRepeat);
 
-		
 		// Bottom Panel
 		JPanel pnlBottom = new JPanel();
 
@@ -186,13 +185,4 @@ public class ParentSettingsWindow extends JPanel implements ActionListener {
 
 	}
 
-//	public static void main(String[] args) throws IOException {
-//		JFrame frame = new JFrame();
-//		ParentSettingsWindow parentSettings = new ParentSettingsWindow(null);
-//		frame.add(parentSettings);
-//		frame.pack();
-//		frame.setVisible(true);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setMinimumSize(new Dimension(400, 600));
-//	}
 }

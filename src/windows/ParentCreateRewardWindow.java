@@ -7,46 +7,45 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import profiles.Account;
 import profiles.ChildProfile;
 
 /**
- * A panel that adult users will see when they click "Ny Belöning" (New Reward) in the point-viewing-window.
- * The adult user will be able to choose to active rewards, which have been created by the 
- * developers. The rewards are shown as pictures with a number on them, which represents the 
- * amount of points needed for a child to claim the reward. When the parents choose to activate a reward,
- * it will become visible on a child users reward window. 
+ * A panel that adult users will see when they click "Ny Belöning" (New Reward)
+ * in the point-viewing-window. The adult user will be able to choose to active
+ * rewards, which have been created by the developers. The rewards are shown as
+ * pictures with a number on them, which represents the amount of points needed
+ * for a child to claim the reward. When the parents choose to activate a
+ * reward, it will become visible on a child users reward window.
  * 
  * @author dalvig
  *
  */
 
 public class ParentCreateRewardWindow extends JPanel implements ActionListener {
-	
+
 	private JLabel lblTitle;
-	
+
 	private JButton btnHome = new JButton();
 	private JButton btnProfile = new JButton();
 	private JButton btnCandy = new JButton();
 	private JButton btnBeach = new JButton();
 	private JButton btnCinema = new JButton();
-	
+
 	private Account account;
 	private ChildProfile childProfile;
 	private ClientController controller;
-	
+
 	public ParentCreateRewardWindow(ClientController clientController) throws IOException {
 		this.setClientController(clientController);
 		start();
 	}
-	
+
 	public Account getAccount() {
 		return account;
 	}
@@ -62,7 +61,7 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 		InitializeGUI();
 		this.setVisible(true);
 	}
-	
+
 	public void InitializeGUI() throws IOException {
 
 		// Main Panel
@@ -95,9 +94,7 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 		pnlMiddle.setBounds(12, 130, 358, 280);
 		pnlMiddle.setLayout(new FlowLayout());
 		pnlMiddle.setBackground(Color.YELLOW);
-		Border border3 = BorderFactory.createEtchedBorder();
-        
-	
+
 		btnCandy.setIcon(new ImageIcon("images/candy.jpg"));
 		btnCandy.setBounds(10, 10, 10, 10);
 		btnCandy.setEnabled(true);
@@ -113,8 +110,6 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 		pnlMiddle.add(btnCandy);
 		pnlMiddle.add(btnBeach);
 		pnlMiddle.add(btnCinema);
-	
-		
 
 		// Bottom Panel
 		JPanel pnlBottom = new JPanel();
@@ -123,32 +118,26 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
 
-		
-	
-		
-
 		// Adds the three panels to the main panel
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
-		
-		
+
 		// Adds all action listeners
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
-	
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getSource() == btnHome ) {
+
+		if (e.getSource() == btnHome) {
 			controller.setViewParentHomeWindow();
+		} else if (e.getSource() == btnProfile) {
+			controller.setViewParentProfileWindow();
 		}
-			else if (e.getSource() == btnProfile) {
-				controller.setViewParentProfileWindow();
-			}
-		
+
 	}
 
 	public ClientController getClientController() {
@@ -158,5 +147,4 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 	public void setClientController(ClientController clientController) {
 		this.controller = clientController;
 	}
-	}
-
+}

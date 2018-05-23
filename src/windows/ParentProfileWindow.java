@@ -16,8 +16,9 @@ import profiles.Account;
 import profiles.ParentProfile;
 
 /**
- * A GUI class that shows the panel where the Parent Profile can see the their children's profiles.
- * From this class you can reach parent home, AddChild, and ChildProfile GUI through actionListeners.
+ * A GUI class that shows the panel where the Parent Profile can see the their
+ * children's profiles. From this class you can reach parent home, AddChild, and
+ * ChildProfile GUI through actionListeners.
  * 
  * @author Angelina Fransson
  *
@@ -36,17 +37,20 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	private ImageIcon dammtussParentProfile;
 	private ImageIcon dammtussMaja;
 	private ClientController controller;
-/**
- * Constructor. Constructs the GUI. 
- * @param clientController
- */
+
+	/**
+	 * Constructor. Constructs the GUI.
+	 * 
+	 * @param clientController
+	 */
 	public ParentProfileWindow(ClientController clientController) {
 		this.controller = clientController;
 		start();
 	}
-/**
- * setters and getters for Account and ParentProfile
- */
+
+	/**
+	 * setters and getters for Account and ParentProfile
+	 */
 	public Account getAccount() {
 		return account;
 	}
@@ -62,16 +66,17 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 	public void setParentProfile(ParentProfile parentProfile) {
 		this.parentProfile = parentProfile;
 	}
-	
-/**
- * Makes the GUI visible and sets bounds for the main panel. 
- */
+
+	/**
+	 * Makes the GUI visible and sets bounds for the main panel.
+	 */
 	private void start() {
 		this.setBounds(0, 0, 400, 600);
 		this.setLayout(null);
 		InitializeGUI();
 		this.setVisible(true);
 	}
+
 	/**
 	 * The GUI.
 	 */
@@ -91,7 +96,7 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		lblProfile.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblProfile.setBounds(105, 30, 285, 20);
 		pnlTop.add(lblProfile);
-		
+
 		btnHome = new JButton();
 		btnHome.setIcon(new ImageIcon("images/House.jpg"));
 		btnHome.setBounds(5, 5, 75, 70);
@@ -106,7 +111,8 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 
 		btnProfile = new JButton();
 		btnProfile.addActionListener(this);
-		dammtussParentProfile = (new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
+		dammtussParentProfile = (new ImageIcon(
+				controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 		btnProfile.setIcon(dammtussParentProfile);
 
@@ -154,25 +160,27 @@ public class ParentProfileWindow extends JPanel implements ActionListener {
 		this.add(pnlBottom);
 	}
 
-
 	@Override
 	/**
-	 * Actions performed when clicking on home, addChild, ChildProfile and Profile button. 
+	 * Actions performed when clicking on home, addChild, ChildProfile and Profile
+	 * button.
 	 */
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == btnHome) {
+		if (e.getSource() == btnHome) {
 			controller.setViewParentHomeWindow();
 		}
 		if (e.getSource() == btnAddChild) {
 			controller.setViewAddChildWindow();
 		}
-	
+
 		if (e.getSource() == btnChildProfile) {
-			//gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort JButton och ha det som en bild. Denna kan fungera som delete/edit profile
+			// gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort
+			// JButton och ha det som en bild. Denna kan fungera som delete/edit profile
 		}
 		if (e.getSource() == btnProfile) {
-			//gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort JButton och ha det som en bild. Denna kan fungera som delete/edit profile
+			// gör ett window där man kan se namn + lösenord tydligare, alternativt ta bort
+			// JButton och ha det som en bild. Denna kan fungera som delete/edit profile
 		}
 	}
 }

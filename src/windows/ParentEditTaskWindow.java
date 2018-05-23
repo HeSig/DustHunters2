@@ -22,9 +22,11 @@ import tasks.Chore;
 import tasks.Task;
 
 /**
- * A GUI class that shows the edit task panel for the Parent Profile.
- * In this class you can choose child/children + chore + location and save, which creates a task that will be shown in ParentTaskWindow, and childTaskWindow.
- * From this class you can reach parent profile and home GUI through actionListeners. 
+ * A GUI class that shows the edit task panel for the Parent Profile. In this
+ * class you can choose child/children + chore + location and save, which
+ * creates a task that will be shown in ParentTaskWindow, and childTaskWindow.
+ * From this class you can reach parent profile and home GUI through
+ * actionListeners.
  *
  * @author Angelina Fransson
  *
@@ -32,7 +34,7 @@ import tasks.Task;
 @SuppressWarnings("serial")
 public class ParentEditTaskWindow extends JPanel implements ActionListener {
 
-	private Account account; 
+	private Account account;
 	private JButton btnHome = new JButton();
 	private JLabel lblTitle;
 	private JLabel lblChildName;
@@ -56,10 +58,12 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	private String[] preSelectedLocations = { "Hallen", "Sovrummet", "Toaletten", "Vardagsrummet", "utomhus" };
 
 	private ClientController controller;
-/**
- * Constuctor. Constructs the GUI.
- * @param clientController
- */
+
+	/**
+	 * Constuctor. Constructs the GUI.
+	 * 
+	 * @param clientController
+	 */
 	public ParentEditTaskWindow(ClientController clientController) {
 		this.controller = clientController;
 		try {
@@ -76,13 +80,16 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	public ChildProfile getChildProfile() {
 		return childProfile;
 	}
-	public void setAccount (Account account) {
+
+	public void setAccount(Account account) {
 		this.account = account;
 	}
-/**
- * Makes the GUI visible and sets bounds for the main panel.  
- * @throws IOException
- */
+
+	/**
+	 * Makes the GUI visible and sets bounds for the main panel.
+	 * 
+	 * @throws IOException
+	 */
 	public void start() throws IOException {
 
 		this.setBounds(0, 0, 400, 600);
@@ -92,10 +99,11 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-/**
- * The GUI.
- * @throws IOException
- */
+	/**
+	 * The GUI.
+	 * 
+	 * @throws IOException
+	 */
 	public void InitializeGUI() throws IOException {
 
 		// Main Panel
@@ -115,7 +123,8 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		lblTitle.setBounds(100, 30, 285, 20);
 		btnHome.setIcon(new ImageIcon("images/house.jpg"));
 		btnHome.setBounds(5, 5, 85, 70);
-		btnProfile.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
+		btnProfile.setIcon(
+				new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(275, 16, 75, 70);
 
 		pnlTop.add(btnHome);
@@ -193,9 +202,10 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 		btnProfile.addActionListener(this);
 		btnCancel.addActionListener(this);
 	}
-/**
- * Actions performed when clicking on home, profile, cancel and save button.
- */
+
+	/**
+	 * Actions performed when clicking on home, profile, cancel and save button.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -234,7 +244,7 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 					e1.printStackTrace();
 				}
 				controller.setViewParentTaskWindow();
-			}else {
+			} else {
 				System.out.println("Identisk syssla redan funnen");
 			}
 		}

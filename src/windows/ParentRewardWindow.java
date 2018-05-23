@@ -49,16 +49,12 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 
 		// Main
-		// Border border0 = BorderFactory.createTitledBorder("MainPanel");
-		// this.setBorder(border0);
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
 
 		// Top
 		JPanel pnlTop = new JPanel();
-		// Border border1 = BorderFactory.createTitledBorder("TopPanel");
-		// pnlTop.setBorder(border1);
 		pnlTop.setBounds(12, 17, 358, 90);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
@@ -83,8 +79,6 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 
 		// Middle
 		JPanel pnlInfo = new JPanel();
-		// Border border2 = BorderFactory.createTitledBorder("MiddlePanel");
-		// pnlInfo.setBorder(border2);
 		pnlInfo.setBounds(12, 130, 358, 300);
 		pnlInfo.setLayout(new GridBagLayout());
 		pnlInfo.setBackground(Color.YELLOW);
@@ -204,8 +198,6 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 
 		// Bottom
 		JPanel pnlBottom = new JPanel();
-		// Border border4 = BorderFactory.createTitledBorder("BottomPanel");
-		// pnlBottom.setBorder(border4);
 		pnlBottom.setBounds(12, 450, 358, 65);
 		pnlBottom.setLayout(new GridBagLayout());
 		pnlBottom.setBackground(Color.YELLOW);
@@ -220,9 +212,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 
 		btnNewReward = new JButton("Ny Belöning");
 		btnNewReward.setBounds(12, 30, 50, 30);
-		// btnHome.setBounds(10, 16, 75, 70);
-		// btnHome.setIcon(imageHome);
-		// pnlTop.add(btnHome);
+		
 
 		c2.fill = GridBagConstraints.HORIZONTAL;
 		c2.anchor = GridBagConstraints.NORTHEAST;
