@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import profiles.Account;
+
 
 public class RegisterLoginWindow extends JPanel implements ActionListener {
 
