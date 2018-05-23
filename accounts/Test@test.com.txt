@@ -7,7 +7,7 @@ Mamma
 dammtuss
 $
 ChildProfiles:
-4
+5
 Mia
 dammtuss
 0
@@ -20,9 +20,12 @@ dammtuss
 Hejhej2
 witch
 0
+Sara
+astronaut
+0
 $
 Tasks:
-4
+6
 Sovrummet
 Damma
 10
@@ -40,6 +43,16 @@ false
 null
 Sovrummet
 Dammsuga
+10
+false
+null
+Toaletten
+Gå ut med hunden
+10
+false
+null
+utomhus
+Diska
 10
 false
 null

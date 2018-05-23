@@ -166,7 +166,7 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 			clientController.setViewChildTaskWindow();
 
 		} else if (e.getSource() == btnProfile) {
-			clientController.setViewChildProfileWindow();
+			clientController.setViewChildHomeWindow();
 
 		} else if (e.getSource() == btnBeach) {
 

@@ -250,6 +250,7 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		// // ActionListeners
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
+		btnNewReward.addActionListener(this);
 
 		this.add(pnlTop);
 		this.add(pnlInfo);
@@ -279,14 +280,4 @@ public class ParentRewardWindow extends JPanel implements ActionListener {
 		this.controller = clientController;
 	}
 
-	// public static void main(String[] args) throws IOException {
-	// JFrame frame = new JFrame();
-	// ParentRewardWindow parentRewardWindow = new ParentRewardWindow(new
-	// ClientController(null));
-	// frame.add(parentRewardWindow);
-	// frame.pack();
-	// frame.setVisible(true);
-	// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	// frame.setMinimumSize(new Dimension(400, 600));
-	// }
 }

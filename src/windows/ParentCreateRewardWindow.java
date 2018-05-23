@@ -40,10 +40,10 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 	
 	private Account account;
 	private ChildProfile childProfile;
-	private ClientController clientController;
+	private ClientController controller;
 	
 	public ParentCreateRewardWindow(ClientController clientController) throws IOException {
-		this.clientController = clientController;
+		this.setClientController(clientController);
 		start();
 	}
 	
@@ -143,12 +143,20 @@ public class ParentCreateRewardWindow extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == btnHome ) {
-			clientController.setViewParentHomeWindow();
+			controller.setViewParentHomeWindow();
 		}
 			else if (e.getSource() == btnProfile) {
-				clientController.setViewParentProfileWindow();
+				controller.setViewParentProfileWindow();
 			}
 		
 	}
 
-}
+	public ClientController getClientController() {
+		return controller;
+	}
+
+	public void setClientController(ClientController clientController) {
+		this.controller = clientController;
+	}
+	}
+

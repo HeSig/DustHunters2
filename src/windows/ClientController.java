@@ -115,6 +115,7 @@ public class ClientController implements ActionListener, Observer {
 		ptw = new ParentTaskWindow(this);
 		ppw = new ParentProfileWindow(this);
 		prw = new ParentRewardWindow(this);
+		pcrw = new ParentCreateRewardWindow(this);
 		pSettingsw = new ParentSettingsWindow(this);
 		hw = new HelpWindow (this);
 	}
@@ -223,10 +224,7 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewHelpWindow () {
 		setPanel (hw);
 	}
-	// om det blir något fel så har jag precis lagt in denna
-	public void setViewParentCreateRewardWindow() {
-		setPanel(pcrw);
-	}
+	
 
 	public void setParentProfile(String name) {
 		for (int i = 0; i < account.getParentProfileList().size(); i++) {
@@ -300,6 +298,11 @@ public class ClientController implements ActionListener, Observer {
 	public void setViewParentRewardWindow() {
 		setPanel(prw);
 	}
+	
+	// om det blir något fel så har jag precis lagt in denna
+		public void setViewParentCreateRewardWindow() {
+			setPanel(pcrw);
+		}
 
 	public LinkedList<Task> completeTask(Task task, ChildProfile childProfile) throws IOException {
 		LinkedList<Task> taskList;
