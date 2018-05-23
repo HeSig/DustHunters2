@@ -19,9 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 /**
- * A window that adult users will see if they click "Hjälp" (Help) in the ParentHomeWindow
- * It will give a brief description of how to navigate through the application
- * as well as a short explanation of the idea behind the product. 
+* A window that adult users will see if they click "Hjälp" (Help) in the ParentHomeWindow
+ * It will give a brief description of how to navigate through the application. 
  * @author dalvig, Maida 
  *
  */

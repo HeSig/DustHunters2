@@ -29,7 +29,11 @@ import profiles.ParentProfile;
 import tasks.Task;
 
 /**
- * Klar!
+ * Done!
+ * 
+ * A panel that is reached when a user clicks the button "Sysslor" on
+ * ParentHomeWindow. Here the user (parent) can look through the list of tasks
+ * and also add a new task.
  * 
  * @author Angelina Fransson, Henrik Sigeman, Maida Sijaric
  *

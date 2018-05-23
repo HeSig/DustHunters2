@@ -209,6 +209,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
+			
 			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
 			if(comboChooseChildPicture.getSelectedItem().equals("Dammtuss")) {
 				childProfile.setImage("dammtuss");

@@ -230,7 +230,7 @@ public class ParentEditTaskWindow extends JPanel implements ActionListener {
 				try {
 
 					controller.addTaskToAccount(task);
-					// Fullösning
+					// Fullösning 
 					Thread.sleep(500);
 					// Fullösning
 					controller.getAccount().setTaskList(controller.getTasksFromAccount());
