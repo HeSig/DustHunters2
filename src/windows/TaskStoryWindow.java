@@ -73,13 +73,13 @@ public class TaskStoryWindow extends JPanel implements ActionListener {
 		btnProfile.setIcon(new ImageIcon("images/20x20Dammtuss.jpg"));
 		btnProfile.setBounds(260, 16, 90, 50);
 
-		btnHome.addActionListener(this);
-		btnProfile.addActionListener(this);
-
 		pnlTop.add(btnHome);
 		pnlTop.add(lblTitle);
 		pnlTop.add(btnProfile);
 
+		btnHome.addActionListener(this);
+		btnProfile.addActionListener(this);
+		
 		// Middle Panel
 		JPanel pnlMiddle = new JPanel();
 
