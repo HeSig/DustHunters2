@@ -37,6 +37,8 @@ import tasks.Task;
 /**
  * 
  * @author Angelina &........
+ * 
+ * Drop-down ska raderas, barnen ska inte kunna ändra val av sysslor i detta fönster -M
  *
  */
 public class ChildTaskWindow extends JPanel implements ActionListener {
