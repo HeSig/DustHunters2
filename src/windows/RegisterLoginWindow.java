@@ -48,6 +48,7 @@ public class RegisterLoginWindow extends JPanel implements ActionListener {
 	 */
 	private void InitializeGUI() {
 		centerPanel.setBackground(Color.YELLOW);
+		//New line
 		ImageIcon icon = new ImageIcon("images/Titel2.png");
 		
 		titel.setIcon(icon);
