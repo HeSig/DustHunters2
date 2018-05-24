@@ -101,7 +101,7 @@ public class HelpWindow extends JPanel implements ActionListener {
 
 		// TextArea and scroll-function
 		JTextArea textArea = new JTextArea(text2);
-		textArea.setSize(400, 550); //Scroll doesn't work when I set bigger
+		textArea.setSize(400, 550); //Scroll doesn't work when I set size - M
 		textArea.setLineWrap(true);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		textArea.setEditable(false);
@@ -168,9 +168,51 @@ public class HelpWindow extends JPanel implements ActionListener {
 				+ " dammtussar. Barnen kan även individuellt välja"
 				+ " tema för sin egen dammtuss. Detta kan göras"
 				+ " när du lägger till en barnprofil."
-				
-				
-				
+				+ "\n "
+				+ "\n "
+				+ "Behöver du hjälpa barnet omkring i appen?"
+				+ "* Barnen får användarnamn och lösenord av"
+				+ " ena förälderna och loggar in."
+				+ "\n "
+				+ "\n "
+				+ "* Genom att klicka på dammtussen längst upp"
+				+ " till höger så kommer barnet till sin profil" //profil = bold
+				+ "\n "
+				+ "\n "
+				+ "* För att komma tillbaka till första sidan " //första sidan = bold
+				+ " trycker barnet på huset längst upp till vänster." 
+				+ "\n "
+				+ "\n "
+				+ "* Under mina sysslor kan barnet se vilka" //mina sysslor = bold
+				+ " uppdrag som finns."
+				+ "\n "
+				+ "\n "
+				+ "* Under mina belöningar kan barnet se sina" //mina belöningar = bold
+				+ " skatter. Barnet kan klicka på varje skatt för"
+				+ " att se mer detaljerad information om detta"
+				+ "\n "
+				+ "\n "
+				+ "Våra rekommendationer"
+				+ "\n * Kom överens om poängvärdet för varje syssla."
+				+ " Antingen mellan er föräldrar och/eller tillsammans"
+				+ " med barnen. Risk finns att föräldrarna ger olika"
+				+ " poäng för samma syssla. Att ta med barnen i "
+				+ " bestämandet ger de en känsla av samarbete."
+				+ "\n "
+				+ "\n "
+				+ "* Du som förälder kan välja att göra vissa sysslor"
+				+ "+ samarbetsbara mellan syskonen. Kom överens om "
+				+ " vilka sysslor som kan barnen kan samarbeta med."
+				+ "\n "
+				+ "\n "
+				+ "* Diskutera med barnet på förhand om vilka "
+				+ " konsekvenser som finns om hen väljer att aldrig"
+				+ " göra en syssla."
+				+ "\n "
+				+ "\n "
+				+ "* Du kan välja att inte godkänna en syssla som barnet"
+				+ " gjort. Vi uppmuntrar att du som förälder berättar"
+				+ " muntligt för barnet hur städningen kan kompletteras."
 				+ "";
 		return text2;
 	}
