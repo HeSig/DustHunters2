@@ -122,7 +122,6 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 		pnlMiddle.add(btnBeach);
 		pnlMiddle.add(btnCinema);
 		
-
 		// Bottom Panel
 		JPanel pnlBottom = new JPanel();
 
@@ -138,10 +137,7 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 		lblPoints.setForeground(Color.RED);
 		pbar = new JProgressBar();
 		pbar.setValue(childPoints);
-		
-		
-	
-		
+				
 		pnlBottom.add(lblPTitle);
 		pnlBottom.add(pbar);
 		pnlBottom.add(lblPoints);
@@ -150,8 +146,7 @@ public class ChildRewardWindow extends JPanel implements ActionListener {
 		this.add(pnlTop);
 		this.add(pnlMiddle);
 		this.add(pnlBottom);
-		
-		
+				
 		// Adds all action listeners
 		btnHome.addActionListener(this);
 		btnBeach.addActionListener(this);
