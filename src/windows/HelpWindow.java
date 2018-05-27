@@ -32,7 +32,7 @@ import javax.swing.border.Border;
 
 /**
  * 
- * @author Maida
+ * @author Maida, dalvig
  *
  */
 
