@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -30,7 +29,7 @@ import profiles.ChildProfile;
  */
 
 public class AddChildWindow extends JPanel implements ActionListener {
-	
+
 	private static final long serialVersionUID = -6190137821496434029L;
 	private JLabel lblTitle;
 	private JLabel lblChildName;
@@ -47,9 +46,8 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	private ImageIcon profilePic;
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboChooseChildPicture;
-	
-	private String[] profilePictures = {"Dammtuss", "Pirat", "Häxa", "Astronaut", "Ninja"};
 
+	private String[] profilePictures = {"Dammtuss", "Pirat", "Häxa", "Astronaut", "Ninja"};
 
 	private Account account;
 	private ChildProfile childProfile;
@@ -67,8 +65,6 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	public ChildProfile getChildProfile() {
 		return childProfile;
 	}
-	
-	
 
 	public void start() throws IOException {
 
@@ -78,18 +74,17 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
-
 	public void InitializeGUI() throws IOException {
 
 		// Main Panel
 		this.setBounds(6, 6, 381, 500);
 		this.setLayout(null);
 		this.setBackground(Color.YELLOW);
-		
+
 
 		// Top Panel
 		JPanel pnlTop = new JPanel();
-		
+
 		pnlTop.setBounds(12, 17, 358, 80);
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(Color.YELLOW);
@@ -101,11 +96,10 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		btnHome.setBounds(5, 5, 80, 65);
 		btnProfile.setIcon(new ImageIcon(controller.getPictures().getImage(controller.getParentProfile().getImageString())));
 		btnProfile.setBounds(260, 16, 90, 50);
-		
+
 		pnlTop.add(btnHome);
 		pnlTop.add(lblTitle);
 		pnlTop.add(btnProfile);
-		
 
 		// Middle-Upper Panel
 		JPanel pnlMiddle1 = new JPanel();
@@ -118,10 +112,9 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		btnProfilePic.setBounds(10, 10, 10, 10);
 		btnProfilePic.setEnabled(true);
 		//btnProfilePic.addActionListener(this);
-		
+
 		pnlMiddle1.add(btnProfilePic);
-	
-		
+
 		// Middle-Lower Panel
 		JPanel pnlMiddle2 = new JPanel();
 
@@ -129,24 +122,22 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		pnlMiddle2.setLayout(new GridLayout(4,2));
 		pnlMiddle2.setBackground(Color.YELLOW);
 
-		
 		lblChildName = new JLabel("Namn: ");
 		lblChildName.setFont(new Font("SansSerif", Font.BOLD, 12));	
-		
+
 		lblChildPassword = new JLabel("Lösenord: ");
 		lblChildPassword.setFont(new Font("SansSerif", Font.BOLD, 12));
-		
+
 		JLabel lblChildPicture = new JLabel("Profilbild");
 		comboChooseChildPicture = new JComboBox(profilePictures);
-		
+
 		lblChildPassRepeat = new JLabel("Upprepa lösenord: ");
 		lblChildPassRepeat.setFont(new Font("SansSerif", Font.BOLD, 12));
-		
+
 		txtChildName = new JTextField();
 		txtChildPassword = new JTextField();
 		txtChildPassRepeat = new JTextField();
-		
-		
+
 		pnlMiddle2.add(lblChildName);
 		pnlMiddle2.add(txtChildName);
 		pnlMiddle2.add(lblChildPicture);
@@ -155,7 +146,6 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		pnlMiddle2.add(txtChildPassword);
 		pnlMiddle2.add(lblChildPassRepeat);
 		pnlMiddle2.add(txtChildPassRepeat);
-			
 
 		// Bottom Panel
 		JPanel pnlBottom = new JPanel();
@@ -163,26 +153,26 @@ public class AddChildWindow extends JPanel implements ActionListener {
 		pnlBottom.setBounds(12, 470, 358, 100);
 		pnlBottom.setLayout(new FlowLayout());
 		pnlBottom.setBackground(Color.YELLOW);
-		
+
 		btnSave = new JButton("Spara");
 		btnSave.setBounds(10, 10, 10, 10);
 		btnSave.setBackground(Color.GREEN);
 		btnSave.setForeground(Color.BLACK);
-		
+
 		btnCancel = new JButton("Avsluta");
 		btnCancel.setBounds(100, 200, 250, 200);
 		btnCancel.setBackground(Color.RED);
 		btnCancel.setForeground(Color.BLACK);
-		
+
 		pnlBottom.add(btnSave);
 		pnlBottom.add(btnCancel);
-		
+
 		// Adds the four panels to the main panel
 		this.add(pnlTop);
 		this.add(pnlMiddle1);
 		this.add(pnlMiddle2);
 		this.add(pnlBottom);
-		
+
 		// Adds all action listeners
 		btnHome.addActionListener(this);
 		btnProfile.addActionListener(this);
@@ -195,8 +185,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		
-		 //Depending on what button the user presses on, it will do certain things
+		//Depending on what button the user presses on, it will do certain things
 		if (e.getSource() == btnHome) {
 			controller.setViewParentTaskWindow();
 
@@ -207,7 +196,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 			controller.setViewParentProfileWindow();
 
 		} else if (e.getSource() == btnSave) {
-			
+
 			//Themes that can be chosen
 			ChildProfile childProfile = new ChildProfile(txtChildName.getText(), 0);
 			if(comboChooseChildPicture.getSelectedItem().equals("Dammtuss")) {
@@ -228,7 +217,7 @@ public class AddChildWindow extends JPanel implements ActionListener {
 			}
 		} else if (e.getSource() == btnCancel) {
 			controller.setViewParentProfileWindow();
-			
+
 		}else if(e.getSource() == comboChooseChildPicture) {
 			if (comboChooseChildPicture.getSelectedItem().equals("Dammtuss")) {
 				btnProfilePic.setIcon(new ImageIcon(controller.getPictures().getImage("dammtuss")));
@@ -249,6 +238,3 @@ public class AddChildWindow extends JPanel implements ActionListener {
 
 	}
 }
-
-
-

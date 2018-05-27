@@ -62,6 +62,11 @@ public class ClientController implements ActionListener, Observer {
 	private ChildProfile childProfile;
 	private ParentProfile parentProfile;
 
+	
+	/**
+	 * Constructor for ClientController
+	 * @param client klienten.
+	 */
 	public ClientController(Client client) {
 		this.client = client;
 		this.client.addObserver(this);
@@ -87,7 +92,12 @@ public class ClientController implements ActionListener, Observer {
 		setViewRegisterLoginWindow();
 		
 	}
-
+	
+	
+	/**
+	 * Initialize childwindows if the user is using a child profile
+	 * @throws IOException
+	 */
 	private void initChild() throws IOException {
 		cptw = new ChildPerformTaskWindow(this);
 		crw = new ChildRewardWindow(this);
@@ -96,15 +106,10 @@ public class ClientController implements ActionListener, Observer {
 		chw = new ChildHomeWindow(this);
 		tsw = new TaskStoryWindow(this);
 	}
-
-	public ParentProfile getParentProfile() {
-		return parentProfile;
-	}
-
-	public ChildProfile getChildProfile() {
-		return childProfile;
-	}
-
+	/**
+	 * Initialize parent windows if the user is using a parent profile.
+	 * @throws IOException
+	 */
 	private void initParent() throws IOException {
 		acw = new AddChildWindow(this);
 		phw = new ParentHomeWindow(this);
@@ -116,36 +121,79 @@ public class ClientController implements ActionListener, Observer {
 		pSettingsw = new ParentSettingsWindow(this);
 		hw = new HelpWindow(this);
 	}
-
+	
+	/**
+	 * Returns the currently active parent profile
+	 * @return the parent profile
+	 */
+	public ParentProfile getParentProfile() {
+		return parentProfile;
+	}
+	/**
+	 * Returns the currently active child profile
+	 * @return the child profile
+	 */
+	public ChildProfile getChildProfile() {
+		return childProfile;
+	}
+	/**
+	 * Returns the list of profile pictures
+	 * @return the profile picture
+	 */
 	public ProfilePicture getPictures() {
 		return profilePictures;
 	}
 
-	public void updateProfilesList() {
-		// TODO Auto-generated method stub
-
-	}
-
+	/**
+	 * Add task to the account database.
+	 * @param task The task to be added.
+	 * @return a full list of the tasks in the account after the new task has been added.
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
 	public LinkedList<Task> addTaskToAccount(Task task) throws UnknownHostException, IOException {
 		return client.addTaskToServer(account, task);
 	}
 
+	/**
+	 * Sets the chosen task as completed.
+	 * @param task The task to be completed.
+	 * @return a full list of the tasks in the account after the task has been set as completed.
+	 */
 	public LinkedList<Task> setTaskAsCompleted(Task task) {
 		return client.setTaskAsCompleted(account, task, childProfile);
 	}
 
+	/**
+	 * Add a child profile to the account through the server.
+	 * @param childProfile The child profile to be added.
+	 * @throws IOException
+	 */
 	public void addChildProfile(ChildProfile childProfile) throws IOException {
 		client.addChildProfileToServer(account, childProfile);
 	}
 
+	/**
+	 * Add a parent profile to the account through the server.
+	 * @param parentProfile The parent profile to be added.
+	 * @throws IOException
+	 */
 	public void addParentProfile(ParentProfile parentProfile) throws IOException {
 		client.addParentProfileToServer(account, parentProfile);
 	}
 
+	/**
+	 * Returns the current account.
+	 * @return the current account for this ClientController.
+	 */
 	public Account getAccount() {
 		return account;
 	}
 
+	/**
+	 * Returns the full list of tasks from the current account.
+	 * @return the list of tasks.
+	 */
 	public LinkedList<Task> getTasksFromAccount() {
 		while (clientIsRunning) {
 			try {
@@ -167,6 +215,10 @@ public class ClientController implements ActionListener, Observer {
 		return list;
 	}
 
+	/**
+	 * Set the current panel the frame is disaplaying.
+	 * @param panel the new panel.
+	 */
 	private void setPanel(JPanel panel) {
 		frame.remove(this.panel);
 		this.panel = panel;
@@ -175,75 +227,115 @@ public class ClientController implements ActionListener, Observer {
 		this.panel.updateUI();
 	}
 
+	/**
+	 * Sets the view to ParentProfileWindow
+	 */
 	public void setViewParentProfileWindow() {
 		setPanel(ppw);
 	}
-
+	/**
+	 * Sets the view to RegisterLoginWindow
+	 */
 	public void setViewRegisterLoginWindow() {
 		setPanel(rlw);
 	}
-	
+	/**
+	 * Sets the view to ParentTaskWindow
+	 */
 	public void setViewParentTaskWindow() {
 		setPanel(ptw);
 	}
-
+	/**
+	 * Sets the view to ChildPerformTaskWindow
+	 */
 	public void setViewChildPerformTaskWindow() {
 		setPanel(cptw);
 	}
 
+	/**
+	 * Sets the view to ChildHomeWindow
+	 */
 	public void setViewChildHomeWindow() {
 		setPanel(chw);
 	}
-	
+	/**
+	 * Set the view to ChildProfileWindow
+	 */
 	public void setViewChildProfileWindow() {
 		setPanel(cpw);
 	}
-
+	/**
+	 * Set the view to ChildRewardWindow
+	 */
 	public void setViewChildRewardWindow() {
 		setPanel(crw);
 	}
-
+	/**
+	 * Set the view to ChildChooseTaskWindow
+	 */
 	public void setViewChildChooseTaskWindow() {
 		setPanel(cctw);
 	}
-
+	/**
+	 * Set the view to ProfileStartWindow
+	 */
 	public void setViewProfileStartWindow() {
 		setPanel(psw);
 	}
-
+	/**
+	 * Set the view to ParentHomeWindow
+	 */
 	public void setViewParentHomeWindow() {
 		setPanel(phw);
 	}
-
+	/**
+	 * Set the view to ParentEditTaskWindow
+	 */
 	public void setViewParentEditTaskWindow() {
 		setPanel(petw);
 
 	}
-
+	/**
+	 * Set the view to AddChildWindow
+	 */
 	public void setViewAddChildWindow() {
 		setPanel(acw);
 	}
-
+	/**
+	 * Set the view to ParentSettingsWindow
+	 */
 	public void setViewParentSettingsWindow() {
 		setPanel(pSettingsw);
 	}
-
+	/**
+	 * Set the view to ViewHelpWindow
+	 */
 	public void setViewHelpWindow() {
 		setPanel(hw);
 	}
-
+	/**
+	 * Set the view to TaskStoryWindow
+	 */
 	public void setTaskStoryWindow() {
 		setPanel(tsw);
 	}
-
+	/**
+	 * Set the view to ParentRewardWindow
+	 */
 	public void setViewParentRewardWindow() {
 		setPanel(prw);
 	}
-
+	/**
+	 * Set the view to ParentCreateRewardWindow
+	 */
 	public void setViewParentCreateRewardWindow() {
 		setPanel(pcrw);
 	}
 
+	/**
+	 * Sets the current parent profile to the one with the same name in the account.
+	 * @param name The name of the profile.
+	 */
 	public void setParentProfile(String name) {
 		for (int i = 0; i < account.getParentProfileList().size(); i++) {
 			if (account.getParentProfileList().get(i).getName().equals(name)) {
@@ -257,7 +349,10 @@ public class ClientController implements ActionListener, Observer {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Sets the current child profile to the one with the same name in the account.
+	 * @param name The name of the profile.
+	 */
 	public void setChildProfile(String name) {
 		for (int i = 0; i < account.getChildProfileList().size(); i++) {
 			if (account.getChildProfileList().get(i).getName().equals(name)) {
@@ -289,23 +384,43 @@ public class ClientController implements ActionListener, Observer {
 	public void update(Observable o, Object arg) {
 		clientIsRunning = false;
 	}
-
+	/**
+	 * Update the taskList.
+	 */
 	public void updateTaskLists() {
 		ptw.updateTasks();
 	}
-
+	/**
+	 * Add reward to the account through the server.
+	 * @param reward the reward to be added to the account
+	 * @return the full list of rewards.
+	 * @throws IOException
+	 */
 	public LinkedList<Reward> addReward(Reward reward) throws IOException {
 		LinkedList<Reward> rewardList;
 		rewardList = client.addRewardToServer(account, reward);
 		return rewardList;
 	}
-
+	/**
+	 * Remove a reward to the account
+	 * @param reward
+	 * @return the full list of rewards
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public LinkedList<Reward> removeReward(Reward reward) throws ClassNotFoundException, IOException {
 		LinkedList<Reward> rewardList;
 		rewardList = client.removeRewardFromServer(account, reward);
 		return rewardList;
 	}
-
+	/**
+	 * Add points to a reward on the account.
+	 * @param reward The reward that will recieve the points
+	 * @param points The amount of points to be added to the rewardProgress
+	 * @param childProfile The child who has done the task
+	 * @return Returns the full list of rewards from the account
+	 * @throws IOException
+	 */
 	public LinkedList<Reward> addPointsToReward(Reward reward, int points, ChildProfile childProfile)
 			throws IOException {
 		LinkedList<Reward> rewardList;
@@ -385,7 +500,14 @@ public class ClientController implements ActionListener, Observer {
 		String res = client.sendRegisterToServer(account);
 		return res;
 	}
-	
+	/**
+	 * Logs in to the account.
+	 * @param account The account to be logged in with
+	 * @return the full account from the server.
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public Account login(Account account) throws UnknownHostException, IOException, ClassNotFoundException {
 		System.out.println("Controller is attempting the login");
 		Account res = client.sendLoginToServer(account);
@@ -394,7 +516,13 @@ public class ClientController implements ActionListener, Observer {
 		setViewProfileStartWindow();
 		return res;
 	}
-
+	/**
+	 * Mark a task as completed.
+	 * @param task the task to be marked.
+	 * @param childProfile The profile that did the task.
+	 * @return returns a full list of tasks from the account after the task has been set to completed.
+	 * @throws IOException
+	 */
 	public LinkedList<Task> completeTask(Task task, ChildProfile childProfile) throws IOException {
 		LinkedList<Task> taskList;
 		taskList = client.setTaskCompleted(account, task, childProfile);

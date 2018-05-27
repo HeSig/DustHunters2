@@ -38,6 +38,7 @@ import tasks.Task;
  * @author Angelina Fransson, Henrik Sigeman, Maida Sijaric
  *
  */
+@SuppressWarnings({ "unchecked", "serial" })
 public class ParentTaskWindow extends JPanel implements ActionListener {
 	private Account account;
 	private ParentProfile parentProfile;
@@ -45,19 +46,17 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 	private ClientController controller;
 
-	private JLabel lblCheck;
-	private JLabel lblTask;
+	
 	private JButton btnHome;
 	private JButton btnAddTask;
 	private JButton btnEditTask;
-	private JLabel lblChildDoingTask; // Filled in when a child has been assigned with a chore
 	private JButton btnProfile;
 	private ImageIcon dustBallImage;
-	private LinkedList<JPanel> taskPanelList = new LinkedList();
 
+	@SuppressWarnings("rawtypes")
 	private DefaultListModel model = new DefaultListModel();
+	@SuppressWarnings("rawtypes")
 	private JList taskList = new JList(model);
-	private JPanel pnlMiddle;
 
 	public Account getAccount() {
 		return account;
@@ -65,10 +64,6 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 	public ParentProfile getParentProfile() {
 		return parentProfile;
-	}
-
-	public void setLblNameTask(JLabel lblTask) {
-		this.lblTask = lblTask;
 	}
 
 	public void setAccount(Account account) {
@@ -91,11 +86,6 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.btnEditTask = btnEditTask;
 	}
 
-	public void setChildDoingTask(JLabel lblChildDoingTask) {
-		this.lblChildDoingTask = lblChildDoingTask;
-
-	}
-
 	public ParentTaskWindow(ClientController clientController) {
 
 		this.controller = clientController;
@@ -108,15 +98,13 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 		this.setLayout(null);
 		InitializeGUI();
 		this.setVisible(true);
-//		lblChildDoingTask.setOpaque(true);
-//		lblCheck.setOpaque(true);
-//		lblTask.setOpaque(true);
 
 	}
 
 	/*
 	 * Set sizes and add components
 	 */
+	@SuppressWarnings({ "unchecked", "unchecked", "unchecked" })
 	private void InitializeGUI() {
 
 		// PnlMain
@@ -151,28 +139,12 @@ public class ParentTaskWindow extends JPanel implements ActionListener {
 
 		pnlTop.add(btnProfile);
 
-		// This should be in an if-statement. If a chore has been done, then this should
-		// be visible
-
 		taskList.setCellRenderer(new TaskRenderer());
 		JScrollPane taskScroll = new JScrollPane(taskList);
 		taskScroll.setBounds(12, 130, 358, 140);
 		GridBagConstraints c = new GridBagConstraints();
 
-//		Border border3 = BorderFactory.createEtchedBorder();
-//		lblChildDoingTask = new JLabel("Angie");
-//		lblChildDoingTask.setFont(new Font("SansSerif", Font.CENTER_BASELINE, 12));
-//		lblChildDoingTask.setBorder(border3);
-//
-//		lblTask = new JLabel("Dammsuga Vardagsrummet");
-//		lblTask.setFont(new Font("SansSerif", Font.BOLD, 12));
-//		lblTask.setBorder(border3);
-//
-//		lblCheck = new JLabel(" ");
-//		lblCheck.setFont(new Font("SansSerif", Font.BOLD, 12));
-//		lblCheck.setBorder(border3);
 
-		// Needs to be redone so that they're all the same length
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
 		c.weightx = 1;
