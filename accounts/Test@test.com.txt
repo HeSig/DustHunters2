@@ -7,7 +7,7 @@ Mamma
 dammtuss
 $
 ChildProfiles:
-5
+7
 Mia
 dammtuss
 0
@@ -23,9 +23,15 @@ witch
 Sara
 astronaut
 0
+robert gustavsson
+pirat
+0
+hej
+astronaut
+0
 $
 Tasks:
-9
+12
 Sovrummet
 Damma
 10
@@ -68,6 +74,21 @@ false
 null
 Toaletten
 Dammsuga
+10
+false
+null
+Hallen
+Diska
+10
+false
+null
+utomhus
+Damma
+10
+false
+null
+Vardagsrummet
+Damma
 10
 false
 null
